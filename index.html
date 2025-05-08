@@ -27,16 +27,18 @@
           <p>Shashank S</p>
           <p>
             <b>Hey! 👋</b>
-            I’m a <b>product designer</b> who blends curiosity with a deep focus on <b>product thinking</b>. I enjoy designing early-stage <b>0 → 1 products</b> and simplifying complex workflows into simple interfaces. Beyond screens, I am building a skateboarding community and sometimes go on adventures.
-
-            </b>
+            I’m a <b>product designer</b> who blends curiosity with a deep
+            focus on <b>product thinking</b>. I enjoy designing early-stage
+            <b>0 → 1 products</b> and simplifying complex workflows into
+            simple interfaces. Beyond screens, I am building a skateboarding
+            community and sometimes go on adventures.
           </p>
         </div>
 
         <div class="row">
           <p>Projects</p>
           <div class="projects">
-           <span>
+            <span>
               <a
                 class="nvidia"
                 target="_blank"
@@ -76,7 +78,6 @@
                 >Toast (now Summer)</a
               ></span
             >
-           
             <span>
               <a
                 class="flytbase"
@@ -92,7 +93,9 @@
           <p>Experience</p>
           <div>
             <div class="experience">
-              <a class="self" target="blank">User Experience & Product Design</a>
+              <a class="self" target="blank"
+                >User Experience & Product Design</a
+              >
               <p>Independent Product Designer<br />08.2020 – Present</p>
             </div>
 
@@ -123,17 +126,21 @@
                 href="https://www.nvidia.com/en-in/"
                 >NVIDIA</a
               >
-              <p>Graduation Project – Software Design Intern<br />12.2019 – 07.2020</p>
+              <p>
+                Graduation Project – Software Design Intern<br />12.2019 –
+                07.2020
+              </p>
             </div>
-
-        
           </div>
         </div>
 
         <footer class="row">
           <span></span>
           <div class="contact">
-            <a class="indent" target="_blank" href="mailto:hello@shashankseth.in"
+            <a
+              class="indent"
+              target="_blank"
+              href="mailto:hello@shashankseth.in"
               >Email</a
             >
             <a
@@ -156,18 +163,27 @@
         <span class="portrait-container">
           <div class="portrait">
             <img src="./shashank_files/cover.jpg" />
-            <p>Photo taken on April 22 '25 at Mt. Pangarchulla [4,575 mtrs], UK, India</p>
+            <p>
+              Photo taken on April 22 '25 at Mt. Pangarchulla [4,575 mtrs],
+              UK, India
+            </p>
           </div>
         </span>
 
         <div class="nvidia hoverCard">
           <img src="./shashank_files/nvidia.jpg" />
-          <p>Experience Design of Control Panel Software for Gaming and Enterprise Users</p>
+          <p>
+            Experience Design of Control Panel Software for Gaming and
+            Enterprise Users
+          </p>
         </div>
 
         <div class="toast hoverCard">
           <img src="./shashank_files/toast.png" />
-          <p>Creating contact-less restaurant experience for customers and management</p>
+          <p>
+            Creating contact-less restaurant experience for customers and
+            management
+          </p>
         </div>
 
         <div class="flytbase hoverCard">
@@ -191,5 +207,64 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const projectLinks = document.querySelectorAll('.projects a');
+        const hoverCards = document.querySelectorAll('.media .hoverCard');
+        const portraitContainer = document.querySelector('.media .portrait-container');
+
+        // Store the original display style of the portrait container
+        let originalPortraitDisplay = window.getComputedStyle(portraitContainer).display;
+        if (originalPortraitDisplay === 'none') {
+          // If it was initially 'none' for some reason by other CSS, default to 'block'
+          // or 'flex' if you know it's a flex container. For a span, 'block' or 'inline-block' is common.
+          originalPortraitDisplay = 'block'; 
+        }
+
+        // Initially hide all hoverCards and ensure portrait is visible using JavaScript
+        hoverCards.forEach(card => {
+          card.style.display = 'none';
+        });
+        portraitContainer.style.display = originalPortraitDisplay;
+
+        projectLinks.forEach(link => {
+          link.addEventListener('mouseenter', function () {
+            // Use the first class of the link as the identifier (e.g., "nvidia")
+            const linkClass = this.classList[0]; 
+            if (!linkClass) return; // Skip if link has no classes
+
+            const targetCard = document.querySelector('.media .' + linkClass + '.hoverCard');
+
+            // Hide portrait
+            portraitContainer.style.display = 'none';
+
+            // Hide all hoverCards (to ensure only one is shown)
+            hoverCards.forEach(card => card.style.display = 'none');
+
+            // Show the target hoverCard if found
+            if (targetCard) {
+              // You might want to set this to 'flex' if your .hoverCard elements are flex containers
+              targetCard.style.display = 'block'; 
+            }
+          });
+
+          link.addEventListener('mouseleave', function () {
+            const linkClass = this.classList[0];
+            if (!linkClass) return;
+
+            const targetCard = document.querySelector('.media .' + linkClass + '.hoverCard');
+
+            // Hide the target hoverCard
+            if (targetCard) {
+              targetCard.style.display = 'none';
+            }
+
+            // Show portrait
+            portraitContainer.style.display = originalPortraitDisplay;
+          });
+        });
+      });
+    </script>
   </body>
 </html>
