@@ -210,46 +210,88 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM fully loaded and parsed. Initializing image hover script.');
+
         const projectLinks = document.querySelectorAll('.projects a');
         const hoverCards = document.querySelectorAll('.media .hoverCard');
         const portraitContainer = document.querySelector('.media .portrait-container');
 
-        // Store the original display style of the portrait container
-        let originalPortraitDisplay = window.getComputedStyle(portraitContainer).display;
-        if (originalPortraitDisplay === 'none') {
-          // If it was initially 'none' for some reason by other CSS, default to 'block'
-          // or 'flex' if you know it's a flex container. For a span, 'block' or 'inline-block' is common.
-          originalPortraitDisplay = 'block'; 
+        if (!portraitContainer) {
+          console.error('Error: portraitContainer (.media .portrait-container) not found!');
+          return;
+        }
+        if (projectLinks.length === 0) {
+          console.warn('Warning: No project links found with selector ".projects a"');
+        }
+        if (hoverCards.length === 0) {
+          console.warn('Warning: No hover cards found with selector ".media .hoverCard"');
         }
 
-        // Initially hide all hoverCards and ensure portrait is visible using JavaScript
+        let originalPortraitDisplay = window.getComputedStyle(portraitContainer).display;
+        console.log('Initial portraitContainer computed display style:', originalPortraitDisplay);
+
+        if (originalPortraitDisplay === 'none') {
+          console.warn('Portrait container was initially display:none via CSS. Defaulting to "block" for visibility in script.');
+          originalPortraitDisplay = 'block'; // Or 'flex' if it's a flex container
+        }
+
+        // Initially hide all hoverCards and ensure portrait is visible
         hoverCards.forEach(card => {
           card.style.display = 'none';
         });
         portraitContainer.style.display = originalPortraitDisplay;
+        console.log('Initial setup: Portrait display set to', originalPortraitDisplay, '; All hoverCards set to display:none.');
 
         projectLinks.forEach(link => {
-          link.addEventListener('mouseenter', function () {
-            // Use the first class of the link as the identifier (e.g., "nvidia")
-            const linkClass = this.classList[0]; 
-            if (!linkClass) return; // Skip if link has no classes
+          link.addEventListener('mouseenter', function (event) {
+            console.log('Mouse entered link:', this.className);
+            const linkClass = this.classList[0]; // Use the first class as the identifier
+            if (!linkClass) {
+              console.warn('Link has no class, cannot find target card:', this);
+              return;
+            }
+            console.log('Targeting hoverCard with specific class:', linkClass);
 
             const targetCard = document.querySelector('.media .' + linkClass + '.hoverCard');
 
             // Hide portrait
             portraitContainer.style.display = 'none';
+            console.log('Portrait hidden.');
 
-            // Hide all hoverCards (to ensure only one is shown)
-            hoverCards.forEach(card => card.style.display = 'none');
+            // Hide all hoverCards (to ensure only one is shown if rapidly moving mouse)
+            hoverCards.forEach(card => {
+              if (card !== targetCard) { // Optimization: don't hide the one we're about to show
+                card.style.display = 'none';
+              }
+            });
+            console.log('Other hoverCards ensured hidden.');
 
             // Show the target hoverCard if found
             if (targetCard) {
-              // You might want to set this to 'flex' if your .hoverCard elements are flex containers
-              targetCard.style.display = 'block'; 
+              targetCard.style.display = 'block'; // Change to 'flex' if your .hoverCard elements are flex containers
+              console.log('Target card found and display set to "block":', targetCard);
+              
+              // Log computed styles of the image and caption within the target card
+              const imgInside = targetCard.querySelector('img');
+              const pInside = targetCard.querySelector('p');
+              if (imgInside) {
+                console.log('Image inside targetCard:', imgInside.src, 'Computed display:', window.getComputedStyle(imgInside).display, 'Natural WxH:', imgInside.naturalWidth + 'x' + imgInside.naturalHeight);
+              } else {
+                console.warn('No <img> tag found inside targetCard:', targetCard);
+              }
+              if (pInside) {
+                console.log('Paragraph (caption) inside targetCard:', pInside.textContent.substring(0,30)+'...', 'Computed display:', window.getComputedStyle(pInside).display);
+              } else {
+                console.warn('No <p> tag found inside targetCard:', targetCard);
+              }
+
+            } else {
+              console.warn('Target card NOT found for class:', '.' + linkClass + '.hoverCard');
             }
           });
 
-          link.addEventListener('mouseleave', function () {
+          link.addEventListener('mouseleave', function (event) {
+            console.log('Mouse left link:', this.className);
             const linkClass = this.classList[0];
             if (!linkClass) return;
 
@@ -258,10 +300,14 @@
             // Hide the target hoverCard
             if (targetCard) {
               targetCard.style.display = 'none';
+              console.log('Target card hidden on mouseleave:', targetCard);
+            } else {
+                console.warn('No target card was found to hide on mouseleave for class:', linkClass)
             }
 
             // Show portrait
             portraitContainer.style.display = originalPortraitDisplay;
+            console.log('Portrait shown on mouseleave. Display set to:', originalPortraitDisplay);
           });
         });
       });
