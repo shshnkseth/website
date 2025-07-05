@@ -18,11 +18,7 @@
     <link rel="icon" href="/shashank_files/zapp.png" />
     <link rel="stylesheet" href="./shashank_files/main.css" />
     <link rel="stylesheet" href="./shashank_files/srk5tly.css" />
-    <style>
-        .media .hoverCard {
-            display: none;
-        }
-    </style>
+    <!-- REMOVED THE PROBLEMATIC CSS RULE THAT WAS PREVENTING HOVER CARDS FROM SHOWING -->
 </head>
 <body class="index">
     <div class="landing">
@@ -31,7 +27,7 @@
                 <p>Shashank S</p>
                 <p>
                     <b>Hey! 👋</b>
-                    I’m a <b>product designer</b> who blends curiosity with a deep
+                    I'm a <b>product designer</b> who blends curiosity with a deep
                     focus on <b>product thinking</b>. I enjoy designing early-stage
                     <b>0 → 1 products</b> and simplifying complex workflows into
                     simple interfaces. Beyond screens, I am building a skateboarding
@@ -180,6 +176,14 @@
                 </p>
             </div>
 
+            <!-- ADDED MISSING QUIZIZZ HOVER CARD -->
+            <div class="quizizz hoverCard">
+                <img src="./shashank_files/Projects 6 – 1.png" alt="Quizizz Project" />
+                <p>
+                    Interactive learning platform for engaging educational quizzes
+                </p>
+            </div>
+
             <div class="toast hoverCard">
                 <img src="./shashank_files/toast.png" alt="Toast Project" />
                 <p>
@@ -212,106 +216,77 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM fully loaded and parsed. Initializing image hover script.');
+            console.log('🚀 DOM fully loaded. Initializing hover functionality...');
 
-            const projectLinks = document.querySelectorAll('.projects a');
+            // Select all links with hover functionality (from both projects and experience sections)
+            const hoverLinks = document.querySelectorAll('.projects a, .experience a');
             const hoverCards = document.querySelectorAll('.media .hoverCard');
             const portraitContainer = document.querySelector('.media .portrait-container');
 
             if (!portraitContainer) {
-                console.error('Error: portraitContainer (.media .portrait-container) not found!');
+                console.error('❌ Error: Portrait container not found!');
                 return;
             }
-            if (projectLinks.length === 0) {
-                console.warn('Warning: No project links found with selector ".projects a"');
-            }
-            if (hoverCards.length === 0) {
-                console.warn('Warning: No hover cards found with selector ".media .hoverCard"');
-            }
 
-            let originalPortraitDisplay = window.getComputedStyle(portraitContainer).display;
-            console.log('Initial portraitContainer computed display style:', originalPortraitDisplay);
+            console.log(`✅ Found ${hoverLinks.length} hover links and ${hoverCards.length} hover cards`);
 
-            if (originalPortraitDisplay === 'none') {
-                console.warn('Portrait container was initially display:none via CSS. Defaulting to "block" for visibility in script.');
-                originalPortraitDisplay = 'block'; // Or 'flex' if it's a flex container
-            }
-
-            // Initially hide all hoverCards and ensure portrait is visible
+            // Initially hide all hoverCards using CSS classes (for proper animations)
             hoverCards.forEach(card => {
-                card.style.display = 'none';
+                card.classList.remove('showHoverCard');
             });
-            portraitContainer.style.display = originalPortraitDisplay;
-            console.log('Initial setup: Portrait display set to', originalPortraitDisplay, '; All hoverCards set to display:none.');
 
-            projectLinks.forEach(link => {
+            // Setup hover functionality
+            hoverLinks.forEach(link => {
                 link.addEventListener('mouseenter', function (event) {
-                    console.log('Mouse entered link:', this.className);
-                    const linkClass = this.classList[0]; // Use the first class as the identifier
-                    if (!linkClass) {
-                        console.warn('Link has no class, cannot find target card:', this);
-                        return;
-                    }
-                    console.log('Targeting hoverCard with specific class:', linkClass);
+                    const linkClass = this.classList[0]; // Get the first class
+                    
+                    // Skip if it's just an "indent" class
+                    if (linkClass === 'indent') return;
+                    
+                    console.log(`🎯 Hovering on: ${linkClass}`);
 
-                    const targetCard = document.querySelector('.media .' + linkClass + '.hoverCard');
+                    const targetCard = document.querySelector(`.media .${linkClass}.hoverCard`);
 
-                    // Hide portrait
-                    portraitContainer.style.display = 'none';
-                    console.log('Portrait hidden.');
-
-                    // Hide all hoverCards (to ensure only one is shown if rapidly moving mouse)
-                    hoverCards.forEach(card => {
-                        if (card !== targetCard) { // Optimization: don't hide the one we're about to show
-                            card.style.display = 'none';
-                        }
-                    });
-                    console.log('Other hoverCards ensured hidden.');
-
-                    // Show the target hoverCard if found
                     if (targetCard) {
-                        targetCard.style.display = 'block'; // Change to 'flex' if your .hoverCard elements are flex containers
-                        console.log('Target card found and display set to "block":', targetCard);
+                        // Hide portrait with animation
+                        portraitContainer.classList.add('hide');
+                        
+                        // Hide all other cards
+                        hoverCards.forEach(card => {
+                            if (card !== targetCard) {
+                                card.classList.remove('showHoverCard');
+                            }
+                        });
 
-                        // Log computed styles of the image and caption within the target card
-                        const imgInside = targetCard.querySelector('img');
-                        const pInside = targetCard.querySelector('p');
-                        if (imgInside) {
-                            console.log('Image inside targetCard:', imgInside.src, 'Computed display:', window.getComputedStyle(imgInside).display, 'Natural WxH:', imgInside.naturalWidth + 'x' + imgInside.naturalHeight);
-                        } else {
-                            console.warn('No <img> tag found inside targetCard:', targetCard);
-                        }
-                        if (pInside) {
-                            console.log('Paragraph (caption) inside targetCard:', pInside.textContent.substring(0, 30) + '...', 'Computed display:', window.getComputedStyle(pInside).display);
-                        } else {
-                            console.warn('No <p> tag found inside targetCard:', targetCard);
-                        }
+                        // Show target card with CSS animation
+                        targetCard.classList.add('showHoverCard');
 
+                        console.log(`✨ Showing hover card for: ${linkClass}`);
                     } else {
-                        console.warn('Target card NOT found for class:', '.' + linkClass + '.hoverCard');
+                        console.warn(`⚠️ No hover card found for: ${linkClass}`);
                     }
                 });
 
                 link.addEventListener('mouseleave', function (event) {
-                    console.log('Mouse left link:', this.className);
                     const linkClass = this.classList[0];
-                    if (!linkClass) return;
+                    
+                    if (linkClass === 'indent') return;
 
-                    const targetCard = document.querySelector('.media .' + linkClass + '.hoverCard');
+                    console.log(`👋 Mouse left: ${linkClass}`);
 
-                    // Hide the target hoverCard
+                    const targetCard = document.querySelector(`.media .${linkClass}.hoverCard`);
+
                     if (targetCard) {
-                        targetCard.style.display = 'none';
-                        console.log('Target card hidden on mouseleave:', targetCard);
-                    } else {
-                        console.warn('No target card was found to hide on mouseleave for class:', linkClass)
+                        // Hide the target card with animation
+                        targetCard.classList.remove('showHoverCard');
                     }
 
-                    // Show portrait
-                    portraitContainer.style.display = originalPortraitDisplay;
-                    console.log('Portrait shown on mouseleave. Display set to:', originalPortraitDisplay);
+                    // Show portrait with animation
+                    portraitContainer.classList.remove('hide');
                 });
             });
+
+            console.log('🎉 Hover functionality initialized successfully!');
         });
     </script>
 </body>
