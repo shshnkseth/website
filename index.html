@@ -18,7 +18,7 @@
     <link rel="icon" href="/shashank_files/zapp.png" />
     <link rel="stylesheet" href="./shashank_files/main.css" />
     <link rel="stylesheet" href="./shashank_files/srk5tly.css" />
-    <!-- REMOVED THE PROBLEMATIC CSS RULE THAT WAS PREVENTING HOVER CARDS FROM SHOWING -->
+    
 </head>
 <body class="index">
     <div class="landing">
@@ -176,7 +176,7 @@
                 </p>
             </div>
 
-            <!-- ADDED MISSING QUIZIZZ HOVER CARD -->
+           
             <div class="quizizz hoverCard">
                 <img src="./shashank_files/quizizz.jpg" alt="Quizizz Project" />
                 <p>
@@ -230,17 +230,17 @@
 
             console.log(`✅ Found ${hoverLinks.length} hover links and ${hoverCards.length} hover cards`);
 
-            // Initially hide all hoverCards using CSS classes (for proper animations)
+            
             hoverCards.forEach(card => {
                 card.classList.remove('showHoverCard');
             });
 
-            // Setup hover functionality
+            
             hoverLinks.forEach(link => {
                 link.addEventListener('mouseenter', function (event) {
-                    const linkClass = this.classList[0]; // Get the first class
+                    const linkClass = this.classList[0]; 
                     
-                    // Skip if it's just an "indent" class
+                    
                     if (linkClass === 'indent') return;
                     
                     console.log(`🎯 Hovering on: ${linkClass}`);
@@ -258,7 +258,6 @@
                             }
                         });
 
-                        // Show target card with CSS animation
                         targetCard.classList.add('showHoverCard');
 
                         console.log(`✨ Showing hover card for: ${linkClass}`);
@@ -277,11 +276,9 @@
                     const targetCard = document.querySelector(`.media .${linkClass}.hoverCard`);
 
                     if (targetCard) {
-                        // Hide the target card with animation
                         targetCard.classList.remove('showHoverCard');
                     }
 
-                    // Show portrait with animation
                     portraitContainer.classList.remove('hide');
                 });
             });
