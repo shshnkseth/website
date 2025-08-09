@@ -1,33 +1,44 @@
 @charset "UTF-8";
 
-/* Mozilla Text font-face — replace URLs with your actual font file locations */
+/* ===============================
+   Google Sans Code font-face
+   =============================== */
+/* Replace 'fonts/' with the actual path to your font files */
 @font-face {
-  font-family: "Mozilla Text";
-  src: url("fonts/MozillaText-Regular.woff2") format("woff2"),
-       url("fonts/MozillaText-Regular.woff") format("woff");
+  font-family: "Google Sans Code";
+  src: url("fonts/GoogleSansCode-Regular.woff2") format("woff2"),
+       url("fonts/GoogleSansCode-Regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Mozilla Text";
-  src: url("fonts/MozillaText-Bold.woff2") format("woff2"),
-       url("fonts/MozillaText-Bold.woff") format("woff");
+  font-family: "Google Sans Code";
+  src: url("fonts/GoogleSansCode-Bold.woff2") format("woff2"),
+       url("fonts/GoogleSansCode-Bold.woff") format("woff");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
-/* Optional utility class version, like in your snippet */
-.mozilla-text {
-  font-family: "Mozilla Text", sans-serif;
+/* Google Sans Code utility class */
+.google-sans-code {
+  font-family: "Google Sans Code", monospace;
   font-optical-sizing: auto;
-  font-weight: 400; /* change as needed */
+  font-weight: 400; /* Change as needed */
   font-style: normal;
 }
 
-/* Main styles */
+/* Global font replacement for old Adobe classes */
+.tk-aktiv-grotesk,
+.tk-neue-haas-unica {
+  font-family: "Google Sans Code", monospace;
+}
+
+/* ===============================
+   Reset & Base Styles
+   =============================== */
 * {
   margin: 0;
   padding: 0;
@@ -48,10 +59,9 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 
-  /* Replaced Space Grotesk with Mozilla Text */
-  font-family: "Mozilla Text", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
+  /* Primary site font now Google Sans Code */
+  font-family: "Google Sans Code", monospace, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   background: white;
   background-size: cover;
@@ -71,6 +81,7 @@ body {
 .row-container {
   grid-column-start: 1;
 }
+
 .row {
   display: grid;
   opacity: 0;
@@ -110,6 +121,7 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 a:hover { opacity: 0.6; }
+
 p { cursor: default; }
 
 .experience { margin-bottom: 24px; }
@@ -127,7 +139,8 @@ p { cursor: default; }
   animation-delay: 0.7s;
 }
 
-.hoverCard, .portrait {
+.hoverCard,
+.portrait {
   width: 100%;
   max-width: 1000px;
   height: 100%;
