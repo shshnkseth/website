@@ -1,16 +1,32 @@
-/* Import Space Grotesk from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Self-host Mozilla Text: Update font paths as needed */
+@font-face {
+  font-family: "Mozilla Text";
+  src: url("fonts/MozillaText-Regular.woff2") format("woff2"),
+       url("fonts/MozillaText-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mozilla Text";
+  src: url("fonts/MozillaText-Bold.woff2") format("woff2"),
+       url("fonts/MozillaText-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+/* Add more font-weights/styles if you have them */
 
-/* Space Grotesk font class */
-.space-grotesk {
-  font-family: "Space Grotesk", sans-serif;
+/* Mozilla Text font class */
+.mozilla-text {
+  font-family: "Mozilla Text", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* change to 300, 500, 600, 700 as needed */
+  font-weight: 400; /* change as needed */
   font-style: normal;
 }
 
-/* OPTIONAL — if you want to globally replace aktiv/neue-haas with Space Grotesk */
+/* OPTIONAL — if you want to globally replace aktiv-grotesk/neue-haas-unica with Mozilla Text */
 .tk-aktiv-grotesk,
 .tk-neue-haas-unica {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Mozilla Text", sans-serif;
 }
