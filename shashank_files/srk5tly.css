@@ -1,34 +1,34 @@
-/* Self-host Google Sans Code: update font paths as needed */
+/* Syne font-face — replace paths with your actual file locations */
 @font-face {
-  font-family: "Google Sans Code";
-  src: url("fonts/GoogleSansCode-Regular.woff2") format("woff2"),
-       url("fonts/GoogleSansCode-Regular.woff") format("woff");
+  font-family: "Syne";
+  src: url("fonts/Syne-Regular.woff2") format("woff2"),
+       url("fonts/Syne-Regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Google Sans Code";
-  src: url("fonts/GoogleSansCode-Bold.woff2") format("woff2"),
-       url("fonts/GoogleSansCode-Bold.woff") format("woff");
+  font-family: "Syne";
+  src: url("fonts/Syne-Bold.woff2") format("woff2"),
+       url("fonts/Syne-Bold.woff") format("woff");
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
-/* Add more @font-face rules if you have extra weights */
+/* Add more weights if you have them: 500, 600, 800 etc. */
 
-/* Google Sans Code utility class */
-.google-sans-code {
-  font-family: "Google Sans Code", monospace;
+/* Syne font utility class */
+.syne {
+  font-family: "Syne", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* change to 300, 500, etc. if needed */
+  font-weight: 400; /* adjust as needed */
   font-style: normal;
 }
 
-/* OPTIONAL — globally replace aktiv-grotesk / neue-haas-unica */
+/* OPTIONAL — global override for old font classes */
 .tk-aktiv-grotesk,
 .tk-neue-haas-unica {
-  font-family: "Google Sans Code", monospace;
+  font-family: "Syne", sans-serif;
 }
