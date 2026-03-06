@@ -71,6 +71,17 @@ input {
 .scroll_div::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
+
+/* Marquee animation for runline */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.runtext__content {
+  display: flex;
+  animation: marquee 60s linear infinite;
+  white-space: nowrap;
+}
   </style>
  </head>
  <body class="body">
