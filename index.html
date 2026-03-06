@@ -454,7 +454,68 @@
       .card-grid { grid-template-columns: 1fr; }
       .sport-grid { grid-template-columns: 1fr; }
       .meta-bar { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .exp-photo-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* ─── EXPERIMENTS PHOTO GRID ─── */
+    .exp-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+    .exp-photo-cell {
+      aspect-ratio: 1;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .exp-photo-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: filter 0.2s;
+    }
+    .exp-photo-cell img:hover { filter: brightness(1); }
+
+    /* ─── PHOTOGRAPHY CTA ─── */
+    .photo-cta {
+      display: block;
+      text-decoration: none;
+      margin-bottom: 3rem;
+    }
+    .photo-cta-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      color: var(--muted);
+      transition: border-color 0.15s;
+    }
+    .photo-cta:hover .photo-cta-inner { border-color: var(--dim); }
+    .photo-cta-title {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .photo-cta-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .photo-cta-arrow {
+      margin-left: auto;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
   </style>
 </head>
 <body>
@@ -698,6 +759,18 @@
 
   </div>
 
+
+  <!-- EXPERIMENTS -->
+  <div class="section-label">Experiments</div>
+  <div class="exp-photo-grid">
+    <div class="exp-photo-cell"><img src="./shashank_files/nvidia.jpg" alt="NVIDIA Control Panel and GeForce Experience redesign" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+    <div class="exp-photo-cell"><img src="./shashank_files/quizizz.jpg" alt="Quizizz AI and offline learning tools interface" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+    <div class="exp-photo-cell"><img src="./shashank_files/getmega.jpg" alt="GetMega real-money gaming platform trust redesign" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+    <div class="exp-photo-cell"><img src="./shashank_files/toast.jpg" alt="Toast contactless dining experience design" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+    <div class="exp-photo-cell"><img src="./shashank_files/earnnest.jpg" alt="Earnnest consumer fintech app end-to-end design" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+    <div class="exp-photo-cell"><img src="./shashank_files/flytbase.jpg" alt="Flytbase drone operations automation interface" onerror="this.closest('.exp-photo-cell').style.display='none'"/></div>
+  </div>
+
   <!-- OTHER PROJECTS -->
   <div class="section-label">Other projects</div>
   <div class="other-list">
@@ -763,6 +836,20 @@
 
   </div>
 
+
+  <!-- PHOTOGRAPHY -->
+  <div class="section-label">Photography</div>
+  <a class="photo-cta" href="https://www.instagram.com/shshnkseth/" target="_blank">
+    <div class="photo-cta-inner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <div>
+        <div class="photo-cta-title">@shshnkseth</div>
+        <div class="photo-cta-sub">Mountains, streets, and everything in between · Instagram</div>
+      </div>
+      <span class="photo-cta-arrow">↗</span>
+    </div>
+  </a>
+
   <!-- LINKS -->
   <div class="link-row">
     <a href="/cdn-cgi/l/email-protection#29414c454546695a41485a414847425a4c5d41074047">Email</a>
@@ -787,6 +874,34 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function updateTime() {
-    const now = new Date()
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-IN', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'Asia/Kolkata'
+    });
+    document.getElementById('time-display').textContent = timeStr + ' IST';
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+
+  // Image fallback handling for brand chips (replaces failed logo with text initials)
+  document.querySelectorAll('.brand-chip img').forEach(function(img) {
+    function handleFail() {
+      img.style.display = 'none';
+      var span = document.createElement('span');
+      span.textContent = img.alt ? img.alt.substring(0, 3).toUpperCase() : '?';
+      img.parentNode.appendChild(span);
+    }
+    if (img.complete && img.naturalWidth === 0) {
+      handleFail();
+    } else {
+      img.addEventListener('error', handleFail);
+    }
+  });
+</script>
+</body>
+</html>
