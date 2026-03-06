@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shashank Seth ✦ Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0e0e0e;
+      --surface:  #161616;
+      --surface2: #1b1b1b;
+      --rule:     #222222;
+      --ink:      #e8e4dc;
+      --muted:    #666;
+      --dim:      #444;
+      --accent:   #c8a96e;
+      --tag-bg:   #141414;
+      --radius:   12px;
+    }
+
+    html { font-size: 14px; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TOP NAV ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.6rem;
+      height: 2.4rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+    }
+    .topbar-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .topbar-logo em { color: var(--muted); font-style: normal; }
+    .topbar-links { display: flex; gap: 1.6rem; list-style: none; }
+    .topbar-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .topbar-links a:hover, .topbar-links a.active { color: var(--ink); }
+
+    /* ─── WINDOW CHROME ─── */
+    .window-wrap { padding-top: 2.4rem; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .window-menubar {
+      position: sticky;
+      top: 2.4rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      height: 1.9rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 1.6rem;
+      gap: 0;
+    }
+    .menu-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      color: var(--muted);
+      padding: 0 0.65rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      cursor: default;
+      transition: background 0.1s, color 0.1s;
+      letter-spacing: 0.04em;
+      user-select: none;
+    }
+    .menu-item:hover { background: var(--rule); color: var(--ink); }
+    .menu-item.title { color: var(--ink); font-weight: 500; padding-left: 0; margin-right: 0.5rem; cursor: default; }
+    .menu-item.title:hover { background: transparent; }
+    .menu-sep { width: 1px; height: 1rem; background: var(--rule); margin: 0 0.2rem; flex-shrink: 0; }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1;
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.8rem 1.6rem 5rem;
+    }
+
+    /* ─── COMPACT HEADER ─── */
+    .page-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .page-header p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FILTER BAR ─── */
+    .filter-bar {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+    .filter-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule);
+      padding: 0.26rem 0.6rem;
+      cursor: pointer;
+      transition: all 0.12s;
+      border-radius: 2px;
+    }
+    .filter-btn:hover { border-color: var(--dim); color: var(--ink); }
+    .filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* ─── PROJECT LIST ─── */
+    .project-list { display: flex; flex-direction: column; }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.75rem 0.6rem;
+      margin: 0 -0.6rem;
+      border-radius: 6px;
+      transition: background 0.12s;
+    }
+    .project-row + .project-row { border-top: 1px solid var(--rule); }
+    .project-row:hover { background: var(--surface2); }
+    .project-row.hidden { display: none; }
+
+    /* ─── THUMBNAIL ─── */
+    .thumb {
+      width: 48px; height: 48px;
+      border-radius: var(--radius);
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .thumb svg { display: block; width: 100%; height: 100%; }
+
+    /* ─── PROJECT INFO ─── */
+    .proj-info { min-width: 0; }
+    .proj-name {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .proj-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0.28rem;
+    }
+    .proj-tags { display: flex; gap: 0.28rem; flex-wrap: wrap; }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dim);
+      background: var(--tag-bg);
+      padding: 0.13rem 0.4rem;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+    }
+
+    /* ─── RIGHT META ─── */
+    .proj-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+    .proj-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .proj-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      opacity: 0.75;
+      transition: opacity 0.12s;
+    }
+    .proj-link:hover { opacity: 1; }
+    .proj-link svg {
+      width: 8px; height: 8px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+    }
+
+    /* ─── SECTION DIVIDER ─── */
+    .section-sep {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 1.2rem 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-sep::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+    /* ─── STATUS BAR ─── */
+    .statusbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 1.65rem;
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .status-ticker {
+      display: flex;
+      width: max-content;
+      animation: tick 32s linear infinite;
+    }
+    .status-ticker span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--muted);
+      padding: 0 1rem;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .status-ticker .sep { color: var(--rule); padding: 0; }
+    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    @media (max-width: 540px) {
+      main { padding: 1.4rem 1rem 4rem; }
+      .proj-tags, .proj-desc { display: none; }
+      .proj-name { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="main.html" class="topbar-logo">shashankseth<em>✦</em></a>
+  <ul class="topbar-links">
+    <li><a href="main.html">Projects</a></li>
+    <li><a href="main.html">Not design</a></li>
+    <li><a href="main.html">Resume</a></li>
+  </ul>
+</nav>
+
+<div class="window-wrap">
+  <div class="window-menubar">
+    <span class="menu-item title" style="font-weight:300;"><a href="main.html" style="text-decoration:none;color:var(--muted);">index</a><span style="color:var(--rule);padding:0 0.3rem;">/</span><span style="color:var(--ink);">projects</span></span>
+    <div class="menu-sep"></div>
+    <a href="main.html" class="menu-item" style="text-decoration:none;color:var(--muted);">← back</a>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Selected Work</h1>
+      <p>2019 – 2025 · 16+ projects</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="product">Product</button>
+      <button class="filter-btn" data-filter="system">Systems</button>
+      <button class="filter-btn" data-filter="ai">AI</button>
+      <button class="filter-btn" data-filter="side">Side</button>
+    </div>
+
+    <div class="project-list">
+
+      <div class="section-sep">Recent</div>
+
+      <div class="project-row" data-tags="product ai">
+        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/quizizz.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">QZ</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Quizizz AI · Lesson Generation</div>
+          <div class="proj-desc">Topic → full lesson in under a minute. Used by millions of teachers worldwide.</div>
+          <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Edtech</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2023–24</span>
+          <a class="proj-link" href="https://quizizz.com/quizizz-ai" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="product">
+        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/quizizz.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">QZ</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Quizizz · Paper Mode</div>
+          <div class="proj-desc">Print quiz → scan → auto-grade. Bridging digital and physical classrooms.</div>
+          <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">Print</span><span class="tag">Accessibility</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2023</span>
+          <a class="proj-link" href="https://quizizz.com/home/solutions/paper-mode-on-quizizz" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="product">
+        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/quizizz.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">QZ</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Quizizz · Avatars & Identity</div>
+          <div class="proj-desc">Playful student identity layer that increased session engagement.</div>
+          <div class="proj-tags"><span class="tag">Gamification</span><span class="tag">Identity</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2022</span>
+          <a class="proj-link" href="https://quizizz.com" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="section-sep">Systems & platforms</div>
+
+      <div class="project-row" data-tags="system product">
+        <div class="thumb" style="background:#18202e;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/getmega.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5585d4;">GM</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">GetMega · Wallet, KYC & LMS</div>
+          <div class="proj-desc">Financial trust layer for real-money gaming. Identity, wallet, onboarding.</div>
+          <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">Trust</span><span class="tag">Systems</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2021–22</span>
+          <a class="proj-link" href="https://www.getmega.com" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="system product">
+        <div class="thumb" style="background:#2b1a18;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/toasttab.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#d4604a;">TT</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Summer (Toast) · Ordering Ecosystem</div>
+          <div class="proj-desc">Dine-in, takeout & delivery experience across major US restaurant chains.</div>
+          <div class="proj-tags"><span class="tag">POS</span><span class="tag">Hospitality</span><span class="tag">Multi-surface</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2020–21</span>
+          <a class="proj-link" href="https://www.toasttab.com" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="system">
+        <div class="thumb" style="background:#182420;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/nvidia.com" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#4dba7a;">NV</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">NVIDIA · Control Panel, GeForce Experience & RTX Voice</div>
+          <div class="proj-desc">Designed internal and consumer-facing tooling · GPU control surfaces, experience software, and RTX Voice UI for engineers and end users.</div>
+          <div class="proj-tags"><span class="tag">Internal tools</span><span class="tag">Data UI</span><span class="tag">Engineering</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2019–20</span>
+          <a class="proj-link" href="https://www.nvidia.com/en-us/software/nvidia-app/" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="section-sep">Side & advisory</div>
+
+      <div class="project-row" data-tags="side ai">
+        <div class="thumb" style="background:#1a1828;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/astralyogi.ai" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#7b6fc8;">AY</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">AstralYogi · AI Astrology Guide</div>
+          <div class="proj-desc">Full product build · research, UX and UI for a personal AI astrology guide.</div>
+          <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2025</span>
+          <a class="proj-link" href="https://www.astralyogi.ai/" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="side product">
+        <div class="thumb" style="background:#182818;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/earnnest.me" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5aaa6a;">EN</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Earnnest · Consumer Fintech App</div>
+          <div class="proj-desc">End-to-end product design · strategy, research, and shipped UI.</div>
+          <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2025</span>
+          <a class="proj-link" href="https://www.earnnest.me/" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="side ai">
+        <div class="thumb" style="background:#181e28;display:flex;align-items:center;justify-content:center;">
+          <img src="https://logo.clearbit.com/ambill.ai" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5890d4;">AB</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">Ambill · Finance Automation Platform</div>
+          <div class="proj-desc">Shaped from scratch · full UX for an AI finance platform serving CFO teams.</div>
+          <div class="proj-tags"><span class="tag">AI</span><span class="tag">Fintech</span><span class="tag">B2B SaaS</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">2025</span>
+          <a class="proj-link" href="https://www.ambill.ai/" target="_blank">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="project-row" data-tags="side ai">
+        <div class="thumb" style="background:#201828;display:flex;align-items:center;justify-content:center;">
+          <div style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.62rem;color:#9e74cc;letter-spacing:-0.02em;text-align:center;line-height:1.2;">TPL</div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-name">The Product Lift <span style="font-weight:300;color:var(--muted);font-size:0.78rem;">— Early-stage product shaping</span></div>
+          <div class="proj-desc">Helping founders and entrepreneurs from idea to execution.</div>
+          <div class="proj-tags"><span class="tag">0→1</span><span class="tag">Advisory</span><span class="tag">Strategy</span></div>
+        </div>
+        <div class="proj-meta">
+          <span class="proj-year">Ongoing</span>
+          <a class="proj-link" href="/cdn-cgi/l/email-protection#5d35383131321d2e353c2e353c33362e382935733433">Hire <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="statusbar">
+  <div class="status-ticker">
+    <span>product design</span><span class="sep"> · </span>
+    <span>quizizz · getmega · toast · nvidia</span><span class="sep"> · </span>
+    <span>systems thinking</span><span class="sep"> · </span>
+    <span>0 → 1</span><span class="sep"> · </span>
+    <span>edtech · fintech · gaming · hardware</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+    <span>product design</span><span class="sep"> · </span>
+    <span>quizizz · getmega · toast · nvidia</span><span class="sep"> · </span>
+    <span>systems thinking</span><span class="sep"> · </span>
+    <span>0 → 1</span><span class="sep"> · </span>
+    <span>edtech · fintech · gaming · hardware</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+  </div>
+</div>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectRows = document.querySelectorAll('.project-row');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      projectRows.forEach((row) => {
+        const tags = (row.dataset.tags || '').split(/\s+/).filter(Boolean);
+        const shouldHide = filter !== 'all' && !tags.includes(filter);
+        row.classList.toggle('hidden', shouldHide);
+      });
+    });
+  });
+</script>
+</body>
+</html>
