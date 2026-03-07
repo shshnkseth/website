@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shashank Seth ✦ Product Designer</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./shared.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg:      #0e0e0e;
       --surface: #161616;
@@ -17,18 +16,11 @@
       --dim:     #444;
       --accent:  #c8a96e;
       --radius:  12px;
+      --status-bg: var(--bg);
+      --status-sep: #333;
     }
 
-    html { font-size: 14px; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    html { font-size: 15px; }
 
     /* ─── WRAPPER ─── */
     .wrap {
@@ -120,11 +112,13 @@
       border-radius: 10px;
       background: var(--surface);
       border: 1px solid var(--rule);
-      overflow: hidden;
+      overflow: visible;
+      text-decoration: none;
+      position: relative;
     }
     .brand-chip img {
-      width: 26px;
-      height: 26px;
+      width: 31px;
+      height: 31px;
       object-fit: contain;
       border-radius: 3px;
     }
@@ -133,6 +127,53 @@
       font-size: 0.55rem;
       color: var(--muted);
       letter-spacing: -0.02em;
+    }
+
+    /* ─── SUBTLE TOOLTIP ─── */
+    .brand-chip[data-tooltip]::after,
+    .exp-thumb[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%) translateY(3px);
+      background: #141414;
+      color: #b9b9b9;
+      border: 1px solid #2b2b2b;
+      border-radius: 6px;
+      padding: 0.22rem 0.42rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+    .brand-chip[data-tooltip]::before,
+    .exp-thumb[data-tooltip]::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 3px);
+      transform: translateX(-50%) translateY(3px);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #2b2b2b;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 19;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+    .brand-chip[data-tooltip]:hover::after,
+    .brand-chip[data-tooltip]:hover::before,
+    .brand-chip[data-tooltip]:focus-visible::after,
+    .brand-chip[data-tooltip]:focus-visible::before,
+    .exp-thumb[data-tooltip]:hover::after,
+    .exp-thumb[data-tooltip]:hover::before {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* ─── PROJECT CARDS ─── */
@@ -206,8 +247,9 @@
       flex-shrink: 0;
       background: var(--surface);
       border: 1px solid var(--rule);
+      position: relative;
     }
-    .exp-thumb img { width: 24px; height: 24px; object-fit: contain; border-radius: 3px; }
+    .exp-thumb img { width: 28px; height: 28px; object-fit: contain; border-radius: 3px; }
     .exp-thumb span { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); }
     .exp-company { font-size: 0.85rem; font-weight: 400; color: var(--ink); }
     .exp-role { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
@@ -239,33 +281,6 @@
     .cta-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
     .cta-title { font-size: 0.95rem; font-weight: 400; color: var(--ink); }
     .cta-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); margin-top: 0.2rem; }
-
-        /* ─── STATUS BAR ─── */
-    .statusbar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 1.65rem;
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-    }
-    .status-ticker {
-      display: flex;
-      width: max-content;
-      animation: tick 32s linear infinite;
-    }
-    .status-ticker span {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--muted);
-      padding: 0 1rem;
-      white-space: nowrap;
-      letter-spacing: 0.04em;
-    }
-    .sep { color: #333; padding: 0 !important; }
-    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ─── EXPEDITION ROWS ─── */
     .expedition-list { margin-bottom: 3.4rem; }
@@ -311,6 +326,25 @@
       padding: 0.15rem 0.45rem;
       margin-left: 0.5rem;
       vertical-align: middle;
+    }
+    .expedition-cta {
+      margin-top: 1rem;
+      margin-bottom: 3.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .expedition-cta a {
+      color: #a8a8a8;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+    .expedition-cta a:hover {
+      color: var(--ink);
+      border-color: var(--dim);
     }
 
     /* ─── MOVEMENT ─── */
@@ -411,7 +445,7 @@
   <!-- QUICK EDIT NOTES
     1) Profile image: ./shashank_files/self.jpg
     2) Work card images: ./shashank_files/*.jpg
-    3) Experiments images: ./notebook-mockup-on-desk.png, ./image_2.webp, ./IMG_4200.jpg, ./gooofy1.png, ./gooofy2.png, ./pic.png, ./pic2.png, ./Frame 53.png
+    3) Instagram feed API token: set INSTAGRAM_ACCESS_TOKEN in the script at the end of this file
     4) Footer links/year: section ".site-footer"
   -->
 
@@ -432,7 +466,7 @@
     <img class="profile-avatar" src="./shashank_files/face.png" alt="Shashank Seth"/>
     <div class="profile-info">
       <div class="profile-name">Shashank Seth</div>
-      <div class="profile-title">Senior Product Designer · The Product Lift</div>
+      <div class="profile-title">Senior Product Designer · Athlete</div>
     </div>
   </div>
 
@@ -444,13 +478,13 @@
   <!-- BRANDS -->
   <div class="section-label">Brands I've worked with</div>
   <div class="brand-strip">
-    <div class="brand-chip"><img src="https://logo.clearbit.com/quizizz.com" alt="Quizizz"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/getmega.com" alt="GetMega"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/toasttab.com" alt="Toast"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/astralyogi.ai" alt="AstralYogi"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/earnnest.me" alt="Earnnest"/></div>
-    <div class="brand-chip"><img src="https://logo.clearbit.com/ambill.ai" alt="Ambill"/></div>
+    <a class="brand-chip" href="https://www.quizizz.com" target="_blank" rel="noopener noreferrer" data-tooltip="Quizizz" aria-label="Quizizz"><img src="./app-icons/logo-quizizz.png" alt="Quizizz"/></a>
+    <a class="brand-chip" href="https://www.getmega.com" target="_blank" rel="noopener noreferrer" data-tooltip="GetMega" aria-label="GetMega"><img src="./app-icons/logo-getmega.png" alt="GetMega"/></a>
+    <a class="brand-chip" href="https://www.flytbase.com" target="_blank" rel="noopener noreferrer" data-tooltip="Flytbase" aria-label="Flytbase"><img src="./app-icons/logo-flytbase.png" alt="Flytbase"/></a>
+    <a class="brand-chip" href="https://www.nvidia.com" target="_blank" rel="noopener noreferrer" data-tooltip="NVIDIA" aria-label="NVIDIA"><img src="./app-icons/logo-nvidia.png" alt="NVIDIA"/></a>
+    <a class="brand-chip" href="https://www.astralyogi.com" target="_blank" rel="noopener noreferrer" data-tooltip="AstralYogi" aria-label="AstralYogi"><img src="./app-icons/logo-astralyogi.png" alt="AstralYogi"/></a>
+    <a class="brand-chip" href="https://www.earnnest.me" target="_blank" rel="noopener noreferrer" data-tooltip="Earnnest" aria-label="Earnnest"><img src="./app-icons/logo-earnnest.png" alt="Earnnest"/></a>
+    <a class="brand-chip" href="https://www.ambill.ai" target="_blank" rel="noopener noreferrer" data-tooltip="Ambill" aria-label="Ambill"><img src="./app-icons/logo-ambill.png" alt="Ambill"/></a>
   </div>
 
   <!-- WORK -->
@@ -517,6 +551,7 @@
 
   <!-- ALL WORK CTA -->
   <a href="projects.html" class="cta-banner">
+    <img class="cta-thumb" src="./shashank_files/self.jpg" alt=""/>
     <div>
       <div class="cta-label">16+ projects</div>
       <div class="cta-title">See all selected work →</div>
@@ -538,7 +573,7 @@
     </div>
 
     <div class="exp-row">
-      <div class="exp-thumb" style="background:#1d2b19;"><img src="https://logo.clearbit.com/quizizz.com" alt="Quizizz"/></div>
+      <div class="exp-thumb" style="background:#1d2b19;" data-tooltip="Quizizz"><img src="./app-icons/logo-quizizz.png" alt="Quizizz"/></div>
       <div>
         <div class="exp-company">Quizizz</div>
         <div class="exp-role">Product Designer</div>
@@ -547,7 +582,7 @@
     </div>
 
     <div class="exp-row">
-      <div class="exp-thumb" style="background:#18202e;"><img src="https://logo.clearbit.com/getmega.com" alt="GetMega"/></div>
+      <div class="exp-thumb" style="background:#18202e;" data-tooltip="GetMega"><img src="./app-icons/logo-getmega.png" alt="GetMega"/></div>
       <div>
         <div class="exp-company">GetMega</div>
         <div class="exp-role">Product Designer</div>
@@ -556,7 +591,7 @@
     </div>
 
     <div class="exp-row">
-      <div class="exp-thumb" style="background:#182420;"><img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA"/></div>
+      <div class="exp-thumb" style="background:#182420;" data-tooltip="NVIDIA"><img src="./app-icons/logo-nvidia.png" alt="NVIDIA"/></div>
       <div>
         <div class="exp-company">NVIDIA</div>
         <div class="exp-role">Software Design Intern</div>
@@ -574,7 +609,7 @@
       <div class="sport-icon">🛹</div>
       <div>
         <div class="sport-name">Skateboarder & Snowboarder</div>
-        <div class="sport-note">Transition & Park · Downhill Longboarder</div>
+        <div class="sport-note">Transition & Park · tricks, flow, and bruises</div>
       </div>
     </div>
 
@@ -629,7 +664,7 @@
     <div class="expedition-row">
       <div class="expedition-icon">🏔</div>
       <div class="expedition-body">
-        <div class="expedition-name">Summited Mt. Kilimanjaro <span class="expedition-tag">Summit</span></div>
+        <div class="expedition-name">Summited Kilimanjaro <span class="expedition-tag">Summit</span></div>
         <div class="expedition-meta">Tanzania · 5,895m · Highest peak in Africa</div>
       </div>
     </div>
@@ -645,7 +680,7 @@
     <div class="expedition-row">
       <div class="expedition-icon">🏔</div>
       <div class="expedition-body">
-        <div class="expedition-name">Winter Ascent at Pangarchulla Peak <span class="expedition-tag">Summit</span></div>
+        <div class="expedition-name">Winter Ascent at Pangarchulla <span class="expedition-tag">Summit</span></div>
         <div class="expedition-meta">Uttarakhand · 4,700m · Winter snow & ice ascent</div>
       </div>
     </div>
@@ -653,59 +688,27 @@
     <div class="expedition-row">
       <div class="expedition-icon">🛵</div>
       <div class="expedition-body">
-        <div class="expedition-name">The Great Vietnam Adventure <span class="expedition-tag">Solo Ride</span></div>
-        <div class="expedition-meta">5,500+ km · South to nouth on two wheels</div>
+        <div class="expedition-name">Rode Across Vietnam <span class="expedition-tag">Ride</span></div>
+        <div class="expedition-meta">5,500+ km · North to south on two wheels</div>
       </div>
     </div>
 
     <div class="expedition-row">
       <div class="expedition-icon">🏍</div>
       <div class="expedition-body">
-        <div class="expedition-name">The South Indian Odyssey <span class="expedition-tag">Solo Ride</span></div>
+        <div class="expedition-name">Rode Across South India <span class="expedition-tag">Ride</span></div>
         <div class="expedition-meta">4,500+ km · Coastal roads, temples, hill stations</div>
       </div>
     </div>
 
   </div>
-
-  <!-- POLARSTEPS CTA -->
-  <a href="https://www.polarsteps.com/shshnkseth" class="cta-banner" target="_blank" rel="noopener noreferrer">
-    <div>
-      <div class="cta-label">Polarsteps</div>
-      <div class="cta-title">View all adventures in Polarsteps&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-left:2px;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-      <div class="cta-sub">All trips · routes · travel log</div>
-    </div>
-  </a>
-
-  <!-- OTHER PROJECTS -->
-  <div class="section-label">Experiments</div>
-  <div class="other-list">
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 1">
-      <img src="./notebook-mockup-on-desk.png" alt="Experiment visual 1"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 2">
-      <img src="./image_2.webp" alt="Experiment visual 2"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 3">
-      <img src="./IMG_4200.jpg" alt="Experiment visual 3"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 4">
-      <img src="./gooofy1.png" alt="Experiment visual 4"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 5">
-      <img src="./gooofy2.png" alt="Experiment visual 5"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 6">
-      <img src="./pic.png" alt="Experiment visual 6"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 7">
-      <img src="./pic2.png" alt="Experiment visual 7"/>
-    </a>
-    <a class="other-tile" href="#" target="_blank" aria-label="Experiment 8">
-      <img src="./Frame 53.png" alt="Experiment visual 8"/>
-    </a>
-
+  <div class="expedition-cta">
+    <a href="https://www.polarsteps.com/shshnkseth" target="_blank">View all adventures</a>
   </div>
+
+  <!-- INSTAGRAM FEED -->
+  <div class="section-label">Me In Pictures</div>
+  <div class="other-list" id="instagram-feed"></div>
 
   <!-- FOOTER LINKS -->
   <div class="site-footer">
@@ -735,6 +738,20 @@
 </div>
 
 <script>
+  const INSTAGRAM_ACCESS_TOKEN = "";
+  const INSTAGRAM_FEED_LIMIT = 8;
+
+  const INSTAGRAM_FALLBACK_POSTS = [
+    { image: "./notebook-mockup-on-desk.png", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./image_2.webp", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./IMG_4200.jpg", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./gooofy1.png", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./gooofy2.png", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./pic.png", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./pic2.png", url: "https://www.instagram.com/shshnkseth/" },
+    { image: "./Frame 53.png", url: "https://www.instagram.com/shshnkseth/" }
+  ];
+
   function updateTime() {
     const now = new Date();
     const label = now.toLocaleTimeString("en-IN", {
@@ -754,9 +771,71 @@
     });
   }
 
+  function renderInstagramFeed(posts) {
+    const feed = document.getElementById("instagram-feed");
+    if (!feed) return;
+
+    feed.innerHTML = "";
+
+    posts.slice(0, INSTAGRAM_FEED_LIMIT).forEach((post, index) => {
+      const tile = document.createElement("a");
+      tile.className = "other-tile";
+      tile.href = post.url;
+      tile.target = "_blank";
+      tile.rel = "noopener noreferrer";
+      tile.setAttribute("aria-label", "Instagram post " + (index + 1));
+
+      const image = document.createElement("img");
+      image.src = post.image;
+      image.alt = "Instagram post " + (index + 1);
+
+      tile.appendChild(image);
+      feed.appendChild(tile);
+    });
+
+    setupImageFallbacks();
+  }
+
+  async function loadInstagramFeed() {
+    if (!INSTAGRAM_ACCESS_TOKEN) {
+      renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
+      return;
+    }
+
+    try {
+      const endpoint = "https://graph.instagram.com/me/media" +
+        "?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp" +
+        "&limit=20&access_token=" + encodeURIComponent(INSTAGRAM_ACCESS_TOKEN);
+
+      const response = await fetch(endpoint);
+      if (!response.ok) throw new Error("Instagram API request failed");
+
+      const payload = await response.json();
+      const media = Array.isArray(payload.data) ? payload.data : [];
+
+      const posts = media
+        .filter((item) => item && item.permalink && (item.media_url || item.thumbnail_url))
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+        .map((item) => ({
+          image: item.media_type === "VIDEO" ? (item.thumbnail_url || item.media_url) : item.media_url,
+          url: item.permalink
+        }));
+
+      if (!posts.length) {
+        renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
+        return;
+      }
+
+      renderInstagramFeed(posts);
+    } catch (error) {
+      renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
+    }
+  }
+
   updateTime();
   setInterval(updateTime, 60000);
   setupImageFallbacks();
+  loadInstagramFeed();
 </script>
 </body>
 </html>
