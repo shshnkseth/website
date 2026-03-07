@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shashank Seth ✦ Projects</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./shared.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg:       #0e0e0e;
       --surface:  #161616;
@@ -21,90 +20,88 @@
       --radius:   12px;
     }
 
-    html { font-size: 14px; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
+    html { font-size: 15px; }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.3rem 1.6rem 4.5rem;
     }
 
-    /* ─── TOP NAV ─── */
-    .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+    /* ─── META BAR (MATCH INDEX) ─── */
+    .meta-bar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.6rem;
-      height: 2.4rem;
-      background: var(--surface);
-      border-bottom: 1px solid var(--rule);
+      align-items: flex-start;
+      margin-bottom: 2rem;
     }
-    .topbar-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-    .topbar-logo em { color: var(--muted); font-style: normal; }
-    .topbar-links { display: flex; gap: 1.6rem; list-style: none; }
-    .topbar-links a {
+    .meta-item {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
       color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .meta-bar-main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+    .meta-row-wrap {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--rule);
+      padding: 0.1rem 0 1rem;
+    }
+    .meta-bar-side {
+      white-space: nowrap;
+      text-transform: uppercase;
+      color: #8f8f8f;
+      text-align: right;
+      align-self: flex-end;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+    }
+    .meta-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+    .meta-path {
+      text-transform: uppercase;
+    }
+    .meta-path a,
+    .meta-bar-side a {
+      color: #a8a8a8;
       text-decoration: none;
       transition: color 0.12s;
     }
-    .topbar-links a:hover, .topbar-links a.active { color: var(--ink); }
-
-    /* ─── WINDOW CHROME ─── */
-    .window-wrap { padding-top: 2.4rem; min-height: 100vh; display: flex; flex-direction: column; }
-
-    .window-menubar {
-      position: sticky;
-      top: 2.4rem;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      height: 1.9rem;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--rule);
-      padding: 0 1.6rem;
-      gap: 0;
+    .meta-path a:hover,
+    .meta-bar-side a:hover {
+      color: var(--ink);
     }
-    .menu-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.64rem;
-      color: var(--muted);
-      padding: 0 0.65rem;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      cursor: default;
-      transition: background 0.1s, color 0.1s;
-      letter-spacing: 0.04em;
-      user-select: none;
+    .meta-path .slash {
+      color: var(--dim);
+      padding: 0 0.22rem;
     }
-    .menu-item:hover { background: var(--rule); color: var(--ink); }
-    .menu-item.title { color: var(--ink); font-weight: 500; padding-left: 0; margin-right: 0.5rem; cursor: default; }
-    .menu-item.title:hover { background: transparent; }
-    .menu-sep { width: 1px; height: 1rem; background: var(--rule); margin: 0 0.2rem; flex-shrink: 0; }
+
+    .meta-row-wrap .meta-item.meta-bar-side {
+      justify-content: flex-end;
+      line-height: 1.6;
+    }
 
     /* ─── MAIN ─── */
     main {
-      flex: 1;
-      max-width: 680px;
       width: 100%;
-      margin: 0 auto;
-      padding: 1.8rem 1.6rem 5rem;
     }
 
     /* ─── COMPACT HEADER ─── */
@@ -258,57 +255,44 @@
     }
     .section-sep::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-    /* ─── STATUS BAR ─── */
-    .statusbar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 1.65rem;
-      background: var(--surface);
-      border-top: 1px solid var(--rule);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-    }
-    .status-ticker {
-      display: flex;
-      width: max-content;
-      animation: tick 32s linear infinite;
-    }
-    .status-ticker span {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--muted);
-      padding: 0 1rem;
-      white-space: nowrap;
-      letter-spacing: 0.04em;
-    }
-    .status-ticker .sep { color: var(--rule); padding: 0; }
-    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
     @media (max-width: 540px) {
-      main { padding: 1.4rem 1rem 4rem; }
+      .wrap { padding: 2rem 1rem 3rem; }
+      .meta-row-wrap {
+        flex-direction: column;
+        gap: 0.6rem;
+        padding-bottom: 0.85rem;
+      }
+      .meta-item.meta-bar-side {
+        text-align: left;
+        white-space: normal;
+        justify-content: flex-start;
+        align-self: flex-start;
+      }
+      .meta-name {
+        font-size: 1.08rem;
+      }
       .proj-tags, .proj-desc { display: none; }
       .proj-name { font-size: 0.82rem; }
     }
   </style>
 </head>
 <body>
-
-<nav class="topbar">
-  <a href="main.html" class="topbar-logo">shashankseth<em>✦</em></a>
-  <ul class="topbar-links">
-    <li><a href="main.html">Projects</a></li>
-    <li><a href="main.html">Not design</a></li>
-    <li><a href="main.html">Resume</a></li>
-  </ul>
-</nav>
-
-<div class="window-wrap">
-  <div class="window-menubar">
-    <span class="menu-item title" style="font-weight:300;"><a href="main.html" style="text-decoration:none;color:var(--muted);">index</a><span style="color:var(--rule);padding:0 0.3rem;">/</span><span style="color:var(--ink);">projects</span></span>
-    <div class="menu-sep"></div>
-    <a href="main.html" class="menu-item" style="text-decoration:none;color:var(--muted);">← back</a>
-  </div>
+<div class="wrap">
+  <header class="meta-bar">
+    <div class="meta-row-wrap">
+      <div class="meta-bar-main">
+        <div class="meta-name">Shashank Seth</div>
+        <div class="meta-item meta-path">
+          <a href="index.html">&larr; back</a><span class="slash">/</span><a href="index.html">index</a><span class="slash">/</span><span style="color:var(--ink);">projects</span>
+        </div>
+      </div>
+      <div class="meta-item meta-bar-side">
+        <a href="/cdn-cgi/l/email-protection#29414c454546695a41485a414847425a4c5d41074047">Email</a>
+        · <a href="./shashank_files/resume-shashankseth.pdf" target="_blank">Resume</a>
+        · <a href="https://www.linkedin.com/in/shankseth/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </header>
 
   <main>
     <div class="page-header">
@@ -493,23 +477,6 @@
 
     </div>
   </main>
-</div>
-
-<div class="statusbar">
-  <div class="status-ticker">
-    <span>product design</span><span class="sep"> · </span>
-    <span>quizizz · getmega · toast · nvidia</span><span class="sep"> · </span>
-    <span>systems thinking</span><span class="sep"> · </span>
-    <span>0 → 1</span><span class="sep"> · </span>
-    <span>edtech · fintech · gaming · hardware</span><span class="sep"> · </span>
-    <span>building useful things</span><span class="sep"> · </span>
-    <span>product design</span><span class="sep"> · </span>
-    <span>quizizz · getmega · toast · nvidia</span><span class="sep"> · </span>
-    <span>systems thinking</span><span class="sep"> · </span>
-    <span>0 → 1</span><span class="sep"> · </span>
-    <span>edtech · fintech · gaming · hardware</span><span class="sep"> · </span>
-    <span>building useful things</span><span class="sep"> · </span>
-  </div>
 </div>
 
 <script>
