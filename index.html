@@ -22,7 +22,6 @@
 
     html { font-size: 15px; }
 
-    /* ─── WRAPPER ─── */
     .wrap {
       max-width: 680px;
       margin: 0 auto;
@@ -60,7 +59,7 @@
       object-fit: cover;
       flex-shrink: 0;
     }
-        .profile-name {
+    .profile-name {
       font-family: 'DM Mono', monospace;
       font-size: 1.3rem;
       font-weight: 600;
@@ -82,9 +81,12 @@
       color: var(--ink);
       margin-bottom: 1.6rem;
     }
-    .bio strong { font-weight: 500; color: var(--ink); }
+    .bio strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
 
-        /* ─── SECTION LABEL ─── */
+    /* ─── SECTION LABEL ─── */
     .section-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.58rem;
@@ -131,7 +133,8 @@
 
     /* ─── SUBTLE TOOLTIP ─── */
     .brand-chip[data-tooltip]::after,
-    .exp-thumb[data-tooltip]::after {
+    .exp-thumb[data-tooltip]::after,
+    .other-tile-wrap[data-tooltip]::after {
       content: attr(data-tooltip);
       position: absolute;
       left: 50%;
@@ -152,7 +155,8 @@
       transition: opacity 0.14s ease, transform 0.14s ease;
     }
     .brand-chip[data-tooltip]::before,
-    .exp-thumb[data-tooltip]::before {
+    .exp-thumb[data-tooltip]::before,
+    .other-tile-wrap[data-tooltip]::before {
       content: "";
       position: absolute;
       left: 50%;
@@ -171,7 +175,9 @@
     .brand-chip[data-tooltip]:focus-visible::after,
     .brand-chip[data-tooltip]:focus-visible::before,
     .exp-thumb[data-tooltip]:hover::after,
-    .exp-thumb[data-tooltip]:hover::before {
+    .exp-thumb[data-tooltip]:hover::before,
+    .other-tile-wrap[data-tooltip]:hover::after,
+    .other-tile-wrap[data-tooltip]:hover::before {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
@@ -307,6 +313,27 @@
       color: var(--ink);
       line-height: 1.3;
     }
+    .expedition-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.34rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .expedition-link:hover {
+      color: #f2eee6;
+    }
+    .expedition-ext-icon {
+      width: 0.68rem;
+      height: 0.68rem;
+      color: #8f8f8f;
+      flex-shrink: 0;
+      margin-top: 0.02rem;
+    }
+    .expedition-link:hover .expedition-ext-icon {
+      color: var(--ink);
+    }
     .expedition-meta {
       font-family: 'DM Mono', monospace;
       font-size: 0.6rem;
@@ -385,6 +412,9 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.7rem;
     }
+    .other-tile-wrap {
+      position: relative;
+    }
     .other-tile {
       display: block;
       aspect-ratio: 1 / 1;
@@ -406,6 +436,155 @@
     .other-tile:hover img {
       transform: scale(1.03);
       filter: brightness(0.95);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.9);
+      z-index: 320;
+      display: none;
+      align-items: stretch;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-inner {
+      width: min(1200px, 100%);
+      height: 100%;
+      position: relative;
+    }
+    .lightbox-meta {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.9rem;
+      z-index: 3;
+      max-width: min(360px, 72vw);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+    .lightbox-meta-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+    .lightbox-meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .lightbox-meta-value,
+    .lightbox-caption {
+      font-size: 0.72rem;
+      color: #c9c4bb;
+      line-height: 1.45;
+    }
+    .lightbox-stage {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .lightbox-main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+    }
+    .lightbox-image {
+      max-width: 100%;
+      max-height: calc(100vh - 90px);
+      object-fit: contain;
+    }
+    .lightbox-dock {
+      position: absolute;
+      left: 50%;
+      bottom: 0.8rem;
+      transform: translateX(-50%);
+      z-index: 3;
+      padding: 0.2rem;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      max-width: min(92vw, 760px);
+      scrollbar-width: thin;
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 0;
+    }
+    .lightbox-dock-btn {
+      width: 50px;
+      height: 50px;
+      border: 1px solid transparent;
+      background: #050505;
+      padding: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      opacity: 0.74;
+      transition: opacity 0.14s, border-color 0.14s;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lightbox-dock-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lightbox-dock-btn:hover {
+      opacity: 1;
+      border-color: var(--dim);
+    }
+    .lightbox-dock-btn.active {
+      opacity: 1;
+      border-color: #9a9a9a;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--rule);
+      background: rgba(10, 10, 10, 0.48);
+      color: #b5b5b5;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .lightbox-nav:hover {
+      color: var(--ink);
+      border-color: var(--dim);
+    }
+    .lightbox-nav.prev { left: 0.8rem; }
+    .lightbox-nav.next { right: 0.8rem; }
+    .lightbox-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background: transparent;
+      border: 0;
+      color: #a8a8a8;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .lightbox-close:hover {
+      color: var(--ink);
     }
 
     /* ─── FOOTER LINKS ─── */
@@ -435,6 +614,17 @@
       .other-list { grid-template-columns: 1fr 1fr; }
       .site-footer { font-size: 0.6rem; letter-spacing: 0.07em; }
       .meta-bar { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .lightbox-meta {
+        top: 0.6rem;
+        left: 0.6rem;
+        right: 0.6rem;
+        max-width: none;
+      }
+      .lightbox-image { max-height: 62vh; }
+      .lightbox-dock {
+        bottom: 0.6rem;
+        max-width: calc(100vw - 1.2rem);
+      }
     }
   </style>
 </head>
@@ -445,7 +635,7 @@
   <!-- QUICK EDIT NOTES
     1) Profile image: ./shashank_files/self.jpg
     2) Work card images: ./shashank_files/*.jpg
-    3) Instagram feed API token: set INSTAGRAM_ACCESS_TOKEN in the script at the end of this file
+    3) Gallery images/captions: section "Me In Pictures"
     4) Footer links/year: section ".site-footer"
   -->
 
@@ -478,10 +668,10 @@
   <!-- BRANDS -->
   <div class="section-label">Brands I've worked with</div>
   <div class="brand-strip">
-      <a class="brand-chip" href="https://www.nvidia.com" target="_blank" rel="noopener noreferrer" data-tooltip="NVIDIA" aria-label="NVIDIA"><img src="./shashank_files/logo-nvidia.png" alt="NVIDIA"/></a>
     <a class="brand-chip" href="https://www.quizizz.com" target="_blank" rel="noopener noreferrer" data-tooltip="Quizizz" aria-label="Quizizz"><img src="./shashank_files/logo-quizizz.png" alt="Quizizz"/></a>
     <a class="brand-chip" href="https://www.getmega.com" target="_blank" rel="noopener noreferrer" data-tooltip="GetMega" aria-label="GetMega"><img src="./shashank_files/logo-getmega.png" alt="GetMega"/></a>
     <a class="brand-chip" href="https://www.flytbase.com" target="_blank" rel="noopener noreferrer" data-tooltip="Flytbase" aria-label="Flytbase"><img src="./shashank_files/logo-flytbase.png" alt="Flytbase"/></a>
+    <a class="brand-chip" href="https://www.nvidia.com" target="_blank" rel="noopener noreferrer" data-tooltip="NVIDIA" aria-label="NVIDIA"><img src="./shashank_files/logo-nvidia.png" alt="NVIDIA"/></a>
     <a class="brand-chip" href="https://www.astralyogi.com" target="_blank" rel="noopener noreferrer" data-tooltip="AstralYogi" aria-label="AstralYogi"><img src="./shashank_files/logo-astralyogi.png" alt="AstralYogi"/></a>
     <a class="brand-chip" href="https://www.earnnest.me" target="_blank" rel="noopener noreferrer" data-tooltip="Earnnest" aria-label="Earnnest"><img src="./shashank_files/logo-earnnest.png" alt="Earnnest"/></a>
     <a class="brand-chip" href="https://www.ambill.ai" target="_blank" rel="noopener noreferrer" data-tooltip="Ambill" aria-label="Ambill"><img src="./shashank_files/logo-ambill.png" alt="Ambill"/></a>
@@ -497,7 +687,7 @@
       <img class="card-img" src="./shashank_files/nvidia.jpg" alt="NVIDIA"/>
       <div class="card-body">
         <div class="card-type">Product Design</div>
-        <div class="card-name">NVIDIA · Control Panel, GeForce Experience, RTX Voice</div>
+        <div class="card-name">NVIDIA · Control Panel & GeForce Experience</div>
         <div class="card-desc">Experience design for GPU software used by gamers and engineers.</div>
       </div>
     </a>
@@ -524,8 +714,8 @@
       <img class="card-img" src="./shashank_files/toast.jpg" alt="Toast"/>
       <div class="card-body">
         <div class="card-type">POS · Hospitality</div>
-        <div class="card-name">Toast (now Summer) · Digitizing Restaurant Experience</div>
-        <div class="card-desc">Contactless dining experience across major restaurant chains.</div>
+        <div class="card-name">Toast (Summer) · Restaurant Experience</div>
+        <div class="card-desc">Contactless dining experience across major US restaurant chains.</div>
       </div>
     </a>
 
@@ -542,7 +732,7 @@
       <img class="card-img" src="./shashank_files/flytbase.jpg" alt="Flytbase"/>
       <div class="card-body">
         <div class="card-type">B2B SaaS · Drones</div>
-        <div class="card-name">Flytbase Labs · Remote Drone Operations</div>
+        <div class="card-name">Flytbase Labs · Drone Operations</div>
         <div class="card-desc">Interaction design for automating remote drone operations.</div>
       </div>
     </a>
@@ -551,6 +741,7 @@
 
   <!-- ALL WORK CTA -->
   <a href="projects.html" class="cta-banner">
+    <img class="cta-thumb" src="./shashank_files/self.jpg" alt=""/>
     <div>
       <div class="cta-label">16+ projects</div>
       <div class="cta-title">See all selected work →</div>
@@ -601,7 +792,7 @@
   </div>
 
   <!-- MOVEMENT -->
-  <div class="section-label">Movement</div>
+  <div class="section-label">Sports & Recreation</div>
   <div class="sport-grid">
 
     <div class="sport-card">
@@ -632,7 +823,7 @@
       <div class="sport-icon">🏁</div>
       <div>
         <div class="sport-name">Enduro Rider</div>
-        <div class="sport-note">26000+ kms covererd onroad + offroad.</div>
+        <div class="sport-note">26000+kms onroad + offroad across Asia</div>
       </div>
     </div>
 
@@ -650,7 +841,7 @@
       <div class="sport-icon">🐎</div>
       <div>
         <div class="sport-name">Equestrian</div>
-        <div class="sport-note">Show-jumper, Participated in National Competition</div>
+        <div class="sport-note">Show Jumper, National Level Competitor</div>
       </div>
     </div>
 
@@ -663,7 +854,7 @@
     <div class="expedition-row">
       <div class="expedition-icon">🏔</div>
       <div class="expedition-body">
-        <div class="expedition-name">Summited Mt. Kilimanjaro <span class="expedition-tag">Summit</span></div>
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/10327797-kilimanjaro?mode=track" target="_blank" rel="noopener noreferrer">Summited Mt. Kilimanjaro <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summit</span></div>
         <div class="expedition-meta">Tanzania · 5,895m · Highest peak in Africa</div>
       </div>
     </div>
@@ -671,7 +862,7 @@
     <div class="expedition-row">
       <div class="expedition-icon">🏔</div>
       <div class="expedition-body">
-        <div class="expedition-name">Summited Friendship Peak <span class="expedition-tag">Summit</span></div>
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/12956080-mt-friendship-5285m?mode=track" target="_blank" rel="noopener noreferrer">Summited Friendship Peak <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summit</span></div>
         <div class="expedition-meta">Kullu, Himachal Pradesh · 5,289m · Technical alpine climb</div>
       </div>
     </div>
@@ -679,7 +870,7 @@
     <div class="expedition-row">
       <div class="expedition-icon">🏔</div>
       <div class="expedition-body">
-        <div class="expedition-name">Winter Ascent at Pangarchulla Peak <span class="expedition-tag">Summit</span></div>
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/17419563-pangarchulla-trek?mode=track" target="_blank" rel="noopener noreferrer">Winter Ascent at Pangarchulla<svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summit</span></div>
         <div class="expedition-meta">Uttarakhand · 4,700m · Winter snow & ice ascent</div>
       </div>
     </div>
@@ -687,27 +878,89 @@
     <div class="expedition-row">
       <div class="expedition-icon">🛵</div>
       <div class="expedition-body">
-        <div class="expedition-name">The Great Vietnam Adventure <span class="expedition-tag">Solo Ride</span></div>
-        <div class="expedition-meta">5,500+ km · North to south on two wheels</div>
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/5851240-the-great-vietnam-adventure?mode=track" target="_blank" rel="noopener noreferrer">The Great Vietnam Adventure <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Solo Ride</span></div>
+        <div class="expedition-meta">5,500+ km · South to North on two wheels</div>
       </div>
     </div>
 
     <div class="expedition-row">
       <div class="expedition-icon">🏍</div>
       <div class="expedition-body">
-        <div class="expedition-name">The South Indian Odyssey <span class="expedition-tag">Solo Ride</span></div>
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/10592296-dakshin-bharath?mode=track" target="_blank" rel="noopener noreferrer">The South Indian Odyssey <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Solo Ride</span></div>
         <div class="expedition-meta">4,500+ km · Coastal roads, temples, hill stations</div>
       </div>
     </div>
 
   </div>
   <div class="expedition-cta">
-    <a href="https://www.polarsteps.com/shshnkseth" target="_blank">View all adventures on Polarsteps</a>
+    <a href="https://www.polarsteps.com/shshnkseth" target="_blank">View all adventures</a>
   </div>
 
-  <!-- INSTAGRAM FEED -->
+  <!-- ME IN PICTURES -->
   <div class="section-label">Me In Pictures</div>
-  <div class="other-list" id="instagram-feed"></div>
+  <div class="other-list" id="photo-gallery">
+    <div class="other-tile-wrap" data-tooltip="Snowboarding">
+      <a class="other-tile gallery-trigger" href="./shashank_files/snowboarding @gulmarg.JPG" data-full="./shashank_files/snowboarding @gulmarg.JPG" data-date="07 Mar 2026" data-location="No GPS metadata" data-caption="Snowboarding line at Gulmarg." aria-label="Open Snowboarding">
+        <img src="./shashank_files/snowboarding @gulmarg.JPG" alt="Snowboarding"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Downhill longboarding">
+      <a class="other-tile gallery-trigger" href="./shashank_files/downhill-longboarding.JPG" data-full="./shashank_files/downhill-longboarding.JPG" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Downhill run with speed, control, and flow." aria-label="Open Downhill longboarding">
+        <img src="./shashank_files/downhill-longboarding.JPG" alt="Downhill longboarding"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Fire ring jump">
+      <a class="other-tile gallery-trigger" href="./shashank_files/show-jumping-through-fire-ring.JPG" data-full="./shashank_files/show-jumping-through-fire-ring.JPG" data-date="06 Apr 2016" data-location="No GPS metadata" data-caption="Skate jump through a fire ring." aria-label="Open Fire ring jump">
+        <img src="./shashank_files/show-jumping-through-fire-ring.JPG" alt="Fire ring jump"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Freediving with manta rays">
+      <a class="other-tile gallery-trigger" href="./shashank_files/freediving-w:-manta-rays.jpg" data-full="./shashank_files/freediving-w:-manta-rays.jpg" data-date="16 Jun 2024" data-location="No GPS metadata" data-caption="Freediving frame with manta rays." aria-label="Open Freediving with manta rays">
+        <img src="./shashank_files/freediving-w:-manta-rays.jpg" alt="Freediving with manta rays"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Friendship summit">
+      <a class="other-tile gallery-trigger" href="./shashank_files/friendship-summit.jpg" data-full="./shashank_files/friendship-summit.jpg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Friendship Peak summit moment." aria-label="Open Friendship summit">
+        <img src="./shashank_files/friendship-summit.jpg" alt="Friendship summit"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Friendship ridge">
+      <a class="other-tile gallery-trigger" href="./shashank_files/friendship-peak.JPG" data-full="./shashank_files/friendship-peak.JPG" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Ridge approach on Friendship Peak." aria-label="Open Friendship ridge">
+        <img src="./shashank_files/friendship-peak.JPG" alt="Friendship ridge"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Highlining 11000ft">
+      <a class="other-tile gallery-trigger" href="./shashank_files/highlining@11000ft.JPG" data-full="./shashank_files/highlining@11000ft.JPG" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Highlining at 11,000 ft." aria-label="Open Highlining 11000ft">
+        <img src="./shashank_files/highlining@11000ft.JPG" alt="Highlining 11000ft"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Kilimanjaro summit">
+      <a class="other-tile gallery-trigger" href="./shashank_files/mt-kilimanjaro-summitted.jpeg" data-full="./shashank_files/mt-kilimanjaro-summitted.jpeg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Mount Kilimanjaro summit frame." aria-label="Open Kilimanjaro summit">
+        <img src="./shashank_files/mt-kilimanjaro-summitted.jpeg" alt="Kilimanjaro summit"/>
+      </a>
+    </div>
+
+    <div class="other-tile-wrap" data-tooltip="Pangarchulla summit">
+      <a class="other-tile gallery-trigger" href="./shashank_files/pangarchulla-summit.jpg" data-full="./shashank_files/pangarchulla-summit.jpg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Pangarchulla summit day frame." aria-label="Open Pangarchulla summit">
+        <img src="./shashank_files/pangarchulla-summit.jpg" alt="Pangarchulla summit"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="National skateboarding championship">
+      <a class="other-tile gallery-trigger" href="./shashank_files/national-skateboarding-championship.jpg" data-full="./shashank_files/national-skateboarding-championship.jpg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="National championship competition moment." aria-label="Open National skateboarding championship">
+        <img src="./shashank_files/national-skateboarding-championship.jpg" alt="National skateboarding championship"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Pink marathon finisher">
+      <a class="other-tile gallery-trigger" href="./shashank_files/pink-marathon-finisher.jpg" data-full="./shashank_files/pink-marathon-finisher.jpg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="Pink marathon finish-line frame." aria-label="Open Pink marathon finisher">
+        <img src="./shashank_files/pink-marathon-finisher.jpg" alt="Pink marathon finisher"/>
+      </a>
+    </div>
+    <div class="other-tile-wrap" data-tooltip="Trail run finished">
+      <a class="other-tile gallery-trigger" href="./shashank_files/first-trail-run-finished.jpg" data-full="./shashank_files/first-trail-run-finished.jpg" data-date="06 Mar 2026" data-location="No GPS metadata" data-caption="First trail run finish captured post-race." aria-label="Open Trail run finished">
+        <img src="./shashank_files/first-trail-run-finished.jpg" alt="Trail run finished"/>
+      </a>
+    </div>
+  </div>
 
   <!-- FOOTER LINKS -->
   <div class="site-footer">
@@ -716,11 +969,39 @@
       · <a href="https://www.linkedin.com/in/shankseth/" target="_blank">LinkedIn</a>
       · <a href="https://www.instagram.com/shshnkseth/" target="_blank">Instagram</a>
       · <a href="./shashank_files/resume-shashankseth.pdf" target="_blank">Resume</a>
-      · <a href="projects.html">Work</a>
+      · <a href="projects.html">All work</a>
     </span>
     <span>© 2025</span>
   </div>
 
+</div>
+
+<div class="lightbox" id="gallery-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image">Close</button>
+  <div class="lightbox-inner">
+    <aside class="lightbox-meta">
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Date</div>
+        <div class="lightbox-meta-value" id="lightbox-date">-</div>
+      </div>
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Location</div>
+        <div class="lightbox-meta-value" id="lightbox-location">-</div>
+      </div>
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Caption</div>
+        <div class="lightbox-caption" id="lightbox-caption">-</div>
+      </div>
+    </aside>
+    <div class="lightbox-stage">
+      <div class="lightbox-main">
+        <button class="lightbox-nav prev" id="lightbox-prev" type="button" aria-label="Previous image">&#x2039;</button>
+        <img class="lightbox-image" id="lightbox-image" alt="Expanded gallery image"/>
+        <button class="lightbox-nav next" id="lightbox-next" type="button" aria-label="Next image">&#x203A;</button>
+      </div>
+      <div class="lightbox-dock" id="lightbox-dock"></div>
+    </div>
+  </div>
 </div>
 
 <div class="statusbar">
@@ -737,20 +1018,6 @@
 </div>
 
 <script>
-  const INSTAGRAM_ACCESS_TOKEN = "";
-  const INSTAGRAM_FEED_LIMIT = 8;
-
-  const INSTAGRAM_FALLBACK_POSTS = [
-    { image: "./notebook-mockup-on-desk.png", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./image_2.webp", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./IMG_4200.jpg", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./gooofy1.png", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./gooofy2.png", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./pic.png", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./pic2.png", url: "https://www.instagram.com/shshnkseth/" },
-    { image: "./Frame 53.png", url: "https://www.instagram.com/shshnkseth/" }
-  ];
-
   function updateTime() {
     const now = new Date();
     const label = now.toLocaleTimeString("en-IN", {
@@ -770,71 +1037,116 @@
     });
   }
 
-  function renderInstagramFeed(posts) {
-    const feed = document.getElementById("instagram-feed");
-    if (!feed) return;
+  function setupGalleryOverlay() {
+    const overlay = document.getElementById("gallery-lightbox");
+    const overlayImage = document.getElementById("lightbox-image");
+    const closeButton = document.getElementById("lightbox-close");
+    const prevButton = document.getElementById("lightbox-prev");
+    const nextButton = document.getElementById("lightbox-next");
+    const dateLabel = document.getElementById("lightbox-date");
+    const locationLabel = document.getElementById("lightbox-location");
+    const captionLabel = document.getElementById("lightbox-caption");
+    const dock = document.getElementById("lightbox-dock");
+    const triggers = document.querySelectorAll(".gallery-trigger");
 
-    feed.innerHTML = "";
+    if (!overlay || !overlayImage || !closeButton || !dock || !triggers.length) return;
 
-    posts.slice(0, INSTAGRAM_FEED_LIMIT).forEach((post, index) => {
-      const tile = document.createElement("a");
-      tile.className = "other-tile";
-      tile.href = post.url;
-      tile.target = "_blank";
-      tile.rel = "noopener noreferrer";
-      tile.setAttribute("aria-label", "Instagram post " + (index + 1));
-
-      const image = document.createElement("img");
-      image.src = post.image;
-      image.alt = "Instagram post " + (index + 1);
-
-      tile.appendChild(image);
-      feed.appendChild(tile);
+    const items = Array.from(triggers).map((trigger) => {
+      const image = trigger.querySelector("img");
+      return {
+        full: trigger.getAttribute("data-full") || trigger.getAttribute("href") || "",
+        thumb: image ? image.getAttribute("src") : "",
+        alt: image ? image.getAttribute("alt") : "Gallery image",
+        date: trigger.getAttribute("data-date") || "Date unavailable",
+        location: trigger.getAttribute("data-location") || "Location unavailable",
+        caption: trigger.getAttribute("data-caption") || "No caption"
+      };
     });
 
-    setupImageFallbacks();
-  }
+    let currentIndex = 0;
 
-  async function loadInstagramFeed() {
-    if (!INSTAGRAM_ACCESS_TOKEN) {
-      renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
-      return;
-    }
+    const dockButtons = items.map((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "lightbox-dock-btn";
+      button.setAttribute("aria-label", "Open image " + (index + 1));
 
-    try {
-      const endpoint = "https://graph.instagram.com/me/media" +
-        "?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp" +
-        "&limit=20&access_token=" + encodeURIComponent(INSTAGRAM_ACCESS_TOKEN);
+      const thumb = document.createElement("img");
+      thumb.src = item.thumb;
+      thumb.alt = item.alt;
+      button.appendChild(thumb);
 
-      const response = await fetch(endpoint);
-      if (!response.ok) throw new Error("Instagram API request failed");
+      button.addEventListener("click", () => openAt(index));
+      dock.appendChild(button);
+      return button;
+    });
 
-      const payload = await response.json();
-      const media = Array.isArray(payload.data) ? payload.data : [];
+    function updateDockActive(index) {
+      dockButtons.forEach((button, buttonIndex) => {
+        button.classList.toggle("active", buttonIndex === index);
+      });
 
-      const posts = media
-        .filter((item) => item && item.permalink && (item.media_url || item.thumbnail_url))
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-        .map((item) => ({
-          image: item.media_type === "VIDEO" ? (item.thumbnail_url || item.media_url) : item.media_url,
-          url: item.permalink
-        }));
-
-      if (!posts.length) {
-        renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
-        return;
+      const active = dockButtons[index];
+      if (active) {
+        active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
       }
-
-      renderInstagramFeed(posts);
-    } catch (error) {
-      renderInstagramFeed(INSTAGRAM_FALLBACK_POSTS);
     }
+
+    function openAt(index) {
+      const safeIndex = ((index % items.length) + items.length) % items.length;
+      const item = items[safeIndex];
+      if (!item || !item.full) return;
+
+      currentIndex = safeIndex;
+      overlayImage.src = item.full;
+      overlayImage.alt = item.alt;
+
+      if (dateLabel) dateLabel.textContent = item.date;
+      if (locationLabel) locationLabel.textContent = item.location;
+      if (captionLabel) captionLabel.textContent = item.caption;
+
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      updateDockActive(safeIndex);
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      overlayImage.removeAttribute("src");
+    }
+
+    function stepOverlay(delta) {
+      openAt(currentIndex + delta);
+    }
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        openAt(index);
+      });
+    });
+
+    if (prevButton) prevButton.addEventListener("click", () => stepOverlay(-1));
+    if (nextButton) nextButton.addEventListener("click", () => stepOverlay(1));
+    closeButton.addEventListener("click", closeOverlay);
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closeOverlay();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!overlay.classList.contains("open")) return;
+      if (event.key === "Escape") closeOverlay();
+      if (event.key === "ArrowRight") stepOverlay(1);
+      if (event.key === "ArrowLeft") stepOverlay(-1);
+    });
   }
 
   updateTime();
   setInterval(updateTime, 60000);
   setupImageFallbacks();
-  loadInstagramFeed();
+  setupGalleryOverlay();
 </script>
 </body>
 </html>
