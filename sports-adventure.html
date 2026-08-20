@@ -29,75 +29,42 @@
 
     .section-dock {
       position: fixed;
-      left: 14px;
+      left: 18px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 260;
       display: flex;
       flex-direction: column;
-      gap: 0.46rem;
+      align-items: flex-start;
+      gap: 0.72rem;
       padding: 0;
     }
     .dock-link {
-      width: 26px;
-      height: 14px;
-      border-radius: 6px;
-      background: transparent;
+      width: auto;
+      height: auto;
       text-decoration: none;
       display: block;
       position: relative;
-      opacity: 1;
-    }
-    .dock-link::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 50%;
-      width: 12px;
-      height: 2px;
-      transform: translateY(-50%);
-      border-radius: 2px;
-      background: #4f4f4f;
-      transition: width 0.14s ease, background-color 0.14s ease;
-    }
-    .dock-link:hover::before,
-    .dock-link:focus-visible::before {
-      width: 16px;
-      background: #bfb8aa;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5f5f5f;
+      transition: color 0.14s ease, transform 0.14s ease;
     }
     .dock-link:hover,
     .dock-link:focus-visible {
       outline: none;
+      color: #bfb8aa;
+      transform: translateX(3px);
     }
     .dock-link.active {
-      background: transparent;
-    }
-    .dock-link.active::before {
-      width: 20px;
-      background: #e1dacd;
+      color: #e1dacd;
     }
     .dock-link::after {
       content: attr(data-label);
-      position: absolute;
-      left: calc(100% + 8px);
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.52rem;
-      letter-spacing: 0.05em;
-      color: #b8b2a6;
-      background: #111;
-      border: 1px solid #2b2b2b;
-      border-radius: 6px;
-      padding: 0.15rem 0.35rem;
-      opacity: 0;
-      pointer-events: none;
       white-space: nowrap;
-      transition: opacity 0.12s ease;
-    }
-    .dock-link:hover::after,
-    .dock-link:focus-visible::after {
-      opacity: 1;
     }
 
     .wrap {
@@ -1036,9 +1003,10 @@
 
 <nav class="section-dock" aria-label="Section navigation">
   <a class="dock-link" href="#top" data-label="Top" aria-label="Top"></a>
-  <a class="dock-link" href="#sports" data-label="Sports" aria-label="Sports"></a>
-  <a class="dock-link" href="#expeditions" data-label="Expeditions" aria-label="Expeditions"></a>
-  <a class="dock-link" href="#gallery" data-label="Gallery" aria-label="Gallery"></a>
+  <a class="dock-link" href="index.html#work" data-label="Work" aria-label="Work"></a>
+  <a class="dock-link" href="index.html#experience" data-label="Experience" aria-label="Experience"></a>
+  <a class="dock-link" href="index.html#side-projects" data-label="Side Projects" aria-label="Side Projects"></a>
+  <a class="dock-link" href="#sports" data-label="Sports & Adventure" aria-label="Sports & Adventure"></a>
 </nav>
 
 <div class="wrap" id="top">
@@ -1070,7 +1038,7 @@
   <!-- SPORTS -->
   <div class="section-label" id="sports">Sports & Recreation</div>
   <div class="sport-grid">
-    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🛹</div><div><div class="sport-name">Skateboarder</div><div class="sport-note">Transition & Park · Downhill Longboard</div></div></div><button class="sport-view-btn" type="button" data-open-sport="skateboard">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🛹</div><div><div class="sport-name">Skateboarder</div><div class="sport-note">Transition & Park · Downhill Longboard · Skateboarding Coach with SkateSupplyIndia</div></div></div><button class="sport-view-btn" type="button" data-open-sport="skateboard">View Photos</button></div>
     <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏂</div><div><div class="sport-name">Snowboarder</div><div class="sport-note">Rookie runs</div></div></div><button class="sport-view-btn" type="button" data-open-sport="snowboard">View Photos</button></div>
     <div class="sport-card"><div class="sport-head"><div class="sport-icon">🪢</div><div><div class="sport-name">Highliner & Slackliner</div><div class="sport-note">Balance, focus, and controlled movement</div></div></div><button class="sport-view-btn" type="button" data-open-sport="highline">View Photos</button></div>
     <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏃</div><div><div class="sport-top"><div class="sport-name">Runner</div><div class="sport-badges sport-badges-inline"><span class="sport-badge">5K 22m</span><span class="sport-badge">10K 52m</span><span class="sport-badge">21K 2h14m</span></div></div><div class="sport-note">Trails, city runs, and race-day finishes</div></div></div><button class="sport-view-btn" type="button" data-open-sport="runner">View Photos</button></div>
