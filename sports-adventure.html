@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./shashank_files/zapp.png">
+<link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png">
+  <title>Sports & Adventure ✦ Shashank Seth</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./shared.css" />
+  <style>
+    :root {
+      --bg:      #0e0e0e;
+      --surface: #161616;
+      --rule:    #222222;
+      --ink:     #e8e4dc;
+      --muted:   #666;
+      --dim:     #444;
+      --accent:  #c8a96e;
+      --radius:  12px;
+      --status-bg: var(--bg);
+      --status-sep: #333;
+    }
+
+    html {
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
+    .section-dock {
+      position: fixed;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 260;
+      display: flex;
+      flex-direction: column;
+      gap: 0.46rem;
+      padding: 0;
+    }
+    .dock-link {
+      width: 26px;
+      height: 14px;
+      border-radius: 6px;
+      background: transparent;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      opacity: 1;
+    }
+    .dock-link::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      width: 12px;
+      height: 2px;
+      transform: translateY(-50%);
+      border-radius: 2px;
+      background: #4f4f4f;
+      transition: width 0.14s ease, background-color 0.14s ease;
+    }
+    .dock-link:hover::before,
+    .dock-link:focus-visible::before {
+      width: 16px;
+      background: #bfb8aa;
+    }
+    .dock-link:hover,
+    .dock-link:focus-visible {
+      outline: none;
+    }
+    .dock-link.active {
+      background: transparent;
+    }
+    .dock-link.active::before {
+      width: 20px;
+      background: #e1dacd;
+    }
+    .dock-link::after {
+      content: attr(data-label);
+      position: absolute;
+      left: calc(100% + 8px);
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.05em;
+      color: #b8b2a6;
+      background: #111;
+      border: 1px solid #2b2b2b;
+      border-radius: 6px;
+      padding: 0.15rem 0.35rem;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity 0.12s ease;
+    }
+    .dock-link:hover::after,
+    .dock-link:focus-visible::after {
+      opacity: 1;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 1.6rem 6rem;
+    }
+
+    /* ─── META BAR ─── */
+    .meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.8rem;
+    }
+    .meta-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ─── PROFILE ─── */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 1.8rem;
+    }
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 0;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .profile-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+    .profile-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      font-weight: 300;
+    }
+
+    /* ─── BIO ─── */
+    .bio {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 1.6rem;
+    }
+    .bio strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .section-label:first-of-type {
+      margin-top: 0.8rem;
+    }
+
+    /* ─── BRAND STRIP ─── */
+    .brand-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .brand-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      overflow: visible;
+      text-decoration: none;
+      position: relative;
+    }
+    .brand-chip img {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+    .brand-chip span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── SUBTLE TOOLTIP ─── */
+    .brand-chip[data-tooltip]::after,
+    .exp-thumb[data-tooltip]::after,
+    .other-tile-wrap[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%) translateY(3px);
+      background: #141414;
+      color: #b9b9b9;
+      border: 1px solid #2b2b2b;
+      border-radius: 6px;
+      padding: 0.22rem 0.42rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+    .brand-chip[data-tooltip]::before,
+    .exp-thumb[data-tooltip]::before,
+    .other-tile-wrap[data-tooltip]::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 3px);
+      transform: translateX(-50%) translateY(3px);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #2b2b2b;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 19;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+    .brand-chip[data-tooltip]:hover::after,
+    .brand-chip[data-tooltip]:hover::before,
+    .brand-chip[data-tooltip]:focus-visible::after,
+    .brand-chip[data-tooltip]:focus-visible::before,
+    .exp-thumb[data-tooltip]:hover::after,
+    .exp-thumb[data-tooltip]:hover::before,
+    .other-tile-wrap[data-tooltip]:hover::after,
+    .other-tile-wrap[data-tooltip]:hover::before {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ─── PROJECT CARDS ─── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s;
+    }
+    .card:hover { border-color: var(--dim); }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.2s;
+    }
+    .card:hover .card-img { filter: brightness(1); }
+    .card-body {
+      padding: 0.85rem 1rem 0.95rem;
+    }
+    .card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .card-name {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+    .card-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-list {
+      margin-bottom: 3.4rem;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+    .exp-list::before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 0.25rem;
+      bottom: 0.25rem;
+      width: 1px;
+      background: var(--rule);
+    }
+    .exp-row {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      column-gap: 0.85rem;
+      row-gap: 0.2rem;
+      align-items: start;
+      padding: 0.5rem 0 0.8rem;
+      position: relative;
+    }
+    .exp-row:last-child { padding-bottom: 0.45rem; }
+    .exp-thumb {
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: #0d0d0d;
+      border: 1px solid var(--rule);
+      position: relative;
+      z-index: 1;
+    }
+    .exp-thumb img { width: 28px; height: 28px; object-fit: contain; border-radius: 3px; }
+    .exp-thumb span { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); }
+    .exp-company { font-size: 0.85rem; font-weight: 400; color: var(--ink); }
+    .exp-role { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+    .exp-period {
+      grid-column: 2;
+      justify-self: start;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.06rem;
+    }
+    .section-quote {
+      margin: 0.5rem 0 2.7rem;
+      padding: 0.6rem 0;
+      font-size: clamp(1rem, 2.1vw, 1.28rem);
+      color: #d3ccbf;
+      line-height: 1.45;
+      letter-spacing: 0.015em;
+      text-align: left;
+      position: relative;
+    }
+    .section-quote::before,
+    .section-quote::after {
+      position: absolute;
+      color: #7f7a72;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1;
+      font-family: 'Playfair Display', serif;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    .section-quote::before {
+      content: "\201C";
+      left: -0.1rem;
+      top: -0.35rem;
+    }
+    .section-quote::after {
+      content: "\201D";
+      right: 0;
+      bottom: 0.35rem;
+    }
+    .section-quote-text {
+      font-style: italic;
+      display: block;
+      padding: 0 1.9rem 0 1.6rem;
+    }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      text-decoration: none;
+      margin-bottom: 3rem;
+      transition: border-color 0.15s;
+    }
+    .cta-banner:hover { border-color: var(--dim); }
+    .cta-thumb {
+      width: 64px; height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: brightness(0.8);
+      transition: filter 0.2s;
+    }
+    .cta-banner:hover .cta-thumb { filter: brightness(1); }
+    .cta-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .cta-title { font-size: 0.95rem; font-weight: 400; color: var(--ink); }
+    .cta-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ─── EXPEDITION ROWS ─── */
+    .expedition-list { margin-bottom: 3.4rem; }
+    .expedition-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--rule);
+    }
+    .expedition-row:last-child { border-bottom: 1px solid var(--rule); }
+    .expedition-thumb {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      flex-shrink: 0;
+      margin-top: 0.04rem;
+      background: #101010;
+    }
+    .expedition-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9);
+    }
+    .expedition-body { flex: 1; }
+    .expedition-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-left: auto;
+      padding-top: 0.16rem;
+    }
+    .expedition-name {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .expedition-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.34rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .expedition-link:hover {
+      color: #f2eee6;
+    }
+    .expedition-ext-icon {
+      width: 0.68rem;
+      height: 0.68rem;
+      color: #8f8f8f;
+      flex-shrink: 0;
+      margin-top: 0.02rem;
+    }
+    .expedition-link:hover .expedition-ext-icon {
+      color: var(--ink);
+    }
+    .expedition-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.03em;
+    }
+    .expedition-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .expedition-cta-banner {
+      margin-top: 1rem;
+      margin-bottom: 3.4rem;
+    }
+
+    /* ─── SPORTS + GALLERY ─── */
+    .sport-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.72rem;
+      margin-bottom: 2rem;
+    }
+    .sport-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    .sport-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+    .sport-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .sport-name {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .sport-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.45rem;
+    }
+    .sport-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+    .sport-badges {
+      margin-top: 0.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+    }
+    .sport-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: #bcb7ac;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.14rem 0.45rem;
+      letter-spacing: 0.03em;
+      background: rgba(255, 255, 255, 0.02);
+      white-space: nowrap;
+    }
+    .sport-badges-inline {
+      margin-top: 0;
+      flex-wrap: nowrap;
+      margin-left: auto;
+    }
+    .sport-view-btn {
+      align-self: flex-start;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #b5b0a7;
+      text-decoration: none;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: color 0.12s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .sport-view-btn::after {
+      content: "\2192";
+      font-size: 0.72rem;
+      line-height: 1;
+      transform: translateY(-0.02rem);
+    }
+    .sport-view-btn:hover {
+      color: var(--ink);
+    }
+
+    .gallery-marquee {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+      margin-bottom: 3.2rem;
+    }
+    .gallery-row {
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-bottom: 0.58rem;
+      cursor: grab;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .gallery-row::-webkit-scrollbar { display: none; }
+    .gallery-row:last-child {
+      margin-bottom: 0;
+    }
+    .gallery-row.is-dragging {
+      cursor: grabbing;
+    }
+    .gallery-row.is-dragging .gallery-track {
+      animation-play-state: paused;
+    }
+    .gallery-track {
+      display: flex;
+      gap: 0.6rem;
+      width: max-content;
+      padding: 0 1rem;
+      animation: galleryRowLeft 180s linear infinite;
+      will-change: transform;
+    }
+    .gallery-track.reverse {
+      animation-name: galleryRowRight;
+      animation-duration: 210s;
+    }
+    .gallery-track:hover,
+    .gallery-track:focus-within {
+      animation-play-state: paused;
+    }
+    .gallery-card {
+      flex: 0 0 clamp(190px, 20vw, 240px);
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.15s ease;
+    }
+    .gallery-card:hover {
+      border-color: var(--dim);
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 126px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.82);
+      transition: filter 0.2s ease;
+    }
+    .gallery-card:hover img {
+      filter: brightness(0.95);
+    }
+    .gallery-caption {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #b0aa9f;
+      padding: 0.38rem 0.46rem 0.45rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @keyframes galleryRowLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @keyframes galleryRowRight {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+
+    /* ─── OTHER PROJECTS ─── */
+    .other-list {
+      margin-bottom: 3.6rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+    .other-tile-wrap {
+      position: relative;
+    }
+    .other-tile {
+      display: block;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--rule);
+      background: #060606;
+      overflow: hidden;
+      text-decoration: none;
+      transition: border-color 0.15s ease;
+    }
+    .other-tile:hover { border-color: var(--dim); }
+    .other-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.78);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+    .other-tile:hover img {
+      transform: scale(1.03);
+      filter: brightness(0.95);
+    }
+
+    .side-carousel {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .side-grid {
+      display: flex;
+      gap: 0.8rem;
+      overflow: hidden;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.2rem;
+    }
+    .side-card {
+      flex: 0 0 calc((100% - 1.6rem) / 3);
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s;
+    }
+    .side-card:hover { border-color: var(--dim); }
+    .side-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+    }
+    .side-card-body {
+      padding: 0.75rem 0.85rem 0.9rem;
+    }
+    .side-card-title {
+      font-size: 0.8rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .side-card-desc {
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .side-nav {
+      position: absolute;
+      top: -2rem;
+      right: 0;
+      display: flex;
+      gap: 0.35rem;
+    }
+    .side-nav-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      color: var(--muted);
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1;
+    }
+    .side-nav-btn:hover {
+      color: var(--ink);
+      border-color: var(--dim);
+    }
+
+.follow-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(1.4rem, 4.4vw, 2.2rem);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+      color: #bfb9ad;
+      margin-top: -1.2rem;
+      margin-bottom: 3.2rem;
+      text-align: center;
+    }
+    .follow-cta a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.12s, border-color 0.12s;
+    }
+    .follow-cta a:hover {
+      color: #fff;
+      border-color: var(--dim);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.9);
+      z-index: 320;
+      display: none;
+      align-items: stretch;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-inner {
+      width: min(1200px, 100%);
+      height: 100%;
+      position: relative;
+    }
+    .lightbox-meta {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.9rem;
+      z-index: 3;
+      max-width: min(360px, 72vw);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+    .lightbox-meta-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+    .lightbox-meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .lightbox-meta-value,
+    .lightbox-caption {
+      font-size: 0.72rem;
+      color: #c9c4bb;
+      line-height: 1.45;
+    }
+    .lightbox-stage {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .lightbox-main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+    }
+    .lightbox-image {
+      max-width: 100%;
+      max-height: calc(100vh - 90px);
+      object-fit: contain;
+    }
+    .lightbox-dock {
+      position: absolute;
+      left: 50%;
+      bottom: 0.8rem;
+      transform: translateX(-50%);
+      z-index: 3;
+      padding: 0.2rem;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      max-width: min(92vw, 760px);
+      scrollbar-width: thin;
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 0;
+    }
+    .lightbox-dock-btn {
+      width: 50px;
+      height: 50px;
+      border: 1px solid transparent;
+      background: #050505;
+      padding: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      opacity: 0.74;
+      transition: opacity 0.14s, border-color 0.14s;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lightbox-dock-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lightbox-dock-btn:hover {
+      opacity: 1;
+      border-color: var(--dim);
+    }
+    .lightbox-dock-btn.active {
+      opacity: 1;
+      border-color: #9a9a9a;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--rule);
+      background: rgba(10, 10, 10, 0.48);
+      color: #b5b5b5;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .lightbox-nav:hover {
+      color: var(--ink);
+      border-color: var(--dim);
+    }
+    .lightbox-nav.prev { left: 0.8rem; }
+    .lightbox-nav.next { right: 0.8rem; }
+    .lightbox-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background: transparent;
+      border: 0;
+      color: #a8a8a8;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .lightbox-close:hover {
+      color: var(--ink);
+    }
+
+    /* ─── FOOTER LINKS ─── */
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.09em;
+      color: #8f8f8f;
+      text-transform: uppercase;
+      margin-bottom: 3.8rem;
+    }
+    .site-footer a {
+      color: #a8a8a8;
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .site-footer a:hover { color: var(--ink); }
+
+    @media (max-width: 520px) {
+      .section-dock { display: none; }
+      .card-grid { grid-template-columns: 1fr; }
+      .card-grid .card:nth-child(n+5) { display: none; }
+      .sport-grid { grid-template-columns: 1fr; }
+      .gallery-marquee {
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+      .gallery-track {
+        animation: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 0.7rem 0.25rem;
+      }
+      .gallery-card {
+        flex: 0 0 min(78vw, 280px);
+        scroll-snap-align: start;
+      }
+      .exp-list::before { left: 17px; }
+      .exp-row { grid-template-columns: 36px minmax(0, 1fr); column-gap: 0.72rem; }
+      .exp-thumb { width: 36px; height: 36px; }
+      .exp-thumb img { width: 24px; height: 24px; }
+      .other-list { grid-template-columns: 1fr 1fr; }
+      .side-card { flex-basis: 100%; }
+      .side-nav { top: -1.8rem; }
+      .site-footer { font-size: 0.6rem; letter-spacing: 0.07em; }
+      .meta-bar { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .lightbox-meta {
+        top: 0.6rem;
+        left: 0.6rem;
+        right: 0.6rem;
+        max-width: none;
+      }
+      .lightbox-image { max-height: 62vh; }
+      .lightbox-dock {
+        bottom: 0.6rem;
+        max-width: calc(100vw - 1.2rem);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="section-dock" aria-label="Section navigation">
+  <a class="dock-link" href="#top" data-label="Top" aria-label="Top"></a>
+  <a class="dock-link" href="#sports" data-label="Sports" aria-label="Sports"></a>
+  <a class="dock-link" href="#expeditions" data-label="Expeditions" aria-label="Expeditions"></a>
+  <a class="dock-link" href="#gallery" data-label="Gallery" aria-label="Gallery"></a>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="meta-bar" style="align-items:flex-start;border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:2.4rem;">
+    <div>
+      <div class="profile-name" style="font-size:1rem;">Shashank Seth</div>
+      <div class="meta-item" style="margin-top:.45rem;">
+        <a href="index.html" style="color:#a8a8a8;text-decoration:none;">← Back home</a>
+        <span style="color:var(--dim);">/</span>
+        <span style="color:var(--ink);">Sports & Adventure</span>
+      </div>
+    </div>
+    <span class="meta-item">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="4"/><path d="M6 2v4l2.5 1.5"/></svg>
+      <span id="time-display">—</span>
+    </span>
+  </header>
+
+  <section style="margin-bottom:2.6rem;">
+    <div class="section-label" style="margin-top:0;">Outside the studio</div>
+    <h1 style="font-family:'DM Mono',monospace;font-size:clamp(1.65rem,5vw,2.35rem);font-weight:500;line-height:1.15;color:var(--ink);margin:0 0 .9rem;">Sports & Adventure</h1>
+    <p class="bio" style="max-width:610px;margin-bottom:0;">Movement is where I reset, learn risk, and stay curious—from skateparks and highlines to deep water, mountain summits, and long rides.</p>
+  </section>
+
+  <blockquote class="section-quote">
+    <span class="section-quote-text">Movement does for the soul what education does for the mind.</span>
+  </blockquote>
+
+  <!-- SPORTS -->
+  <div class="section-label" id="sports">Sports & Recreation</div>
+  <div class="sport-grid">
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🛹</div><div><div class="sport-name">Skateboarder</div><div class="sport-note">Transition & Park · Downhill Longboard</div></div></div><button class="sport-view-btn" type="button" data-open-sport="skateboard">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏂</div><div><div class="sport-name">Snowboarder</div><div class="sport-note">Rookie runs</div></div></div><button class="sport-view-btn" type="button" data-open-sport="snowboard">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🪢</div><div><div class="sport-name">Highliner & Slackliner</div><div class="sport-note">Balance, focus, and controlled movement</div></div></div><button class="sport-view-btn" type="button" data-open-sport="highline">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏃</div><div><div class="sport-top"><div class="sport-name">Runner</div><div class="sport-badges sport-badges-inline"><span class="sport-badge">5K 22m</span><span class="sport-badge">10K 52m</span><span class="sport-badge">21K 2h14m</span></div></div><div class="sport-note">Trails, city runs, and race-day finishes</div></div></div><button class="sport-view-btn" type="button" data-open-sport="runner">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏍</div><div><div class="sport-name">Enduro Rider</div><div class="sport-note">On-road + off-road long distance rides</div></div></div><button class="sport-view-btn" type="button" data-open-sport="enduro">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🤿</div><div><div class="sport-name">Advance Scuba-Diver / Free-diver</div><div class="sport-note">30+ deep sea dives logged</div></div></div><button class="sport-view-btn" type="button" data-open-sport="freedive">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🐎</div><div><div class="sport-name">Equestrian</div><div class="sport-note">Show jumper, national-level competitor</div></div></div><button class="sport-view-btn" type="button" data-open-sport="equestrian">View Photos</button></div>
+    <div class="sport-card"><div class="sport-head"><div class="sport-icon">🏔</div><div><div class="sport-name">Mountain Ascents</div><div class="sport-note">Technical climbs and summit pushes</div></div></div><button class="sport-view-btn" type="button" data-open-sport="mountain">View Photos</button></div>
+  </div>
+
+  <!-- EXPEDITIONS -->
+  <div class="section-label" id="expeditions">Expeditions</div>
+  <div class="expedition-list">
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Kilimanjaro thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/10327797-kilimanjaro?mode=track" target="_blank" rel="noopener noreferrer">Mt. Kilimanjaro <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summiteer</span></div>
+        <div class="expedition-meta">Tanzania · 5,895m · Highest peak in Africa</div>
+      </div>
+      <div class="expedition-year">Feb 2024</div>
+    </div>
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" alt="Friendship Peak thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/12956080-mt-friendship-5285m?mode=track" target="_blank" rel="noopener noreferrer">Friendship Peak <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summiteer</span></div>
+        <div class="expedition-meta">Kullu, Himachal Pradesh · 5,289m · Technical alpine climb</div>
+      </div>
+      <div class="expedition-year">July 2024</div>
+    </div>
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Ladakh ride thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name">Roof of India: Ladakh <span class="expedition-tag">Ride</span></div>
+        <div class="expedition-meta">3800kms+ · Manali to Srinagar via Leh, Leh inner circuit, 3 highest passes</div>
+      </div>
+      <div class="expedition-year">Aug 2024</div>
+    </div>
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" alt="Pangarchulla thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/17419563-pangarchulla-trek?mode=track" target="_blank" rel="noopener noreferrer">Winter Ascent at Pangarchulla<svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Summiteer</span></div>
+        <div class="expedition-meta">Uttarakhand · 4,700m · Winter snow & ice ascent</div>
+      </div>
+      <div class="expedition-year">Apr 2025</div>
+    </div>
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-opt.jpg" alt="Vietnam ride thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/5851240-the-great-vietnam-adventure?mode=track" target="_blank" rel="noopener noreferrer">The Great Vietnam Adventure <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Solo Ride</span></div>
+        <div class="expedition-meta">5000kms+ · South to North on Honda XR150</div>
+      </div>
+      <div class="expedition-year">Sept 2022</div>
+    </div>
+
+    <div class="expedition-row">
+      <div class="expedition-thumb"><img src="./shashank_files/gallery_opt/track-practice.jpg" alt="South India ride thumbnail"/></div>
+      <div class="expedition-body">
+        <div class="expedition-name"><a class="expedition-link" href="https://www.polarsteps.com/shshnkseth/10592296-dakshin-bharath?mode=track" target="_blank" rel="noopener noreferrer">The South Indian Odyssey <svg class="expedition-ext-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 2L5 7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 7.8V10H2V2h2.2" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a> <span class="expedition-tag">Solo Ride</span></div>
+        <div class="expedition-meta">4500kms+ · From the southern most tip of mainland to Bhopal via West Coast</div>
+      </div>
+      <div class="expedition-year">2024</div>
+    </div>
+
+  </div>
+  <a href="https://www.polarsteps.com/shshnkseth" target="_blank" rel="noopener noreferrer" class="cta-banner expedition-cta-banner">
+    <div>
+      <div class="cta-label">Polarsteps</div>
+      <div class="cta-title">View all adventures →</div>
+      <div class="cta-sub">Rides, Expeditions, Journals, Travel Logs</div>
+    </div>
+  </a>
+
+  <div class="section-label" id="gallery">Gallery</div>
+  <div class="gallery-marquee" id="photo-gallery">
+    <div class="gallery-row"><div class="gallery-track" id="gallery-row-1">
+      <a class="gallery-card gallery-trigger" data-sport="snowboard" href="./shashank_files/gallery_opt/gulmarg-phase-2.jpg" data-full="./shashank_files/gallery_opt/gulmarg-phase-2.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · phase 2 run"><img src="./shashank_files/gallery_opt/gulmarg-phase-2.jpg" alt="Snowboarding at Gulmarg phase 2"/><span class="gallery-caption">Snowboarding · phase 2 run</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/63rd-national-skateboarding-championship.jpg" data-full="./shashank_files/gallery_opt/63rd-national-skateboarding-championship.jpg" data-date="Dec 2024" data-location="India" data-caption="Skateboarding · nationals"><img src="./shashank_files/gallery_opt/63rd-national-skateboarding-championship.jpg" alt="63rd national skateboarding championship"/><span class="gallery-caption">Skateboarding · nationals</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-full="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-date="Sept 2025" data-location="Suru Valley, Kargil, Ladakh, IN" data-caption="Highline · Suru Valley"><img src="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" alt="Highline at Suru Valley"/><span class="gallery-caption">Highline · Suru Valley</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/10k-road-run.jpg" data-full="./shashank_files/gallery_opt/10k-road-run.jpg" data-date="2024" data-location="Bhopal, IN" data-caption="Runner · 10K road"><img src="./shashank_files/gallery_opt/10k-road-run.jpg" alt="10K road run"/><span class="gallery-caption">Runner · 10K road</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-full="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-date="Jun 2024" data-location="Nusa Penida, Indonesia" data-caption="Freediving · manta rays"><img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays"/><span class="gallery-caption">Freediving · manta rays</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/scubadive-inside-underwater-cave-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-inside-underwater-cave-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · underwater cave"><img src="./shashank_files/gallery_opt/scubadive-inside-underwater-cave-opt.jpg" alt="Scuba diving in underwater cave"/><span class="gallery-caption">Scuba Diving · underwater cave</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/enduro-trail-in-vietnam.jpg" data-full="./shashank_files/gallery_opt/enduro-trail-in-vietnam.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · trail ride"><img src="./shashank_files/gallery_opt/enduro-trail-in-vietnam.jpg" alt="Enduro trail in Vietnam"/><span class="gallery-caption">Enduro · trail ride</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-full="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-date="Aug 2024" data-location="Fotu La, Ladakh, IN" data-caption="Enduro · Fotu La bypass"><img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Fotu La bypass trail in Ladakh"/><span class="gallery-caption">Enduro · Fotu La bypass</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="equestrian" href="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" data-full="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" data-date="Early years" data-location="India" data-caption="Equestrian · show jumping"><img src="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" alt="Show jumping early days"/><span class="gallery-caption">Equestrian · show jumping</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="mountain" href="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-full="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-date="Feb 2024" data-location="Uhuru Peak, Tanzania" data-caption="Mountain ascent · Kilimanjaro"><img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Uhuru peak summit"/><span class="gallery-caption">Mountain ascent · Kilimanjaro</span></a>
+    </div></div>
+    <div class="gallery-row"><div class="gallery-track reverse" id="gallery-row-2">
+      <a class="gallery-card gallery-trigger" data-sport="snowboard" href="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-full="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · powder day"><img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding powder day in Gulmarg"/><span class="gallery-caption">Snowboarding · powder day</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-full="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-date="2025" data-location="Navi Mumbai, MH, IN" data-caption="Skateboarding · downhill race"><img src="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" alt="Downhill race at Navi Mumbai"/><span class="gallery-caption">Skateboarding · downhill race</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/highline-at-duke'snose.jpg" data-full="./shashank_files/gallery_opt/highline-at-duke'snose.jpg" data-date="2024" data-location="Duke's Nose, Lonavala, MH, IN" data-caption="Highline · Duke's Nose"><img src="./shashank_files/gallery_opt/highline-at-duke'snose.jpg" alt="Highline at Duke's Nose"/><span class="gallery-caption">Highline · Duke's Nose</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/10k-trail-run.jpg" data-full="./shashank_files/gallery_opt/10k-trail-run.jpg" data-date="2024" data-location="Bhopal, IN" data-caption="Runner · 10K trail"><img src="./shashank_files/gallery_opt/10k-trail-run.jpg" alt="10K trail run"/><span class="gallery-caption">Runner · 10K trail</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/with-school-of-snappers-opt.jpg" data-full="./shashank_files/gallery_opt/with-school-of-snappers-opt.jpg" data-date="2024" data-location="Indonesia" data-caption="Freediving · school of snappers"><img src="./shashank_files/gallery_opt/with-school-of-snappers-opt.jpg" alt="Freediving with school of snappers"/><span class="gallery-caption">Freediving · school of snappers</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/scubadive-through-cave-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-through-cave-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · cave pass"><img src="./shashank_files/gallery_opt/scubadive-through-cave-opt.jpg" alt="Scuba diving through cave"/><span class="gallery-caption">Scuba Diving · cave pass</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-opt.jpg" data-date="Sept 2022" data-location="Ho Chi Minh Trail, Vietnam" data-caption="Enduro · Ho Chi Minh Trail"><img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-opt.jpg" alt="Ho Chi Minh trail ride"/><span class="gallery-caption">Enduro · Ho Chi Minh Trail</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/china-border.jpg" data-full="./shashank_files/gallery_opt/china-border.jpg" data-date="Aug 2024" data-location="Ladakh, IN" data-caption="Enduro · near China border"><img src="./shashank_files/gallery_opt/china-border.jpg" alt="Ride near China border"/><span class="gallery-caption">Enduro · near China border</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="equestrian" href="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-full="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-date="Early years" data-location="India" data-caption="Equestrian · jump training"><img src="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" alt="Horse jump training"/><span class="gallery-caption">Equestrian · jump training</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="mountain" href="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-full="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-date="July 2024" data-location="Friendship Peak, Himachal, IN" data-caption="Mountain ascent · Friendship"><img src="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" alt="Friendship peak summit"/><span class="gallery-caption">Mountain ascent · Friendship</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/bmx-flyout-skatepark-opt.jpg" data-full="./shashank_files/gallery_opt/bmx-flyout-skatepark-opt.jpg" data-date="2025" data-location="India" data-caption="BMX · flyout at skatepark"><img src="./shashank_files/gallery_opt/bmx-flyout-skatepark-opt.jpg" alt="BMX flyout at skatepark"/><span class="gallery-caption">BMX · flyout at skatepark</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/kayak-to-monkey-island-phiphi-opt.jpg" data-full="./shashank_files/gallery_opt/kayak-to-monkey-island-phiphi-opt.jpg" data-date="2024" data-location="Phi Phi, Thailand" data-caption="Kayak · monkey island"><img src="./shashank_files/gallery_opt/kayak-to-monkey-island-phiphi-opt.jpg" alt="Kayak to monkey island"/><span class="gallery-caption">Kayak · monkey island</span></a>
+    </div></div>
+    <div class="gallery-row"><div class="gallery-track" id="gallery-row-3">
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-full="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-date="2025" data-location="Gwalior, MP, IN" data-caption="Skateboarding · frontside 5-0"><img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Frontside five-o in Gwalior"/><span class="gallery-caption">Skateboarding · frontside 5-0</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/board-slide-in-quarter-pipe.jpg" data-full="./shashank_files/gallery_opt/board-slide-in-quarter-pipe.jpg" data-date="2025" data-location="India" data-caption="Skateboarding · boardslide"><img src="./shashank_files/gallery_opt/board-slide-in-quarter-pipe.jpg" alt="Boardslide in quarter pipe"/><span class="gallery-caption">Skateboarding · boardslide</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="skateboard" href="./shashank_files/gallery_opt/contest-in-gwalior.jpg" data-full="./shashank_files/gallery_opt/contest-in-gwalior.jpg" data-date="2025" data-location="Gwalior, MP, IN" data-caption="Skateboarding · contest run"><img src="./shashank_files/gallery_opt/contest-in-gwalior.jpg" alt="Skateboarding contest in Gwalior"/><span class="gallery-caption">Skateboarding · contest run</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/highline-at-ekolevalley.jpg" data-full="./shashank_files/gallery_opt/highline-at-ekolevalley.jpg" data-date="2025" data-location="Ekole Valley, MH, IN" data-caption="Highline · Ekole Valley"><img src="./shashank_files/gallery_opt/highline-at-ekolevalley.jpg" alt="Highline at Ekole Valley"/><span class="gallery-caption">Highline · Ekole Valley</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-full="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-date="Sept 2025" data-location="Suru Valley, Ladakh, IN" data-caption="Highline · 11,000 ft"><img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 feet"/><span class="gallery-caption">Highline · 11,000 ft</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/slackline-early-days-mulki.jpg" data-full="./shashank_files/gallery_opt/slackline-early-days-mulki.jpg" data-date="2023" data-location="Mulki, KA, IN" data-caption="Slackline · early days"><img src="./shashank_files/gallery_opt/slackline-early-days-mulki.jpg" alt="Slackline early days in Mulki"/><span class="gallery-caption">Slackline · early days</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="highline" href="./shashank_files/gallery_opt/slackline-waterline-adyanadka.jpg" data-full="./shashank_files/gallery_opt/slackline-waterline-adyanadka.jpg" data-date="2024" data-location="Adyanadka, KA, IN" data-caption="Slackline · waterline"><img src="./shashank_files/gallery_opt/slackline-waterline-adyanadka.jpg" alt="Slackline waterline at Adyanadka"/><span class="gallery-caption">Slackline · waterline</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/run-strava.jpg" data-full="./shashank_files/gallery_opt/run-strava.jpg" data-date="2025" data-location="Bengaluru, KA, IN" data-caption="Runner · race stats"><img src="./shashank_files/gallery_opt/run-strava.jpg" alt="Runner race stats frame"/><span class="gallery-caption">Runner · race stats</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/run-strava-st.jpg" data-full="./shashank_files/gallery_opt/run-strava-st.jpg" data-date="2025" data-location="Bengaluru, KA, IN" data-caption="Runner · pace snapshot"><img src="./shashank_files/gallery_opt/run-strava-st.jpg" alt="Runner pace snapshot"/><span class="gallery-caption">Runner · pace snapshot</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/run-finisher-medal-10k.JPG" data-full="./shashank_files/gallery_opt/run-finisher-medal-10k.JPG" data-date="2025" data-location="Bengaluru, KA, IN" data-caption="Runner · 10K finisher"><img src="./shashank_files/gallery_opt/run-finisher-medal-10k.JPG" alt="10K finisher medal"/><span class="gallery-caption">Runner · 10K finisher</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="runner" href="./shashank_files/gallery_opt/run-strava-stat.JPG" data-full="./shashank_files/gallery_opt/run-strava-stat.JPG" data-date="2025" data-location="Bengaluru, KA, IN" data-caption="Runner · weekly stats"><img src="./shashank_files/gallery_opt/run-strava-stat.JPG" alt="Runner weekly stats"/><span class="gallery-caption">Runner · weekly stats</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · rock cracks"><img src="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" alt="Scuba diving through underwater rock cracks"/><span class="gallery-caption">Scuba Diving · rock cracks</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/scubadive-with-eagle-stingray-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-with-eagle-stingray-opt.jpg" data-date="2024" data-location="Indonesia" data-caption="Scuba Diving · eagle stingray"><img src="./shashank_files/gallery_opt/scubadive-with-eagle-stingray-opt.jpg" alt="Scuba diving with eagle stingray"/><span class="gallery-caption">Scuba Diving · eagle stingray</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/chill-kayak-session-mulki-opt.jpg" data-full="./shashank_files/gallery_opt/chill-kayak-session-mulki-opt.jpg" data-date="2024" data-location="Mulki, KA, IN" data-caption="Kayak · chill session"><img src="./shashank_files/gallery_opt/chill-kayak-session-mulki-opt.jpg" alt="Kayak session in Mulki"/><span class="gallery-caption">Kayak · chill session</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="freedive" href="./shashank_files/gallery_opt/kayak-to-butterflybeach-goa.JPG" data-full="./shashank_files/gallery_opt/kayak-to-butterflybeach-goa.JPG" data-date="2024" data-location="Goa, IN" data-caption="Kayak · butterfly beach"><img src="./shashank_files/gallery_opt/kayak-to-butterflybeach-goa.JPG" alt="Kayak to butterfly beach"/><span class="gallery-caption">Kayak · butterfly beach</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · river crossing"><img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" alt="Vietnam trail river crossing"/><span class="gallery-caption">Enduro · river crossing</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-3-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-3-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · jungle section"><img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-3-opt.jpg" alt="Vietnam trail jungle section"/><span class="gallery-caption">Enduro · jungle section</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/trail-dinosaurs-backbone-vietnam-opt.jpg" data-full="./shashank_files/gallery_opt/trail-dinosaurs-backbone-vietnam-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · backbone trail"><img src="./shashank_files/gallery_opt/trail-dinosaurs-backbone-vietnam-opt.jpg" alt="Dinosaurs backbone trail in Vietnam"/><span class="gallery-caption">Enduro · backbone trail</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/race-day-track.jpg" data-full="./shashank_files/gallery_opt/race-day-track.jpg" data-date="2024" data-location="India" data-caption="Enduro · race day"><img src="./shashank_files/gallery_opt/race-day-track.jpg" alt="Enduro race day"/><span class="gallery-caption">Enduro · race day</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/track-practice.jpg" data-full="./shashank_files/gallery_opt/track-practice.jpg" data-date="2024" data-location="India" data-caption="Enduro · track practice"><img src="./shashank_files/gallery_opt/track-practice.jpg" alt="Enduro track practice"/><span class="gallery-caption">Enduro · track practice</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/mtb-stairset-opt.jpg" data-full="./shashank_files/gallery_opt/mtb-stairset-opt.jpg" data-date="2025" data-location="India" data-caption="MTB · stair set"><img src="./shashank_files/gallery_opt/mtb-stairset-opt.jpg" alt="MTB stair set"/><span class="gallery-caption">MTB · stair set</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="enduro" href="./shashank_files/gallery_opt/custom-built-bike-opt.jpg" data-full="./shashank_files/gallery_opt/custom-built-bike-opt.jpg" data-date="2024" data-location="India" data-caption="Enduro · custom build"><img src="./shashank_files/gallery_opt/custom-built-bike-opt.jpg" alt="Custom built bike"/><span class="gallery-caption">Enduro · custom build</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="mountain" href="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-full="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-date="Apr 2025" data-location="Pangarchulla, Uttarakhand, IN" data-caption="Mountain ascent · Pangarchulla"><img src="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" alt="Pangarchulla summit"/><span class="gallery-caption">Mountain ascent · Pangarchulla</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="equestrian" href="./shashank_files/gallery_opt/show-jumping-trainer-earlydays.jpeg" data-full="./shashank_files/gallery_opt/show-jumping-trainer-earlydays.jpeg" data-date="Early years" data-location="India" data-caption="Equestrian · trainer session"><img src="./shashank_files/gallery_opt/show-jumping-trainer-earlydays.jpeg" alt="Show jumping trainer session"/><span class="gallery-caption">Equestrian · trainer session</span></a>
+      <a class="gallery-card gallery-trigger" data-sport="equestrian" href="./shashank_files/gallery_opt/showjuming-night.jpg" data-full="./shashank_files/gallery_opt/showjuming-night.jpg" data-date="Competition" data-location="India" data-caption="Equestrian · night event"><img src="./shashank_files/gallery_opt/showjuming-night.jpg" alt="Show jumping night event"/><span class="gallery-caption">Equestrian · night event</span></a>
+    </div></div>
+  </div>
+
+
+  <div class="follow-cta">(<a href="https://www.instagram.com/shshnkseth/" target="_blank" rel="noopener noreferrer">@shshnkseth</a>)</div>
+
+  <div class="site-footer">
+    <span>
+      <a href="index.html">Home</a>
+      · <a href="projects.html">Work</a>
+      · <a href="https://www.instagram.com/shshnkseth/" target="_blank">Instagram</a>
+      · <a href="./shashank_files/cv-shashankseth-2026.pdf" target="_blank">Resume</a>
+    </span>
+    <span>© 2025</span>
+  </div>
+</div>
+
+<div class="lightbox" id="gallery-lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image">Close</button>
+  <div class="lightbox-inner">
+    <aside class="lightbox-meta">
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Date</div>
+        <div class="lightbox-meta-value" id="lightbox-date">-</div>
+      </div>
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Location</div>
+        <div class="lightbox-meta-value" id="lightbox-location">-</div>
+      </div>
+      <div class="lightbox-meta-row">
+        <div class="lightbox-meta-label">Caption</div>
+        <div class="lightbox-caption" id="lightbox-caption">-</div>
+      </div>
+    </aside>
+    <div class="lightbox-stage">
+      <div class="lightbox-main">
+        <button class="lightbox-nav prev" id="lightbox-prev" type="button" aria-label="Previous image">&#x2039;</button>
+        <img class="lightbox-image" id="lightbox-image" alt="Expanded gallery image"/>
+        <button class="lightbox-nav next" id="lightbox-next" type="button" aria-label="Next image">&#x203A;</button>
+      </div>
+      <div class="lightbox-dock" id="lightbox-dock"></div>
+    </div>
+  </div>
+</div>
+
+<div class="statusbar">
+  <div class="status-ticker">
+    <span>product designer · india</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+    <span>quizizz · getmega · nvidia · flytbase · astralyogi · ambill</span><span class="sep"> · </span>
+    <span>0→1 · systems · ai tools</span><span class="sep"> · </span>
+    <span>product designer · india</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+    <span>quizizz · getmega · nvidia · flytbase · astralyogi · ambill</span><span class="sep"> · </span>
+    <span>0→1 · systems · ai tools</span><span class="sep"> · </span>
+  </div>
+</div>
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    const label = now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
+    });
+    const slot = document.getElementById("time-display");
+    if (slot) slot.textContent = label;
+  }
+
+  function setupImageFallbacks() {
+    document.querySelectorAll("img").forEach((img) => {
+      img.addEventListener("error", () => {
+        img.style.display = "none";
+      }, { once: true });
+    });
+  }
+
+  function setupGalleryMarquee() {
+    const tracks = document.querySelectorAll(".gallery-track");
+    if (!tracks.length) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      tracks.forEach((track) => {
+        track.style.animation = "none";
+      });
+      return;
+    }
+
+    tracks.forEach((track) => {
+      if (track.getAttribute("data-cloned") === "true") return;
+
+      const originals = Array.from(track.children);
+      originals.forEach((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+        track.appendChild(clone);
+      });
+
+      track.setAttribute("data-cloned", "true");
+    });
+  }
+
+  function shuffleGalleryTracks() {
+    const tracks = document.querySelectorAll(".gallery-track");
+    if (!tracks.length) return;
+
+    tracks.forEach((track) => {
+      const items = Array.from(track.children);
+      for (let i = items.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+      items.forEach((item) => track.appendChild(item));
+    });
+  }
+
+  function setupSectionDockActive() {
+    const links = Array.from(document.querySelectorAll(".section-dock .dock-link"));
+    if (!links.length) return;
+
+    const map = new Map();
+    links.forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      const id = href.startsWith("#") ? href.slice(1) : "";
+      const section = id ? document.getElementById(id) : null;
+      if (section) map.set(section, link);
+    });
+
+    if (!map.size) return;
+
+    const setActive = (activeLink) => {
+      links.forEach((link) => link.classList.toggle("active", link === activeLink));
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      let topMost = null;
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        if (!topMost || entry.boundingClientRect.top < topMost.boundingClientRect.top) {
+          topMost = entry;
+        }
+      });
+      if (!topMost) return;
+      const link = map.get(topMost.target);
+      if (link) setActive(link);
+    }, {
+      rootMargin: "-35% 0px -55% 0px",
+      threshold: [0.1, 0.4, 0.7]
+    });
+
+    map.forEach((_, section) => observer.observe(section));
+    setActive(links[0]);
+  }
+
+  function setupSportViewButtons() {
+    const buttons = document.querySelectorAll(".sport-view-btn[data-open-sport]");
+    if (!buttons.length) return;
+
+    const openSport = (sport) => {
+      if (!sport) return;
+      if (typeof window.openGalleryBySport === "function") {
+        const opened = window.openGalleryBySport(sport);
+        if (opened) return;
+      }
+      const firstMatch = document.querySelector('.gallery-trigger[data-sport="' + sport + '"]:not([aria-hidden="true"])');
+      if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+        return;
+      }
+      const gallery = document.getElementById("photo-gallery");
+      if (gallery) gallery.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openSport(button.getAttribute("data-open-sport"));
+      });
+
+      const card = button.closest(".sport-card");
+      if (!card) return;
+
+      card.addEventListener("click", () => {
+        openSport(button.getAttribute("data-open-sport"));
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        openSport(button.getAttribute("data-open-sport"));
+      });
+
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", "Open " + (button.getAttribute("data-open-sport") || "sport") + " photos");
+    });
+  }
+
+  function setupSideProjectsCarousel() {
+    const track = document.getElementById("side-projects-track");
+    const prev = document.getElementById("side-prev");
+    const next = document.getElementById("side-next");
+    if (!track || !prev || !next) return;
+
+    const getStep = () => {
+      const card = track.querySelector(".side-card");
+      if (!card) return 320;
+      const gap = parseFloat(window.getComputedStyle(track).gap || "12");
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    prev.addEventListener("click", () => {
+      track.scrollBy({ left: -getStep(), behavior: "smooth" });
+    });
+    next.addEventListener("click", () => {
+      track.scrollBy({ left: getStep(), behavior: "smooth" });
+    });
+  }
+
+  function setupGalleryDragScroll() {
+    const rows = document.querySelectorAll(".gallery-row");
+    if (!rows.length) return;
+
+    rows.forEach((row) => {
+      let isDragging = false;
+      let dragMoved = false;
+      let startX = 0;
+      let startScroll = 0;
+
+      row.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        isDragging = true;
+        dragMoved = false;
+        startX = event.clientX;
+        startScroll = row.scrollLeft;
+        row.classList.add("is-dragging");
+      });
+
+      row.addEventListener("pointermove", (event) => {
+        if (!isDragging) return;
+        const delta = event.clientX - startX;
+        if (Math.abs(delta) > 4) dragMoved = true;
+        row.scrollLeft = startScroll - delta;
+      });
+
+      const endDrag = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        row.classList.remove("is-dragging");
+        if (dragMoved) {
+          row.setAttribute("data-drag-block-click", "1");
+          window.setTimeout(() => row.removeAttribute("data-drag-block-click"), 120);
+        }
+      };
+
+      row.addEventListener("pointerup", endDrag);
+      row.addEventListener("pointercancel", endDrag);
+      row.addEventListener("pointerleave", endDrag);
+
+      row.addEventListener("click", (event) => {
+        if (row.getAttribute("data-drag-block-click") !== "1") return;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+    });
+  }
+
+  async function setupRootSportUploads() {
+    const row1 = document.getElementById("gallery-row-1");
+    const row2 = document.getElementById("gallery-row-2");
+    if (!row1 || !row2) return;
+
+    const sports = [
+      ["skateboard", "Skateboarding", ["skateboard", "skateboarding"]],
+      ["snowboard", "Snowboarding", ["snowboard", "snowboarding"]],
+      ["highline", "Highlining", ["highline", "slack", "slackline"]],
+      ["runner", "Runner", ["runner", "run"]],
+      ["enduro", "Enduro rider", ["enduro"]],
+      ["freedive", "Freediving", ["freedive", "dive"]],
+      ["equestrian", "Equestrian", ["equestrian"]],
+      ["mountain", "Mountain ascent", ["mountain", "expedition"]]
+    ];
+    const extensions = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
+    const maxIndex = 8;
+
+    const imageExists = (src) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+
+    let found = 0;
+    for (const [sportKey, sportLabel, aliases] of sports) {
+      for (let i = 1; i <= maxIndex; i += 1) {
+        let matchedSrc = "";
+        for (const key of aliases) {
+          for (const ext of extensions) {
+            const candidates = [
+              "./" + key + i + "." + ext,
+              "./shashank_files/" + key + i + "." + ext
+            ];
+            for (const src of candidates) {
+              const ok = await imageExists(src);
+              if (ok) {
+                matchedSrc = src;
+                break;
+              }
+            }
+            if (matchedSrc) break;
+          }
+          if (matchedSrc) break;
+        }
+
+        if (!matchedSrc) continue;
+
+        const card = document.createElement("a");
+        card.className = "gallery-card gallery-trigger";
+        card.setAttribute("data-sport", sportKey);
+        card.setAttribute("href", matchedSrc);
+        card.setAttribute("data-full", matchedSrc);
+        card.setAttribute("data-date", "Recent");
+        card.setAttribute("data-location", "Uploaded to root");
+        card.setAttribute("data-caption", sportLabel + " · " + sportKey + i);
+
+        const img = document.createElement("img");
+        img.src = matchedSrc;
+        img.alt = sportLabel + " upload " + i;
+
+        const cap = document.createElement("span");
+        cap.className = "gallery-caption";
+        cap.textContent = sportLabel + " · " + sportKey + i;
+
+        card.appendChild(img);
+        card.appendChild(cap);
+
+        if (found % 2 === 0) row1.appendChild(card);
+        else row2.appendChild(card);
+        found += 1;
+      }
+    }
+  }
+
+  function setupGalleryOverlay() {
+    const overlay = document.getElementById("gallery-lightbox");
+    const overlayImage = document.getElementById("lightbox-image");
+    const closeButton = document.getElementById("lightbox-close");
+    const prevButton = document.getElementById("lightbox-prev");
+    const nextButton = document.getElementById("lightbox-next");
+    const dateLabel = document.getElementById("lightbox-date");
+    const locationLabel = document.getElementById("lightbox-location");
+    const captionLabel = document.getElementById("lightbox-caption");
+    const dock = document.getElementById("lightbox-dock");
+    const allTriggers = Array.from(document.querySelectorAll(".gallery-trigger"));
+    const triggers = allTriggers.filter((trigger) => {
+      return trigger.getAttribute("aria-hidden") !== "true";
+    });
+
+    if (!overlay || !overlayImage || !closeButton || !dock || !triggers.length) return;
+
+    const items = triggers.map((trigger) => {
+      const image = trigger.querySelector("img");
+      return {
+        sport: trigger.getAttribute("data-sport") || "all",
+        full: trigger.getAttribute("data-full") || trigger.getAttribute("href") || "",
+        thumb: image ? image.getAttribute("src") : "",
+        alt: image ? image.getAttribute("alt") : "Gallery image",
+        date: trigger.getAttribute("data-date") || "Date unavailable",
+        location: trigger.getAttribute("data-location") || "Location unavailable",
+        caption: trigger.getAttribute("data-caption") || "No caption"
+      };
+    });
+
+    const getItemKey = (trigger) => {
+      return [
+        trigger.getAttribute("data-full") || trigger.getAttribute("href") || "",
+        trigger.getAttribute("data-caption") || "",
+        trigger.getAttribute("data-sport") || ""
+      ].join("||");
+    };
+
+    const itemIndexByKey = new Map();
+    triggers.forEach((trigger, index) => {
+      itemIndexByKey.set(getItemKey(trigger), index);
+    });
+
+    let currentIndex = 0;
+    let activeItems = items;
+    let dockButtons = [];
+
+    function buildDock() {
+      dock.innerHTML = "";
+      dockButtons = activeItems.map((item, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "lightbox-dock-btn";
+        button.setAttribute("aria-label", "Open image " + (index + 1));
+
+        const thumb = document.createElement("img");
+        thumb.src = item.thumb;
+        thumb.alt = item.alt;
+        button.appendChild(thumb);
+
+        button.addEventListener("click", () => openAt(index));
+        dock.appendChild(button);
+        return button;
+      });
+    }
+
+    function updateDockActive(index) {
+      dockButtons.forEach((button, buttonIndex) => {
+        button.classList.toggle("active", buttonIndex === index);
+      });
+
+      const active = dockButtons[index];
+      if (active) {
+        active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    function openAt(index) {
+      if (!activeItems.length) return;
+
+      const safeIndex = ((index % activeItems.length) + activeItems.length) % activeItems.length;
+      const item = activeItems[safeIndex];
+      if (!item || !item.full) return;
+
+      currentIndex = safeIndex;
+      overlayImage.src = item.full;
+      overlayImage.alt = item.alt;
+
+      if (dateLabel) dateLabel.textContent = item.date;
+      if (locationLabel) locationLabel.textContent = item.location;
+      if (captionLabel) captionLabel.textContent = item.caption;
+
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      updateDockActive(safeIndex);
+    }
+
+    function openCollection(collection, startIndex) {
+      if (!collection.length) return false;
+      activeItems = collection;
+      buildDock();
+      openAt(startIndex || 0);
+      return true;
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      overlayImage.removeAttribute("src");
+    }
+
+    function stepOverlay(delta) {
+      openAt(currentIndex + delta);
+    }
+
+    allTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        const matchIndex = itemIndexByKey.get(getItemKey(trigger));
+        openCollection(items, typeof matchIndex === "number" ? matchIndex : 0);
+      });
+    });
+
+    window.openGalleryBySport = (sport) => {
+      if (!sport) return false;
+      const sportItems = items.filter((item) => item.sport === sport);
+      return openCollection(sportItems, 0);
+    };
+
+    if (prevButton) prevButton.addEventListener("click", () => stepOverlay(-1));
+    if (nextButton) nextButton.addEventListener("click", () => stepOverlay(1));
+    closeButton.addEventListener("click", closeOverlay);
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closeOverlay();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!overlay.classList.contains("open")) return;
+      if (event.key === "Escape") closeOverlay();
+      if (event.key === "ArrowRight") stepOverlay(1);
+      if (event.key === "ArrowLeft") stepOverlay(-1);
+    });
+  }
+
+  async function initPage() {
+    updateTime();
+    setInterval(updateTime, 60000);
+    setupImageFallbacks();
+    shuffleGalleryTracks();
+    setupGalleryMarquee();
+    setupGalleryDragScroll();
+    setupSectionDockActive();
+    setupSideProjectsCarousel();
+    setupSportViewButtons();
+    setupGalleryOverlay();
+  }
+
+  initPage();
+</script>
+</body>
+</html>
