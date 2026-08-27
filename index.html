@@ -113,9 +113,9 @@
     }
 
     .wrap {
-      max-width: 680px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 3.5rem 1.6rem 6rem;
+      padding: 1.8rem 1.6rem 6rem;
     }
 
     /* ─── META BAR ─── */
@@ -123,7 +123,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2.8rem;
+      margin-bottom: 2.5rem;
       padding-bottom: 0.8rem;
       border-bottom: 1px solid var(--rule);
     }
@@ -142,42 +142,43 @@
     .profile {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1.4rem;
       margin-bottom: 1.8rem;
     }
     .profile-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 12px;
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
       object-fit: cover;
       flex-shrink: 0;
       border: 1px solid var(--rule);
     }
     .profile-name {
       font-family: 'DM Sans', -apple-system, sans-serif;
-      font-size: clamp(1.4rem, 3.2vw, 1.85rem);
-      font-weight: 400;
+      font-size: clamp(2.2rem, 4.8vw, 3.4rem);
+      font-weight: 300;
       color: var(--ink);
-      letter-spacing: -0.025em;
-      line-height: 1.15;
+      letter-spacing: -0.04em;
+      line-height: 1.06;
     }
     .profile-title {
       font-family: 'DM Mono', monospace;
       font-size: 0.64rem;
       color: var(--accent);
-      margin-top: 0.35rem;
+      margin-top: 0.4rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     /* ─── BIO ─── */
     .bio {
-      font-size: 0.96rem;
-      line-height: 1.75;
+      font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+      line-height: 1.6;
       color: var(--text-dim);
-      margin-bottom: 1.8rem;
+      margin-bottom: 2.2rem;
       font-weight: 300;
+      max-width: 820px;
     }
     .bio strong {
       font-weight: 400;
@@ -295,8 +296,8 @@
     .card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-      margin-bottom: 1.6rem;
+      gap: 1.15rem;
+      margin-bottom: 2rem;
     }
     .card {
       border-radius: var(--radius);
@@ -325,11 +326,11 @@
       filter: brightness(1);
     }
     .card-body {
-      padding: 0.9rem 1.05rem 1rem;
+      padding: 1.1rem 1.25rem 1.2rem;
     }
     .card-type {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -338,7 +339,7 @@
     }
     .card-name {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.92rem;
+      font-size: 1.02rem;
       font-weight: 400;
       color: var(--ink);
       line-height: 1.35;
@@ -346,7 +347,7 @@
     }
     .card-desc {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.86rem;
       font-weight: 300;
       color: var(--text-dim);
       line-height: 1.55;
@@ -370,10 +371,10 @@
     .exp-row {
       display: grid;
       grid-template-columns: 40px minmax(0, 1fr);
-      column-gap: 0.9rem;
-      row-gap: 0.2rem;
+      column-gap: 1.1rem;
+      row-gap: 0.25rem;
       align-items: start;
-      padding: 0.6rem 0 0.85rem;
+      padding: 0.75rem 0 1rem;
       position: relative;
     }
     .exp-row:last-child { padding-bottom: 0.45rem; }
@@ -393,19 +394,19 @@
     }
     .exp-thumb img { width: 28px; height: 28px; object-fit: contain; border-radius: 3px; }
     .exp-thumb span { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); }
-    .exp-company { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 400; color: var(--ink); }
-    .exp-role { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 300; color: var(--text-dim); margin-top: 0.1rem; }
+    .exp-company { font-family: 'DM Sans', sans-serif; font-size: 0.98rem; font-weight: 400; color: var(--ink); }
+    .exp-role { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 300; color: var(--text-dim); margin-top: 0.12rem; }
     .exp-period {
       grid-column: 2;
       justify-self: start;
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.64rem;
       font-weight: 400;
       color: var(--muted);
       white-space: nowrap;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-top: 0.08rem;
+      margin-top: 0.1rem;
     }
 
     .section-quote {
@@ -942,18 +943,18 @@
       filter: brightness(0.88);
     }
     .side-card-body {
-      padding: 0.8rem 0.9rem 0.95rem;
+      padding: 0.9rem 1.05rem 1.05rem;
     }
     .side-card-title {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.84rem;
+      font-size: 0.94rem;
       font-weight: 400;
       color: var(--ink);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
     .side-card-desc {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 300;
       color: var(--text-dim);
       line-height: 1.5;
@@ -1178,8 +1179,11 @@
     }
     .site-footer a:hover { color: var(--ink); }
 
-    @media (max-width: 520px) {
+    @media (max-width: 1180px) {
       .section-dock { display: none; }
+    }
+
+    @media (max-width: 520px) {
       .card-grid { grid-template-columns: 1fr; }
       .card-grid .card:nth-child(n+5) { display: none; }
       .sport-grid { grid-template-columns: 1fr; }
