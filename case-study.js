@@ -407,7 +407,7 @@ const CASES = {
     highlight: [
       "From Hackathon to Product Pillar",
       "Why Early Concept Prototyping Matters",
-      "Building a tangible 48-hour working prototype proved that student agency and self-expression weren't just cosmetic flourishes—they were fundamental engagement mechanics. This initial incubation laid the groundwork for what is now the core Qbits experience.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Now ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Help Center Article ↗</a></div>",
+      "Building a tangible 48-hour working prototype proved that student agency and self-expression weren't just cosmetic flourishes, they were fundamental engagement mechanics. This initial incubation laid the groundwork for what is now the core Qbits experience.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Now ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Help Center Article ↗</a></div>",
       "qbit-skater.png"
     ],
     takeaways: [
