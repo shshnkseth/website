@@ -173,7 +173,7 @@ const CASES = {
     ],
     media: [
       ["quizizz-1.gif", "Paper Mode in-class scanning and real-time computer vision grading"],
-      ["quizizz-2.gif", "Wayground AI guided authoring flow and curriculum alignment selector"]
+      ["qbit-customizer-ui.png", "Wayground student avatar customizer and in-game character engine"]
     ]
   },
 
@@ -260,6 +260,7 @@ const CASES = {
       "Freemium Hook: Delivering trustworthy first-pass results converted free-tier teachers into enthusiastic paid subscribers."
     ],
     media: [
+      ["quizizz-ai-builder.png", "Wayground AI assisted authoring prompt input, document parsing and link generation interface"],
       ["quizizz-2.gif", "Guided AI content creation workflow showing taxonomy parameters and instant preview"]
     ]
   },
@@ -415,8 +416,8 @@ const CASES = {
       "Planting the Seed: Setting strong conceptual foundations allows cross-functional squads to scale ideas into global products."
     ],
     media: [
-      ["qbit-skater.png", "Skater Qbit avatar concept with modular streetwear, helmet, and skateboard accessories"],
-      ["quizizz-2.gif", "In-game avatar customization and real-time live match integration"]
+      ["qbit-customizer-ui.png", "Avatar Customization Engine: In-game pattern selection, helmet colorways, and real-time podium preview"],
+      ["qbit-skater.png", "Skater Qbit avatar concept with modular streetwear, helmet, and skateboard accessories"]
     ]
   },
 
