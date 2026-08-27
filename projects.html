@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shashank Seth ✦ Projects</title>
+  <link rel="icon" href="./shashank_files/zapp.png" />
+  <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
+  <title>Shashank Seth ✦ Selected Work & Archives</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./shared.css" />
-  <link rel="stylesheet" href="./case-enhancements.css?v=4.0" />
+  <link rel="stylesheet" href="./shared.css?v=5.0" />
+  <link rel="stylesheet" href="./case-study.css?v=5.0" />
+  <link rel="stylesheet" href="./case-enhancements.css?v=5.0" />
   <style>
     :root {
       --bg: #0e0e0e;
@@ -18,6 +21,7 @@
       --muted: #72706b;
       --text-dim: #a6a39b;
       --accent: #c8a96e;
+      --project: #c8a96e;
       --tag-bg: #141414;
       --radius: 12px;
     }
@@ -26,152 +30,150 @@
       font-size: 15px;
       background-color: var(--bg);
       color: var(--ink);
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
+      padding-bottom: 2rem;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-weight: 300;
       line-height: 1.65;
+      background-color: var(--bg);
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .wrap {
-      max-width: 680px;
+    .case-wrap {
+      max-width: 880px;
       margin: 0 auto;
-      padding: 3.5rem 1.6rem 5.5rem;
+      padding: 1.8rem 1.6rem 6rem;
     }
 
-    /* ─── META BAR (MATCH INDEX) ─── */
-    .meta-bar {
+    /* ─── UNIFIED NAVIGATION ─── */
+    .case-nav {
       display: flex;
-      align-items: flex-start;
-      margin-bottom: 2.2rem;
-    }
-    .meta-item {
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.5rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.64rem;
-      color: var(--muted);
+      font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .case-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+
+    .case-nav a:hover,
+    .case-nav a.active {
+      color: var(--ink);
+    }
+
+    .nav-brand {
+      color: var(--ink) !important;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-role {
+      color: var(--accent);
+      font-weight: 400;
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 1.2rem;
     }
-    .meta-bar-main {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      flex: 1;
+
+    .nav-contact-btn {
+      padding: 0.24rem 0.65rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 15%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      color: var(--ink) !important;
+      transition: all 0.18s ease;
     }
-    .meta-row-wrap {
-      width: 100%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      border-bottom: 1px solid var(--rule);
-      padding: 0.1rem 0 1rem;
+
+    .nav-contact-btn:hover {
+      background: var(--accent) !important;
+      color: #0e0e0e !important;
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
     }
-    .meta-bar-side {
-      white-space: nowrap;
+
+    /* ─── HERO HEADER ─── */
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .eyebrow {
+      font: 500 0.62rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--muted);
-      text-align: right;
-      align-self: flex-end;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-    }
-    .meta-name {
-      font-family: 'DM Sans', -apple-system, sans-serif;
-      font-size: clamp(1.3rem, 2.8vw, 1.7rem);
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-    .meta-path {
-      text-transform: uppercase;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.64rem;
-      letter-spacing: 0.08em;
-    }
-    .meta-path a,
-    .meta-bar-side a {
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.12s;
-    }
-    .meta-path a:hover,
-    .meta-bar-side a:hover {
-      color: var(--ink);
-    }
-    .meta-path .slash {
-      color: var(--muted);
-      padding: 0 0.22rem;
-    }
-
-    .meta-row-wrap .meta-item.meta-bar-side {
-      justify-content: flex-end;
-      line-height: 1.6;
-    }
-
-    /* ─── MAIN ─── */
-    main {
-      width: 100%;
-    }
-
-    /* ─── COMPACT HEADER ─── */
-    .page-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 1.4rem;
-    }
-    .page-header h1 {
-      font-family: 'DM Sans', -apple-system, sans-serif;
-      font-size: clamp(1.4rem, 3.2vw, 1.85rem);
-      font-weight: 300;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-    }
-    .page-header p {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
       color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin: 0 0 1rem;
+      color: var(--ink);
+    }
+
+    .hero .lede {
+      font-size: clamp(1rem, 1.6vw, 1.22rem);
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 720px;
+      margin: 0;
+      font-weight: 300;
     }
 
     /* ─── FILTER BAR ─── */
     .filter-bar {
       display: flex;
-      gap: 0.35rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
-      margin-bottom: 1.6rem;
+      margin: 2rem 0 1.8rem;
     }
+
     .filter-btn {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted);
       background: var(--surface);
       border: 1px solid var(--rule);
-      padding: 0.3rem 0.75rem;
+      padding: 0.32rem 0.85rem;
       cursor: pointer;
       transition: all 0.18s ease;
       border-radius: 999px;
     }
+
     .filter-btn:hover {
       border-color: color-mix(in srgb, var(--accent) 40%, var(--rule));
       color: var(--ink);
       transform: translateY(-1px);
     }
+
     .filter-btn.active {
       background: var(--accent);
       color: #0e0e0e;
@@ -180,37 +182,51 @@
     }
 
     /* ─── PROJECT LIST ─── */
-    .project-list { display: flex; flex-direction: column; }
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
 
     .project-row {
       display: grid;
-      grid-template-columns: 48px 1fr auto;
-      gap: 1.15rem;
+      grid-template-columns: 52px 1fr auto;
+      gap: 1.25rem;
       align-items: center;
-      padding: 1rem 0.9rem;
-      margin: 0 -0.9rem;
+      padding: 1.1rem 1.2rem;
       border-radius: var(--radius);
       cursor: pointer;
       position: relative;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .project-row + .project-row { border-top: 1px solid var(--rule); }
-    .project-row:hover {
       background: var(--surface);
-      transform: translateY(-2px) translateX(4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--rule);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .project-row.hidden { display: none; }
+
+    .project-row:hover {
+      background: var(--surface2);
+      transform: translateY(-3px) translateX(3px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-row.hidden {
+      display: none;
+    }
 
     /* ─── THUMBNAIL ─── */
     .thumb {
-      width: 48px; height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: 10px;
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
       border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .thumb-link {
       width: 100%;
       height: 100%;
@@ -219,39 +235,48 @@
       justify-content: center;
       text-decoration: none;
     }
-    .thumb svg { display: block; width: 100%; height: 100%; }
 
     /* ─── PROJECT INFO ─── */
-    .proj-info { min-width: 0; }
+    .proj-info {
+      min-width: 0;
+    }
+
     .proj-name {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.96rem;
       font-weight: 400;
       color: var(--ink);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     .proj-desc {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 300;
       color: var(--text-dim);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.45rem;
     }
-    .proj-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+
+    .proj-tags {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
     .tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.56rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--muted);
-      background: var(--tag-bg);
-      padding: 0.15rem 0.45rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.16rem 0.48rem;
       border-radius: 999px;
       border: 1px solid var(--rule);
     }
@@ -261,60 +286,72 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0.45rem;
+      gap: 0.55rem;
       flex-shrink: 0;
     }
+
     .proj-meta-links {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.55rem;
     }
+
     .proj-year {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.62rem;
       color: var(--muted);
       white-space: nowrap;
       letter-spacing: 0.06em;
     }
+
     .proj-case-cta {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.64rem;
       font-weight: 500;
       letter-spacing: 0.06em;
       color: var(--ink);
       background: color-mix(in srgb, var(--accent) 15%, var(--surface));
       border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      padding: 0.28rem 0.7rem;
+      padding: 0.32rem 0.8rem;
       border-radius: 999px;
       text-decoration: none;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.3rem;
       transition: all 0.18s ease;
     }
+
     .project-row:hover .proj-case-cta {
       background: var(--accent);
       color: #0e0e0e;
       border-color: var(--accent);
       box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 40%, transparent);
     }
+
     .proj-link {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.6rem;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 0.2rem;
+      gap: 0.25rem;
       transition: color 0.12s;
     }
-    .proj-link:hover { color: var(--accent); }
+
+    .proj-link:hover {
+      color: var(--accent);
+    }
+
     .proj-link svg {
-      width: 8px; height: 8px;
-      stroke: currentColor; fill: none; stroke-width: 2;
+      width: 8px;
+      height: 8px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
     }
 
     /* ─── SECTION DIVIDER ─── */
@@ -325,22 +362,75 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      padding: 1.4rem 0 0.6rem;
+      padding: 2rem 0 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.85rem;
     }
-    .section-sep:before, .section-sep:after {
+
+    .section-sep:before,
+    .section-sep:after {
       content: '';
       flex: 1;
       height: 1px;
       background: var(--rule);
     }
 
-    @media (max-width: 600px) {
+    /* ─── UNIFIED CASE FOOTER ─── */
+    .case-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 5rem;
+      padding-top: 2.2rem;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+
+    .case-footer a {
+      display: flex;
+      flex-direction: column;
+      padding: 1.35rem 1.6rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--ink);
+      font: 400 0.95rem 'DM Sans', sans-serif;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .case-footer a:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--rule));
+      background: var(--surface-raised);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .case-footer small {
+      font: 500 0.58rem 'DM Mono', monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    @media (max-width: 700px) {
+      .case-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
       .project-row {
-        grid-template-columns: 40px 1fr;
-        gap: 0.75rem;
+        grid-template-columns: 44px 1fr;
+        gap: 0.85rem;
+        padding: 1rem 0.9rem;
       }
       .proj-meta {
         grid-column: 2;
@@ -348,297 +438,304 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-top: 0.2rem;
+        margin-top: 0.25rem;
       }
-      .proj-desc { display: none; }
+      .proj-desc {
+        display: none;
+      }
+      .case-footer {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="wrap">
+<main class="case-wrap">
+
   <!-- UNIFIED NAV BAR -->
   <nav class="case-nav">
     <a href="index.html" class="nav-brand">Shashank Seth <span class="nav-role">✦ Sr. Product Designer</span></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="projects.html" class="active">All Work</a>
+      <a href="projects.html" class="active">Work</a>
       <a href="sports-adventure.html">Play ↗</a>
       <a href="mailto:hello@shashankseth.in" class="nav-contact-btn">Contact</a>
     </div>
   </nav>
 
-  <main>
-    <div class="page-header">
-      <h1 style="font-size:1.8rem;font-weight:400;color:var(--ink);margin:0 0 0.35rem;">Selected Work</h1>
-      <p style="font-size:0.82rem;color:var(--muted);margin:0 0 1.5rem;">2019 – 2025 · Case studies, platforms & shipped systems</p>
+  <!-- HERO HEADER (MATCH CASE STUDY) -->
+  <div class="hero">
+    <div class="eyebrow">ALL PROJECTS · 2019–2025</div>
+    <h1>Selected Work</h1>
+    <p class="lede">Case studies, shipped platforms, AI interfaces & systems from 0→1 to scale across global edtech, gaming, and developer tooling.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="product">Product</button>
+    <button class="filter-btn" data-filter="system">Systems</button>
+    <button class="filter-btn" data-filter="ai">AI</button>
+    <button class="filter-btn" data-filter="side">Side</button>
+  </div>
+
+  <div class="project-list">
+
+    <div class="section-sep">Recent Highlights</div>
+
+    <div class="project-row spotlight-card" data-tags="product ai" data-href="wayground-ai.html">
+      <div class="thumb" style="background:#1d2b19;">
+        <a class="thumb-link" href="wayground-ai.html" aria-label="Wayground AI">
+          <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Wayground (Quizizz) AI · Assisted Authoring</div>
+        <div class="proj-desc">Structured prompt scaffolding & curriculum selectors for US teachers.</div>
+        <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Edtech</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2023–24</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://wayground.com/?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="wayground-ai.html">View Case Study →</a>
+        </div>
+      </div>
     </div>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="product">Product</button>
-      <button class="filter-btn" data-filter="system">Systems</button>
-      <button class="filter-btn" data-filter="ai">AI</button>
-      <button class="filter-btn" data-filter="side">Side</button>
+    <div class="project-row spotlight-card" data-tags="product" data-href="wayground-paper-mode.html">
+      <div class="thumb" style="background:#1d2b19;">
+        <a class="thumb-link" href="wayground-paper-mode.html" aria-label="Wayground Paper Mode">
+          <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Wayground (Quizizz) · Paper Mode</div>
+        <div class="proj-desc">Printable response cards + instant smartphone camera vision scanning.</div>
+        <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">Hardware-Light</span><span class="tag">0→1</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2023</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="wayground-paper-mode.html">View Case Study →</a>
+        </div>
+      </div>
     </div>
 
-    <div class="project-list">
-
-      <div class="section-sep">Recent</div>
-
-      <div class="project-row spotlight-card" data-tags="product ai" data-href="wayground-ai.html">
-        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="wayground-ai.html" aria-label="Wayground AI">
-            <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Wayground (Quizizz) AI · Assisted Authoring</div>
-          <div class="proj-desc">Structured prompt scaffolding & curriculum selectors for US teachers.</div>
-          <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Edtech</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2023–24</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://wayground.com/?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="wayground-ai.html">View Case Study →</a>
-          </div>
+    <div class="project-row spotlight-card" data-tags="product side" data-href="wayground-qbits.html">
+      <div class="thumb" style="background:#2b1928;">
+        <a class="thumb-link" href="wayground-qbits.html" aria-label="Wayground Qbits">
+          <img src="./shashank_files/qbit-avatar.png" width="28" height="28" style="object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#ec4899;">QB</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Qbits · Student Avatars & Virtual Shop</div>
+        <div class="proj-desc">48h hackathon winner → scaled to core engagement engine: 2X retention & 75% adoption.</div>
+        <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">0→1</span><span class="tag">Gamification</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2023–24</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="wayground-qbits.html">View Case Study →</a>
         </div>
       </div>
-
-      <div class="project-row spotlight-card" data-tags="product" data-href="wayground-paper-mode.html">
-        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="wayground-paper-mode.html" aria-label="Wayground Paper Mode">
-            <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Wayground (Quizizz) · Paper Mode</div>
-          <div class="proj-desc">Printable response cards + instant smartphone camera vision scanning.</div>
-          <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">Hardware-Light</span><span class="tag">0→1</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2023</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="wayground-paper-mode.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="product side" data-href="wayground-qbits.html">
-        <div class="thumb" style="background:#2b1928;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="wayground-qbits.html" aria-label="Wayground Qbits">
-            <img src="./shashank_files/qbit-avatar.png" width="28" height="28" style="object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#ec4899;">QB</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Qbits · Student Avatars & Virtual Shop</div>
-          <div class="proj-desc">48h hackathon winner → scaled to core engagement engine: 2X retention & 75% adoption.</div>
-          <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">0→1</span><span class="tag">Gamification</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2023–24</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="wayground-qbits.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="product" data-href="wayground.html">
-        <div class="thumb" style="background:#1d2b19;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="wayground.html" aria-label="Wayground">
-            <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Wayground (formerly Quizizz) · Designed for Every Learner</div>
-          <div class="proj-desc">3 strategic growth bets: Paper Mode, Quizizz AI, and Avatars (GESS 2024 Winner).</div>
-          <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">Growth</span><span class="tag">Engagement</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2022–24</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://wayground.com/?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="wayground.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-sep">Systems & platforms</div>
-
-      <div class="project-row spotlight-card" data-tags="system product" data-href="getmega.html">
-        <div class="thumb" style="background:#18202e;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="getmega.html" aria-label="GetMega">
-            <img src="./shashank_files/logo-getmega.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5585d4;">GM</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">GetMega · Trust, Clarity & Scale</div>
-          <div class="proj-desc">Financial trust layer for real-money gaming: KYC, wallet states, and design system.</div>
-          <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">Gaming</span><span class="tag">Design System</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2021–22</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://www.getmega.com" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="getmega.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="system product" data-href="toast.html">
-        <div class="thumb" style="background:#2b1a18;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="toast.html" aria-label="Toast">
-            <img src="./shashank_files/logo-toast.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#d4604a;">TT</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Summer (Toast) · Restaurant Ecosystem</div>
-          <div class="proj-desc">High-speed POS, kitchen display routing, inventory, and contactless ordering.</div>
-          <div class="proj-tags"><span class="tag">POS</span><span class="tag">Hospitality</span><span class="tag">Multi-Device</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2020–21</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://joinsummer.app/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="toast.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="system" data-href="nvidia.html">
-        <div class="thumb" style="background:#182420;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="nvidia.html" aria-label="NVIDIA">
-            <img src="./shashank_files/logo-nvidia.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#4dba7a;">NV</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">NVIDIA · Control Panel & RTX Voice</div>
-          <div class="proj-desc">Redesigning display server settings for gaming/enterprise and RTX Voice AI audio UI.</div>
-          <div class="proj-tags"><span class="tag">Desktop UI</span><span class="tag">AI Audio</span><span class="tag">NVIDIA HIG</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2019–20</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://www.nvidia.com/en-us/software/nvidia-app/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="nvidia.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="system product" data-href="flytbase.html">
-        <div class="thumb" style="background:#18281e;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="flytbase.html" aria-label="FlytBase">
-            <img src="./shashank_files/logo-flytbase.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#4dba7a;">FB</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">FlytBase · Remote Drone Operations</div>
-          <div class="proj-desc">Enterprise inventory automation pairing autonomous drone fleet with WMS systems.</div>
-          <div class="proj-tags"><span class="tag">Drones</span><span class="tag">B2B SaaS</span><span class="tag">Automation</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2019</span>
-          <div class="proj-meta-links">
-            <a class="proj-case-cta" href="flytbase.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-sep">Side & advisory</div>
-
-      <div class="project-row spotlight-card" data-tags="side product" data-href="earnnest.html">
-        <div class="thumb" style="background:#182818;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="earnnest.html" aria-label="Earnnest">
-            <img src="./shashank_files/logo-earnnest.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5aaa6a;">EN</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Earnnest · Alternative Investing</div>
-          <div class="proj-desc">0-to-1 asset-backed private credit platform: brand, KYC, and live portfolio yield tracking.</div>
-          <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2025</span>
-          <div class="proj-meta-links">
-            <a class="proj-link" href="https://www.earnnest.me/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
-            <a class="proj-case-cta" href="earnnest.html">View Case Study →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="side ai" data-href="https://www.astralyogi.ai/">
-        <div class="thumb" style="background:#1a1828;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="https://www.astralyogi.ai/" target="_blank" aria-label="AstralYogi">
-            <img src="./shashank_files/logo-astralyogi.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#7b6fc8;">AY</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">AstralYogi · AI Astrology Guide</div>
-          <div class="proj-desc">Full product build · research, UX and UI for a personal AI astrology guide.</div>
-          <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2025</span>
-          <div class="proj-meta-links">
-            <a class="proj-case-cta" href="https://www.astralyogi.ai/" target="_blank" onclick="event.stopPropagation()">View Live ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="side ai" data-href="https://www.ambill.ai/">
-        <div class="thumb" style="background:#181e28;display:flex;align-items:center;justify-content:center;">
-          <a class="thumb-link" href="https://www.ambill.ai/" target="_blank" aria-label="Ambill">
-            <img src="./shashank_files/logo-ambill.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5890d4;">AB</div>
-          </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">Ambill · Finance Automation Platform</div>
-          <div class="proj-desc">Shaped from scratch · full UX for an AI finance platform serving CFO teams.</div>
-          <div class="proj-tags"><span class="tag">AI</span><span class="tag">Fintech</span><span class="tag">B2B SaaS</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">2025</span>
-          <div class="proj-meta-links">
-            <a class="proj-case-cta" href="https://www.ambill.ai/" target="_blank" onclick="event.stopPropagation()">View Live ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-row spotlight-card" data-tags="side ai" data-href="mailto:hello@shashankseth.in">
-        <div class="thumb" style="background:#201828;display:flex;align-items:center;justify-content:center;">
-            <a class="thumb-link" href="mailto:hello@shashankseth.in" aria-label="The Product Lift">
-              <img src="./shashank_files/logo-theproductlift.png" alt="The Product Lift" style="width:30px;height:30px;object-fit:contain;"/>
-            </a>
-        </div>
-        <div class="proj-info">
-          <div class="proj-name">The Product Lift <span style="font-weight:300;color:var(--muted);font-size:0.78rem;"> ·  Early-stage product shaping</span></div>
-          <div class="proj-desc">Helping founders and entrepreneurs from idea to execution.</div>
-          <div class="proj-tags"><span class="tag">0→1</span><span class="tag">Advisory</span><span class="tag">Strategy</span></div>
-        </div>
-        <div class="proj-meta">
-          <span class="proj-year">Ongoing</span>
-          <div class="proj-meta-links">
-            <a class="proj-case-cta" href="mailto:hello@shashankseth.in" onclick="event.stopPropagation()">Get In Touch →</a>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </main>
+
+    <div class="project-row spotlight-card" data-tags="product" data-href="wayground.html">
+      <div class="thumb" style="background:#1d2b19;">
+        <a class="thumb-link" href="wayground.html" aria-label="Wayground">
+          <img src="./shashank_files/logo-quizizz.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#6aaa56;">WG</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Wayground (formerly Quizizz) · Designed for Every Learner</div>
+        <div class="proj-desc">3 strategic growth bets: Paper Mode, Quizizz AI, and Avatars (GESS 2024 Winner).</div>
+        <div class="proj-tags"><span class="tag">Edtech</span><span class="tag">Growth</span><span class="tag">Engagement</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2022–24</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://wayground.com/?lng=en" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="wayground.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-sep">Systems & platforms</div>
+
+    <div class="project-row spotlight-card" data-tags="system product" data-href="getmega.html">
+      <div class="thumb" style="background:#18202e;">
+        <a class="thumb-link" href="getmega.html" aria-label="GetMega">
+          <img src="./shashank_files/logo-getmega.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5585d4;">GM</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">GetMega · Trust, Clarity & Scale</div>
+        <div class="proj-desc">Financial trust layer for real-money gaming: KYC, wallet states, and design system.</div>
+        <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">Gaming</span><span class="tag">Design System</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2021–22</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://www.getmega.com" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="getmega.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="system product" data-href="toast.html">
+      <div class="thumb" style="background:#2b1a18;">
+        <a class="thumb-link" href="toast.html" aria-label="Toast">
+          <img src="./shashank_files/logo-toast.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#d4604a;">TT</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Summer (Toast) · Restaurant Ecosystem</div>
+        <div class="proj-desc">High-speed POS, kitchen display routing, inventory, and contactless ordering.</div>
+        <div class="proj-tags"><span class="tag">POS</span><span class="tag">Hospitality</span><span class="tag">Multi-Device</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2020–21</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://joinsummer.app/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="toast.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="system" data-href="nvidia.html">
+      <div class="thumb" style="background:#182420;">
+        <a class="thumb-link" href="nvidia.html" aria-label="NVIDIA">
+          <img src="./shashank_files/logo-nvidia.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#4dba7a;">NV</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">NVIDIA · Control Panel & RTX Voice</div>
+        <div class="proj-desc">Redesigning display server settings for gaming/enterprise and RTX Voice AI audio UI.</div>
+        <div class="proj-tags"><span class="tag">Desktop UI</span><span class="tag">AI Audio</span><span class="tag">NVIDIA HIG</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2019–20</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://www.nvidia.com/en-us/software/nvidia-app/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="nvidia.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="system product" data-href="flytbase.html">
+      <div class="thumb" style="background:#18281e;">
+        <a class="thumb-link" href="flytbase.html" aria-label="FlytBase">
+          <img src="./shashank_files/logo-flytbase.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#4dba7a;">FB</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">FlytBase · Remote Drone Operations</div>
+        <div class="proj-desc">Enterprise inventory automation pairing autonomous drone fleet with WMS systems.</div>
+        <div class="proj-tags"><span class="tag">Drones</span><span class="tag">B2B SaaS</span><span class="tag">Automation</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2019</span>
+        <div class="proj-meta-links">
+          <a class="proj-case-cta" href="flytbase.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-sep">Side & advisory</div>
+
+    <div class="project-row spotlight-card" data-tags="side product" data-href="earnnest.html">
+      <div class="thumb" style="background:#182818;">
+        <a class="thumb-link" href="earnnest.html" aria-label="Earnnest">
+          <img src="./shashank_files/logo-earnnest.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5aaa6a;">EN</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Earnnest · Alternative Investing</div>
+        <div class="proj-desc">0-to-1 asset-backed private credit platform: brand, KYC, and live portfolio yield tracking.</div>
+        <div class="proj-tags"><span class="tag">Fintech</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2025</span>
+        <div class="proj-meta-links">
+          <a class="proj-link" href="https://www.earnnest.me/" target="_blank" onclick="event.stopPropagation()">Live <svg viewBox="0 0 12 12"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></a>
+          <a class="proj-case-cta" href="earnnest.html">View Case Study →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="side ai" data-href="https://www.astralyogi.ai/">
+      <div class="thumb" style="background:#1a1828;">
+        <a class="thumb-link" href="https://www.astralyogi.ai/" target="_blank" aria-label="AstralYogi">
+          <img src="./shashank_files/logo-astralyogi.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#7b6fc8;">AY</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">AstralYogi · AI Astrology Guide</div>
+        <div class="proj-desc">Full product build · research, UX and UI for a personal AI astrology guide.</div>
+        <div class="proj-tags"><span class="tag">AI</span><span class="tag">0→1</span><span class="tag">Consumer</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2025</span>
+        <div class="proj-meta-links">
+          <a class="proj-case-cta" href="https://www.astralyogi.ai/" target="_blank" onclick="event.stopPropagation()">View Live ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="side ai" data-href="https://www.ambill.ai/">
+      <div class="thumb" style="background:#181e28;">
+        <a class="thumb-link" href="https://www.ambill.ai/" target="_blank" aria-label="Ambill">
+          <img src="./shashank_files/logo-ambill.png" width="30" height="30" style="object-fit:contain;border-radius:4px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:30px;height:30px;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.7rem;color:#5890d4;">AB</div>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">Ambill · Finance Automation Platform</div>
+        <div class="proj-desc">Shaped from scratch · full UX for an AI finance platform serving CFO teams.</div>
+        <div class="proj-tags"><span class="tag">AI</span><span class="tag">Fintech</span><span class="tag">B2B SaaS</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">2025</span>
+        <div class="proj-meta-links">
+          <a class="proj-case-cta" href="https://www.ambill.ai/" target="_blank" onclick="event.stopPropagation()">View Live ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row spotlight-card" data-tags="side ai" data-href="mailto:hello@shashankseth.in">
+      <div class="thumb" style="background:#201828;">
+        <a class="thumb-link" href="mailto:hello@shashankseth.in" aria-label="The Product Lift">
+          <img src="./shashank_files/logo-theproductlift.png" alt="The Product Lift" style="width:30px;height:30px;object-fit:contain;"/>
+        </a>
+      </div>
+      <div class="proj-info">
+        <div class="proj-name">The Product Lift <span style="font-weight:300;color:var(--muted);font-size:0.78rem;"> · Early-stage product shaping</span></div>
+        <div class="proj-desc">Helping founders and entrepreneurs from idea to execution.</div>
+        <div class="proj-tags"><span class="tag">0→1</span><span class="tag">Advisory</span><span class="tag">Strategy</span></div>
+      </div>
+      <div class="proj-meta">
+        <span class="proj-year">Ongoing</span>
+        <div class="proj-meta-links">
+          <a class="proj-case-cta" href="mailto:hello@shashankseth.in" onclick="event.stopPropagation()">Get In Touch →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
   <!-- UNIFIED CASE FOOTER -->
   <footer class="case-footer">
@@ -651,6 +748,20 @@
       Let’s talk & build something great →
     </a>
   </footer>
+
+</main>
+
+<div class="statusbar">
+  <div class="status-ticker">
+    <span>product designer · india</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+    <span>quizizz · getmega · nvidia · flytbase · astralyogi · ambill</span><span class="sep"> · </span>
+    <span>0→1 · systems · ai tools</span><span class="sep"> · </span>
+    <span>product designer · india</span><span class="sep"> · </span>
+    <span>building useful things</span><span class="sep"> · </span>
+    <span>quizizz · getmega · nvidia · flytbase · astralyogi · ambill</span><span class="sep"> · </span>
+    <span>0→1 · systems · ai tools</span><span class="sep"> · </span>
+  </div>
 </div>
 
 <script>
@@ -689,6 +800,6 @@
     });
   });
 </script>
-<script src="./case-enhancements.js?v=4.0"></script>
+<script src="./case-enhancements.js?v=5.0"></script>
 </body>
 </html>
