@@ -138,7 +138,7 @@ const CASES = {
     projects: [
       ["Paper Mode (Growth)", "Democratized hybrid classrooms with low-tech printable Q-cards scanned via teacher smartphone camera.", "Growth · 0→1", "wayground-paper-mode.html"],
       ["Wayground AI (AI & Content)", "Guided prompt scaffolding and edit-first review architecture reducing authoring time by 60%.", "AI Authoring", "wayground-ai.html"],
-      ["Avatars & Qbits (Engagement)", "Pitched at internal hackathon and scaled into the core gamified student identity system.", "Retention Engine", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"]
+      ["Avatars & Qbits (Engagement)", "Pitched at internal hackathon and scaled into the core gamified student identity system.", "Retention Engine", "wayground-qbits.html"]
     ],
     flow: ["Identify classroom barrier", "Prototype on-site with educators", "Ship with safety guardrails", "Iterate from live behavioral metrics"],
     sections: [
@@ -146,7 +146,7 @@ const CASES = {
       ["Three Strategic Bets", [
         "1. <a href='wayground-paper-mode.html' class='inline-sub-link'>Paper Mode (Growth) →</a>: Bridged the digital divide for device-constrained classrooms using low-tech printable Q-cards scanned instantly via teacher smartphone camera.",
         "2. <a href='wayground-ai.html' class='inline-sub-link'>Wayground AI (AI & Content) →</a>: Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
-        "3. <a href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener' class='inline-sub-link'>Avatars & Qbits (Engagement) ↗</a>: Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
+        "3. <a href='wayground-qbits.html' class='inline-sub-link'>Avatars & Qbits (Engagement) →</a>: Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
       ]],
       ["Product Leadership Principles", [
         "Solve physical classroom constraints before introducing digital layers.",
@@ -162,7 +162,7 @@ const CASES = {
     highlight: [
       "0 to 1 Product Bet",
       "Avatars & Qbits: From Internal Hackathon to Core Engagement Engine",
-      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><a class='highlight-link-pill' href='wayground-qbits.html'>View Full Qbits Case Study →</a>",
+      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='wayground-qbits.html'>View Full Qbits Case Study →</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Avatar Shop Live ↗</a></div>",
       "qbit-skater.png"
     ],
     takeaways: [
@@ -382,9 +382,9 @@ const CASES = {
       }
     ],
     projects: [
-      ["Qbit Character Engine", "Modular, gender-neutral avatar builder with hundreds of layered outfit permutations.", "Identity Engine", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"],
-      ["The Qbit Shop", "Immersive dark UI personal closet where students browse, try on, and unlock rare gear with earned coins.", "Virtual Economy", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"],
-      ["Streak & Effort Currency", "Algorithmically scaling coin rewards tied to daily study streaks and mastery accuracy.", "Retention Systems", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"]
+      ["Qbit Character Engine", "Modular, gender-neutral avatar builder with hundreds of layered outfit permutations.", "Identity Engine", "https://wayground.com/join/avatar-shop"],
+      ["The Qbit Shop", "Immersive dark UI personal closet where students browse, try on, and unlock rare gear with earned coins.", "Virtual Economy", "https://wayground.com/join/avatar-shop"],
+      ["Streak & Effort Currency", "Algorithmically scaling coin rewards tied to daily study streaks and mastery accuracy.", "Retention Systems", "https://wayground.com/join/avatar-shop"]
     ],
     flow: ["Complete daily quiz", "Earn effort & streak coins", "Visit the Qbit Shop", "Equip rare gear & flex in live game"],
     sections: [
@@ -406,7 +406,7 @@ const CASES = {
     highlight: [
       "Student Agency",
       "Why 'Qbits' Became a Classroom Phenomenon",
-      "We named the character to embody the brand spirit—curious, bold, and quirky, subtly hinting at being 'a bit of Quizizz'. Within weeks of rollout, student adoption soared to 75%, organic student fan art flooded social channels, and teachers reported significant enthusiasm during morning warm-up quizzes.<br><br><a class='highlight-link-pill' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Read Help Center Feature Announcement ↗</a>",
+      "We named the character to embody the brand spirit—curious, bold, and quirky, subtly hinting at being 'a bit of Quizizz'. Within weeks of rollout, student adoption soared to 75%, organic student fan art flooded social channels, and teachers reported significant enthusiasm during morning warm-up quizzes.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Avatar Shop Live ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Help Center Article ↗</a></div>",
       "qbit-skater.png"
     ],
     takeaways: [

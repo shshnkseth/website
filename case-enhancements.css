@@ -589,6 +589,14 @@
   backdrop-filter: blur(8px);
 }
 
+.highlight-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
 .highlight-link-pill {
   display: inline-flex;
   align-items: center;
@@ -599,11 +607,10 @@
   color: #ffffff;
   background: color-mix(in srgb, var(--project) 25%, transparent);
   border: 1px solid color-mix(in srgb, var(--project) 60%, transparent);
-  padding: 0.42rem 0.85rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  margin-top: 0.5rem;
 }
 
 .highlight-link-pill:hover {
@@ -611,6 +618,19 @@
   color: #000000;
   transform: translateY(-1px);
   box-shadow: 0 4px 14px color-mix(in srgb, var(--project) 40%, transparent);
+}
+
+.highlight-link-pill--secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #d1d5db;
+}
+
+.highlight-link-pill--secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
 }
 
 @keyframes floatAvatar {
