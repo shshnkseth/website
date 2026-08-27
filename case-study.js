@@ -82,10 +82,10 @@ const CASES = {
   },
 
   quizizz: {
-    title: "Quizizz · Designed for Every Classroom",
+    title: "Wayground (formerly Quizizz) · Designed for Every Classroom",
     eyebrow: "EdTech · AI · Growth · GESS 2024 Winner",
     award: "🏆 GESS Education Awards Winner 2024 · Best Digital Education Product",
-    lede: "Sole designer across three strategic flagship initiatives for 100M+ global students and teachers: Paper Mode (Growth), Quizizz AI (Assisted Authoring), and Avatars (Engagement).",
+    lede: "Sole designer across three strategic flagship initiatives for 100M+ global students and teachers: Paper Mode (Growth), Wayground AI (Assisted Authoring), and Avatars (Engagement).",
     role: "Product Designer (Growth & Core)",
     time: "17 months",
     year: "2022–24",
@@ -93,26 +93,26 @@ const CASES = {
     color: "#8b5cf6",
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
-    source: "https://app.notion.com/p/0e922b7dfdd280fa9da4c0f82df978c4",
+    source: "https://wayground.com/?lng=en",
     vision: "Empower every teacher and motivate every student worldwide, regardless of device access, technical literacy, or classroom constraints.",
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing in Action",
     quotes: {
       need: "Classroom realities varied widely: device-free schools required hybrid access, teachers demanded rapid authoring, and students needed deeper retention loops.",
-      done: "Spearheaded three flagship product initiatives across Growth, AI, and Student Engagement: Paper Mode, Quizizz AI, and Avatars.",
+      done: "Spearheaded three flagship product initiatives across Growth, AI, and Student Engagement: Paper Mode, Wayground AI, and Avatars.",
       impact: "Over 3,000 classrooms adopted Paper Mode, quiz creation time dropped 60%, and student re-engagement surged 18%."
     },
     problems: [
       {
         num: "01",
-        title: "Paper Mode: Bringing Offline Classrooms into Quizizz",
+        title: "Paper Mode: Bringing Offline Classrooms into Wayground",
         problem: "Millions of classrooms lacked 1:1 student devices. Teachers relied on paper quizzes and spent hours manually grading.",
         solution: "Engineered printable orientation-encoded Q-cards scanned via a single teacher smartphone with real-time score sync.",
         metric: "3,000+ Classrooms Adopted"
       },
       {
         num: "02",
-        title: "Quizizz AI: Speeding Up Quiz Creation",
+        title: "Wayground AI: Speeding Up Quiz Creation",
         problem: "Creating standards-aligned quizzes from scratch took hours, leading to teacher burnout and stale material reuse.",
         solution: "Designed prompt scaffolding, curriculum selectors, and confidence scoring so teachers prompt less and guide more.",
         metric: "60% Faster Authoring"
@@ -127,15 +127,15 @@ const CASES = {
     ],
     projects: [
       ["Paper Mode (Growth)", "Democratized hybrid classrooms with low-tech printable Q-cards scanned via teacher smartphone camera.", "Growth · 0→1"],
-      ["Quizizz AI (AI & Content)", "Guided prompt scaffolding and edit-first review architecture reducing authoring time by 60%.", "AI Authoring"],
+      ["Wayground AI (AI & Content)", "Guided prompt scaffolding and edit-first review architecture reducing authoring time by 60%.", "AI Authoring"],
       ["Avatars & Qbits (Engagement)", "Pitched at internal hackathon and scaled into the core gamified student identity system.", "Retention Engine"]
     ],
     flow: ["Identify classroom barrier", "Prototype on-site with educators", "Ship with safety guardrails", "Iterate from live behavioral metrics"],
     sections: [
-      ["Setting the Stage", "Quizizz is used in over 100 countries by millions of students and teachers every month. As the sole designer across three high-impact cross-functional squads, the work spanned user research, UX/UI, rapid prototyping, classroom validation, dev handoff, and iterative optimization based on live metrics."],
+      ["Setting the Stage", "Wayground (formerly Quizizz) is used in over 100 countries by millions of students and teachers every month. As the sole designer across three high-impact cross-functional squads, the work spanned user research, UX/UI, rapid prototyping, classroom validation, dev handoff, and iterative optimization based on live metrics."],
       ["Three Strategic Bets", [
         "1. Paper Mode (Growth): Bridged the digital divide for device-constrained classrooms using low-tech printable Q-cards scanned instantly via teacher smartphone camera.",
-        "2. Quizizz AI (AI & Content): Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
+        "2. Wayground AI (AI & Content): Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
         "3. Avatars & Qbits (Engagement): Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
       ]],
       ["Product Leadership Principles", [
@@ -160,13 +160,13 @@ const CASES = {
       "Emotional Resonance: Playful micro-touches like avatar animations transform utilitarian software into a beloved classroom ritual."
     ],
     media: [
-      ["quizizz-1.gif", "Quizizz Paper Mode in-class scanning and real-time computer vision grading"],
-      ["quizizz-2.gif", "Quizizz AI guided authoring flow and curriculum alignment selector"]
+      ["quizizz-1.gif", "Paper Mode in-class scanning and real-time computer vision grading"],
+      ["quizizz-2.gif", "Wayground AI guided authoring flow and curriculum alignment selector"]
     ]
   },
 
   "quizizz-ai": {
-    title: "Quizizz AI · Assisted Authoring for Teachers",
+    title: "Wayground AI · Assisted Authoring for Teachers",
     eyebrow: "AI · 0→1 · EdTech (US Curriculum)",
     lede: "Help teachers generate high-quality, standards-aligned quizzes instantly with AI, without sacrificing control, pedagogical accuracy, or cost-efficiency.",
     role: "Product Designer (AI & Core)",
@@ -176,10 +176,10 @@ const CASES = {
     color: "#8b5cf6",
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
-    source: "https://app.notion.com/p/21022b7dfdd280ea9d76cb13af92c13c",
+    source: "https://wayground.com/?lng=en",
     vision: "Help teachers generate high-quality, standards-aligned quizzes instantly with the help of AI, without sacrificing control, accuracy, or cost-efficiency.",
     video: "https://www.youtube-nocookie.com/embed/nxVTd6pCsb0",
-    videoTitle: "Quizizz AI Assisted Authoring Walkthrough",
+    videoTitle: "Wayground AI Assisted Authoring Walkthrough",
     quotes: {
       need: "Educators needed standards-aligned classroom content in seconds, demanding pedagogical control, verified accuracy, and zero generic prompt fatigue.",
       done: "Engineered structured prompt scaffolding, source-grounding signals, curriculum mapping, and an edit-first review architecture.",
@@ -204,7 +204,7 @@ const CASES = {
         num: "03",
         title: "Verifying Source Quality & Eliminating Hallucinations",
         problem: "Teachers required verified, trusted sources and resisted ungrounded AI text generation.",
-        solution: "Embedded public-domain citations, Quizizz Verified AI badges, and side-by-side comparisons with teacher content.",
+        solution: "Embedded public-domain citations, Verified AI badges, and side-by-side comparisons with teacher content.",
         metric: "+42% Edit-Free Usage"
       },
       {
@@ -228,7 +228,7 @@ const CASES = {
       ["System Architecture & Solutions", [
         "Prompt Scaffolding: Built parameter dropdowns and prompt presets (e.g. 'Vocabulary Review Grade 6 ELA'), reducing bad prompt submissions by ~62% in 3 weeks.",
         "Cost & Retry Controls: Added lightweight pre-validation filters, parameter dials, and an internal credit usage bar, slashing cost per generation by 38%.",
-        "Source Verification: Introduced citations, Quizizz Verified AI badges, and side-by-side comparison with teacher content; in A/B tests, teachers were 42% more likely to use quizzes without edits.",
+        "Source Verification: Introduced citations, Verified AI badges, and side-by-side comparison with teacher content; in A/B tests, teachers were 42% more likely to use quizzes without edits.",
         "Curriculum Selector: Auto-mapped state standards into prompt logic, resulting in 87% of teachers reporting AI content felt 'on-curriculum' (vs 48% before)."
       ]],
       ["Measurable Outcome", "Positioned AI as a premier freemium acquisition hook that drove rapid adoption and reliable teacher retention.", [
@@ -248,7 +248,7 @@ const CASES = {
   },
 
   "paper-mode": {
-    title: "Quizizz · Paper Mode",
+    title: "Wayground (Quizizz) · Paper Mode",
     eyebrow: "0→1 · Hardware-Light · Offline-First",
     lede: "Bridging the digital divide with low-tech classroom response cards scanned instantly through a single teacher smartphone camera.",
     role: "Lead UX Designer",
@@ -258,7 +258,7 @@ const CASES = {
     color: "#f59e0b",
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
-    source: "https://app.notion.com/p/11022b7dfdd2805988e0dc038ec1eb31",
+    source: "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en",
     vision: "Democratize interactive learning by bringing digital quiz power to every pen-and-paper classroom with zero hardware cost.",
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing Demo",
@@ -290,7 +290,7 @@ const CASES = {
     ],
     flow: ["Print free response cards", "Project question to class", "Students raise cards", "Scan & sync in < 2 seconds"],
     sections: [
-      ["The Core Challenge", "Many teachers still relied exclusively on pen-and-paper assessments because their classrooms lacked student devices. This massive cohort was completely excluded from using Quizizz. The goal was to bring offline teachers into the product without requiring them to change how they teach."],
+      ["The Core Challenge", "Many teachers still relied exclusively on pen-and-paper assessments because their classrooms lacked student devices. This massive cohort was completely excluded from using digital interactive learning. The goal was to bring offline teachers into Wayground without requiring them to change how they teach."],
       ["Design Strategy & On-Site Testing", "Led the end-to-end UX from research to interface design and dev handoff. Conducted on-site testing sessions at City International School and City Montessori School, Lucknow, optimizing the physical card ergonomics and smartphone camera scanning angles under variable classroom lighting."],
       ["System Solutions", [
         "Printable Q-Cards: Low-cost, durable orientation-based student response cards (A/B/C/D) that require zero student logins or devices.",
