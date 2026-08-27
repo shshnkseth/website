@@ -447,36 +447,149 @@
       padding: 0 1.9rem 0 1.6rem;
     }
 
-    /* ─── CTA BANNER ─── */
+    /* ─── CTA BANNER (WITH RIGHT-BLEEDING PHOTO STACK) ─── */
     .cta-banner {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
+      padding: 1.3rem 1.6rem;
       background: var(--surface);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       text-decoration: none;
-      margin-bottom: 3rem;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .cta-banner:hover {
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--accent) 40%, var(--rule));
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--rule));
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     }
-    .cta-thumb {
-      width: 64px; height: 64px;
-      border-radius: 10px;
-      object-fit: cover;
+    .cta-text {
+      position: relative;
+      z-index: 5;
+      max-width: 60%;
+    }
+    .cta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .cta-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+    .cta-banner:hover .cta-title {
+      color: #fff;
+    }
+    .cta-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+    .cta-stack {
+      position: relative;
+      width: 220px;
+      height: 86px;
+      margin-right: -1.2rem;
       flex-shrink: 0;
-      filter: brightness(0.8);
-      transition: filter 0.2s;
+      pointer-events: none;
     }
-    .cta-banner:hover .cta-thumb { filter: brightness(1); }
-    .cta-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; font-weight: 500; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.2rem; }
-    .cta-title { font-family: 'DM Sans', sans-serif; font-size: 0.96rem; font-weight: 400; color: var(--ink); }
-    .cta-sub { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.04em; }
+    .cta-stack-card {
+      position: absolute;
+      top: 50%;
+      width: 74px;
+      height: 74px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65);
+      background: var(--surface2);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+    }
+    .cta-stack-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.25s ease;
+    }
+    .cta-banner:hover .cta-stack-card img {
+      filter: brightness(1);
+    }
+    .cta-stack-card:nth-child(1) {
+      right: 135px;
+      transform: translateY(-50%) rotate(-10deg) scale(0.88);
+      z-index: 1;
+      opacity: 0.75;
+    }
+    .cta-stack-card:nth-child(2) {
+      right: 90px;
+      transform: translateY(-50%) rotate(5deg) scale(0.94);
+      z-index: 2;
+      opacity: 0.9;
+    }
+    .cta-stack-card:nth-child(3) {
+      right: 45px;
+      transform: translateY(-50%) rotate(-4deg) scale(1);
+      z-index: 3;
+    }
+    .cta-stack-card:nth-child(4) {
+      right: 0px;
+      transform: translateY(-50%) rotate(7deg) scale(1.06);
+      z-index: 4;
+      border-color: color-mix(in srgb, var(--accent) 40%, rgba(255, 255, 255, 0.2));
+    }
+    .cta-banner:hover .cta-stack-card:nth-child(1) {
+      transform: translateY(-50%) translateX(-8px) rotate(-14deg) scale(0.92);
+      opacity: 0.9;
+    }
+    .cta-banner:hover .cta-stack-card:nth-child(2) {
+      transform: translateY(-50%) translateX(-4px) rotate(8deg) scale(0.98);
+      opacity: 1;
+    }
+    .cta-banner:hover .cta-stack-card:nth-child(3) {
+      transform: translateY(-50%) translateX(0px) rotate(-6deg) scale(1.04);
+    }
+    .cta-banner:hover .cta-stack-card:nth-child(4) {
+      transform: translateY(-50%) translateX(6px) rotate(11deg) scale(1.1);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (max-width: 560px) {
+      .cta-banner {
+        padding: 1.1rem 1.2rem;
+      }
+      .cta-text {
+        max-width: 55%;
+      }
+      .cta-stack {
+        width: 140px;
+        margin-right: -1.6rem;
+      }
+      .cta-stack-card {
+        width: 62px;
+        height: 62px;
+      }
+      .cta-stack-card:nth-child(1) { display: none; }
+      .cta-stack-card:nth-child(2) { right: 70px; }
+      .cta-stack-card:nth-child(3) { right: 35px; }
+      .cta-stack-card:nth-child(4) { right: 0px; }
+    }
 
     /* ─── EXPEDITION ROWS ─── */
     .expedition-list { margin-bottom: 3.4rem; }
@@ -1342,13 +1455,26 @@
     </div>
   </div>
 
-  <!-- SPORTS & ADVENTURE CTA -->
+  <!-- SPORTS & ADVENTURE CTA (WITH OVERFLOW PHOTO STACK) -->
   <a href="sports-adventure.html" class="cta-banner spotlight-card" id="sports-adventure">
-    <img class="cta-thumb" src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Shashank highlining in Ladakh"/>
-    <div>
+    <div class="cta-text">
       <div class="cta-label">Beyond the desk</div>
       <div class="cta-title">Sports & Adventure →</div>
-      <div class="cta-sub">8 disciplines · expeditions · field notes & gallery</div>
+      <div class="cta-sub">9 disciplines · expeditions · field notes & gallery</div>
+    </div>
+    <div class="cta-stack" aria-hidden="true">
+      <div class="cta-stack-card">
+        <img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays" />
+      </div>
+      <div class="cta-stack-card">
+        <img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding in Gulmarg" />
+      </div>
+      <div class="cta-stack-card">
+        <img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11,000 ft" />
+      </div>
+      <div class="cta-stack-card">
+        <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Skateboarding fire session" />
+      </div>
     </div>
   </a>
 
