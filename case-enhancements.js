@@ -1,15 +1,15 @@
 const EXTRA={
 nvidia:{
-  need:"The legacy NVIDIA Control Panel relied on an aging UI that needed a modern desktop experience without losing granular technical depth, while emerging neural-network audio intelligence lacked a consumer-grade interface.",
-  done:"Redesigned the classic NVIDIA Control Panel with a modern UI backed by extensive user research and testing, and directed the interaction model for RTX Voice background noise cancellation.",
-  impact:"Modernized mission-critical GPU controls while preserving full functional depth, and launched RTX Voice into the flagship NVIDIA Broadcast suite.",
+  need:"Display server settings within NVIDIA's Control Panel software needed a modernized experience for gaming and enterprise users without losing granular technical depth or power-user functionality.",
+  done:"Extracted workflow insights, built user stories and flows, and delivered validated wireframes and UI designs adhering to interface guidelines alongside the RTX Voice interaction model.",
+  impact:"Streamlined complex display configurations for gaming and enterprise users, and launched RTX Voice into the flagship NVIDIA Broadcast suite.",
   projects:[
-    ["NVIDIA Control Panel","Modern desktop interface maintaining expert-level depth and technical control.","Desktop UI"],
+    ["Control Panel & Display Settings","Experience design of display server settings for gaming & enterprise users.","Desktop UI"],
     ["RTX Voice","AI-powered noise removal for broadcast and recording.","AI Audio"]
   ],
-  flow:["Audit legacy workflows","User research & usability testing","Prototype core interactions","Align UX with AI engineering"],
+  flow:["Extract workflow insights","Build user stories & flows","Prototype wireframes & test","Deliver visual interface"],
   media:[
-    ["nvidia-1.webp","NVIDIA Control Panel redesign exploration"],
+    ["nvidia-1.webp","NVIDIA Control Panel display settings exploration"],
     ["nvidia-2.png","RTX Voice interface and controls"]
   ]
 },

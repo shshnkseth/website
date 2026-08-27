@@ -2,7 +2,7 @@ const CASES={
 nvidia:{
   title:"NVIDIA · Native GPU Tools",
   eyebrow:"Hardware Tools · AI Audio",
-  lede:"Modernizing mission-critical GPU software for gamers and creators, and architecting the interaction model for AI-powered noise removal.",
+  lede:"Redesigning the display server settings experience for gaming and enterprise users in NVIDIA Control Panel, and architecting the interaction model for AI-powered noise removal.",
   role:"Software Design Intern",
   time:"7 months",
   year:"2019–20",
@@ -12,13 +12,13 @@ nvidia:{
   cover:"nvidia.jpg",
   source:"https://app.notion.com/p/3c7f3b5fb3754297800072a3e0f98be1",
   sections:[
-    ["Context","GeForce Experience supported driver updates, graphics tuning, and game capture across millions of active rigs, but accumulated feature density created navigational friction. In parallel, a separate initiative explored neural-network audio processing for real-time streaming."],
-    ["Strategic Execution","Led UX research, interaction architecture, and iterative prototyping across literature reviews, telemetry analysis, and technical user evaluations. Partnered closely with AI and GPU engineering to translate complex model parameters into responsive, zero-latency desktop controls."],
+    ["Context","Display server settings within NVIDIA's Control Panel software serve millions of gaming and enterprise users, requiring high reliability and granular control. The objective was to modernize the user experience while retaining complete functional depth."],
+    ["Strategic Execution","Extracted actionable insights from user workflows, constructed user stories centered on user expectations, and mapped end-to-end user flows. Developed wireframes, low-fidelity prototypes, and iteratively tested solutions across user groups before finalizing visual designs aligned with interface guidelines."],
     ["Core Solutions",[
-      "Redesigned the classic NVIDIA Control Panel with a modern desktop user interface, preserving expert-level depth, granular controls, and functionality through rigorous user research and testing.",
+      "Experience Design of Control Panel Software for Gaming & Enterprise Users: Redesigned the display server settings experience, balancing modern desktop aesthetics with deep, mission-critical functionality.",
       "Co-designed RTX Voice, establishing intuitive audio routing, live noise-suppression visualizers, and lightweight background processing controls."
     ]],
-    ["Outcome","Delivered a streamlined control-panel architecture that retained deep technical customization while dramatically reducing interaction friction. RTX Voice launched to critical acclaim and was integrated into NVIDIA Broadcast."]
+    ["Outcome","Delivered a validated, modernized Control Panel architecture that reduced configuration friction for enterprise and gaming workflows while preserving granular control. RTX Voice launched to critical acclaim and was integrated into NVIDIA Broadcast."]
   ]
 },
 quizizz:{
