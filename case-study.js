@@ -13,6 +13,11 @@ const CASES = {
     source: "https://app.notion.com/p/3c7f3b5fb3754297800072a3e0f98be1",
     nda: true,
     vision: "Modernize mission-critical GPU utilities with new-age desktop ergonomics, eliminating hardware safety risks while retaining expert-level parameter control.",
+    stickers: [
+      { icon: "⚡", label: "RTX Voice", sub: "AI Audio Suppression", rot: "-2.5deg" },
+      { icon: "🎮", label: "NVIDIA HIG", sub: "Display Server Settings", rot: "2deg" },
+      { icon: "🎙️", label: "Broadcast App", sub: "Global Press Acclaim", rot: "-1.5deg" }
+    ],
     quotes: {
       need: "Display server settings within NVIDIA's Control Panel software needed a modernized experience for gaming and enterprise users without losing granular technical depth or power-user functionality.",
       done: "Extracted workflow insights, built user stories and flows, and delivered validated wireframes and UI designs adhering to NVIDIA Human Interface Guidelines (HIG) alongside the RTX Voice interaction model.",
@@ -186,6 +191,11 @@ const CASES = {
     vision: "Help teachers generate high-quality, standards-aligned quizzes instantly with the help of AI, without sacrificing control, accuracy, or cost-efficiency.",
     video: "https://www.youtube-nocookie.com/embed/nxVTd6pCsb0",
     videoTitle: "Wayground AI Assisted Authoring Walkthrough",
+    stickers: [
+      { icon: "✨", label: "Prompt Presets", sub: "~62% Less Bad Prompts", rot: "-2deg" },
+      { icon: "🎯", label: "Curriculum Map", sub: "87% On-Standard Rating", rot: "2.5deg" },
+      { icon: "💰", label: "38% Lower Cost", sub: "Pre-validation Filters", rot: "-1.5deg" }
+    ],
     quotes: {
       need: "Educators needed standards-aligned classroom content in seconds, demanding pedagogical control, verified accuracy, and zero generic prompt fatigue.",
       done: "Engineered structured prompt scaffolding, source-grounding signals, curriculum mapping, and an edit-first review architecture.",
@@ -222,10 +232,10 @@ const CASES = {
       }
     ],
     projects: [
-      ["Prompt Scaffolding", "Subject → grade → standard parameter engine replacing empty text boxes.", "UX Architecture"],
-      ["Source Verification & Citations", "Trust badges, citation links, and fact-checking safeguards against hallucinations.", "Trust & Quality"],
-      ["Curriculum Selector", "Auto-mapping Common Core, NGSS, and TEKS state standards into prompt logic.", "Curriculum"],
-      ["Cost & Quality Controls", "Pre-generation parameters, lightweight LLM validation filters, and credit usage bars.", "Efficiency"]
+      ["Prompt Scaffolding", "Subject → grade → standard parameter engine replacing empty text boxes.", "UX Architecture", "https://wayground.com/?lng=en"],
+      ["Source Verification & Citations", "Trust badges, citation links, and fact-checking safeguards against hallucinations.", "Trust & Quality", "https://wayground.com/?lng=en"],
+      ["Curriculum Selector", "Auto-mapping Common Core, NGSS, and TEKS state standards into prompt logic.", "Curriculum", "https://wayground.com/?lng=en"],
+      ["Cost & Quality Controls", "Pre-generation parameters, lightweight LLM validation filters, and credit usage bars.", "Efficiency", "https://wayground.com/?lng=en"]
     ],
     flow: ["Select curriculum context", "Generate structured draft", "Verify sources & standards", "Edit, refine & publish"],
     sections: [
@@ -268,6 +278,11 @@ const CASES = {
     vision: "Democratize interactive learning by bringing digital quiz power to every pen-and-paper classroom with zero hardware cost.",
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing Demo",
+    stickers: [
+      { icon: "📄", label: "Printable Q-Cards", sub: "Orientation A/B/C/D", rot: "-2.5deg" },
+      { icon: "⚡", label: "< 2s Full Scan", sub: "Computer Vision Camera", rot: "2deg" },
+      { icon: "🏫", label: "3,000+ Schools", sub: "Zero Student Logins", rot: "-1deg" }
+    ],
     quotes: {
       need: "Millions of classrooms lacked student devices, forcing teachers to spend hours manually grading printed paper quizzes.",
       done: "Architected the end-to-end Paper Mode experience, pairing low-cost printable Q-cards with instant smartphone computer vision scanning.",
@@ -290,9 +305,9 @@ const CASES = {
       }
     ],
     projects: [
-      ["Printable Q-Cards", "Durable, orientation-based physical response cards (A/B/C/D) for students.", "Physical UX"],
-      ["Camera Vision Scanning", "Multi-card computer vision recognition optimized for uneven lighting and classroom tilt.", "Mobile UX"],
-      ["Real-Time Classroom Sync", "Instant score reconciliation, performance analytics, and live leaderboard sync.", "Data Architecture"]
+      ["Printable Q-Cards", "Durable, orientation-based physical response cards (A/B/C/D) for students.", "Physical UX", "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en"],
+      ["Camera Vision Scanning", "Multi-card computer vision recognition optimized for uneven lighting and classroom tilt.", "Mobile UX", "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en"],
+      ["Real-Time Classroom Sync", "Instant score reconciliation, performance analytics, and live leaderboard sync.", "Data Architecture", "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en"]
     ],
     flow: ["Print free response cards", "Project question to class", "Students raise cards", "Scan & sync in < 2 seconds"],
     sections: [
@@ -319,6 +334,92 @@ const CASES = {
     ]
   },
 
+  qbits: {
+    title: "Qbits · Customizable Student Avatars & Engagement",
+    eyebrow: "EdTech · Gamification · Retention · 0→1",
+    lede: "Enhancing student retention and intrinsic motivation on Wayground through gender-neutral customizable avatars, a virtual coin economy, and consistent effort reward loops.",
+    role: "Product Designer & Engagement Lead",
+    time: "4 months (Nov 2023 – Feb 2024)",
+    year: "2023–24",
+    team: "Engagement Squad (1 PM, 1 Designer, 2 Comms Designers, 1 EM, 3 Engineers)",
+    color: "#ec4899",
+    logo: "logo-quizizz.png",
+    cover: "quizizz.jpg",
+    source: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-",
+    vision: "Transform transient gamification into lasting emotional investment by rewarding consistent practice, self-expression, and student agency.",
+    stickers: [
+      { img: "qbit-avatar.png", label: "Student Qbits", sub: "Modular 3D Identity", rot: "-2deg" },
+      { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2.5deg" },
+      { icon: "🛍️", label: "The Shop", sub: "Common, Rare, Legendary Gear", rot: "-1.5deg" },
+      { icon: "📈", label: "2X Return Rate", sub: "65% Shop Visit Rate", rot: "3deg" }
+    ],
+    quotes: {
+      need: "Students lacked long-term emotional connection to the platform once live quiz sessions ended, with drop-offs occurring because only immediate speed was rewarded rather than consistent learning effort.",
+      done: "Conducted 5-week research with US middle schoolers, conceptualized the modular gender-neutral Qbit structure, and built the end-to-end virtual currency streak rewards and closet Shop.",
+      impact: "65% of active quiz players visited the Shop, weekly return visits doubled (2X), and average student accuracy increased from 75% to 82%."
+    },
+    problems: [
+      {
+        num: "01",
+        title: "Short-Term Novelty Drop-Off",
+        problem: "While live quizzes were fun, students had zero personal investment once the game ended, leading to steep retention drop-offs between homework sessions.",
+        solution: "Engineered a persistent digital identity (Qbits) that students own, personalize, and carry across all classroom games and solo practice sessions.",
+        metric: "2X Weekly Retention"
+      },
+      {
+        num: "02",
+        title: "Speed-Biased Rewards Demotivating Slower Learners",
+        problem: "Existing game mechanics only rewarded rapid answer speeds, penalizing thoughtful learners and neglecting effort or consistency.",
+        solution: "Introduced daily streak coin multipliers and effort-based reward loops where consistency earns exclusive accessories.",
+        metric: "+7% Accuracy Boost"
+      },
+      {
+        num: "03",
+        title: "Designing Inclusive, Relatable Characters for Kids",
+        problem: "Students rejected generic caricatures or heavily gendered tropes; avatars needed to be cool, expressive, and globally relatable.",
+        solution: "Designed a modular, gender-neutral base character with layered streetwear, hats, scarves, and accessories categorized by rarity (Common, Rare, Legendary).",
+        metric: "75% Day-1 Adoption"
+      }
+    ],
+    projects: [
+      ["Qbit Character Engine", "Modular, gender-neutral avatar builder with hundreds of layered outfit permutations.", "Identity Engine", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"],
+      ["The Qbit Shop", "Immersive dark UI personal closet where students browse, try on, and unlock rare gear with earned coins.", "Virtual Economy", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"],
+      ["Streak & Effort Currency", "Algorithmically scaling coin rewards tied to daily study streaks and mastery accuracy.", "Retention Systems", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"]
+    ],
+    flow: ["Complete daily quiz", "Earn effort & streak coins", "Visit the Qbit Shop", "Equip rare gear & flex in live game"],
+    sections: [
+      ["The Engagement Gap", "While Quizizz was highly effective at delivering in-class gamification during live games, we identified a critical disconnect: students lacked reasons to return on their own or feel personally connected beyond a single session. Effort and consistency weren't visibly rewarded—only rapid speed mattered, which caused novelty to fade."],
+      ["Research with US Middle Schoolers", "Conducted a 5-week research program with 8 U.S. middle schoolers combining user interviews, diary studies, and co-creation sessions. Key insight: students are deeply motivated by self-representation, rarity, and rewards earned through consistent participation over time, but disengage quickly when systems reward speed over learning."],
+      ["The Solution: Qbit Identity & Virtual Economy", [
+        "1. Modular Gender-Neutral Identity: Collaborated closely with illustration and engineering to build a relatable, inclusive character format that works across low-end Chromebooks.",
+        "2. Effort-Based Coin Rewards: Introduced daily streaks and variable performance coins to incentivize regular learning routines without speed anxiety.",
+        "3. The Qbit Shop: Built an immersive dark-mode closet interface where students spend earned currency on Common, Rare, and Legendary outfits.",
+        "4. In-Game Visibility: Featured customized Qbits on live leaderboards, waiting lobbies, and podium win states to spark social delight."
+      ]],
+      ["Measurable Business & Pedagogical Impact", "Qbits transformed student perception from a utilitarian test tool into a beloved digital space, delivering transformative retention and learning improvements.", [
+        ["65%", "of active students visited the Shop"],
+        ["2X", "increase in weekly active student returns"],
+        ["75→82%", "average student quiz accuracy improvement"],
+        ["+18%", "lift in live session re-joins"]
+      ]]
+    ],
+    highlight: [
+      "Student Agency",
+      "Why 'Qbits' Became a Classroom Phenomenon",
+      "We named the character to embody the brand spirit—curious, bold, and quirky, subtly hinting at being 'a bit of Quizizz'. Within weeks of rollout, student adoption soared to 75%, organic student fan art flooded social channels, and teachers reported significant enthusiasm during morning warm-up quizzes.<br><br><a class='highlight-link-pill' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Read Help Center Feature Announcement ↗</a>",
+      "qbit-avatar.png"
+    ],
+    takeaways: [
+      "Reward Effort, Not Just Speed: Gamification that prioritizes accuracy and consistency creates sustainable intrinsic motivation.",
+      "Agency Fuels Retention: When learners have ownership over their digital identity, they return proactively without teacher prompting.",
+      "Inclusive by Design: Gender-neutral, modular avatar foundations maximize global student resonance across diverse cultures."
+    ],
+    media: [
+      ["qbit-avatar.png", "Customizable Qbit student avatar character with layered streetwear accessories"],
+      ["quizizz-2.gif", "In-game avatar customization and real-time live match integration"]
+    ]
+  },
+
   getmega: {
     title: "GetMega · Trust, Clarity & Scale",
     eyebrow: "Gaming · Fintech · Systems",
@@ -332,6 +433,11 @@ const CASES = {
     cover: "getmega.jpg",
     source: "https://app.notion.com/p/1e922b7dfdd280798debe190039ce181",
     vision: "Transform real-money gaming into a transparent, secure, and intuitive entertainment platform built on absolute trust.",
+    stickers: [
+      { icon: "🛡️", label: "FairPlay 100%", sub: "Tier-1 KYC Security", rot: "-3deg" },
+      { icon: "🏏", label: "Fantasy Sports", sub: "Live Match HUDs", rot: "2deg" },
+      { icon: "💳", label: "42%→83% KYC", sub: "Transparent Wallet", rot: "-1deg" }
+    ],
     quotes: {
       need: "Onboarding drop-offs, financial anxiety around real-money transactions, ambiguous rules, and cross-device UI fragmentation hindered platform scale.",
       done: "Directed product design for GetMega Fantasy and unified the platform through an end-to-end design system, tiered KYC, and transparent wallet states.",
@@ -354,11 +460,11 @@ const CASES = {
       }
     ],
     projects: [
-      ["GetMega Fantasy", "Flagship fantasy sports and contest product experience with intuitive team building.", "Flagship Game"],
-      ["Scalable Design System", "Responsive component library, design tokens, and gaming conventions across web & app.", "Design System"],
-      ["Interactive Learning System", "Guided practice rounds, rules walkthroughs, and live tutorial overlays.", "User Confidence"],
-      ["Wallet & Tiered KYC", "Transparent deposit/withdrawal states, multi-lingual support, and fraud safeguards.", "Fintech Trust"],
-      ["Modular Game HUDs", "Live match interfaces, score tickers, dynamic leaderboards, and celebratory win states.", "Gameplay UX"]
+      ["GetMega Fantasy", "Flagship fantasy sports and contest product experience with intuitive team building.", "Flagship Game", "https://www.getmega.com"],
+      ["Scalable Design System", "Responsive component library, design tokens, and gaming conventions across web & app.", "Design System", "https://www.getmega.com"],
+      ["Interactive Learning System", "Guided practice rounds, rules walkthroughs, and live tutorial overlays.", "User Confidence", "https://www.getmega.com"],
+      ["Wallet & Tiered KYC", "Transparent deposit/withdrawal states, multi-lingual support, and fraud safeguards.", "Fintech Trust", "https://www.getmega.com"],
+      ["Modular Game HUDs", "Live match interfaces, score tickers, dynamic leaderboards, and celebratory win states.", "Gameplay UX", "https://www.getmega.com"]
     ],
     flow: ["Interactive tutorial", "Tiered KYC verification", "Enter Fantasy contest", "Track live match & withdraw"],
     sections: [
@@ -406,6 +512,10 @@ const CASES = {
     source: "https://app.notion.com/p/792df82e385e4ed38c8d645364d69679",
     nda: true,
     vision: "Automate heavy enterprise warehouse audits through seamless aerial robotics orchestration.",
+    stickers: [
+      { icon: "🚁", label: "FlytWare", sub: "Autonomous Drone Fleet", rot: "-2deg" },
+      { icon: "📦", label: "WMS Cloud Sync", sub: "Real-time Telemetry", rot: "2.5deg" }
+    ],
     quotes: {
       need: "Manual warehouse inventory counting in large distribution facilities required thousands of labor hours, remaining slow, expensive, and error-prone.",
       done: "Designed FlytWare interaction models, autonomous mission planning, and mission-critical cloud ground-control interfaces.",
@@ -428,9 +538,9 @@ const CASES = {
       }
     ],
     projects: [
-      ["FlytWare Interaction Architecture", "Autonomous aerial barcoding, visual shelf inspection, and real-time WMS reconciliation.", "Robotics UX"],
-      ["Ground Control Station", "Cloud dashboard for multi-drone fleet monitoring, battery telemetries, and emergency overrides.", "Mission Control"],
-      ["Enterprise WMS Integration", "Discrepancy resolution flows matching drone barcode telemetry with existing warehouse databases.", "Data Systems"]
+      ["FlytWare Interaction Architecture", "Autonomous aerial barcoding, visual shelf inspection, and real-time WMS reconciliation.", "Robotics UX", "https://www.flytbase.com"],
+      ["Ground Control Station", "Cloud dashboard for multi-drone fleet monitoring, battery telemetries, and emergency overrides.", "Mission Control", "https://www.flytbase.com"],
+      ["Enterprise WMS Integration", "Discrepancy resolution flows matching drone barcode telemetry with existing warehouse databases.", "Data Systems", "https://www.flytbase.com"]
     ],
     flow: ["Map warehouse aisles", "Deploy autonomous flight", "Capture aerial barcode data", "Reconcile WMS discrepancies"],
     sections: [
@@ -463,6 +573,10 @@ const CASES = {
     cover: "toast.jpg",
     source: "https://app.notion.com/p/99146be810764dcf803cb9097adf6c95",
     vision: "Unify restaurant operations into a lightning-fast, resilient ecosystem that empowers servers and delights dining guests.",
+    stickers: [
+      { icon: "⚡", label: "< 3 Taps", sub: "High-Velocity POS Flow", rot: "-2deg" },
+      { icon: "📱", label: "QR Ordering", sub: "Contactless Tabs", rot: "2.5deg" }
+    ],
     quotes: {
       need: "High-pressure restaurant teams required split-second operational clarity in chaotic service environments, not complex multi-layered software.",
       done: "Architected the POS ecosystem, operational kitchen modules, brand identity, and table-side contactless mobile guest experience.",
@@ -485,10 +599,10 @@ const CASES = {
       }
     ],
     projects: [
-      ["High-Velocity POS", "Table layout management, kitchen ticket routing, and split billing designed for speed under pressure.", "POS System"],
-      ["Live Inventory & Recipe Tracking", "Automated stock deductions, real-time 86'd alerts, and supplier reordering triggers.", "Inventory"],
-      ["Contactless Guest App", "Table-side QR code ordering, shared group tabs, and instant digital payments.", "Consumer Mobile"],
-      ["Restaurant Brand & System", "Editorial brand identity, typography, and hardware-resilient dark mode design system.", "Brand System"]
+      ["High-Velocity POS", "Table layout management, kitchen ticket routing, and split billing designed for speed under pressure.", "POS System", "https://joinsummer.app"],
+      ["Live Inventory & Recipe Tracking", "Automated stock deductions, real-time 86'd alerts, and supplier reordering triggers.", "Inventory", "https://joinsummer.app"],
+      ["Contactless Guest App", "Table-side QR code ordering, shared group tabs, and instant digital payments.", "Consumer Mobile", "https://joinsummer.app"],
+      ["Restaurant Brand & System", "Editorial brand identity, typography, and hardware-resilient dark mode design system.", "Brand System", "https://joinsummer.app"]
     ],
     flow: ["Discover or seat", "Order together via QR / POS", "Kitchen ticket routing", "Instant split & checkout"],
     sections: [
@@ -534,6 +648,10 @@ const CASES = {
     cover: "earnnest.jpg",
     source: "https://app.notion.com/p/61a4325049914f339e07e95718769fc3",
     vision: "Democratize secured private credit investments through transparent risk modeling, elegant education, and institutional rigor.",
+    stickers: [
+      { icon: "📈", label: "Asset-Backed", sub: "Private Credit", rot: "-2.5deg" },
+      { icon: "⚡", label: "5-Min KYC", sub: "38% Less Drop-Off", rot: "2deg" }
+    ],
     quotes: {
       need: "Demystify high-yield alternative debt investing for individual investors and HNIs by establishing immediate institutional credibility and regulatory trust.",
       done: "Defined the 0-to-1 product strategy, visual brand system, investor education journey, streamlined KYC, and real-time portfolio management.",
@@ -556,9 +674,9 @@ const CASES = {
       }
     ],
     projects: [
-      ["Institutional Brand Identity", "Trust-anchored visual system, refined typography, and editorial financial voice.", "Brand Strategy"],
-      ["Education-Led Conversion Funnel", "Interactive deal transparency: Understand the asset → Evaluate risk → One-click invest.", "Growth UX"],
-      ["Mobile & Web App Platform", "Transparent deal catalogs, 5-minute automated KYC, and live yield tracking dashboard.", "0→1 Product"]
+      ["Institutional Brand Identity", "Trust-anchored visual system, refined typography, and editorial financial voice.", "Brand Strategy", "https://www.earnnest.me"],
+      ["Education-Led Conversion Funnel", "Interactive deal transparency: Understand the asset → Evaluate risk → One-click invest.", "Growth UX", "https://www.earnnest.me"],
+      ["Mobile & Web App Platform", "Transparent deal catalogs, 5-minute automated KYC, and live yield tracking dashboard.", "0→1 Product", "https://www.earnnest.me"]
     ],
     flow: ["Understand the asset class", "Evaluate collateral & deal", "5-minute automated KYC", "Invest & track live yield"],
     sections: [
@@ -587,10 +705,11 @@ const CASES = {
   }
 };
 
-// Aliases for wayground URLs
+// Aliases for wayground and qbits URLs
 CASES.wayground = CASES.quizizz;
 CASES["wayground-ai"] = CASES["quizizz-ai"];
 CASES["wayground-paper-mode"] = CASES["paper-mode"];
+CASES["wayground-qbits"] = CASES.qbits;
 
 // Render function executed immediately or on ready
 function renderCaseStudy() {
