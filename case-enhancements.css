@@ -337,6 +337,42 @@
   padding: 1.1rem 1.3rem;
 }
 
+.project-card--clickable {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.project-card--clickable:hover {
+  transform: translateX(4px);
+  border-color: color-mix(in srgb, var(--project) 50%, var(--rule));
+  background: color-mix(in srgb, var(--project) 6%, var(--surface));
+}
+
+.project-arrow-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--project);
+  margin-left: 0.35rem;
+  transition: transform 0.2s ease;
+}
+
+.project-card--clickable:hover .project-arrow-badge {
+  transform: translate(2px, -2px);
+}
+
+.inline-sub-link {
+  color: var(--project);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.inline-sub-link:hover {
+  opacity: 0.8;
+}
+
 .project-index {
   font: 400 0.64rem 'DM Mono', monospace;
   color: var(--muted);
@@ -366,6 +402,66 @@
   padding: 0.25rem 0.55rem;
   border-radius: 4px;
   white-space: nowrap;
+}
+
+/* Brand Stickers Strip */
+.case-stickers-wrap {
+  margin: 1.6rem 0 2.4rem;
+}
+
+.case-stickers-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.brand-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--surface) 90%, black);
+  border: 1px solid color-mix(in srgb, var(--project) 30%, var(--rule));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transform: rotate(var(--sticker-rot, 0deg));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.brand-sticker:hover {
+  transform: rotate(0deg) scale(1.05) translateY(-2px);
+  border-color: var(--project);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--project) 25%, transparent);
+}
+
+.sticker-icon {
+  font-size: 1.1rem;
+}
+
+.sticker-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.sticker-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticker-label {
+  font: 500 0.68rem 'DM Sans', sans-serif;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.sticker-sub {
+  font: 400 0.52rem 'DM Mono', monospace;
+  color: var(--muted);
+  letter-spacing: 0.04em;
 }
 
 /* Highlight Box */
@@ -410,7 +506,129 @@
   color: #b0ada6;
   font-size: 0.88rem;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 0.75rem;
+}
+
+/* Hackathon Highlight Box with Character Avatar */
+.highlight-box--character {
+  padding: 2rem 2.2rem;
+  overflow: visible;
+}
+
+.highlight-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.2rem;
+}
+
+.highlight-text-col {
+  flex: 1;
+}
+
+.highlight-body {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #b0ada6;
+}
+
+.highlight-avatar-col {
+  position: relative;
+  width: 170px;
+  min-width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-glow-ring {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--project) 40%, transparent) 0%, transparent 70%);
+  filter: blur(12px);
+  z-index: 1;
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.avatar-qbit-character {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.65));
+  animation: floatAvatar 3.6s ease-in-out infinite alternate;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.highlight-avatar-col:hover .avatar-qbit-character {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.avatar-pill-badge {
+  position: relative;
+  z-index: 3;
+  margin-top: 0.5rem;
+  font: 500 0.52rem 'DM Mono', monospace;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid color-mix(in srgb, var(--project) 50%, transparent);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+.highlight-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font: 500 0.62rem 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background: color-mix(in srgb, var(--project) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--project) 60%, transparent);
+  padding: 0.42rem 0.85rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 0.5rem;
+}
+
+.highlight-link-pill:hover {
+  background: var(--project);
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--project) 40%, transparent);
+}
+
+@keyframes floatAvatar {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 0.9; transform: scale(1.15); }
+}
+
+@media (max-width: 768px) {
+  .highlight-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .highlight-avatar-col {
+    width: 140px;
+    min-width: 140px;
+  }
 }
 
 /* Flow Viz */

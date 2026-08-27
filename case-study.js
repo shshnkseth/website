@@ -97,6 +97,11 @@ const CASES = {
     vision: "Empower every teacher and motivate every student worldwide, regardless of device access, technical literacy, or classroom constraints.",
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing in Action",
+    stickers: [
+      { icon: "🏆", label: "GESS 2024", sub: "Best Digital Product", rot: "-3deg" },
+      { icon: "✨", label: "Wayground AI", sub: "Pedagogical Scaffolding", rot: "2.5deg" },
+      { img: "qbit-avatar.png", label: "Student Qbits", sub: "+18% Session Re-joins", rot: "-2deg" }
+    ],
     quotes: {
       need: "Classroom realities varied widely: device-free schools required hybrid access, teachers demanded rapid authoring, and students needed deeper retention loops.",
       done: "Spearheaded three flagship product initiatives across Growth, AI, and Student Engagement: Paper Mode, Wayground AI, and Avatars.",
@@ -126,17 +131,17 @@ const CASES = {
       }
     ],
     projects: [
-      ["Paper Mode (Growth)", "Democratized hybrid classrooms with low-tech printable Q-cards scanned via teacher smartphone camera.", "Growth · 0→1"],
-      ["Wayground AI (AI & Content)", "Guided prompt scaffolding and edit-first review architecture reducing authoring time by 60%.", "AI Authoring"],
-      ["Avatars & Qbits (Engagement)", "Pitched at internal hackathon and scaled into the core gamified student identity system.", "Retention Engine"]
+      ["Paper Mode (Growth)", "Democratized hybrid classrooms with low-tech printable Q-cards scanned via teacher smartphone camera.", "Growth · 0→1", "wayground-paper-mode.html"],
+      ["Wayground AI (AI & Content)", "Guided prompt scaffolding and edit-first review architecture reducing authoring time by 60%.", "AI Authoring", "wayground-ai.html"],
+      ["Avatars & Qbits (Engagement)", "Pitched at internal hackathon and scaled into the core gamified student identity system.", "Retention Engine", "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-"]
     ],
     flow: ["Identify classroom barrier", "Prototype on-site with educators", "Ship with safety guardrails", "Iterate from live behavioral metrics"],
     sections: [
       ["Setting the Stage", "Wayground (formerly Quizizz) is used in over 100 countries by millions of students and teachers every month. As the sole designer across three high-impact cross-functional squads, the work spanned user research, UX/UI, rapid prototyping, classroom validation, dev handoff, and iterative optimization based on live metrics."],
       ["Three Strategic Bets", [
-        "1. Paper Mode (Growth): Bridged the digital divide for device-constrained classrooms using low-tech printable Q-cards scanned instantly via teacher smartphone camera.",
-        "2. Wayground AI (AI & Content): Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
-        "3. Avatars & Qbits (Engagement): Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
+        "1. <a href='wayground-paper-mode.html' class='inline-sub-link'>Paper Mode (Growth) →</a>: Bridged the digital divide for device-constrained classrooms using low-tech printable Q-cards scanned instantly via teacher smartphone camera.",
+        "2. <a href='wayground-ai.html' class='inline-sub-link'>Wayground AI (AI & Content) →</a>: Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
+        "3. <a href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener' class='inline-sub-link'>Avatars & Qbits (Engagement) ↗</a>: Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
       ]],
       ["Product Leadership Principles", [
         "Solve physical classroom constraints before introducing digital layers.",
@@ -151,8 +156,9 @@ const CASES = {
     ],
     highlight: [
       "0 to 1 Product Bet",
-      "Avatars: From Internal Hackathon to Core Engagement Engine",
-      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%."
+      "Avatars & Qbits: From Internal Hackathon to Core Engagement Engine",
+      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><a class='highlight-link-pill' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Read Help Center Feature Announcement ↗</a>",
+      "qbit-avatar.png"
     ],
     takeaways: [
       "Speed & Reliability over Flash: Teachers need frictionless tools with zero learning curve during live class chaos.",
@@ -641,6 +647,22 @@ function renderCaseStudy() {
     </div>
   ` : '';
 
+  const stickersBlock = d.stickers && d.stickers.length > 0 ? `
+    <div class="case-stickers-wrap">
+      <div class="case-stickers-row">
+        ${d.stickers.map(st => `
+          <div class="brand-sticker spotlight-card" style="--sticker-rot:${st.rot || '0deg'};">
+            ${st.img ? `<img src="shashank_files/${st.img}" class="sticker-img" alt="${st.label}">` : `<span class="sticker-icon">${st.icon}</span>`}
+            <div class="sticker-content">
+              <span class="sticker-label">${st.label}</span>
+              <span class="sticker-sub">${st.sub}</span>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  ` : '';
+
   const problemsBlock = d.problems && d.problems.length > 0 ? `
     <section class="problem-deep-dive">
       <div class="block-title">Key Problems & Design Solutions</div>
@@ -670,25 +692,41 @@ function renderCaseStudy() {
     <section class="project-stack">
       <div class="block-title">Initiative Architecture</div>
       <div class="project-cards-container">
-        ${d.projects.map((p, i) => `
-          <div class="project-card spotlight-card">
-            <div class="project-index">0${i + 1}</div>
-            <div class="project-info">
-              <h3>${p[0]}</h3>
-              <p>${p[1]}</p>
-            </div>
-            <span class="project-tag">${p[2]}</span>
-          </div>
-        `).join("")}
+        ${d.projects.map((p, i) => {
+          const isLinked = !!p[3];
+          const tag = isLinked ? 'a' : 'div';
+          const hrefAttr = isLinked ? `href="${p[3]}" ${p[3].startsWith('http') ? 'target="_blank" rel="noopener"' : ''}` : '';
+          return `
+            <${tag} class="project-card spotlight-card ${isLinked ? 'project-card--clickable' : ''}" ${hrefAttr}>
+              <div class="project-index">0${i + 1}</div>
+              <div class="project-info">
+                <h3>${p[0]} ${isLinked ? `<span class="project-arrow-badge">${p[3].startsWith('http') ? '↗' : '→'}</span>` : ''}</h3>
+                <p>${p[1]}</p>
+              </div>
+              <span class="project-tag">${p[2]}</span>
+            </${tag}>
+          `;
+        }).join("")}
       </div>
     </section>
   ` : '';
 
   const highlightBlock = d.highlight ? `
-    <aside class="highlight-box spotlight-card">
-      <div class="highlight-kicker">${d.highlight[0]}</div>
-      <h2>${d.highlight[1]}</h2>
-      <p>${d.highlight[2]}</p>
+    <aside class="highlight-box spotlight-card ${d.highlight[3] ? 'highlight-box--character' : ''}">
+      <div class="highlight-inner">
+        <div class="highlight-text-col">
+          <div class="highlight-kicker">${d.highlight[0]}</div>
+          <h2>${d.highlight[1]}</h2>
+          <div class="highlight-body">${d.highlight[2]}</div>
+        </div>
+        ${d.highlight[3] ? `
+          <div class="highlight-avatar-col">
+            <div class="avatar-glow-ring"></div>
+            <img src="shashank_files/${d.highlight[3]}" alt="Wayground Qbit Avatar Character" class="avatar-qbit-character">
+            <div class="avatar-pill-badge">Student Qbit ✦ 3D Engine</div>
+          </div>
+        ` : ''}
+      </div>
     </aside>
   ` : '';
 
@@ -840,6 +878,7 @@ function renderCaseStudy() {
       <img src="shashank_files/${d.logo}" alt="${d.title} logo">
     </div>
 
+    ${stickersBlock}
     ${visionBlock}
     ${quotesBlock}
     ${problemsBlock}
