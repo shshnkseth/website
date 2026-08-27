@@ -8,6 +8,7 @@
   --muted: #72706b;
   --text-dim: #a6a39b;
   --accent: #c8a96e;
+  --project: #c8a96e;
   --radius: 12px;
   --status-bg: var(--bg);
   --status-sep: #333;
@@ -37,6 +38,145 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── SHARED WRAPPER ─── */
+.wrap,
+.case-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 1.8rem 1.6rem 6rem;
+}
+
+/* ─── UNIFIED NAVIGATION BAR ─── */
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.case-nav a:hover,
+.case-nav a.active {
+  color: var(--ink);
+}
+
+.nav-brand {
+  color: var(--ink) !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-role {
+  color: var(--accent);
+  font-weight: 400;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.nav-contact-btn {
+  padding: 0.24rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--ink) !important;
+  transition: all 0.18s ease;
+}
+
+.nav-contact-btn:hover {
+  background: var(--accent) !important;
+  color: #0e0e0e !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* ─── SPOTLIGHT CARDS & MICRO-INTERACTIONS ─── */
+.spotlight-card {
+  position: relative;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%), var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── SECTION EYEBROWS ─── */
+.eyebrow,
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 2.8rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ─── UNIFIED CASE FOOTER ─── */
+.case-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 4.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  margin-bottom: 3.5rem;
+}
+
+.case-footer a {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+  font: 400 0.95rem 'DM Sans', sans-serif;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-footer a:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--rule));
+  background: var(--surface-raised);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+.case-footer small {
+  font: 500 0.58rem 'DM Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+/* ─── STATUSBAR TICKER ─── */
 .statusbar {
   position: fixed;
   bottom: 0;
@@ -78,3 +218,20 @@ body {
   to { transform: translateX(-50%); }
 }
 
+@media (max-width: 600px) {
+  .case-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .case-footer {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
