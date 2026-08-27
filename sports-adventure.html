@@ -1159,11 +1159,11 @@
           </div>
           <div class="discipline-stats">
             <div>
-              <div class="d-stat-label">Max Elevation</div>
-              <div class="d-stat-val" id="d-stat-1">11,000 ft (Suru Valley)</div>
+              <div class="d-stat-label" id="d-stat-label-1">Highest Rig</div>
+              <div class="d-stat-val" id="d-stat-1">11,000 ft · Suru Valley</div>
             </div>
             <div>
-              <div class="d-stat-label">Disciplines</div>
+              <div class="d-stat-label" id="d-stat-label-2">Disciplines</div>
               <div class="d-stat-val" id="d-stat-2">Highline, Waterline, Midline</div>
             </div>
           </div>
@@ -1577,12 +1577,12 @@
   // ─── DISCIPLINE SWITCHER CONTROLLER ───
   const disciplinesData = {
     highline: {
-      kicker: "Extreme Balance & Altitude",
+      kicker: "Mental Stillness in the Void",
       title: "Highliner & Slackliner",
-      desc: "Rigging and walking high-exposure slacklines at altitude. Walking across 11,000 ft canyons in Suru Valley (Ladakh) and waterlines in Karnataka with mental stillness under extreme void.",
+      desc: "Highlining is where fear turns into pure focus. Walking on a 1-inch piece of webbing rigged thousands of feet above the canyon floor in Suru Valley (Ladakh) forces complete mental stillness: when the ground drops away, every breath and micro-muscle twitch has to stay calm.",
       badges: ["11,000 ft Highline", "Waterline", "Midline Rigging"],
       stats: [
-        { label: "Max Elevation", value: "11,000 ft (Suru Valley)" },
+        { label: "Highest Rig", value: "11,000 ft · Suru Valley" },
         { label: "Disciplines", value: "Highline, Waterline, Midline" }
       ],
       image: "./shashank_files/gallery_opt/highline-at-11000ft.jpg",
@@ -1591,13 +1591,13 @@
       sport: "highline"
     },
     skateboard: {
-      kicker: "Transition, Bowl & Downhill",
+      kicker: "Flow, Concrete & Grassroots",
       title: "Skateboarder & Coach",
-      desc: "Transition & bowl riding, downhill longboard racing, and youth skateboarding coach with SkateSupplyIndia. Nurturing grassroots action sports and coaching next-gen skaters.",
-      badges: ["Park & Bowl", "Downhill Racing", "Coach"],
+      desc: "I learned persistence on a skateboard long before design school. From carving deep concrete bowls to racing downhill switchbacks at speed, skateboarding is an endless cycle of falling and recalibrating. Today, coaching youth with SkateSupplyIndia lets me pass that raw grit to the next generation.",
+      badges: ["Park & Transition", "Downhill Racing", "Grassroots Coach"],
       stats: [
-        { label: "Competitions", value: "Nationals 2024–25" },
-        { label: "Coaching", value: "SkateSupplyIndia" }
+        { label: "Competition", value: "National Championships" },
+        { label: "Coaching", value: "SkateSupplyIndia Team" }
       ],
       image: "./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg",
       imageAlt: "Skateboarding frontside 5-0 grind",
@@ -1605,13 +1605,13 @@
       sport: "skateboard"
     },
     mountain: {
-      kicker: "Glaciated Summits & High Altitude",
+      kicker: "Summits & Sub-Zero Ridges",
       title: "Alpine Mountaineer",
-      desc: "High-altitude glaciated ascents, technical mixed rock-and-ice climbs, and sub-zero winter summit pushes across Africa and the Himalayas.",
-      badges: ["5,895m Kilimanjaro", "5,289m Friendship Peak", "4,700m Pangarchulla"],
+      desc: "High altitude strips everything down to rhythm and endurance. Pushing through sub-zero midnight winds to stand on Uhuru Peak at 5,895m, and navigating glaciated crevasse fields on Friendship Peak taught me how to read mountain weather and respect the line between calculated risk and ambition.",
+      badges: ["Kilimanjaro 5,895m", "Friendship Peak 5,289m", "Winter Pangarchulla"],
       stats: [
-        { label: "Highest Summit", value: "5,895m (Uhuru Peak)" },
-        { label: "Routes", value: "Winter Alpine Snow & Ice" }
+        { label: "Highest Summit", value: "5,895m (Kilimanjaro)" },
+        { label: "Terrain", value: "Glaciated Ice & Winter Rock" }
       ],
       image: "./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg",
       imageAlt: "Uhuru peak summit Mt. Kilimanjaro",
@@ -1619,13 +1619,13 @@
       sport: "mountain"
     },
     enduro: {
-      kicker: "Single Tracks & Trans-Continental Trails",
+      kicker: "Unpaved Horizons & Remote Passes",
       title: "Enduro & Overland Rider",
-      desc: "Technical off-road single tracks, river crossings, mountain pass bypasses, and solo multi-thousand km overland adventure routes across Vietnam, Ladakh, and India.",
-      badges: ["3,800km Ladakh", "5,000km Vietnam Trail", "4,500km South India"],
+      desc: "Solo overland riding is the ultimate test of self-reliance. Over 15,000 km across the rugged Ho Chi Minh Trail in Vietnam, high-pass bypasses in Ladakh, and remote coastal backroads in India, riding means fixing your own bike, reading uncharted terrain, and moving forward in all conditions.",
+      badges: ["15,000+ km Logged", "Trans-Ladakh Passes", "Vietnam Ho Chi Minh Trail"],
       stats: [
-        { label: "Logged Distance", value: "15,000+ km" },
-        { label: "High Passes", value: "Fotu La, Khardung La" }
+        { label: "Total Distance", value: "15,000+ km Overland" },
+        { label: "Longest Solo Ride", value: "5,000 km (Vietnam Trail)" }
       ],
       image: "./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg",
       imageAlt: "Fotu La bypass trail in Ladakh",
@@ -1633,13 +1633,13 @@
       sport: "enduro"
     },
     freedive: {
-      kicker: "Deep Sea, Ocean Encounters & Caves",
+      kicker: "Deep Blue, Caverns & Oceanic Life",
       title: "Advanced Scuba & Freediver",
-      desc: "Exploring underwater cavern systems, swim-through rock cracks, and open-ocean drift dives with oceanic manta rays, eagle stingrays, and coral ecosystems.",
-      badges: ["30+ Deep Dives", "Cave Navigation", "Freediving"],
+      desc: "Below 30 meters, the entire world goes silent. Diving inside underwater cavern systems, squeezing through narrow rock cracks in Thailand, and drifting alongside giant oceanic manta rays in Nusa Penida gives a profound sense of humility beneath the surface of the ocean.",
+      badges: ["Advanced Deep (30m+)", "Cavern Navigation", "Oceanic Manta Drift"],
       stats: [
-        { label: "Ocean Dives", value: "30+ Logged Dives" },
-        { label: "Marine Encounters", value: "Manta Rays, Stingrays" }
+        { label: "Logged Dives", value: "30+ Deep Ocean Dives" },
+        { label: "Deepest Environments", value: "Underwater Caves & Caverns" }
       ],
       image: "./shashank_files/gallery_opt/freedive-with-manta-rays.jpg",
       imageAlt: "Freediving with manta rays in Nusa Penida",
@@ -1647,10 +1647,10 @@
       sport: "freedive"
     },
     runner: {
-      kicker: "Trails, Road Races & Endurance",
+      kicker: "Pace, Heart Rate & Trail Grit",
       title: "Endurance Runner",
-      desc: "Consistent distance training across technical mountain trails, gravel paths, and urban race-day road finishes with disciplined heart-rate pacing.",
-      badges: ["5K · 22m", "10K · 52m", "21K · 2h14m"],
+      desc: "Running is my daily cognitive reset. Whether it is grinding through technical forest single-tracks or locking into a rhythmic race-day pace on city asphalt, endurance distance training builds the stamina, breathing control, and steady mindset that carries into everything I create.",
+      badges: ["10K Road PB · 52m", "Half Marathon · 2h14m", "Trail Races"],
       stats: [
         { label: "10K Personal Best", value: "52 minutes" },
         { label: "Half Marathon PB", value: "2h 14m" }
@@ -1661,13 +1661,13 @@
       sport: "runner"
     },
     snowboard: {
-      kicker: "Powder Days & Backcountry",
+      kicker: "Powder Lines & Pir Panjal Peaks",
       title: "Snowboarder",
-      desc: "Deep powder runs and tree glades in the Pir Panjal range at Gulmarg Phase 2, chasing fresh snowfall conditions and backcountry mountain lines.",
-      badges: ["Gulmarg Phase 2", "Deep Powder", "Backcountry"],
+      desc: "Dropping into waist-deep powder at Gulmarg Phase 2 at nearly 4,000 meters is pure weightless flow. Reading snowpack stability, weaving through high-altitude pine glades, and picking lines down steep Himalayan bowls demand total presence and swift instinct.",
+      badges: ["Gulmarg Phase 2", "Deep Powder Lines", "High Alpine Flow"],
       stats: [
-        { label: "Summit Station", value: "Gulmarg (3,950m)" },
-        { label: "Terrain", value: "Phase 2 Powder Glades" }
+        { label: "Mountain Base", value: "Gulmarg (3,950m)" },
+        { label: "Conditions", value: "Phase 2 Backcountry Powder" }
       ],
       image: "./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg",
       imageAlt: "Snowboarding powder day in Gulmarg",
@@ -1675,13 +1675,13 @@
       sport: "snowboard"
     },
     equestrian: {
-      kicker: "Show Jumping & Hunter Jumpers",
+      kicker: "Show Jumping & Interspecies Trust",
       title: "Equestrian Athlete",
-      desc: "Show jumping and hunter-jumper training with national-level competition experience, developing cadence, athletic synergy, and stride timing with horses.",
-      badges: ["Show Jumping", "National Competitor", "Jump Training"],
+      desc: "Show jumping taught me partnership and non-verbal communication. Navigating a competition course at speed requires absolute synergy with a 500kg horse: sensing stride lengths, judging takeoff distances, and staying balanced over high fences with mutual confidence.",
+      badges: ["Show Jumping", "National Competitor", "Hunter Jumper"],
       stats: [
-        { label: "Focus", value: "Show Jumping" },
-        { label: "Level", value: "National Competitions" }
+        { label: "Discipline", value: "Show Jumping Courses" },
+        { label: "Competition Tier", value: "National Show Jumping" }
       ],
       image: "./shashank_files/gallery_opt/horse-jumping-earlydays.jpg",
       imageAlt: "Horse jumping training",
@@ -1701,7 +1701,9 @@
     const titleEl = document.getElementById("d-title");
     const descEl = document.getElementById("d-desc");
     const badgesEl = document.getElementById("d-badges");
+    const stat1LabelEl = document.getElementById("d-stat-label-1");
     const stat1El = document.getElementById("d-stat-1");
+    const stat2LabelEl = document.getElementById("d-stat-label-2");
     const stat2El = document.getElementById("d-stat-2");
     const imageEl = document.getElementById("d-image");
     const captionEl = document.getElementById("d-caption");
@@ -1715,7 +1717,9 @@
       badgesEl.innerHTML = data.badges.map(b => `<span class="discipline-badge">${b}</span>`).join("");
     }
 
+    if (stat1LabelEl && data.stats[0]) stat1LabelEl.textContent = data.stats[0].label;
     if (stat1El && data.stats[0]) stat1El.textContent = data.stats[0].value;
+    if (stat2LabelEl && data.stats[1]) stat2LabelEl.textContent = data.stats[1].label;
     if (stat2El && data.stats[1]) stat2El.textContent = data.stats[1].value;
 
     if (imageEl) {
