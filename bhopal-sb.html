@@ -1,512 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bhopal SB · Central India’s Skateboarding Community ✦ Shashank Seth</title>
-  <meta name="description" content="Bhopal SB is Central India's premier skateboarding community and youth sports initiative founded by Shashank Seth. Classes, events, park jams, and youth coaching.">
-  <link rel="icon" href="./shashank_files/zapp.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared.css">
-  <link rel="stylesheet" href="case-study.css">
-  <link rel="stylesheet" href="case-enhancements.css?v=9.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./shashank_files/zapp.png" />
+  <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
+  <title>Bhopal SB · Central India Skateboarding Community ✦ Shashank Seth</title>
+  <meta name="description" content="Bhopal SB is Central India’s grassroots skateboarding and action-sports community founded by Shashank Seth. Discover youth coaching, events, competitions, and custom skate builds." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./shared.css?v=9.0" />
+  <link rel="stylesheet" href="./case-study.css?v=9.0" />
+  <link rel="stylesheet" href="./case-enhancements.css?v=9.0" />
   <style>
     :root {
-      --accent: #ccff00;
-      --accent-glow: rgba(204, 255, 0, 0.18);
-      --accent-border: rgba(204, 255, 0, 0.35);
       --bg: #0e0e0e;
       --surface: #141414;
-      --surface-2: #1b1b1b;
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #f0f0f0;
-      --muted: #888888;
+      --surface2: #181818;
+      --rule: #232323;
+      --rule-light: #2e2e2e;
+      --ink: #eae6de;
+      --muted: #72706b;
+      --text-dim: #a6a39b;
+      --accent: #ccff00;
+      --project: #ccff00;
+      --radius: 12px;
+    }
+
+    html {
+      font-size: 15px;
+      background-color: var(--bg);
+      color: var(--ink);
+      scroll-behavior: smooth;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1.6;
       margin: 0;
-      padding: 0;
+      padding-bottom: 2rem;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      background-color: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .case-wrap {
-      max-width: 1040px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 0 1.5rem 5rem;
+      padding: 1.8rem 1.6rem 6rem;
+    }
+
+    /* ─── UNIFIED TOP NAVIGATION ─── */
+    .case-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .case-nav a:hover {
+      color: var(--ink);
+    }
+
+    .nav-brand {
+      color: var(--ink) !important;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .nav-role {
       color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      margin-left: 0.5rem;
+      font-weight: 400;
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
     }
 
-    /* HERO */
-    .bhopal-hero {
-      padding: 4.5rem 0 2.5rem;
-      border-bottom: 1px solid var(--border);
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
     }
 
-    .hero-eyebrow {
+    .nav-contact-btn {
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--rule-light);
+      background: var(--surface2);
+      color: var(--ink) !important;
+    }
+
+    .nav-contact-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent) !important;
+    }
+
+    /* ─── HERO BANNER ─── */
+    .sb-hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .sb-eyebrow {
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
       color: var(--accent);
       margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .hero-eyebrow .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
+    .sb-hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+      margin: 0 0 1rem;
+      color: var(--ink);
     }
 
-    .bhopal-title {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin: 0 0 1.2rem;
+    .sb-hero h1 strong {
+      font-weight: 400;
       color: #fff;
     }
 
-    .bhopal-title span {
-      color: var(--accent);
-    }
-
-    .bhopal-lede {
-      font-size: 1.15rem;
-      color: #c4c4c4;
-      max-width: 820px;
-      line-height: 1.65;
+    .sb-hero .lede {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--text-dim);
+      max-width: 720px;
+      line-height: 1.55;
       margin: 0 0 2rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      align-items: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #0e0e0e;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.84rem;
-      font-weight: 600;
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--accent-glow);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: #fff;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.84rem;
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--accent-border);
-    }
-
-    /* METRICS */
-    .metrics-grid {
+    /* ─── META STATS GRID ─── */
+    .meta-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background-color: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+    }
+
+    .meta {
+      background-color: var(--surface);
+      padding: 1.2rem 1.2rem;
+    }
+
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .meta-value {
+      font-size: 0.96rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    /* ─── FEATURED HERO IMAGE CARD ─── */
+    .hero-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-card-foot {
+      padding: 1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface2);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .hero-card-foot span {
+      color: var(--accent);
+    }
+
+    /* ─── SECTION STYLING ─── */
+    .story {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      padding: 2.8rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .story-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.35rem;
+    }
+
+    .story h2 {
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      margin: 0 0 1rem;
+      color: var(--ink);
+    }
+
+    .story p {
+      font-size: 0.98rem;
+      color: var(--text-dim);
+      margin: 0 0 1.2rem;
+      line-height: 1.65;
+    }
+
+    .story p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── PILLARS GRID ─── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--rule-light);
+      transform: translateY(-2px);
+    }
+
+    .pillar-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 0.6rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem !important;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin: 0 !important;
+    }
+
+    /* ─── PHOTO GRID ─── */
+    .sb-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 1.5rem;
     }
 
-    .metric-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .metric-card:hover {
-      border-color: var(--accent-border);
-      transform: translateY(-2px);
-    }
-
-    .metric-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .metric-label {
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* FEATURED BANNER */
-    .featured-banner {
-      margin: 3.5rem 0;
-      border-radius: 16px;
+    .sb-photo-item {
+      border-radius: var(--radius);
       overflow: hidden;
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .featured-banner img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .featured-banner-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem;
-      background: linear-gradient(180deg, transparent, rgba(14, 14, 14, 0.9) 60%);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: #eaeaea;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* STORY SECTIONS */
-    .story-block {
-      margin: 4.5rem 0;
-    }
-
-    .story-header {
-      margin-bottom: 2rem;
-    }
-
-    .story-kicker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .story-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
-      margin: 0;
-    }
-
-    .story-lead {
-      color: #b0b0b0;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-top: 0.75rem;
-    }
-
-    /* PROGRAM CARDS */
-    .programs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-
-    .program-card {
+      border: 1px solid var(--rule);
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .program-card:hover {
-      border-color: var(--accent-border);
-      transform: translateY(-2px);
-    }
-
-    .program-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-
-    .program-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #fff;
-      margin: 0 0 0.8rem;
-    }
-
-    .program-desc {
-      font-size: 0.9rem;
-      color: #aaa;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .program-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
-    }
-
-    .program-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      background: var(--surface-2);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      color: #ccc;
-    }
-
-    /* COLLABORATORS BADGE WALL */
-    .collab-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 0.9rem;
-      margin-top: 2rem;
-    }
-
-    .collab-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
-      color: #ddd;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: border-color 0.2s ease;
-    }
-
-    .collab-card:hover {
-      border-color: var(--accent-border);
-      color: var(--accent);
-    }
-
-    .collab-card .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    /* GALLERY MASONRY */
-    .gallery-masonry {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      aspect-ratio: 4 / 3;
-      display: block;
       text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      display: block;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .gallery-item:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-border);
+    .sb-photo-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
     }
 
-    .gallery-item img {
+    .sb-photo-item img {
       width: 100%;
-      height: 100%;
+      height: 190px;
       object-fit: cover;
       display: block;
-      transition: transform 0.35s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.04);
-    }
-
-    .gallery-item-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.8rem 1rem;
-      background: linear-gradient(180deg, transparent, rgba(10, 10, 10, 0.95) 60%);
+    .sb-photo-caption {
+      padding: 0.7rem 0.9rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: #eee;
-      opacity: 0.9;
-    }
-
-    /* CALLOUT BOX */
-    .callout-box {
-      background: linear-gradient(135deg, rgba(204, 255, 0, 0.06), rgba(20, 20, 20, 0.95));
-      border: 1px solid var(--accent-border);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin: 4.5rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .callout-body h3 {
-      font-size: 1.5rem;
-      color: #fff;
-      margin: 0 0 0.5rem;
-    }
-
-    .callout-body p {
-      color: #bbb;
-      margin: 0;
-      font-size: 0.95rem;
-      max-width: 620px;
-    }
-
-    /* LIGHTBOX OVERLAY */
-    .lightbox-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(12px);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .lightbox-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .lightbox-dialog {
-      max-width: 1080px;
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .lightbox-dialog img {
-      width: 100%;
-      max-height: 70vh;
-      object-fit: contain;
-      background: #080808;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      background: var(--surface2);
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .lightbox-meta {
-      padding: 1.2rem 1.5rem;
+    /* ─── CTA BANNER ─── */
+    .ext-banner {
+      margin-top: 3.5rem;
+      padding: 1.8rem 2rem;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #181818 0%, #121212 100%);
+      border: 1px solid var(--rule-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--surface-2);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(0, 0, 0, 0.7);
+    .ext-banner:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .ext-banner-title {
+      font-size: 1.25rem;
+      font-weight: 500;
       color: #fff;
-      border: 1px solid var(--border);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: background 0.2s ease;
+      margin: 0 0 0.3rem;
     }
 
-    .lightbox-close:hover {
+    .ext-banner-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .ext-banner-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: #0e0e0e;
       background: var(--accent);
-      color: #000;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    /* RESPONSIVE */
+    /* ─── FOOTER ─── */
+    .case-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .case-footer a {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .case-footer a:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .case-footer small {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
     @media (max-width: 768px) {
-      .metrics-grid {
+      .meta-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .programs-grid {
+      .story {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+      .pillars-grid {
         grid-template-columns: 1fr;
       }
-      .callout-box {
+      .sb-photos {
+        grid-template-columns: 1fr;
+      }
+      .ext-banner {
         flex-direction: column;
         align-items: flex-start;
-        padding: 1.8rem;
+        gap: 1.2rem;
       }
-      .featured-banner img {
-        height: 300px;
-      }
-      .gallery-masonry {
+      .case-footer {
         grid-template-columns: 1fr;
       }
     }
@@ -516,303 +453,165 @@
 
 <main class="case-wrap">
 
-  <!-- TOP NAVIGATION -->
+  <!-- UNIFIED TOP NAV -->
   <nav class="case-nav">
-    <a href="index.html" class="nav-brand">Shashank Seth <span class="nav-role">✦ Community & Action Sports</span></a>
+    <a href="index.html" class="nav-brand">
+      Shashank Seth <span class="nav-role">✦ Sr. Product Designer</span>
+    </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="projects.html">All Work ↗</a>
-      <a href="sports-adventure.html">Sports & Adventure ↗</a>
-      <a href="https://www.bhopalsb.in/" target="_blank" rel="noopener noreferrer" class="nav-contact-btn">bhopalsb.in ↗</a>
+      <a href="sports-adventure.html">Play ↗</a>
+      <a href="mailto:hello@shashankseth.in" class="nav-contact-btn">Contact</a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <header class="bhopal-hero">
-    <div class="hero-eyebrow">
-      <span class="dot"></span>
-      <span>Bhopal // Madhya Pradesh // India · Established 2023</span>
+  <header class="sb-hero">
+    <div class="sb-eyebrow">
+      <span>🛹 Community Initiative</span>
+      <span>·</span>
+      <span>Bhopal, Madhya Pradesh</span>
     </div>
-    <h1 class="bhopal-title">
-      Bhopal SB <span>·</span> Central India’s Action Sports Community
-    </h1>
-    <p class="bhopal-lede">
-      Bringing skateboarding, structured youth coaching, public jams, street competitions, and DIY culture to Central India. Founded and built from the ground up to empower first-time riders, support developing skaters, and nurture emerging athletes.
+    <h1><strong>Bhopal SB</strong> · Skateboarding & Action Sports in Central India</h1>
+    <p class="lede">
+      Founded from scratch to build Central India’s first skateboarding culture. A grassroots movement introducing hundreds of riders to park and street skating through accessible coaching, youth workshops, DIY obstacle builds, and street competitions.
     </p>
-
-    <div class="hero-actions">
-      <a href="https://www.bhopalsb.in/" target="_blank" rel="noopener noreferrer" class="btn-primary">
-        <span>Visit Official Website bhopalsb.in ↗</span>
-      </a>
-      <a href="https://www.instagram.com/bhopal.sb/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-        <span>Follow on Instagram @bhopal.sb ↗</span>
-      </a>
-      <a href="https://tally.so/r/J9oyMd" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-        <span>Join the Crew (Tally) ↗</span>
-      </a>
-    </div>
-
-    <!-- METRICS GRID -->
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-num">144+</div>
-        <div class="metric-label">Community Members</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">19+</div>
-        <div class="metric-label">Events & Jams Run</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">467+</div>
-        <div class="metric-label">Students Introduced</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-num">Central IN</div>
-        <div class="metric-label">Grassroots Movement</div>
-      </div>
-    </div>
   </header>
 
-  <!-- FEATURED BANNER -->
-  <div class="featured-banner spotlight-card">
-    <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Bhopal SB fire coping night session"/>
-    <div class="featured-banner-caption">
-      <span>Bhopal Skatepark · Fire Coping Night Session</span>
-      <span>Session: Ongoing // Location: Bhopal, MP</span>
+  <!-- KEY METRICS GRID -->
+  <div class="meta-grid">
+    <div class="meta">
+      <div class="meta-label">Community</div>
+      <div class="meta-value">144+ Active Riders</div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Students Coached</div>
+      <div class="meta-value">467+ Youth Introduced</div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Events & Jams</div>
+      <div class="meta-value">19+ Jams & Contests</div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Access Model</div>
+      <div class="meta-value">Free & Low-Cost Jams</div>
     </div>
   </div>
 
-  <!-- STORY SECTION 01: ORIGIN & PHILOSOPHY -->
-  <section class="story-block">
-    <div class="story-header">
-      <div class="story-kicker">01 / Foundation & Vision</div>
-      <h2 class="story-title">Built with the Scene, for the Scene</h2>
-      <p class="story-lead">
-        Skateboarding in India has traditionally thrived in coastal hubs and metropolitan centers. Central India lacked dedicated infrastructure, structured coaching, and accessible gear. Bhopal SB was created to change that reality: transforming empty concrete spaces into thriving hubs of creative movement, discipline, and community mentorship.
-      </p>
+  <!-- HERO VISUAL -->
+  <div class="hero-card spotlight-card">
+    <img src="./shashank_files/gallery_opt/bhopal-sb-opt.jpg" alt="Bhopal SB skateboarding community session" />
+    <div class="hero-card-foot">
+      <div>Bhopal Skatepark · Community Gathering & Youth Jam</div>
+      <span>EST. 2023</span>
     </div>
+  </div>
 
-    <p style="color:#a8a8a8;font-size:0.95rem;line-height:1.75;margin-bottom:1.5rem;">
-      What started with a single skateboard and a few curious kids in public parks has evolved into a registered grassroots movement. Today, Bhopal SB runs structured coaching pathways, weekend skate jams, DIY park repairs, and regional events that bring together skaters from across Madhya Pradesh, Maharashtra, and North India.
-    </p>
-  </section>
-
-  <!-- STORY SECTION 02: CORE PILLARS & PATHWAYS -->
-  <section class="story-block">
-    <div class="story-header">
-      <div class="story-kicker">02 / Programs & Initiatives</div>
-      <h2 class="story-title">How We Grow Action Sports</h2>
-      <p class="story-lead">
-        A sustainable skate community needs coaching, events, affordable hardware, and institutional partnerships.
-      </p>
-    </div>
-
-    <div class="programs-grid">
-
-      <div class="program-card spotlight-card">
-        <div>
-          <div class="program-num">01 // COACHING PATHWAY</div>
-          <h3 class="program-name">Learn to Skate Classes</h3>
-          <p class="program-desc">
-            Structured 90-minute coaching sessions tailored for first-time riders, developing skaters, and advanced transition riders. Focusing on stance mechanics, board control, park etiquette, and safe bail techniques.
-          </p>
-        </div>
-        <div class="program-tags">
-          <span class="program-tag">Beginner to Advanced</span>
-          <span class="program-tag">Safety & Form</span>
-          <span class="program-tag">From ₹500</span>
-        </div>
-      </div>
-
-      <div class="program-card spotlight-card">
-        <div>
-          <div class="program-num">02 // EVENTS & SHOWDOWNS</div>
-          <h3 class="program-name">Competitions & Jams</h3>
-          <p class="program-desc">
-            Hosting high-energy community meetups, Game of SKATE tournaments, Best Trick contests, and illuminated fire coping night sessions to give local talent a platform to showcase their progress.
-          </p>
-        </div>
-        <div class="program-tags">
-          <span class="program-tag">19+ Events Run</span>
-          <span class="program-tag">Best Trick Contests</span>
-          <span class="program-tag">Game of SKATE</span>
-        </div>
-      </div>
-
-      <div class="program-card spotlight-card">
-        <div>
-          <div class="program-num">03 // HARDWARE & CULTURE</div>
-          <h3 class="program-name">The Lab</h3>
-          <p class="program-desc">
-            Making skateboarding gear accessible in Central India. Sourcing quality decks, precision bearings, grip tape, protective gear, and community merchandise to keep local riders rolling affordably.
-          </p>
-        </div>
-        <div class="program-tags">
-          <span class="program-tag">Decks & Hardware</span>
-          <span class="program-tag">Safety Gear</span>
-          <span class="program-tag">Merch & Art</span>
-        </div>
-      </div>
-
-      <div class="program-card spotlight-card">
-        <div>
-          <div class="program-num">04 // SOCIAL IMPACT</div>
-          <h3 class="program-name">Youth Partnerships</h3>
-          <p class="program-desc">
-            Partnering with schools, youth centers, and sports organizations to democratize action sports. Breaking socio-economic barriers by providing free gear, workshops, and coaching to underprivileged youth.
-          </p>
-        </div>
-        <div class="program-tags">
-          <span class="program-tag">School Workshops</span>
-          <span class="program-tag">Community Outreach</span>
-          <span class="program-tag">Youth Mentorship</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- STORY SECTION 03: COMMUNITY ECOSYSTEM & PARTNERS -->
-  <section class="story-block">
-    <div class="story-header">
-      <div class="story-kicker">03 / Ecosystem</div>
-      <h2 class="story-title">Collaborators & Indian Skate Network</h2>
-      <p class="story-lead">
-        Communities, brands, and organizations we collaborate with, learn from, and share the national movement with.
-      </p>
-    </div>
-
-    <div class="collab-grid">
-      <div class="collab-card"><span class="badge-dot"></span> Decathlon</div>
-      <div class="collab-card"><span class="badge-dot"></span> Skate Supply India</div>
-      <div class="collab-card"><span class="badge-dot"></span> GSC Sk8 Gwalior</div>
-      <div class="collab-card"><span class="badge-dot"></span> TerraSurf</div>
-      <div class="collab-card"><span class="badge-dot"></span> Mandi Monkeys</div>
-      <div class="collab-card"><span class="badge-dot"></span> Street Fury Guwahati</div>
-      <div class="collab-card"><span class="badge-dot"></span> Poppin Deli</div>
-      <div class="collab-card"><span class="badge-dot"></span> Satyakala</div>
-      <div class="collab-card"><span class="badge-dot"></span> Janwaar Castle</div>
-      <div class="collab-card"><span class="badge-dot"></span> Kovalam Skate Club</div>
-      <div class="collab-card"><span class="badge-dot"></span> Five-O Skateboarding</div>
-      <div class="collab-card"><span class="badge-dot"></span> Indore Skateboarding</div>
-      <div class="collab-card"><span class="badge-dot"></span> Flo Skateboarding</div>
-      <div class="collab-card"><span class="badge-dot"></span> House of Gooofy</div>
-    </div>
-  </section>
-
-  <!-- STORY SECTION 04: PHOTO DISPATCH GALLERY -->
-  <section class="story-block">
-    <div class="story-header">
-      <div class="story-kicker">04 / Field Logs</div>
-      <h2 class="story-title">Action & Community Dispatches</h2>
-      <p class="story-lead">
-        Click any frame to inspect high-resolution action photos, bowl sessions, and community moments.
-      </p>
-    </div>
-
-    <div class="gallery-masonry">
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/bhopal-sb-opt.jpg" data-full="./shashank_files/gallery_opt/bhopal-sb-opt.jpg" data-caption="Bhopal SB · Community Meetup & Youth Coaching">
-        <img src="./shashank_files/gallery_opt/bhopal-sb-opt.jpg" alt="Bhopal SB community meetup"/>
-        <span class="gallery-item-caption">Bhopal SB · Community Meetup</span>
-      </a>
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-full="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-caption="Bhopal Skatepark · Doubles Session on Fire Coping">
-        <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Bhopal skatepark doubles session on fire coping"/>
-        <span class="gallery-item-caption">Skatepark · Fire Coping Doubles</span>
-      </a>
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-full="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-caption="Bhopal SB · Bowl Transfer & Grab">
-        <img src="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" alt="Skateboarder bowl air transfer"/>
-        <span class="gallery-item-caption">Bhopal SB · Bowl Air Grab</span>
-      </a>
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-full="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-caption="Night Park Session · Fire Coping Slash Grind">
-        <img src="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" alt="Night park session fire coping slash grind"/>
-        <span class="gallery-item-caption">Night Session · Fire Slash Grind</span>
-      </a>
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/skateboard-bowl-frontside-carve.jpg" data-full="./shashank_files/gallery_opt/skateboard-bowl-frontside-carve.jpg" data-caption="Bhopal SB · Deep Bowl Frontside Carve">
-        <img src="./shashank_files/gallery_opt/skateboard-bowl-frontside-carve.jpg" alt="Deep bowl frontside carve"/>
-        <span class="gallery-item-caption">Bhopal SB · Deep Bowl Carve</span>
-      </a>
-
-      <a class="gallery-item spotlight-card gallery-trigger" href="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-full="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-caption="Regional Jam · Frontside 5-0 Grind">
-        <img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Regional jam frontside 5-0 grind"/>
-        <span class="gallery-item-caption">Regional Jam · Frontside 5-0</span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- CALLOUT CONNECT BOX -->
-  <div class="callout-box spotlight-card">
-    <div class="callout-body">
-      <h3>Ready to skate, collaborate, or partner?</h3>
+  <!-- SECTION 1: THE ORIGIN & MISSION -->
+  <section class="story">
+    <div class="story-label">01 / Mission</div>
+    <div>
+      <h2>Skate · Create · Compete · Belong</h2>
       <p>
-        Visit the official Bhopal SB platform to register for upcoming weekend classes, book coaching sessions, check event schedules, or partner with Central India’s action sports scene.
+        Skateboarding in Central India was practically non-existent with zero dedicated infrastructure or community support. Bhopal SB started with a simple belief: if the scene does not exist in your hometown, you build it yourself.
+      </p>
+      <p>
+        From teaching first-time riders how to balance on their boards to hosting high-energy night jams and competing at national skateboarding championships, Bhopal SB turns empty asphalt and public parks into inclusive hubs for self-expression and grit.
       </p>
     </div>
-    <div style="flex-shrink:0;">
-      <a href="https://www.bhopalsb.in/" target="_blank" rel="noopener noreferrer" class="btn-primary">
-        <span>Explore bhopalsb.in ↗</span>
-      </a>
-    </div>
-  </div>
+  </section>
 
-  <!-- CASE FOOTER -->
+  <!-- SECTION 2: CORE PILLARS -->
+  <section class="story">
+    <div class="story-label">02 / Pillars</div>
+    <div>
+      <h2>What We Build & Run</h2>
+      <div class="pillars-grid">
+        
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-kicker">Coaching & Safety</div>
+          <div class="pillar-title">Youth Pathways & Clinics</div>
+          <p class="pillar-desc">Structured 90-minute coaching sessions focused on stance, board control, drop-ins, and safety gear. Accessible to young kids and beginners starting at zero.</p>
+        </div>
+
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-kicker">Culture & Street Jams</div>
+          <div class="pillar-title">Events & Competitions</div>
+          <p class="pillar-desc">Over 19 street jams, bowl contests, and fire coping night sessions uniting skaters from Bhopal, Gwalior, Indore, and across Central India.</p>
+        </div>
+
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-kicker">Makerspace & Hardware</div>
+          <div class="pillar-title">The Lab & Custom Builds</div>
+          <p class="pillar-desc">Designing custom maple decks, fabricating portable grind rails, DIY ledges, and providing shared loaner skateboards for kids who cannot afford their own.</p>
+        </div>
+
+        <div class="pillar-card spotlight-card">
+          <div class="pillar-kicker">Nationwide Scene</div>
+          <div class="pillar-title">Ecosystem Collaborations</div>
+          <p class="pillar-desc">Partnered with grassroots leaders across India including Decathlon, Skate Supply India, GSC Sk8 Gwalior, Janwaar Castle, and Kovalam Skate Club.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FIELD ACTION DISPATCHES -->
+  <section class="story">
+    <div class="story-label">03 / Gallery</div>
+    <div>
+      <h2>Community Field Logs</h2>
+      <p>A glimpse into the energy, sessions, and milestones powering Bhopal SB.</p>
+
+      <div class="sb-photos">
+        
+        <div class="sb-photo-item spotlight-card">
+          <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Bhopal SB fire coping night session" />
+          <span class="sb-photo-caption">Night Session · Fire Coping Jam</span>
+        </div>
+
+        <div class="sb-photo-item spotlight-card">
+          <img src="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" alt="Skater catching air in the bowl" />
+          <span class="sb-photo-caption">Bowl Jam · Transfer & Air Grab</span>
+        </div>
+
+        <div class="sb-photo-item spotlight-card">
+          <img src="./shashank_files/gallery_opt/63rd-national-skateboarding-championship.jpg" alt="63rd National Skateboarding Championship" />
+          <span class="sb-photo-caption">National Championship · Representation</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: EXTERNAL LINK CALLOUT -->
+  <a class="ext-banner spotlight-card" href="https://www.bhopalsb.in/" target="_blank" rel="noopener noreferrer">
+    <div>
+      <div class="ext-banner-title">Explore the Official BhopalSB Website</div>
+      <p class="ext-banner-desc">Check upcoming coaching schedules, event archives, crew profiles, and community merch on bhopalsb.in</p>
+    </div>
+    <span class="ext-banner-btn">Visit bhopalsb.in ↗</span>
+  </a>
+
+  <!-- UNIFIED FOOTER -->
   <footer class="case-footer">
-    <a href="index.html" class="spotlight-card">
+    <a href="index.html">
       <small>Portfolio Home</small>
-      Back to main overview →
+      ← Return to Main Page
     </a>
-    <a href="sports-adventure.html" class="spotlight-card">
-      <small>Extreme Sports</small>
-      Sports & Adventure Gallery →
+    <a href="sports-adventure.html">
+      <small>Sports & Adventure</small>
+      Explore 9 Active Disciplines →
+    </a>
+    <a href="https://www.instagram.com/bhopal.sb/" target="_blank" rel="noopener noreferrer">
+      <small>Instagram</small>
+      Follow @bhopal.sb ↗
     </a>
   </footer>
 
 </main>
 
-<!-- LIGHTBOX OVERLAY -->
-<div class="lightbox-overlay" id="lightbox">
-  <div class="lightbox-dialog">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">✕</button>
-    <img id="lightbox-img" src="" alt="Full view"/>
-    <div class="lightbox-meta">
-      <span id="lightbox-caption">Caption</span>
-      <span style="color:var(--accent);">Bhopal SB Archive</span>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Simple Lightbox
-  const triggers = document.querySelectorAll(".gallery-trigger");
-  const lightbox = document.getElementById("lightbox");
-  const lbImg = document.getElementById("lightbox-img");
-  const lbCaption = document.getElementById("lightbox-caption");
-  const lbClose = document.getElementById("lightbox-close");
-
-  triggers.forEach(trigger => {
-    trigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      const fullSrc = trigger.getAttribute("data-full");
-      const caption = trigger.getAttribute("data-caption");
-      lbImg.src = fullSrc;
-      lbCaption.textContent = caption;
-      lightbox.classList.add("active");
-    });
-  });
-
-  lbClose.addEventListener("click", () => lightbox.classList.remove("active"));
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.classList.remove("active");
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") lightbox.classList.remove("active");
-  });
-</script>
-
+<script src="./case-enhancements.js?v=9.0"></script>
 </body>
 </html>
