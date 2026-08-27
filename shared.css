@@ -14,6 +14,12 @@
   --status-sep: #333;
 }
 
+body[data-page="sports"],
+.sports-page {
+  --accent: #ccff00 !important;
+  --project: #ccff00 !important;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

@@ -7,11 +7,13 @@
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
   <title>Sports & Adventure ✦ Shashank Seth</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./shared.css?v=5.0" />
-  <link rel="stylesheet" href="./case-study.css?v=5.0" />
-  <link rel="stylesheet" href="./case-enhancements.css?v=5.0" />
+  <link rel="stylesheet" href="./shared.css?v=6.0" />
+  <link rel="stylesheet" href="./case-study.css?v=6.0" />
+  <link rel="stylesheet" href="./case-enhancements.css?v=6.0" />
   <style>
-    :root {
+    :root,
+    html,
+    body {
       --bg: #0e0e0e;
       --surface: #141414;
       --surface-raised: #181818;
@@ -20,8 +22,8 @@
       --ink: #eae6de;
       --muted: #72706b;
       --text-dim: #a6a39b;
-      --accent: #10f06a;
-      --project: #10f06a;
+      --accent: #ccff00 !important;
+      --project: #ccff00 !important;
       --radius: 12px;
       --status-bg: var(--bg);
       --status-sep: #333;
@@ -818,14 +820,53 @@
         grid-template-columns: 1fr 1fr;
         gap: 0.6rem;
       }
-      .case-footer {
-        grid-template-columns: 1fr;
-        gap: 0.9rem;
-      }
+    /* ─── FLUORESCENT NEON VOLT GREEN THEME OVERRIDES ─── */
+    .nav-role,
+    .eyebrow,
+    .story-label,
+    .sport-btn,
+    .expedition-link-btn,
+    .expedition-tag,
+    .quote-author,
+    .social-banner span {
+      color: #ccff00 !important;
+    }
+
+    .gallery-filter-btn.active {
+      background: #ccff00 !important;
+      color: #0e0e0e !important;
+      border-color: #ccff00 !important;
+      box-shadow: 0 0 18px rgba(204, 255, 0, 0.45) !important;
+    }
+
+    .gallery-filter-btn:hover {
+      border-color: #ccff00 !important;
+      color: #fff !important;
+    }
+
+    .nav-contact-btn {
+      background: rgba(204, 255, 0, 0.12) !important;
+      border: 1px solid rgba(204, 255, 0, 0.35) !important;
+    }
+
+    .nav-contact-btn:hover {
+      background: #ccff00 !important;
+      color: #0e0e0e !important;
+      border-color: #ccff00 !important;
+      box-shadow: 0 0 16px rgba(204, 255, 0, 0.5) !important;
+    }
+
+    .spotlight-card:hover {
+      border-color: rgba(204, 255, 0, 0.45) !important;
+      box-shadow: 0 12px 32px rgba(204, 255, 0, 0.08) !important;
+    }
+
+    .case-footer a:hover {
+      border-color: rgba(204, 255, 0, 0.5) !important;
     }
   </style>
 </head>
-<body>
+<body class="sports-page" data-page="sports">
 
 <main class="case-wrap">
 
@@ -1433,6 +1474,6 @@
     });
   });
 </script>
-<script src="./case-enhancements.js?v=5.0"></script>
+<script src="./case-enhancements.js?v=6.0"></script>
 </body>
 </html>
