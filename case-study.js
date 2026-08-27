@@ -15,7 +15,7 @@ nvidia:{
     ["Context","GeForce Experience supported driver updates, graphics tuning, and game capture across millions of active rigs, but accumulated feature density created navigational friction. In parallel, a separate initiative explored neural-network audio processing for real-time streaming."],
     ["Strategic Execution","Led UX research, interaction architecture, and iterative prototyping across literature reviews, telemetry analysis, and technical user evaluations. Partnered closely with AI and GPU engineering to translate complex model parameters into responsive, zero-latency desktop controls."],
     ["Core Solutions",[
-      "Architected a modular desktop layout unifying driver installations, game optimization profiles, and in-game overlay workflows.",
+      "Redesigned the classic NVIDIA Control Panel with a modern desktop user interface, preserving expert-level depth, granular controls, and functionality through rigorous user research and testing.",
       "Co-designed RTX Voice, establishing intuitive audio routing, live noise-suppression visualizers, and lightweight background processing controls."
     ]],
     ["Outcome","Delivered a streamlined control-panel architecture that retained deep technical customization while dramatically reducing interaction friction. RTX Voice launched to critical acclaim and was integrated into NVIDIA Broadcast."]

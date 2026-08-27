@@ -1,15 +1,15 @@
 const EXTRA={
 nvidia:{
-  need:"GPU software was fragmented across disparate legacy utilities, while emerging neural-network audio intelligence lacked a consumer-grade desktop interface.",
-  done:"Architected a unified GeForce control structure and directed the interaction model for RTX Voice background noise cancellation.",
-  impact:"Streamlined core gaming and streaming workflows, launching RTX Voice into the flagship NVIDIA Broadcast suite.",
+  need:"The legacy NVIDIA Control Panel relied on an aging UI that needed a modern desktop experience without losing granular technical depth, while emerging neural-network audio intelligence lacked a consumer-grade interface.",
+  done:"Redesigned the classic NVIDIA Control Panel with a modern UI backed by extensive user research and testing, and directed the interaction model for RTX Voice background noise cancellation.",
+  impact:"Modernized mission-critical GPU controls while preserving full functional depth, and launched RTX Voice into the flagship NVIDIA Broadcast suite.",
   projects:[
-    ["GeForce Experience","Unified driver updates, performance presets, and screen capture.","Platform"],
+    ["NVIDIA Control Panel","Modern desktop interface maintaining expert-level depth and technical control.","Desktop UI"],
     ["RTX Voice","AI-powered noise removal for broadcast and recording.","AI Audio"]
   ],
-  flow:["Audit legacy workflows","Map high-risk use cases","Prototype core interactions","Align UX with AI engineering"],
+  flow:["Audit legacy workflows","User research & usability testing","Prototype core interactions","Align UX with AI engineering"],
   media:[
-    ["nvidia-1.webp","GeForce desktop redesign exploration"],
+    ["nvidia-1.webp","NVIDIA Control Panel redesign exploration"],
     ["nvidia-2.png","RTX Voice interface and controls"]
   ]
 },
