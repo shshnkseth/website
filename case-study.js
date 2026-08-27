@@ -1,11 +1,228 @@
 const CASES={
-nvidia:{title:'NVIDIA · Native GPU Tools',eyebrow:'Hardware tools · AI audio',lede:'Improving complex GPU software for gaming and enterprise users—and helping shape an AI-powered noise removal tool.',role:'Software Design Intern',time:'7 months',year:'2019–20',team:'GeForce UX',color:'#76b900',logo:'logo-nvidia.png',cover:'nvidia.jpg',source:'https://app.notion.com/p/6db7982a0a7147c8ae17a289f5c90dad',sections:[['Context','Modernising native applications without compromising the reliability expected from software that directly controls hardware. The work covered NVIDIA Control Panel, the GeForce ecosystem and RTX Voice.'],['My role','I researched, designed and prototyped improved experiences, working through literature reviews, competitive analysis and user interviews. Three rounds of low- and high-fidelity concepts helped build alignment across UX and software stakeholders.'],['Design direction',['Bring the legacy control panel into a coherent modern framework.','Define new use cases around the strengths of native GPU software.','Reduce risk in hardware–software interactions and carry successful patterns across the GeForce ecosystem.']],['Outcome','A revised control-panel experience retained the product’s functionality while making its structure and interactions easier to use. A second brief explored an AI tool that removes background noise from recordings and live inputs.',null,'nda']],nda:true},
-quizizz:{title:'Quizizz · Designed for Every Learner',eyebrow:'EdTech · AI · Growth',lede:'Three product bets—Paper Mode, Quizizz AI and Avatars—designed to expand access, speed up authoring and deepen student engagement.',role:'Product Designer',time:'17 months',year:'2022–24',team:'Growth · AI · Engagement',color:'#8b5cf6',logo:'logo-quizizz.png',cover:'quizizz.jpg',source:'https://app.notion.com/p/1e922b7dfdd2800abc13f5a4263de2f0',sections:[['Setting the stage','Used in 100+ countries by millions of teachers and students every month, Quizizz required design decisions that worked across classroom contexts. I was the sole designer across three initiatives and owned research, UX/UI, prototyping, validation, handoff and iteration.'],['Three connected bets',['Paper Mode brought automated grading to classrooms without 1:1 student devices.','Quizizz AI turned generated content into an editable draft so teachers stayed in control.','Avatars created a playful identity and reward layer for students.']],['Design principles',['Meet teachers inside their existing workflow instead of forcing behaviour change.','Make AI legible, editable and trustworthy.','Keep playful features lightweight enough for low-end school devices.']],['Impact','The work opened new classroom segments, reduced content-creation friction and strengthened repeat engagement.',[['3,000+','new classrooms adopted Paper Mode'],['60%','less average quiz-creation time'],['18%','increase in student session re-joins']]]]},
-'quizizz-ai':{title:'Quizizz AI · Assisted Authoring',eyebrow:'AI · 0→1 · EdTech',lede:'Helping US teachers generate standards-aligned quizzes quickly—without sacrificing control, accuracy or cost efficiency.',role:'Product Designer',time:'Discovery → launch',year:'2023–24',team:'AI & Content',color:'#8b5cf6',logo:'logo-quizizz.png',cover:'quizizz.jpg',source:'https://app.notion.com/p/21022b7dfdd280ea9d76cb13af92c13c',sections:[['Problem','Teachers were short on time, needed state-aligned material, wanted verifiable sources and were wary of hallucinated AI content. A blank prompt box also produced poor requests and unnecessary model cost.'],['Research','Interviews with 12 US teachers across grades 3–10 revealed a preference for guided choices—subject, grade, topic and standards—over prompt writing. More than 20 teachers participated in usability tests.'],['What we designed',['Prompt scaffolding and presets that let teachers guide more and prompt less.','Curriculum selectors that mapped subject, grade, topic and state standards into prompt logic.','Sources, verified badges, pre-generation controls and “regenerate with edits” to build trust and reduce waste.']],['Outcome','The guided experience made generated material more useful on the first attempt and helped establish AI as a freemium acquisition hook.',[['3–4×','increase in generation adoption'],['38%','lower cost per generation'],['87%','said content felt on-curriculum']]]]},
-'paper-mode':{title:'Quizizz · Paper Mode',eyebrow:'Hybrid classrooms · Accessibility',lede:'A paper-based response system that keeps the live feedback and automated reporting of a digital quiz.',role:'Lead UX Designer',time:'Research → rollout',year:'2023',team:'Growth',color:'#f59e0b',logo:'logo-quizizz.png',cover:'quizizz.jpg',source:'https://app.notion.com/p/21022b7dfdd280258834c1e3b4077ca4',sections:[['Problem','Classrooms across Asia, the UK and Australia often lacked 1:1 devices. Teachers relied on paper assessment, then spent time grading and manually reconnecting results to digital workflows.'],['The concept','Reusable Q-cards let students answer A, B, C or D by rotating a printed card. A teacher projects questions, scans the room with one mobile device and sees responses sync instantly to leaderboards and reports.'],['Iteration in the field',['Improved print previews and skipped unsupported question types.','Added crop lines, rotation guidance and live scanning feedback.','Made recognition resilient to skew, folds, dim light and budget printers.','Added class assignment tools for reusable named cards.']],['Outcome','Pilots in real classrooms validated a hybrid experience that required only the teacher to have a device while students kept the motivation of instant feedback.',[['94%+','scan success rate'],['<10%','errors in poor conditions'],['2 months','to adoption by thousands of teachers']]]]},
-getmega:{title:'GetMega · Trust, Clarity & Scale',eyebrow:'Gaming · Fintech · Systems',lede:'Redesigning the trust layer of a real-money gaming platform across onboarding, learning, identity, wallets and rewards.',role:'Product Designer',time:'12 months',year:'2021–22',team:'Core Product',color:'#ef4444',logo:'logo-getmega.png',cover:'getmega.jpg',source:'https://app.notion.com/p/1e922b7dfdd280798debe190039ce181',sections:[['Context','Users dropped during onboarding and wallet setup, struggled to understand play and withdrawals, and encountered inconsistent UI across devices. Regional-language accessibility and fraud prevention added system-level constraints.'],['A scalable foundation','I created responsive components, game-aware colour tokens, reusable wallet and KYC patterns, a shared grid and interaction conventions. The system gave design and engineering one vocabulary for shipping.'],['Designing confidence',['A learning system explained games and withdrawals before users risked money.','Wallet, KYC and rewards flows made money states and rules explicit.','Security controls addressed fraudulent money movement without punishing legitimate users.']],['Impact','The system improved delivery speed while redesigned learning and reward loops strengthened confidence, engagement and retention.',[['25%','less design handoff time'],['60%+','increase in daily task engagement'],['₹5 Cr+','rewards disbursed in two months']]]]},
-flytbase:{title:'FlytBase · Remote Drone Operations',eyebrow:'B2B SaaS · Drones · Automation',lede:'Designing FlytWare, a scalable inventory-counting workflow integrated with warehouse management systems.',role:'Product Design Intern',time:'Summer internship',year:'2019',team:'FlytBase Labs',color:'#22c55e',logo:'logo-flytbase.png',cover:'flytbase.jpg',source:'https://app.notion.com/p/792df82e385e4ed38c8d645364d69679',sections:[['Problem','Warehouses spend thousands of hours counting inventory—an expensive, slow and error-prone process that becomes impractical when counts are frequent.'],['Contribution','I designed the interaction model for FlytWare and studied improvements to the existing ground-control solution. The process included RTAP and heuristic evaluation, competitive analysis, UML diagrams, testing, wireframing and prototyping.'],['Solution','FlytWare combines intelligent software with off-the-shelf drone hardware to automate inventory counts in warehouses, distribution centres and large retail environments.'],['Reflection','The project taught me to lead cross-functional conversations, make ambiguity legible to different audiences and design responsibly in a technical domain I had never encountered before.',null,'nda']],nda:true},
-toast:{title:'Summer (Toast) · Restaurant Ecosystem',eyebrow:'POS · Hospitality · Multi-device',lede:'A connected product spanning restaurant operations, kitchen workflows and a contactless customer experience.',role:'Product Designer',time:'V1 + V2',year:'2019–21',team:'Freelance',color:'#fb7185',logo:'logo-toast.png',cover:'toast.jpg',source:'https://app.notion.com/p/99146be810764dcf803cb9097adf6c95',sections:[['Context','Existing restaurant systems were either too complex for local teams or too limited for growing businesses. I shadowed staff in Hyderabad to understand order, kitchen, billing and inventory pressure during real service.'],['One connected system',['A POS for dine-in, takeaway and delivery orders with table and kitchen sync.','Inventory and recipe management with automatic stock updates and alerts.','Role-focused views, flexible billing, reporting and offline operation.','A customer app for discovery, QR ordering, group orders, bill splitting and payment.']],['Design principles',['Speed first: common actions in fewer than three taps.','Minimal training through clear labels and task-shaped interfaces.','Resilience through tactile feedback and offline sync.']],['Outcome','The redesign shortened training and service cycles while improving inventory accuracy and opportunities to upsell.',[['<30 min','new-staff onboarding'],['22%','faster table turnover'],['40%','fewer out-of-stock incidents']]]]},
-earnnest:{title:'Earnnest · Alternative Investing',eyebrow:'Fintech · 0→1 · Consumer',lede:'Building an investment brand and product from zero—making real-estate-backed debt feel understandable, credible and mobile-first.',role:'Solo Product Designer',time:'3 months',year:'2025',team:'Founding team',color:'#10b981',logo:'logo-earnnest.png',cover:'earnnest.jpg',source:'https://app.notion.com/p/61a4325049914f339e07e95718769fc3',sections:[['The backstory','There was no brand, interface or user base—only a vision for making secured real-estate debt accessible beyond institutions. I owned identity, marketing site, web app and mobile experience end to end.'],['Research insight','Ten-plus interviews across investor profiles, a competitive audit and workshops with legal and compliance made one priority clear: trust mattered more than returns. Users responded to plain explanations backed by real assets, not category jargon.'],['What I designed',['A calm identity and voice that felt like a credible wealth manager.','A marketing journey from curious to confident to ready to invest.','Deal discovery, five-minute KYC, a four-step investment flow and a live portfolio dashboard.']],['Impact','Clarity and progress cues reduced friction across the funnel, while the complete cross-platform experience launched a new category to market.',[['8,000+','MAU within six weeks'],['32%','increase in lead conversion'],['38%','less KYC abandonment']]]]},
+nvidia:{
+  title:"NVIDIA · Native GPU Tools",
+  eyebrow:"Hardware Tools · AI Audio",
+  lede:"Modernizing mission-critical GPU software for gamers and creators, and architecting the interaction model for AI-powered noise removal.",
+  role:"Software Design Intern",
+  time:"7 months",
+  year:"2019–20",
+  team:"GeForce UX",
+  color:"#76b900",
+  logo:"logo-nvidia.png",
+  cover:"nvidia.jpg",
+  source:"https://app.notion.com/p/3c7f3b5fb3754297800072a3e0f98be1",
+  sections:[
+    ["Context","GeForce Experience supported driver updates, graphics tuning, and game capture across millions of active rigs, but accumulated feature density created navigational friction. In parallel, a separate initiative explored neural-network audio processing for real-time streaming."],
+    ["Strategic Execution","Led UX research, interaction architecture, and iterative prototyping across literature reviews, telemetry analysis, and technical user evaluations. Partnered closely with AI and GPU engineering to translate complex model parameters into responsive, zero-latency desktop controls."],
+    ["Core Solutions",[
+      "Architected a modular desktop layout unifying driver installations, game optimization profiles, and in-game overlay workflows.",
+      "Co-designed RTX Voice, establishing intuitive audio routing, live noise-suppression visualizers, and lightweight background processing controls."
+    ]],
+    ["Outcome","Delivered a streamlined control-panel architecture that retained deep technical customization while dramatically reducing interaction friction. RTX Voice launched to critical acclaim and was integrated into NVIDIA Broadcast."]
+  ]
+},
+quizizz:{
+  title:"Quizizz · Designed for Every Learner",
+  eyebrow:"EdTech · AI · Growth",
+  lede:"Three strategic product initiatives: Paper Mode, Quizizz AI, and Avatars, architected to expand classroom access, accelerate teacher authoring, and deepen student engagement.",
+  role:"Product Designer (Growth & Core)",
+  time:"17 months",
+  year:"2022–24",
+  team:"Growth · AI · Engagement",
+  color:"#8b5cf6",
+  logo:"logo-quizizz.png",
+  cover:"quizizz.jpg",
+  source:"https://app.notion.com/p/0e922b7dfdd280fa9da4c0f82df978c4",
+  sections:[
+    ["Strategic Scope","Directed product design across three high-impact growth bets, driving user research, product strategy, interaction models, validation, and design systems for millions of global educators and students."],
+    ["Three Strategic Bets",[
+      "Paper Mode: Democratized hybrid classrooms by turning printed cards into instant digital scorecards using a single teacher device.",
+      "Quizizz AI: Accelerated quiz creation with structured prompt scaffolds, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
+      "Avatars: Drove student engagement and retention through customizable, classroom-safe identity systems."
+    ]],
+    ["Product Leadership Principles",[
+      "Solve physical classroom constraints before introducing digital layers.",
+      "Keep AI legible, editable, and trustworthy for educators.",
+      "Treat student delight and agency as core retention drivers."
+    ]],
+    ["Measurable Impact","Delivered substantial growth across acquisition, authoring velocity, and classroom participation.",[
+      ["3,000+","classrooms adopted Paper Mode"],
+      ["60%","reduction in quiz-creation time"],
+      ["18%","increase in student session re-joins"]
+    ]]
+  ]
+},
+"quizizz-ai":{
+  title:"Quizizz AI · Assisted Authoring",
+  eyebrow:"AI · 0→1 · EdTech",
+  lede:"Empowering teachers to generate standards-aligned classroom content in seconds, maintaining educator control, pedagogical accuracy, and high cost efficiency.",
+  role:"Product Designer (AI & Core)",
+  time:"Discovery → launch",
+  year:"2023–24",
+  team:"AI & Content",
+  color:"#8b5cf6",
+  logo:"logo-quizizz.png",
+  cover:"quizizz.jpg",
+  source:"https://app.notion.com/p/21022b7dfdd280ea9d76cb13af92c13c",
+  sections:[
+    ["The Core Challenge","Teachers operated under severe time constraints, required state-aligned curriculum standards, and demanded verifiable sources. They held strong skepticism toward hallucinated, generic AI outputs, while blank prompt fields produced low-quality generations and costly API retries."],
+    ["Research & Insights","Field research with US educators across grades 3 to 10 identified a definitive workflow pattern: teachers strongly favored structured pedagogical parameters (subject, grade, topic, standard) over unstructured prompt writing. Over 20 educators participated in iterative usability testing."],
+    ["Product Architecture",[
+      "Designed prompt scaffolding presets enabling teachers to parameterize content without open prompt engineering.",
+      "Built curriculum selectors mapping subject, grade, topic, and state standards directly into prompt logic.",
+      "Implemented verifiable source citations, trust badges, pre-generation token controls, and edit-first regeneration flows."
+    ]],
+    ["Measurable Impact","The guided workflow elevated first-pass generation utility, reduced inference costs, and established AI as a primary freemium acquisition hook.",[
+      ["3–4×","increase in generation adoption"],
+      ["38%","lower API cost per generation"],
+      ["87%","reported content felt on-curriculum"]
+    ]]
+  ]
+},
+"paper-mode":{
+  title:"Quizizz · Paper Mode",
+  eyebrow:"0→1 · Hardware-Light · Offline-First",
+  lede:"Bridging the digital divide with low-tech classroom response cards scanned instantly through a single teacher smartphone.",
+  role:"Lead UX Designer",
+  time:"Research → rollout",
+  year:"2023",
+  team:"Growth",
+  color:"#f59e0b",
+  logo:"logo-quizizz.png",
+  cover:"quizizz.jpg",
+  source:"https://app.notion.com/p/11022b7dfdd2805988e0dc038ec1eb31",
+  sections:[
+    ["The Core Challenge","Over 70% of global classrooms operate in device-constrained environments. Educators relied heavily on printed paper assessments and lost hours manually grading and entering marks into digital systems."],
+    ["Design Strategy","Architected an offline-first hybrid workflow: students hold orientation-encoded paper Q-cards (A/B/C/D), while the teacher smartphone camera batches and grades responses in real time using computer vision."],
+    ["System Solutions",[
+      "Printable QR-coded student response sheets engineered for durability and fold resilience.",
+      "Camera vision scanning UX optimized for fast batch detection across uneven classroom lighting and angles.",
+      "Instant score aggregation and live classroom leaderboard sync."
+    ]],
+    ["Measurable Impact","Live classroom pilots proved that meaningful digital interactivity does not require 1:1 hardware, unlocking adoption in previously unreachable markets.",[
+      ["3,000+","pilot classrooms adopted Paper Mode"],
+      ["12M+","questions scanned during rollout"],
+      ["<2 sec","average full-class scan time"]
+    ]]
+  ]
+},
+getmega:{
+  title:"GetMega · Trust, Clarity & Scale",
+  eyebrow:"Gaming · Fintech · Systems",
+  lede:"Architecting the trust and transaction layers of a real-money gaming platform across onboarding, identity verification, wallet flows, and retention loops.",
+  role:"Product Designer & Design Systems",
+  time:"12 months",
+  year:"2021–22",
+  team:"Core Product",
+  color:"#ef4444",
+  logo:"logo-getmega.png",
+  cover:"getmega.jpg",
+  source:"https://app.notion.com/p/1e922b7dfdd280798debe190039ce181",
+  sections:[
+    ["The Core Challenge","Funnel drop-offs during onboarding and wallet setup, ambiguous gameplay rules, and cross-device interface inconsistencies caused significant user friction. Regional-language barriers and fraud vulnerabilities introduced critical business constraints."],
+    ["Scalable Design Foundation","Architected a comprehensive design system featuring responsive component architecture, game-aware token systems, standardized KYC patterns, and unified transaction state machines across platforms."],
+    ["Trust & Gameplay Architecture",[
+      "Interactive guided game tutorials and simulated practice rounds prior to real-money commitment.",
+      "Tiered KYC and transparent wallet state communication preventing user confusion.",
+      "Engineered fraud mitigation patterns without penalizing verified players.",
+      "Spearheaded end-to-end UX for GetMega Fantasy as the platform flagship game."
+    ]],
+    ["Measurable Impact","Unified design standards accelerated engineering delivery velocity while transparent trust flows drove decisive conversion and retention gains.",[
+      ["25%","less design handoff time"],
+      ["60%+","increase in daily task engagement"],
+      ["₹5 Cr+","rewards disbursed in two months"]
+    ]]
+  ]
+},
+flytbase:{
+  title:"FlytBase · Remote Drone Operations",
+  eyebrow:"B2B SaaS · Drones · Automation",
+  lede:"Designing FlytWare, an enterprise inventory automation system pairing autonomous drone operations with warehouse management systems.",
+  role:"Product Design Intern",
+  time:"Summer internship",
+  year:"2019",
+  team:"FlytBase Labs",
+  color:"#22c55e",
+  logo:"logo-flytbase.png",
+  cover:"flytbase.jpg",
+  source:"https://app.notion.com/p/792df82e385e4ed38c8d645364d69679",
+  sections:[
+    ["The Core Challenge","Manual warehouse inventory counting consumes thousands of labor hours annually: an expensive, slow, and error-prone operational bottleneck that becomes impractical under frequent audit schedules."],
+    ["Operational Architecture","Directed the interaction architecture for FlytWare and elevated ground-control mission planning. Conducted heuristic evaluations, task flow mapping, UML system modeling, and live warehouse user testing to align complex flight parameters with operator workflows."],
+    ["System Solution","FlytWare combines intelligent software orchestration with off-the-shelf drone hardware to automate aerial barcoding, visual inspection, and real-time WMS reconciliation in distribution centers."],
+    ["Product Leadership Takeaway","Established cross-functional alignment between robotics engineers, enterprise stakeholders, and warehouse operators, transforming high-risk automation into intuitive, mission-critical operational tools.",null,"nda"]
+  ],
+  nda:true
+},
+toast:{
+  title:"Summer (Toast) · Restaurant Ecosystem",
+  eyebrow:"POS · Hospitality · Multi-Device",
+  lede:"Architecting an integrated hospitality ecosystem spanning high-speed restaurant POS operations, kitchen coordination, and contactless consumer ordering.",
+  role:"Product Designer",
+  time:"V1 + V2",
+  year:"2019–21",
+  team:"Freelance",
+  color:"#fb7185",
+  logo:"logo-toast.png",
+  cover:"toast.jpg",
+  source:"https://app.notion.com/p/99146be810764dcf803cb9097adf6c95",
+  sections:[
+    ["The Core Challenge","Legacy restaurant systems were either prohibitively complex for fast-turnover staff or too fragmented for multi-location operators. On-site field research in high-volume kitchens uncovered intense cognitive load, peak-hour bottlenecks, and stock reconciliation breakdowns."],
+    ["Unified Platform Architecture",[
+      "High-velocity POS for table management, kitchen ticket routing, and split billing.",
+      "Automated inventory and recipe tracking with real-time stock deductions and low-stock triggers.",
+      "Resilient role-based views and offline-first operational failovers for network drops.",
+      "Consumer web and mobile app for table-side QR ordering, group bills, and instant contactless checkout."
+    ]],
+    ["Product Leadership Principles",[
+      "Speed under pressure: critical service actions in fewer than three taps.",
+      "Minimal onboarding ramp through task-oriented interface layouts.",
+      "Operational resilience with tactile feedback and offline sync reliability."
+    ]],
+    ["Measurable Impact","Streamlined workflows dramatically reduced new staff training time while accelerating table turnaround and inventory precision.",[
+      ["<30 min","new-staff onboarding"],
+      ["22%","faster table turnover"],
+      ["40%","fewer out-of-stock incidents"]
+    ]]
+  ]
+},
+earnnest:{
+  title:"Earnnest · Alternative Investing",
+  eyebrow:"Fintech · 0→1 · Consumer",
+  lede:"Building a category-defining investment platform from 0 to 1, transforming asset-backed private credit into a transparent, credible, and mobile-first experience.",
+  role:"Solo Product Designer",
+  time:"3 months",
+  year:"2025",
+  team:"Founding team",
+  color:"#10b981",
+  logo:"logo-earnnest.png",
+  cover:"earnnest.jpg",
+  source:"https://app.notion.com/p/61a4325049914f339e07e95718769fc3",
+  sections:[
+    ["The Core Challenge","High-yield secured debt had historically been restricted to institutional investors. Launching to retail and HNI investors required establishing instant institutional credibility without overwhelming users with complex financial jargon."],
+    ["Strategic Discovery & Positioning","Conducted investor discovery interviews, competitor benchmarking, and cross-functional workshops with compliance and legal teams. Key strategic decision: anchor the product narrative on asset transparency and downside protection over speculative yields."],
+    ["Product & Brand Architecture",[
+      "Engineered a trusted visual identity and editorial voice reflecting institutional rigor.",
+      "Designed a friction-free conversion funnel: education-led discovery, five-minute automated KYC, and a four-step investment commitment.",
+      "Built a real-time portfolio dashboard delivering transparent yield tracking and asset health metrics."
+    ]],
+    ["Measurable Impact","Clear structural hierarchy and proactive transparency eliminated funnel drop-off, establishing rapid product-market validation.",[
+      ["8,000+","MAU within six weeks"],
+      ["32%","increase in lead conversion"],
+      ["38%","less KYC abandonment"]
+    ]]
+  ]
+}
 };
-const key=document.body.dataset.project,d=CASES[key];document.documentElement.style.setProperty('--project',d.color);document.title=`${d.title} ✦ Shashank Seth`;const sections=d.sections.map((s,i)=>{let body=Array.isArray(s[1])?`<ul>${s[1].map(x=>`<li>${x}</li>`).join('')}</ul>`:`<p>${s[1]}</p>`;if(s[2])body+=`<div class="metrics">${s[2].map(m=>`<div class="metric"><strong>${m[0]}</strong><span>${m[1]}</span></div>`).join('')}</div>`;if(s[3]==='nda')body+=`<div class="nda">Some details remain private under NDA. Get in touch for an appropriate walkthrough.</div>`;return `<section class="story"><div class="story-label">0${i+1} / ${s[0]}</div><div><h2>${s[0]}</h2>${body}</div></section>`}).join('');document.querySelector('#case').innerHTML=`<header class="hero"><div class="eyebrow">${d.eyebrow}</div><h1>${d.title}</h1><p class="lede">${d.lede}</p></header><div class="meta-grid"><div class="meta"><div class="meta-label">Role</div><div class="meta-value">${d.role}</div></div><div class="meta"><div class="meta-label">Timeline</div><div class="meta-value">${d.time}</div></div><div class="meta"><div class="meta-label">Year</div><div class="meta-value">${d.year}</div></div><div class="meta"><div class="meta-label">Team</div><div class="meta-value">${d.team}</div></div></div><div class="cover"><img src="shashank_files/${d.logo}" alt="${d.title} logo"></div>${sections}<div class="source">Adapted from the original <a href="${d.source}" target="_blank" rel="noopener">Notion case study ↗</a></div>`;
+const key=document.body.dataset.project,d=CASES[key];
+if(d){
+  document.documentElement.style.setProperty("--project",d.color);
+  document.title=`${d.title} ✦ Shashank Seth`;
+  const sections=d.sections.map((s,i)=>{
+    let body=Array.isArray(s[1])?`<ul>${s[1].map(x=>`<li>${x}</li>`).join("")}</ul>`:`<p>${s[1]}</p>`;
+    if(s[2])body+=`<div class="metrics">${s[2].map(m=>`<div class="metric"><strong>${m[0]}</strong><span>${m[1]}</span></div>`).join("")}</div>`;
+    if(s[3]==="nda")body+=`<div class="nda">Some details remain private under NDA. Get in touch for an in-depth walkthrough.</div>`;
+    return `<section class="story"><div class="story-label">0${i+1} / ${s[0]}</div><div><h2>${s[0]}</h2>${body}</div></section>`;
+  }).join("");
+  document.querySelector("#case").innerHTML=`<header class="hero"><div class="eyebrow">${d.eyebrow}</div><h1>${d.title}</h1><p class="lede">${d.lede}</p></header><div class="meta-grid"><div class="meta"><div class="meta-label">Role</div><div class="meta-value">${d.role}</div></div><div class="meta"><div class="meta-label">Timeline</div><div class="meta-value">${d.time}</div></div><div class="meta"><div class="meta-label">Year</div><div class="meta-value">${d.year}</div></div><div class="meta"><div class="meta-label">Team</div><div class="meta-value">${d.team}</div></div></div><div class="cover"><img src="shashank_files/${d.logo}" alt="${d.title} logo"></div>${sections}<div class="source">Adapted from the original <a href="${d.source}" target="_blank" rel="noopener">Notion case study ↗</a></div>`;
+}
