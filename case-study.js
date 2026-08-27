@@ -342,7 +342,7 @@ const CASES = {
     role: "Product Designer (Concept & Incubation)",
     time: "Hackathon & Roadmap Direction (2023)",
     year: "2023",
-    team: "Hackathon Squad (Product, Engineering, Illustration)",
+    team: "Hackathon Squad",
     color: "#ec4899",
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
