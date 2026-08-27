@@ -638,6 +638,42 @@
   border-top: 1px solid var(--rule);
 }
 
+/* Inline Story Figures (Blog Style) */
+.story-inline-figure {
+  margin: 1.6rem 0 1.2rem;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.story-inline-img-wrap {
+  width: 100%;
+  max-height: 480px;
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.story-inline-img-wrap img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  display: block;
+}
+
+.story-inline-figure figcaption {
+  font: 400 0.62rem 'DM Mono', monospace;
+  color: var(--muted);
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+}
+
 /* Product Leadership Takeaways Box */
 .takeaways-section {
   padding: 1.8rem 2rem;

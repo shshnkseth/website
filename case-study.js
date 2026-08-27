@@ -701,9 +701,25 @@ function renderCaseStudy() {
 
   const sectionsHtml = d.sections.map((s, i) => {
     let body = Array.isArray(s[1]) ? `<ul>${s[1].map(x => `<li>${x}</li>`).join("")}</ul>` : `<p>${s[1]}</p>`;
+    
+    // Inject flow visualization on second story section
     if (i === 1 && flowBlock) {
       body += flowBlock;
     }
+
+    // Embed inline section image (blog style) if available for this step
+    if (d.media && d.media[i]) {
+      const imgData = d.media[i];
+      body += `
+        <figure class="story-inline-figure spotlight-card">
+          <div class="story-inline-img-wrap">
+            <img src="shashank_files/case-studies/${imgData[0]}" alt="${imgData[1]}" loading="lazy" onerror="this.src='shashank_files/${imgData[0]}'">
+          </div>
+          <figcaption>${imgData[1]}</figcaption>
+        </figure>
+      `;
+    }
+
     if (s[2]) {
       body += `<div class="metrics">${s[2].map(m => `<div class="metric"><strong class="kinetic-number" data-target="${m[0]}">${m[0]}</strong><span>${m[1]}</span></div>`).join("")}</div>`;
     }
