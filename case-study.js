@@ -163,7 +163,7 @@ const CASES = {
     highlight: [
       "0 to 1 Product Bet",
       "Avatars & Qbits: From Internal Hackathon to Core Engagement Engine",
-      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='wayground-qbits.html'>View Full Qbits Case Study →</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Avatar Shop Live ↗</a></div>",
+      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and defined the initial roadmap direction. Customisable avatars, XP milestones, and unlockable items elevated participation into identity, establishing the foundation for Wayground's live student engagement engine.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Now ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='wayground-qbits.html'>View Incubation Story →</a></div>",
       "qbit-skater.png"
     ],
     takeaways: [
@@ -336,87 +336,86 @@ const CASES = {
   },
 
   qbits: {
-    title: "Qbits · Customizable Student Avatars & Engagement",
-    eyebrow: "EdTech · Gamification · Retention · 0→1",
-    lede: "Enhancing student retention and intrinsic motivation on Wayground through gender-neutral customizable avatars, a virtual coin economy, and consistent effort reward loops.",
-    role: "Product Designer & Engagement Lead",
-    time: "4 months (Nov 2023 – Feb 2024)",
-    year: "2023–24",
-    team: "Engagement Squad (1 PM, 1 Designer, 2 Comms Designers, 1 EM, 3 Engineers)",
+    title: "Qbits · Concept Incubation & Student Identity",
+    eyebrow: "0→1 Concept · Hackathon Winner · Product Direction",
+    lede: "Incubating the avatar concept from a 48-hour hackathon win into the strategic product roadmap for Wayground, proving that student self-expression and effort-based reward loops could transform long-term platform engagement.",
+    role: "Product Designer (Concept & Incubation)",
+    time: "Hackathon & Roadmap Direction (2023)",
+    year: "2023",
+    team: "Hackathon Squad (Product, Engineering, Illustration)",
     color: "#ec4899",
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
     source: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-",
-    vision: "Transform transient gamification into lasting emotional investment by rewarding consistent practice, self-expression, and student agency.",
+    vision: "Prove that digital identity, personalization, and effort-based reward loops can transform transient quiz excitement into sustained learner agency.",
     stickers: [
       { img: "qbit-skater.png", label: "Skater Qbit", sub: "Modular 3D Identity", rot: "-2.5deg", href: "wayground.html" },
       { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2deg", href: "https://wayground.com/join/avatar-shop" },
       { icon: "🛍️", label: "The Shop", sub: "Common, Rare, Legendary Gear", rot: "-1.5deg", href: "https://wayground.com/join/avatar-shop" },
-      { icon: "📈", label: "2X Return Rate", sub: "65% Shop Visit Rate", rot: "3deg", href: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" }
+      { icon: "🏆", label: "Hackathon Winner", sub: "0→1 Incubation to Roadmap", rot: "3deg", href: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" }
     ],
     quotes: {
-      need: "Students lacked long-term emotional connection to the platform once live quiz sessions ended, with drop-offs occurring because only immediate speed was rewarded rather than consistent learning effort.",
-      done: "Conducted 5-week research with US middle schoolers, conceptualized the modular gender-neutral Qbit structure, and built the end-to-end virtual currency streak rewards and closet Shop.",
-      impact: "65% of active quiz players visited the Shop, weekly return visits doubled (2X), and average student accuracy increased from 75% to 82%."
+      need: "While Quizizz drove great in-game excitement, students lacked a persistent sense of self or reasons to return once a live game ended.",
+      done: "Pitched the avatar concept, built the 48-hour working MVP prototype, and defined the initial roadmap direction for modular characters, virtual streak currency, and the customization shop.",
+      impact: "Won 1st place in the internal hackathon, validating high student resonance and establishing the product foundations that the team scaled into the live Qbits feature."
     },
     problems: [
       {
         num: "01",
         title: "Short-Term Novelty Drop-Off",
-        problem: "While live quizzes were fun, students had zero personal investment once the game ended, leading to steep retention drop-offs between homework sessions.",
-        solution: "Engineered a persistent digital identity (Qbits) that students own, personalize, and carry across all classroom games and solo practice sessions.",
-        metric: "2X Weekly Retention"
+        problem: "Traditional quizzes provided momentary bursts of fun, but students lacked reasons to feel personally invested once the score screen disappeared.",
+        solution: "Pitched and prototyped a persistent digital student identity (Qbits) that learners customize and carry across all classroom games.",
+        metric: "0→1 Concept Validated"
       },
       {
         num: "02",
-        title: "Speed-Biased Rewards Demotivating Slower Learners",
-        problem: "Existing game mechanics only rewarded rapid answer speeds, penalizing thoughtful learners and neglecting effort or consistency.",
-        solution: "Introduced daily streak coin multipliers and effort-based reward loops where consistency earns exclusive accessories.",
-        metric: "+7% Accuracy Boost"
+        title: "Speed-Only Rewards Demotivating Thoughtful Learners",
+        problem: "Prior game mechanics prioritized fast finger tapping over deliberate learning and consistency.",
+        solution: "Designed the initial framework for effort-based streak coins and milestone unlocks that reward participation over pure speed.",
+        metric: "Roadmap Direction Defined"
       },
       {
         num: "03",
-        title: "Designing Inclusive, Relatable Characters for Kids",
-        problem: "Students rejected generic caricatures or heavily gendered tropes; avatars needed to be cool, expressive, and globally relatable.",
-        solution: "Designed a modular, gender-neutral base character with layered streetwear, hats, scarves, and accessories categorized by rarity (Common, Rare, Legendary).",
-        metric: "75% Day-1 Adoption"
+        title: "Establishing a Modular, Inclusive Foundation",
+        problem: "Student avatars needed to avoid gender stereotypes and cultural bias while rendering smoothly on school Chromebooks.",
+        solution: "Established the vision for a modular, gender-neutral character chassis with layered accessories and streetwear.",
+        metric: "Hackathon 1st Place"
       }
     ],
     projects: [
-      ["Qbit Character Engine", "Modular, gender-neutral avatar builder with hundreds of layered outfit permutations.", "Identity Engine", "https://wayground.com/join/avatar-shop"],
-      ["The Qbit Shop", "Immersive dark UI personal closet where students browse, try on, and unlock rare gear with earned coins.", "Virtual Economy", "https://wayground.com/join/avatar-shop"],
-      ["Streak & Effort Currency", "Algorithmically scaling coin rewards tied to daily study streaks and mastery accuracy.", "Retention Systems", "https://wayground.com/join/avatar-shop"]
+      ["Hackathon MVP & Prototype", "48-hour working avatar generator and lobby test validating student enthusiasm.", "0→1 Prototype", "https://wayground.com/join/avatar-shop"],
+      ["Concept Architecture & Roadmap", "Strategic proposal defining modular character layering, virtual coins, and shop progression.", "Product Direction", "https://wayground.com/join/avatar-shop"],
+      ["Live Scaled Experience", "The full ecosystem expanded by the squad into daily streaks, wardrobe shops, and global classrooms.", "Scaled Product", "https://wayground.com/join/avatar-shop"]
     ],
-    flow: ["Complete daily quiz", "Earn effort & streak coins", "Visit the Qbit Shop", "Equip rare gear & flex in live game"],
+    flow: ["Identify engagement drop-off", "Pitch at hackathon", "Build 48h working prototype", "Define strategic roadmap"],
     sections: [
-      ["The Engagement Gap", "While Quizizz was highly effective at delivering in-class gamification during live games, we identified a critical disconnect: students lacked reasons to return on their own or feel personally connected beyond a single session. Effort and consistency weren't visibly rewarded—only rapid speed mattered, which caused novelty to fade."],
-      ["Research with US Middle Schoolers", "Conducted a 5-week research program with 8 U.S. middle schoolers combining user interviews, diary studies, and co-creation sessions. Key insight: students are deeply motivated by self-representation, rarity, and rewards earned through consistent participation over time, but disengage quickly when systems reward speed over learning."],
-      ["The Solution: Qbit Identity & Virtual Economy", [
-        "1. Modular Gender-Neutral Identity: Collaborated closely with illustration and engineering to build a relatable, inclusive character format that works across low-end Chromebooks.",
-        "2. Effort-Based Coin Rewards: Introduced daily streaks and variable performance coins to incentivize regular learning routines without speed anxiety.",
-        "3. The Qbit Shop: Built an immersive dark-mode closet interface where students spend earned currency on Common, Rare, and Legendary outfits.",
-        "4. In-Game Visibility: Featured customized Qbits on live leaderboards, waiting lobbies, and podium win states to spark social delight."
+      ["The Hackathon Spark", "During a company hackathon, our goal was to address a fundamental question: how do we transform transient quiz gamification into lasting emotional investment? The existing product rewarded immediate speed over consistent effort, causing student retention to drop off between live classroom games."],
+      ["0→1 Concept Prototyping", "We pitched the concept of persistent digital student avatars and built a 48-hour interactive prototype featuring customizable gear, streak rewards, and in-game lobby presence. Testing with initial student groups revealed overwhelming excitement, winning 1st place in the hackathon and securing leadership greenlight."],
+      ["Roadmap & Design Foundation", [
+        "1. Modular Character Direction: Outlined the gender-neutral, inclusive base character format that could scale with seasonal accessories.",
+        "2. Effort-Based Motivation: Proposed virtual currency loops tied to consistency and practice streaks rather than speed anxiety.",
+        "3. The Shop & Closet: Architected the initial framework for unlocking Common, Rare, and Legendary gear with earned coins.",
+        "4. Squad Handoff: Transitioned the concept and strategic direction to the dedicated product and illustration squads who scaled Qbits globally."
       ]],
-      ["Measurable Business & Pedagogical Impact", "Qbits transformed student perception from a utilitarian test tool into a beloved digital space, delivering transformative retention and learning improvements.", [
-        ["65%", "of active students visited the Shop"],
-        ["2X", "increase in weekly active student returns"],
-        ["75→82%", "average student quiz accuracy improvement"],
-        ["+18%", "lift in live session re-joins"]
+      ["From Pitch to Global Feature", "The initial incubation proved that student agency drives retention. The feature was subsequently developed and launched globally across Wayground, delivering remarkable classroom engagement.", [
+        ["1st Place", "Internal Hackathon Winner"],
+        ["0→1 Greenlight", "Concept to roadmap transition"],
+        ["Live Feature", "Scaled globally on Wayground"]
       ]]
     ],
     highlight: [
-      "Student Agency",
-      "Why 'Qbits' Became a Classroom Phenomenon",
-      "We named the character to embody the brand spirit—curious, bold, and quirky, subtly hinting at being 'a bit of Quizizz'. Within weeks of rollout, student adoption soared to 75%, organic student fan art flooded social channels, and teachers reported significant enthusiasm during morning warm-up quizzes.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Avatar Shop Live ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Help Center Article ↗</a></div>",
+      "From Hackathon to Product Pillar",
+      "Why Early Concept Prototyping Matters",
+      "Building a tangible 48-hour working prototype proved that student agency and self-expression weren't just cosmetic flourishes—they were fundamental engagement mechanics. This initial incubation laid the groundwork for what is now the core Qbits experience.<br><br><div class='highlight-cta-group'><a class='highlight-link-pill' href='https://wayground.com/join/avatar-shop' target='_blank' rel='noopener'>Try Now ↗</a><a class='highlight-link-pill highlight-link-pill--secondary' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Help Center Article ↗</a></div>",
       "qbit-skater.png"
     ],
     takeaways: [
-      "Reward Effort, Not Just Speed: Gamification that prioritizes accuracy and consistency creates sustainable intrinsic motivation.",
-      "Agency Fuels Retention: When learners have ownership over their digital identity, they return proactively without teacher prompting.",
-      "Inclusive by Design: Gender-neutral, modular avatar foundations maximize global student resonance across diverse cultures."
+      "Prove with Prototypes: A working 48-hour prototype communicates value far faster than static slides or wireframes.",
+      "Agency Drives Engagement: Giving learners ownership over their digital identity shifts motivation from extrinsic to intrinsic.",
+      "Planting the Seed: Setting strong conceptual foundations allows cross-functional squads to scale ideas into global products."
     ],
     media: [
-      ["qbit-skater.png", "Customizable Skater Qbit student avatar character with layered streetwear and skateboard accessories"],
+      ["qbit-skater.png", "Skater Qbit avatar concept with modular streetwear, helmet, and skateboard accessories"],
       ["quizizz-2.gif", "In-game avatar customization and real-time live match integration"]
     ]
   },
