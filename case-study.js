@@ -581,6 +581,11 @@ const CASES = {
   }
 };
 
+// Aliases for wayground URLs
+CASES.wayground = CASES.quizizz;
+CASES["wayground-ai"] = CASES["quizizz-ai"];
+CASES["wayground-paper-mode"] = CASES["paper-mode"];
+
 // Render function executed immediately or on ready
 function renderCaseStudy() {
   const key = document.body.dataset.project;
