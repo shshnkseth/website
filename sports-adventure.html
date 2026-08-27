@@ -857,12 +857,221 @@
     }
 
     .spotlight-card:hover {
-      border-color: rgba(204, 255, 0, 0.45) !important;
-      box-shadow: 0 12px 32px rgba(204, 255, 0, 0.08) !important;
+    /* ─── INTERACTIVE DISCIPLINE SWITCHER & STAGE ─── */
+    .discipline-tabs {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
     }
 
-    .case-footer a:hover {
-      border-color: rgba(204, 255, 0, 0.5) !important;
+    .discipline-tab {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 0.35rem 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .discipline-tab:hover {
+      border-color: #ccff00;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .discipline-tab.active {
+      background: #ccff00 !important;
+      color: #0e0e0e !important;
+      border-color: #ccff00 !important;
+      box-shadow: 0 0 16px rgba(204, 255, 0, 0.4) !important;
+      font-weight: 600;
+    }
+
+    .discipline-stage {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 2.2rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .discipline-stage:hover {
+      border-color: rgba(204, 255, 0, 0.45);
+      box-shadow: 0 12px 32px rgba(204, 255, 0, 0.08);
+    }
+
+    .discipline-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      min-width: 0;
+    }
+
+    .discipline-kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ccff00 !important;
+    }
+
+    .discipline-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .discipline-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .discipline-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .discipline-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--rule);
+      padding: 0.18rem 0.52rem;
+      border-radius: 999px;
+    }
+
+    .discipline-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin: 0.3rem 0;
+    }
+
+    .d-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .d-stat-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 0.2rem;
+    }
+
+    .discipline-cta-btn {
+      align-self: flex-start;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0e0e0e;
+      background: #ccff00;
+      border: 1px solid #ccff00;
+      padding: 0.42rem 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 0 16px rgba(204, 255, 0, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .discipline-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(204, 255, 0, 0.6);
+    }
+
+    .discipline-visual {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      background: #000;
+      cursor: pointer;
+    }
+
+    .discipline-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+    }
+
+    .discipline-visual:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+
+    .discipline-visual-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.6rem 0.85rem;
+      background: linear-gradient(0deg, rgba(8,8,8,0.92) 0%, transparent 100%);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #eae6de;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .discipline-visual-badge {
+      color: #ccff00;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .discipline-stage {
+        grid-template-columns: 1fr;
+        padding: 1.4rem;
+        gap: 1.4rem;
+      }
     }
   </style>
 </head>
@@ -908,158 +1117,57 @@
     </div>
   </div>
 
-  <!-- SECTION 1: DISCIPLINES -->
+  <!-- SECTION 1: DISCIPLINES (CINEMATIC STAGE) -->
   <section class="story">
     <div class="story-label">01 / Disciplines</div>
     <div>
       <h2>Active Sports & Disciplines</h2>
-      <p class="section-desc">Pursuing physical mastery across extreme balance, gravity, water, and endurance environments.</p>
+      <p class="section-desc">Select a discipline to inspect technical notes, milestones, and high-resolution photo dispatches.</p>
 
-      <div class="sport-cards-grid">
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🛹</div>
-              <div>
-                <div class="sport-title">Skateboarder</div>
-                <div class="sport-desc">Transition & bowl riding, downhill longboard racing, and youth skateboarding coach with SkateSupplyIndia.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">Park & Bowl</span>
-              <span class="sport-badge">Downhill</span>
-              <span class="sport-badge">Coach</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="skateboard">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🪢</div>
-              <div>
-                <div class="sport-title">Highliner & Slackliner</div>
-                <div class="sport-desc">Rigging and walking high-exposure slacklines at altitude (up to 11,000 ft in Suru Valley, Ladakh & Ekole Valley).</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">Highline 11,000ft</span>
-              <span class="sport-badge">Waterline</span>
-              <span class="sport-badge">Midline</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="highline">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🏔</div>
-              <div>
-                <div class="sport-title">Alpine Mountaineer</div>
-                <div class="sport-desc">High-altitude glaciated ascents, technical mixed climbs, and winter summit pushes in Africa and the Himalayas.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">5,895m Summit</span>
-              <span class="sport-badge">Winter Alpine</span>
-              <span class="sport-badge">High Altitude</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="mountain">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🏍</div>
-              <div>
-                <div class="sport-title">Enduro Rider</div>
-                <div class="sport-desc">Technical off-road single tracks, river crossings, mountain passes, and solo multi-thousand km overland routes.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">Custom Builds</span>
-              <span class="sport-badge">Trans-Himalaya</span>
-              <span class="sport-badge">Ho Chi Minh Trail</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="enduro">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🤿</div>
-              <div>
-                <div class="sport-title">Advanced Scuba & Freediver</div>
-                <div class="sport-desc">Underwater caves, rock cracks, and open-ocean encounters with manta rays, reef sharks, and eagle stingrays.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">30+ Dives</span>
-              <span class="sport-badge">Cave Pass</span>
-              <span class="sport-badge">Freediving</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="freedive">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🏃</div>
-              <div>
-                <div class="sport-title">Endurance Runner</div>
-                <div class="sport-desc">Trail runs, city road races, and endurance distance training with consistent pacing.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">5K · 22m</span>
-              <span class="sport-badge">10K · 52m</span>
-              <span class="sport-badge">21K · 2h14m</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="runner">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🏂</div>
-              <div>
-                <div class="sport-title">Snowboarder</div>
-                <div class="sport-desc">Powder days and tree runs in the Pir Panjal range (Gulmarg Phase 2).</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">Gulmarg Phase 2</span>
-              <span class="sport-badge">Powder</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="snowboard">View Gallery →</button>
-        </div>
-
-        <div class="sport-card spotlight-card">
-          <div>
-            <div class="sport-card-top">
-              <div class="sport-icon">🐎</div>
-              <div>
-                <div class="sport-title">Equestrian Athlete</div>
-                <div class="sport-desc">Show jumping and hunter-jumper training with national-level competition experience.</div>
-              </div>
-            </div>
-            <div class="sport-badges">
-              <span class="sport-badge">Show Jumping</span>
-              <span class="sport-badge">Nationals</span>
-            </div>
-          </div>
-          <button class="sport-btn" type="button" data-open-sport="equestrian">View Gallery →</button>
-        </div>
-
+      <!-- DISCIPLINE SELECTOR TABS -->
+      <div class="discipline-tabs" id="discipline-tabs">
+        <button class="discipline-tab active" data-sport-tab="highline">🪢 Highline</button>
+        <button class="discipline-tab" data-sport-tab="skateboard">🛹 Skateboarding</button>
+        <button class="discipline-tab" data-sport-tab="mountain">🏔 Mountaineering</button>
+        <button class="discipline-tab" data-sport-tab="enduro">🏍 Enduro</button>
+        <button class="discipline-tab" data-sport-tab="freedive">🤿 Scuba & Freedive</button>
+        <button class="discipline-tab" data-sport-tab="runner">🏃 Running</button>
+        <button class="discipline-tab" data-sport-tab="snowboard">🏂 Snowboarding</button>
+        <button class="discipline-tab" data-sport-tab="equestrian">🐎 Equestrian</button>
       </div>
+
+      <!-- CINEMATIC STAGE CARD -->
+      <div class="discipline-stage spotlight-card" id="discipline-stage">
+        <div class="discipline-content">
+          <div class="discipline-kicker" id="d-kicker">High Exposure & Tension</div>
+          <h3 class="discipline-title" id="d-title">Highliner & Slackliner</h3>
+          <p class="discipline-desc" id="d-desc">Rigging and walking high-exposure slacklines at altitude. Walking across 11,000 ft canyons in Suru Valley (Ladakh) and waterlines in Karnataka with mental stillness under extreme void.</p>
+          <div class="discipline-badges" id="d-badges">
+            <span class="discipline-badge">11,000 ft Highline</span>
+            <span class="discipline-badge">Waterline</span>
+            <span class="discipline-badge">Midline Rigging</span>
+          </div>
+          <div class="discipline-stats">
+            <div>
+              <div class="d-stat-label">Max Elevation</div>
+              <div class="d-stat-val" id="d-stat-1">11,000 ft (Suru Valley)</div>
+            </div>
+            <div>
+              <div class="d-stat-label">Disciplines</div>
+              <div class="d-stat-val" id="d-stat-2">Highline, Waterline, Midline</div>
+            </div>
+          </div>
+          <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Photos →</button>
+        </div>
+        <div class="discipline-visual" id="d-visual-container">
+          <img id="d-image" src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 ft in Suru Valley"/>
+          <div class="discipline-visual-caption">
+            <span id="d-caption">Highline · Suru Valley, Ladakh (11,000 ft)</span>
+            <span class="discipline-visual-badge">View HD ↗</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1455,6 +1563,183 @@
     if (event.key === "ArrowRight") stepOverlay(1);
     if (event.key === "ArrowLeft") stepOverlay(-1);
   });
+
+  // ─── DISCIPLINE SWITCHER CONTROLLER ───
+  const disciplinesData = {
+    highline: {
+      kicker: "Extreme Balance & Altitude",
+      title: "Highliner & Slackliner",
+      desc: "Rigging and walking high-exposure slacklines at altitude. Walking across 11,000 ft canyons in Suru Valley (Ladakh) and waterlines in Karnataka with mental stillness under extreme void.",
+      badges: ["11,000 ft Highline", "Waterline", "Midline Rigging"],
+      stats: [
+        { label: "Max Elevation", value: "11,000 ft (Suru Valley)" },
+        { label: "Disciplines", value: "Highline, Waterline, Midline" }
+      ],
+      image: "./shashank_files/gallery_opt/highline-at-11000ft.jpg",
+      imageAlt: "Highline at 11000 ft in Suru Valley",
+      caption: "Highline · Suru Valley, Ladakh (11,000 ft)",
+      sport: "highline"
+    },
+    skateboard: {
+      kicker: "Transition, Bowl & Downhill",
+      title: "Skateboarder & Coach",
+      desc: "Transition & bowl riding, downhill longboard racing, and youth skateboarding coach with SkateSupplyIndia. Nurturing grassroots action sports and coaching next-gen skaters.",
+      badges: ["Park & Bowl", "Downhill Racing", "Coach"],
+      stats: [
+        { label: "Competitions", value: "Nationals 2024–25" },
+        { label: "Coaching", value: "SkateSupplyIndia" }
+      ],
+      image: "./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg",
+      imageAlt: "Skateboarding frontside 5-0 grind",
+      caption: "Skateboarding · Frontside 5-0 Grind",
+      sport: "skateboard"
+    },
+    mountain: {
+      kicker: "Glaciated Summits & High Altitude",
+      title: "Alpine Mountaineer",
+      desc: "High-altitude glaciated ascents, technical mixed rock-and-ice climbs, and sub-zero winter summit pushes across Africa and the Himalayas.",
+      badges: ["5,895m Kilimanjaro", "5,289m Friendship Peak", "4,700m Pangarchulla"],
+      stats: [
+        { label: "Highest Summit", value: "5,895m (Uhuru Peak)" },
+        { label: "Routes", value: "Winter Alpine Snow & Ice" }
+      ],
+      image: "./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg",
+      imageAlt: "Uhuru peak summit Mt. Kilimanjaro",
+      caption: "Mt. Kilimanjaro · 5,895m Summit",
+      sport: "mountain"
+    },
+    enduro: {
+      kicker: "Single Tracks & Trans-Continental Trails",
+      title: "Enduro & Overland Rider",
+      desc: "Technical off-road single tracks, river crossings, mountain pass bypasses, and solo multi-thousand km overland adventure routes across Vietnam, Ladakh, and India.",
+      badges: ["3,800km Ladakh", "5,000km Vietnam Trail", "4,500km South India"],
+      stats: [
+        { label: "Logged Distance", value: "15,000+ km" },
+        { label: "High Passes", value: "Fotu La, Khardung La" }
+      ],
+      image: "./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg",
+      imageAlt: "Fotu La bypass trail in Ladakh",
+      caption: "Enduro · Fotu La Bypass, Ladakh",
+      sport: "enduro"
+    },
+    freedive: {
+      kicker: "Deep Sea, Ocean Encounters & Caves",
+      title: "Advanced Scuba & Freediver",
+      desc: "Exploring underwater cavern systems, swim-through rock cracks, and open-ocean drift dives with oceanic manta rays, eagle stingrays, and coral ecosystems.",
+      badges: ["30+ Deep Dives", "Cave Navigation", "Freediving"],
+      stats: [
+        { label: "Ocean Dives", value: "30+ Logged Dives" },
+        { label: "Marine Encounters", value: "Manta Rays, Stingrays" }
+      ],
+      image: "./shashank_files/gallery_opt/freedive-with-manta-rays.jpg",
+      imageAlt: "Freediving with manta rays in Nusa Penida",
+      caption: "Freediving · Nusa Penida, Indonesia",
+      sport: "freedive"
+    },
+    runner: {
+      kicker: "Trails, Road Races & Endurance",
+      title: "Endurance Runner",
+      desc: "Consistent distance training across technical mountain trails, gravel paths, and urban race-day road finishes with disciplined heart-rate pacing.",
+      badges: ["5K · 22m", "10K · 52m", "21K · 2h14m"],
+      stats: [
+        { label: "10K Personal Best", value: "52 minutes" },
+        { label: "Half Marathon PB", value: "2h 14m" }
+      ],
+      image: "./shashank_files/gallery_opt/10k-road-run.jpg",
+      imageAlt: "10K road run race",
+      caption: "Runner · 10K Road Race Finish",
+      sport: "runner"
+    },
+    snowboard: {
+      kicker: "Powder Days & Backcountry",
+      title: "Snowboarder",
+      desc: "Deep powder runs and tree glades in the Pir Panjal range at Gulmarg Phase 2, chasing fresh snowfall conditions and backcountry mountain lines.",
+      badges: ["Gulmarg Phase 2", "Deep Powder", "Backcountry"],
+      stats: [
+        { label: "Summit Station", value: "Gulmarg (3,950m)" },
+        { label: "Terrain", value: "Phase 2 Powder Glades" }
+      ],
+      image: "./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg",
+      imageAlt: "Snowboarding powder day in Gulmarg",
+      caption: "Snowboarding · Gulmarg Phase 2",
+      sport: "snowboard"
+    },
+    equestrian: {
+      kicker: "Show Jumping & Hunter Jumpers",
+      title: "Equestrian Athlete",
+      desc: "Show jumping and hunter-jumper training with national-level competition experience, developing cadence, athletic synergy, and stride timing with horses.",
+      badges: ["Show Jumping", "National Competitor", "Jump Training"],
+      stats: [
+        { label: "Focus", value: "Show Jumping" },
+        { label: "Level", value: "National Competitions" }
+      ],
+      image: "./shashank_files/gallery_opt/horse-jumping-earlydays.jpg",
+      imageAlt: "Horse jumping training",
+      caption: "Equestrian · Show Jumping Course",
+      sport: "equestrian"
+    }
+  };
+
+  let currentSportKey = "highline";
+
+  function renderDiscipline(key) {
+    const data = disciplinesData[key];
+    if (!data) return;
+    currentSportKey = key;
+
+    const kickerEl = document.getElementById("d-kicker");
+    const titleEl = document.getElementById("d-title");
+    const descEl = document.getElementById("d-desc");
+    const badgesEl = document.getElementById("d-badges");
+    const stat1El = document.getElementById("d-stat-1");
+    const stat2El = document.getElementById("d-stat-2");
+    const imageEl = document.getElementById("d-image");
+    const captionEl = document.getElementById("d-caption");
+    const ctaBtn = document.getElementById("d-cta-btn");
+
+    if (kickerEl) kickerEl.textContent = data.kicker;
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+
+    if (badgesEl) {
+      badgesEl.innerHTML = data.badges.map(b => `<span class="discipline-badge">${b}</span>`).join("");
+    }
+
+    if (stat1El && data.stats[0]) stat1El.textContent = data.stats[0].value;
+    if (stat2El && data.stats[1]) stat2El.textContent = data.stats[1].value;
+
+    if (imageEl) {
+      imageEl.src = data.image;
+      imageEl.alt = data.imageAlt;
+    }
+    if (captionEl) captionEl.textContent = data.caption;
+    if (ctaBtn) ctaBtn.textContent = `Explore ${data.title.split("&")[0].trim()} Photos →`;
+  }
+
+  const disciplineTabBtns = document.querySelectorAll(".discipline-tab");
+  disciplineTabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      disciplineTabBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const key = btn.dataset.sportTab;
+      renderDiscipline(key);
+    });
+  });
+
+  const dCtaBtn = document.getElementById("d-cta-btn");
+  const dVisual = document.getElementById("d-visual-container");
+
+  function openCurrentSportGallery() {
+    const matched = items.filter(item => item.sport === currentSportKey);
+    if (matched.length) {
+      openCollection(matched, 0);
+    } else {
+      openCollection(items, 0);
+    }
+  }
+
+  if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
+  if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
   // Gallery Filter Bar
   const galleryFilterBtns = document.querySelectorAll(".gallery-filter-btn");
