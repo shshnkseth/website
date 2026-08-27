@@ -162,8 +162,8 @@ const CASES = {
     highlight: [
       "0 to 1 Product Bet",
       "Avatars & Qbits: From Internal Hackathon to Core Engagement Engine",
-      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><a class='highlight-link-pill' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Read Help Center Feature Announcement ↗</a>",
-      "qbit-avatar.png"
+      "Pitched the concept during a company hackathon, built the 48-hour prototype with engineering and illustration, and directed the product strategy through global rollout. Customisable avatars, XP milestones, and unlockable items elevated participation into identity: session re-joins rose 18% and completion climbed 9%.<br><br><a class='highlight-link-pill' href='wayground-qbits.html'>View Full Qbits Case Study →</a>",
+      "qbit-skater.png"
     ],
     takeaways: [
       "Speed & Reliability over Flash: Teachers need frictionless tools with zero learning curve during live class chaos.",
@@ -348,8 +348,8 @@ const CASES = {
     source: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-",
     vision: "Transform transient gamification into lasting emotional investment by rewarding consistent practice, self-expression, and student agency.",
     stickers: [
-      { img: "qbit-avatar.png", label: "Student Qbits", sub: "Modular 3D Identity", rot: "-2deg" },
-      { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2.5deg" },
+      { img: "qbit-skater.png", label: "Skater Qbit", sub: "Modular 3D Identity", rot: "-2.5deg" },
+      { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2deg" },
       { icon: "🛍️", label: "The Shop", sub: "Common, Rare, Legendary Gear", rot: "-1.5deg" },
       { icon: "📈", label: "2X Return Rate", sub: "65% Shop Visit Rate", rot: "3deg" }
     ],
@@ -407,7 +407,7 @@ const CASES = {
       "Student Agency",
       "Why 'Qbits' Became a Classroom Phenomenon",
       "We named the character to embody the brand spirit—curious, bold, and quirky, subtly hinting at being 'a bit of Quizizz'. Within weeks of rollout, student adoption soared to 75%, organic student fan art flooded social channels, and teachers reported significant enthusiasm during morning warm-up quizzes.<br><br><a class='highlight-link-pill' href='https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-' target='_blank' rel='noopener'>Read Help Center Feature Announcement ↗</a>",
-      "qbit-avatar.png"
+      "qbit-skater.png"
     ],
     takeaways: [
       "Reward Effort, Not Just Speed: Gamification that prioritizes accuracy and consistency creates sustainable intrinsic motivation.",
@@ -415,7 +415,7 @@ const CASES = {
       "Inclusive by Design: Gender-neutral, modular avatar foundations maximize global student resonance across diverse cultures."
     ],
     media: [
-      ["qbit-avatar.png", "Customizable Qbit student avatar character with layered streetwear accessories"],
+      ["qbit-skater.png", "Customizable Skater Qbit student avatar character with layered streetwear and skateboard accessories"],
       ["quizizz-2.gif", "In-game avatar customization and real-time live match integration"]
     ]
   },
