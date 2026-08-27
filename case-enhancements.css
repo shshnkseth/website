@@ -431,11 +431,28 @@
   cursor: default;
 }
 
+.brand-sticker--clickable {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .brand-sticker:hover {
   transform: rotate(0deg) scale(1.06) translateY(-3px);
   border-color: var(--project);
   background: #1c1c1c;
   box-shadow: 0 10px 28px color-mix(in srgb, var(--project) 35%, transparent);
+}
+
+.sticker-arrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  color: var(--project);
+  margin-left: 0.2rem;
+  transition: transform 0.2s ease;
+}
+
+.brand-sticker--clickable:hover .sticker-arrow {
+  transform: translate(2px, -2px);
 }
 
 .sticker-icon {

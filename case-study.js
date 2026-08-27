@@ -14,9 +14,9 @@ const CASES = {
     nda: true,
     vision: "Modernize mission-critical GPU utilities with new-age desktop ergonomics, eliminating hardware safety risks while retaining expert-level parameter control.",
     stickers: [
-      { icon: "⚡", label: "RTX Voice", sub: "AI Audio Suppression", rot: "-2.5deg" },
-      { icon: "🎮", label: "NVIDIA HIG", sub: "Display Server Settings", rot: "2deg" },
-      { icon: "🎙️", label: "Broadcast App", sub: "Global Press Acclaim", rot: "-1.5deg" }
+      { icon: "⚡", label: "RTX Voice", sub: "AI Audio Suppression", rot: "-2.5deg", href: "https://www.theverge.com/2020/9/17/21444508/nvidia-broadcast-download-rtx-voice-noise-app" },
+      { icon: "🎮", label: "NVIDIA HIG", sub: "Display Server Settings", rot: "2deg", href: "projects.html" },
+      { icon: "🎙️", label: "Broadcast App", sub: "Global Press Acclaim", rot: "-1.5deg", href: "https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/" }
     ],
     quotes: {
       need: "Display server settings within NVIDIA's Control Panel software needed a modernized experience for gaming and enterprise users without losing granular technical depth or power-user functionality.",
@@ -103,9 +103,10 @@ const CASES = {
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing in Action",
     stickers: [
-      { icon: "🏆", label: "GESS 2024", sub: "Best Digital Product", rot: "-3deg" },
-      { icon: "✨", label: "Wayground AI", sub: "Pedagogical Scaffolding", rot: "2.5deg" },
-      { img: "qbit-avatar.png", label: "Student Qbits", sub: "+18% Session Re-joins", rot: "-2deg" }
+      { icon: "🏆", label: "GESS 2024 Winner", sub: "Best Digital Product", rot: "-3deg", href: "https://wayground.com/?lng=en" },
+      { icon: "✨", label: "Wayground AI", sub: "Pedagogical Scaffolding", rot: "2.5deg", href: "wayground-ai.html" },
+      { icon: "📄", label: "Paper Mode", sub: "Printable Q-Cards", rot: "-1.5deg", href: "wayground-paper-mode.html" },
+      { img: "qbit-skater.png", label: "Student Qbits", sub: "+18% Session Re-joins", rot: "2deg", href: "wayground-qbits.html" }
     ],
     quotes: {
       need: "Classroom realities varied widely: device-free schools required hybrid access, teachers demanded rapid authoring, and students needed deeper retention loops.",
@@ -192,9 +193,9 @@ const CASES = {
     video: "https://www.youtube-nocookie.com/embed/nxVTd6pCsb0",
     videoTitle: "Wayground AI Assisted Authoring Walkthrough",
     stickers: [
-      { icon: "✨", label: "Prompt Presets", sub: "~62% Less Bad Prompts", rot: "-2deg" },
-      { icon: "🎯", label: "Curriculum Map", sub: "87% On-Standard Rating", rot: "2.5deg" },
-      { icon: "💰", label: "38% Lower Cost", sub: "Pre-validation Filters", rot: "-1.5deg" }
+      { icon: "✨", label: "Prompt Presets", sub: "~62% Less Bad Prompts", rot: "-2deg", href: "https://wayground.com/?lng=en" },
+      { icon: "🎯", label: "Curriculum Map", sub: "87% On-Standard Rating", rot: "2.5deg", href: "wayground.html" },
+      { icon: "💰", label: "38% Lower Cost", sub: "Pre-validation Filters", rot: "-1.5deg", href: "wayground.html" }
     ],
     quotes: {
       need: "Educators needed standards-aligned classroom content in seconds, demanding pedagogical control, verified accuracy, and zero generic prompt fatigue.",
@@ -279,9 +280,9 @@ const CASES = {
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing Demo",
     stickers: [
-      { icon: "📄", label: "Printable Q-Cards", sub: "Orientation A/B/C/D", rot: "-2.5deg" },
-      { icon: "⚡", label: "< 2s Full Scan", sub: "Computer Vision Camera", rot: "2deg" },
-      { icon: "🏫", label: "3,000+ Schools", sub: "Zero Student Logins", rot: "-1deg" }
+      { icon: "📄", label: "Printable Q-Cards", sub: "Orientation A/B/C/D", rot: "-2.5deg", href: "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en" },
+      { icon: "⚡", label: "< 2s Full Scan", sub: "Computer Vision Camera", rot: "2deg", href: "wayground.html" },
+      { icon: "🏫", label: "3,000+ Schools", sub: "Zero Student Logins", rot: "-1deg", href: "wayground.html" }
     ],
     quotes: {
       need: "Millions of classrooms lacked student devices, forcing teachers to spend hours manually grading printed paper quizzes.",
@@ -348,10 +349,10 @@ const CASES = {
     source: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-",
     vision: "Transform transient gamification into lasting emotional investment by rewarding consistent practice, self-expression, and student agency.",
     stickers: [
-      { img: "qbit-skater.png", label: "Skater Qbit", sub: "Modular 3D Identity", rot: "-2.5deg" },
-      { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2deg" },
-      { icon: "🛍️", label: "The Shop", sub: "Common, Rare, Legendary Gear", rot: "-1.5deg" },
-      { icon: "📈", label: "2X Return Rate", sub: "65% Shop Visit Rate", rot: "3deg" }
+      { img: "qbit-skater.png", label: "Skater Qbit", sub: "Modular 3D Identity", rot: "-2.5deg", href: "wayground.html" },
+      { icon: "🪙", label: "Virtual Currency", sub: "Effort & Streak Economy", rot: "2deg", href: "https://wayground.com/join/avatar-shop" },
+      { icon: "🛍️", label: "The Shop", sub: "Common, Rare, Legendary Gear", rot: "-1.5deg", href: "https://wayground.com/join/avatar-shop" },
+      { icon: "📈", label: "2X Return Rate", sub: "65% Shop Visit Rate", rot: "3deg", href: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" }
     ],
     quotes: {
       need: "Students lacked long-term emotional connection to the platform once live quiz sessions ended, with drop-offs occurring because only immediate speed was rewarded rather than consistent learning effort.",
@@ -434,9 +435,9 @@ const CASES = {
     source: "https://app.notion.com/p/1e922b7dfdd280798debe190039ce181",
     vision: "Transform real-money gaming into a transparent, secure, and intuitive entertainment platform built on absolute trust.",
     stickers: [
-      { icon: "🛡️", label: "FairPlay 100%", sub: "Tier-1 KYC Security", rot: "-3deg" },
-      { icon: "🏏", label: "Fantasy Sports", sub: "Live Match HUDs", rot: "2deg" },
-      { icon: "💳", label: "42%→83% KYC", sub: "Transparent Wallet", rot: "-1deg" }
+      { icon: "🛡️", label: "FairPlay 100%", sub: "Tier-1 KYC Security", rot: "-3deg", href: "https://www.getmega.com" },
+      { icon: "🏏", label: "Fantasy Sports", sub: "Live Match HUDs", rot: "2deg", href: "https://www.getmega.com" },
+      { icon: "💳", label: "42%→83% KYC", sub: "Transparent Wallet", rot: "-1deg", href: "projects.html" }
     ],
     quotes: {
       need: "Onboarding drop-offs, financial anxiety around real-money transactions, ambiguous rules, and cross-device UI fragmentation hindered platform scale.",
@@ -513,8 +514,8 @@ const CASES = {
     nda: true,
     vision: "Automate heavy enterprise warehouse audits through seamless aerial robotics orchestration.",
     stickers: [
-      { icon: "🚁", label: "FlytWare", sub: "Autonomous Drone Fleet", rot: "-2deg" },
-      { icon: "📦", label: "WMS Cloud Sync", sub: "Real-time Telemetry", rot: "2.5deg" }
+      { icon: "🚁", label: "FlytWare", sub: "Autonomous Drone Fleet", rot: "-2deg", href: "https://www.flytbase.com" },
+      { icon: "📦", label: "WMS Cloud Sync", sub: "Real-time Telemetry", rot: "2.5deg", href: "projects.html" }
     ],
     quotes: {
       need: "Manual warehouse inventory counting in large distribution facilities required thousands of labor hours, remaining slow, expensive, and error-prone.",
@@ -574,8 +575,8 @@ const CASES = {
     source: "https://app.notion.com/p/99146be810764dcf803cb9097adf6c95",
     vision: "Unify restaurant operations into a lightning-fast, resilient ecosystem that empowers servers and delights dining guests.",
     stickers: [
-      { icon: "⚡", label: "< 3 Taps", sub: "High-Velocity POS Flow", rot: "-2deg" },
-      { icon: "📱", label: "QR Ordering", sub: "Contactless Tabs", rot: "2.5deg" }
+      { icon: "⚡", label: "< 3 Taps", sub: "High-Velocity POS Flow", rot: "-2deg", href: "https://joinsummer.app" },
+      { icon: "📱", label: "QR Ordering", sub: "Contactless Tabs", rot: "2.5deg", href: "https://joinsummer.app" }
     ],
     quotes: {
       need: "High-pressure restaurant teams required split-second operational clarity in chaotic service environments, not complex multi-layered software.",
@@ -649,8 +650,8 @@ const CASES = {
     source: "https://app.notion.com/p/61a4325049914f339e07e95718769fc3",
     vision: "Democratize secured private credit investments through transparent risk modeling, elegant education, and institutional rigor.",
     stickers: [
-      { icon: "📈", label: "Asset-Backed", sub: "Private Credit", rot: "-2.5deg" },
-      { icon: "⚡", label: "5-Min KYC", sub: "38% Less Drop-Off", rot: "2deg" }
+      { icon: "📈", label: "Asset-Backed", sub: "Private Credit", rot: "-2.5deg", href: "https://www.earnnest.me" },
+      { icon: "⚡", label: "5-Min KYC", sub: "38% Less Drop-Off", rot: "2deg", href: "https://www.earnnest.me" }
     ],
     quotes: {
       need: "Demystify high-yield alternative debt investing for individual investors and HNIs by establishing immediate institutional credibility and regulatory trust.",
@@ -769,15 +770,20 @@ function renderCaseStudy() {
   const stickersBlock = d.stickers && d.stickers.length > 0 ? `
     <div class="case-stickers-wrap">
       <div class="case-stickers-row">
-        ${d.stickers.map(st => `
-          <div class="brand-sticker spotlight-card" style="--sticker-rot:${st.rot || '0deg'};">
-            ${st.img ? `<img src="shashank_files/${st.img}" class="sticker-img" alt="${st.label}">` : `<span class="sticker-icon">${st.icon}</span>`}
-            <div class="sticker-content">
-              <span class="sticker-label">${st.label}</span>
-              <span class="sticker-sub">${st.sub}</span>
-            </div>
-          </div>
-        `).join("")}
+        ${d.stickers.map(st => {
+          const isLinked = !!st.href;
+          const tag = isLinked ? 'a' : 'div';
+          const hrefAttr = isLinked ? `href="${st.href}" ${st.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}` : '';
+          return `
+            <${tag} class="brand-sticker spotlight-card ${isLinked ? 'brand-sticker--clickable' : ''}" style="--sticker-rot:${st.rot || '0deg'};" ${hrefAttr}>
+              ${st.img ? `<img src="shashank_files/${st.img}" class="sticker-img" alt="${st.label}">` : `<span class="sticker-icon">${st.icon}</span>`}
+              <div class="sticker-content">
+                <span class="sticker-label">${st.label} ${isLinked ? `<span class="sticker-arrow">${st.href.startsWith('http') ? '↗' : '→'}</span>` : ''}</span>
+                <span class="sticker-sub">${st.sub}</span>
+              </div>
+            </${tag}>
+          `;
+        }).join("")}
       </div>
     </div>
   ` : '';
