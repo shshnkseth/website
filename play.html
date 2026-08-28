@@ -426,12 +426,20 @@
       gap: 0.25rem;
     }
 
-    /* ─── PHOTO GALLERY GRID ─── */
+    /* ─── PHOTO GALLERY 2-ROW CAROUSEL ─── */
+    .gallery-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
     .gallery-filter-bar {
       display: flex;
       gap: 0.35rem;
       flex-wrap: wrap;
-      margin-bottom: 1.1rem;
     }
 
     .gallery-filter-btn {
@@ -461,10 +469,78 @@
       box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 30%, transparent);
     }
 
+    .gallery-carousel-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .gallery-nav-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-size: 0.75rem;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .gallery-nav-btn:hover {
+      background: var(--accent);
+      color: #0e0e0e;
+      border-color: var(--accent);
+      transform: scale(1.06);
+    }
+
+    .gallery-carousel-container {
+      position: relative;
+      margin: 0 -0.4rem;
+      padding: 0 0.4rem;
+    }
+
     .gallery-masonry {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 210px);
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 280px);
       gap: 0.85rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.3rem 0 0.9rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rule-light) transparent;
+      cursor: grab;
+    }
+
+    .gallery-masonry:active {
+      cursor: grabbing;
+    }
+
+    .gallery-masonry::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .gallery-masonry::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 999px;
+    }
+
+    .gallery-masonry::-webkit-scrollbar-thumb {
+      background: var(--rule-light);
+      border-radius: 999px;
+    }
+
+    .gallery-masonry::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
     }
 
     .gallery-item {
@@ -478,6 +554,8 @@
       color: inherit;
       display: flex;
       flex-direction: column;
+      scroll-snap-align: start;
+      height: 100%;
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, box-shadow 0.22s ease;
     }
 
@@ -488,15 +566,15 @@
     }
 
     .gallery-item.hidden {
-      display: none;
+      display: none !important;
     }
 
     .gallery-item img {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      height: 165px;
       object-fit: cover;
       display: block;
-      filter: brightness(0.85);
+      filter: brightness(0.88);
       transition: filter 0.22s ease, transform 0.3s ease;
     }
 
@@ -506,7 +584,7 @@
     }
 
     .gallery-item-caption {
-      padding: 0.7rem 0.85rem;
+      padding: 0.55rem 0.8rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.06em;
@@ -517,6 +595,7 @@
       text-overflow: ellipsis;
       border-top: 1px solid var(--rule);
       background: var(--surface);
+      flex-shrink: 0;
     }
 
     /* ─── QUOTE BLOCK ─── */
@@ -836,8 +915,9 @@
         margin-top: 0.2rem;
       }
       .gallery-masonry {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.6rem;
+        grid-template-rows: repeat(2, 185px);
+        grid-auto-columns: 230px;
+        gap: 0.65rem;
       }
       .case-footer {
         grid-template-columns: 1fr;
@@ -1123,7 +1203,6 @@
   <div class="hero">
     <div class="eyebrow">ATHLETE · PLAY & EXPEDITIONS</div>
     <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
-    <p class="lede">Through glaciated summits, a thin webbing rigged across mountain ravines, ocean depths, and fifteen thousand kilometers of solitary road : the wild has been my quietest teacher. Nature yields nothing to pride; it asks only for steady breath, patience, and the endurance to keep moving.</p>
   </div>
 
   <!-- META STATS GRID -->
@@ -1317,6 +1396,7 @@
     <h2>Photo & Action Logs</h2>
     <p class="section-desc">Dispatches from highlines, summits, trails, and skateparks over the years.</p>
 
+    <div class="gallery-header-row">
       <div class="gallery-filter-bar">
         <button class="gallery-filter-btn active" data-filter="all">All</button>
         <button class="gallery-filter-btn" data-filter="highline">Highline</button>
@@ -1328,7 +1408,13 @@
         <button class="gallery-filter-btn" data-filter="run">Running</button>
         <button class="gallery-filter-btn" data-filter="equestrian">Equestrian</button>
       </div>
+      <div class="gallery-carousel-nav">
+        <button class="gallery-nav-btn" id="gallery-prev" aria-label="Previous photos" type="button">←</button>
+        <button class="gallery-nav-btn" id="gallery-next" aria-label="Next photos" type="button">→</button>
+      </div>
+    </div>
 
+    <div class="gallery-carousel-container">
       <div class="gallery-masonry" id="gallery-grid">
 
         <a class="gallery-item spotlight-card gallery-trigger" data-sport="snowboard" data-tag="snow" href="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-full="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · Gulmarg Phase 2 Powder Run">
@@ -1494,6 +1580,7 @@
         </a>
 
       </div>
+    </div>
   </section>
 
   <!-- QUOTE BLOCK (CASE STUDY EDITORIAL) -->
@@ -1886,9 +1973,12 @@
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
-  // Gallery Filter Bar
+  // Gallery Filter & 2-Row Carousel Navigation
   const galleryFilterBtns = document.querySelectorAll(".gallery-filter-btn");
   const galleryItems = document.querySelectorAll(".gallery-item");
+  const galleryGrid = document.getElementById("gallery-grid");
+  const galleryPrevBtn = document.getElementById("gallery-prev");
+  const galleryNextBtn = document.getElementById("gallery-next");
 
   galleryFilterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -1901,8 +1991,42 @@
         const shouldHide = filter !== "all" && itemTag !== filter;
         item.classList.toggle("hidden", shouldHide);
       });
+      if (galleryGrid) {
+        galleryGrid.scrollTo({ left: 0, behavior: "smooth" });
+      }
     });
   });
+
+  if (galleryGrid && galleryPrevBtn && galleryNextBtn) {
+    galleryPrevBtn.addEventListener("click", () => {
+      galleryGrid.scrollBy({ left: -560, behavior: "smooth" });
+    });
+    galleryNextBtn.addEventListener("click", () => {
+      galleryGrid.scrollBy({ left: 560, behavior: "smooth" });
+    });
+
+    let isDown = false;
+    let startX;
+    let scrollLeftStart;
+
+    galleryGrid.addEventListener("mousedown", (e) => {
+      // Only drag if not clicking a link directly
+      isDown = true;
+      startX = e.pageX - galleryGrid.offsetLeft;
+      scrollLeftStart = galleryGrid.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDown = false;
+    });
+
+    galleryGrid.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      const x = e.pageX - galleryGrid.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      galleryGrid.scrollLeft = scrollLeftStart - walk;
+    });
+  }
 </script>
 <script src="./case-enhancements.js?v=9.0"></script>
 </body>
