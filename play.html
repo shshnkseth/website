@@ -179,31 +179,41 @@
       font-weight: 400;
     }
 
-    /* ─── STORY SECTIONS ─── */
+    /* ─── STORY SECTIONS (CLEAN SINGLE COLUMN) ─── */
     .story {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 3.5rem;
-      padding: 3.2rem 0;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 0 1.5rem;
       border-top: 1px solid var(--rule);
+    }
+    .story:first-of-type {
+      margin-top: 1.5rem;
     }
 
     .story-label {
-      font: 500 0.62rem 'DM Mono', monospace;
+      font: 500 0.64rem 'DM Mono', monospace;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      position: sticky;
-      top: 2rem;
-      align-self: start;
+      margin-bottom: 0.55rem;
     }
 
     .story h2 {
-      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 300;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      margin: 0 0 1.2rem;
+      margin: 0 0 0.4rem;
+      line-height: 1.2;
+    }
+
+    .story .section-desc {
+      font-size: 0.96rem;
+      color: var(--text-dim);
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+      max-width: 780px;
+      line-height: 1.55;
     }
 
     /* ─── SPORT CARDS GRID ─── */
@@ -797,12 +807,7 @@
         gap: 0.5rem;
       }
       .story {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 2.2rem 0;
-      }
-      .story-label {
-        position: static;
+        padding: 2.2rem 0 1rem;
       }
       .sport-cards-grid {
         grid-template-columns: 1fr;
@@ -1134,66 +1139,62 @@
   <!-- SECTION 1: DISCIPLINES (CINEMATIC STAGE) -->
   <section class="story">
     <div class="story-label">01 / Disciplines</div>
-    <div>
-      <h2>Active Sports & Disciplines</h2>
-      <p class="section-desc">Select a discipline to inspect technical notes, milestones, and high-resolution photo dispatches.</p>
+    <h2>Active Sports & Disciplines</h2>
+    <p class="section-desc">Select a discipline to inspect technical notes, milestones, and high-resolution photo dispatches.</p>
 
-      <!-- DISCIPLINE SELECTOR TABS -->
-      <div class="discipline-tabs" id="discipline-tabs">
-        <button class="discipline-tab active" data-sport-tab="highline">🪢 Highline</button>
-        <button class="discipline-tab" data-sport-tab="skateboard">🛹 Skateboarding</button>
-        <button class="discipline-tab" data-sport-tab="downhill">⚡ Downhill Longboard</button>
-        <button class="discipline-tab" data-sport-tab="mountain">🏔 Mountaineering</button>
-        <button class="discipline-tab" data-sport-tab="enduro">🏍 Enduro</button>
-        <button class="discipline-tab" data-sport-tab="freedive">🤿 Scuba & Freedive</button>
-        <button class="discipline-tab" data-sport-tab="runner">🏃 Running</button>
-        <button class="discipline-tab" data-sport-tab="snowboard">🏂 Snowboarding</button>
-        <button class="discipline-tab" data-sport-tab="equestrian">🐎 Equestrian</button>
-      </div>
+    <!-- DISCIPLINE SELECTOR TABS -->
+    <div class="discipline-tabs" id="discipline-tabs">
+      <button class="discipline-tab active" data-sport-tab="highline">🪢 Highline</button>
+      <button class="discipline-tab" data-sport-tab="skateboard">🛹 Skateboarding</button>
+      <button class="discipline-tab" data-sport-tab="downhill">⚡ Downhill Longboard</button>
+      <button class="discipline-tab" data-sport-tab="mountain">🏔 Mountaineering</button>
+      <button class="discipline-tab" data-sport-tab="enduro">🏍 Enduro</button>
+      <button class="discipline-tab" data-sport-tab="freedive">🤿 Scuba & Freedive</button>
+      <button class="discipline-tab" data-sport-tab="runner">🏃 Running</button>
+      <button class="discipline-tab" data-sport-tab="snowboard">🏂 Snowboarding</button>
+      <button class="discipline-tab" data-sport-tab="equestrian">🐎 Equestrian</button>
+    </div>
 
-      <!-- CINEMATIC STAGE CARD -->
-      <div class="discipline-stage spotlight-card" id="discipline-stage">
-        <div class="discipline-content">
-          <div class="discipline-kicker" id="d-kicker">Balance in the Sky</div>
-          <h3 class="discipline-title" id="d-title">Highliner & Slackliner</h3>
-          <p class="discipline-desc" id="d-desc">Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.</p>
-          <div class="discipline-badges" id="d-badges">
-            <span class="discipline-badge">Suru Valley 11,000 ft</span>
-            <span class="discipline-badge">Waterline</span>
-            <span class="discipline-badge">Rigging</span>
-          </div>
-          <div class="discipline-stats">
-            <div>
-              <div class="d-stat-label" id="d-stat-label-1">Highest Line</div>
-              <div class="d-stat-val" id="d-stat-1">11,000 ft (Suru Valley)</div>
-            </div>
-            <div>
-              <div class="d-stat-label" id="d-stat-label-2">Takeaway</div>
-              <div class="d-stat-val" id="d-stat-2">Calm over panic</div>
-            </div>
-          </div>
-          <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Highliner Photos →</button>
+    <!-- CINEMATIC STAGE CARD -->
+    <div class="discipline-stage spotlight-card" id="discipline-stage">
+      <div class="discipline-content">
+        <div class="discipline-kicker" id="d-kicker">Balance in the Sky</div>
+        <h3 class="discipline-title" id="d-title">Highliner & Slackliner</h3>
+        <p class="discipline-desc" id="d-desc">Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.</p>
+        <div class="discipline-badges" id="d-badges">
+          <span class="discipline-badge">Suru Valley 11,000 ft</span>
+          <span class="discipline-badge">Waterline</span>
+          <span class="discipline-badge">Rigging</span>
         </div>
-        <div class="discipline-visual" id="d-visual-container">
-          <img id="d-image" src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 ft in Suru Valley"/>
-          <div class="discipline-visual-caption">
-            <span id="d-caption">Highline · Suru Valley, Ladakh (11,000 ft)</span>
-            <span class="discipline-visual-badge">View HD ↗</span>
+        <div class="discipline-stats">
+          <div>
+            <div class="d-stat-label" id="d-stat-label-1">Highest Line</div>
+            <div class="d-stat-val" id="d-stat-1">11,000 ft (Suru Valley)</div>
+          </div>
+          <div>
+            <div class="d-stat-label" id="d-stat-label-2">Takeaway</div>
+            <div class="d-stat-val" id="d-stat-2">Calm over panic</div>
           </div>
         </div>
+        <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Highliner Photos →</button>
       </div>
-
+      <div class="discipline-visual" id="d-visual-container">
+        <img id="d-image" src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 ft in Suru Valley"/>
+        <div class="discipline-visual-caption">
+          <span id="d-caption">Highline · Suru Valley, Ladakh (11,000 ft)</span>
+          <span class="discipline-visual-badge">View HD ↗</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- SECTION 2: EXPEDITIONS -->
   <section class="story">
     <div class="story-label">02 / Expeditions</div>
-    <div>
-      <h2>High-Altitude Expeditions & Solo Rides</h2>
-      <p class="section-desc">Major summits, alpine routes, and trans-continental expeditions logged across terrain and altitude.</p>
+    <h2>High-Altitude Expeditions & Solo Rides</h2>
+    <p class="section-desc">Major summits, alpine routes, and trans-continental expeditions logged across terrain and altitude.</p>
 
-      <div class="expedition-table">
+    <div class="expedition-table">
 
         <a class="expedition-card spotlight-card" href="https://www.polarsteps.com/shshnkseth/10327797-kilimanjaro?mode=track" target="_blank" rel="noopener noreferrer">
           <div class="expedition-thumb">
@@ -1298,15 +1299,13 @@
         </a>
 
       </div>
-    </div>
   </section>
 
   <!-- SECTION 3: PHOTOGRAPHY ARCHIVE -->
   <section class="story">
     <div class="story-label">03 / Photography</div>
-    <div>
-      <h2>Field Photography & Action Logs</h2>
-      <p class="section-desc">Click any frame to inspect high-resolution imagery, altitude logs, locations, and field notes.</p>
+    <h2>Field Photography & Action Logs</h2>
+    <p class="section-desc">Click any frame to inspect high-resolution imagery, altitude logs, locations, and field notes.</p>
 
       <div class="gallery-filter-bar">
         <button class="gallery-filter-btn active" data-filter="all">All</button>
@@ -1485,7 +1484,6 @@
         </a>
 
       </div>
-    </div>
   </section>
 
   <!-- QUOTE BLOCK (CASE STUDY EDITORIAL) -->
