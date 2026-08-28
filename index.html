@@ -126,12 +126,17 @@
       margin-bottom: 1.8rem;
     }
     .profile-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      object-fit: cover;
+      width: 58px;
+      height: auto;
+      object-fit: contain;
       flex-shrink: 0;
-      border: 1px solid var(--rule);
+      border: none;
+      background: transparent;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .profile-avatar:hover {
+      transform: scale(1.08) rotate(4deg);
     }
     .profile-name {
       font-family: 'DM Sans', -apple-system, sans-serif;
