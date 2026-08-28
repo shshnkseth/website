@@ -1113,7 +1113,7 @@
       font-weight: 600;
     }
 
-    /* ─── DIE-CUT INTERACTIVE FLOATING STICKERS ─── */
+    /* ─── REAL DIE-CUT PNG STICKERS LAYER (ONE-SIDE BLEND) ─── */
     .stage-stickers-layer {
       position: absolute;
       inset: 0;
@@ -1121,111 +1121,84 @@
       z-index: 10;
     }
 
-    .sport-sticker {
+    .png-sticker {
       position: absolute;
       pointer-events: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.42rem 0.75rem;
-      border-radius: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      white-space: nowrap;
+      display: block;
       user-select: none;
       cursor: grab;
-      border: 2px solid rgba(255, 255, 255, 0.92);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.4);
-      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, filter 0.22s ease;
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.75)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease, opacity 0.2s ease;
       will-change: transform;
+      opacity: 0.95;
     }
 
-    .sport-sticker:active {
+    .png-sticker:active {
       cursor: grabbing;
-      transform: scale(0.96) !important;
+      transform: scale(0.95) !important;
     }
 
-    .sport-sticker:hover {
-      z-index: 20;
-      filter: brightness(1.08);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.85), 0 0 20px rgba(204, 255, 0, 0.35);
+    .png-sticker:hover {
+      z-index: 25;
+      opacity: 1;
+      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(204, 255, 0, 0.35));
     }
 
-    /* Sticker Color Themes */
-    .sport-sticker.sticker-theme-brand {
-      background: linear-gradient(135deg, #181c20 0%, #0d0f11 100%);
-      color: #ccff00;
-      border-color: #ccff00;
-    }
-
-    .sport-sticker.sticker-theme-badge {
-      background: linear-gradient(135deg, #2a1b00 0%, #150e00 100%);
-      color: #ffdf00;
-      border-color: #ffdf00;
-    }
-
-    .sport-sticker.sticker-theme-gear {
-      background: linear-gradient(135deg, #0e202a 0%, #071015 100%);
-      color: #38dbff;
-      border-color: #38dbff;
-    }
-
-    .sport-sticker.sticker-theme-stamp {
-      background: linear-gradient(135deg, #2d0f0f 0%, #140505 100%);
-      color: #ff7575;
-      border-color: #ff7575;
-    }
-
-    .sport-sticker.sticker-theme-culture {
-      background: linear-gradient(135deg, #1c152a 0%, #0d0a14 100%);
-      color: #d896ff;
-      border-color: #d896ff;
-    }
-
-    /* Sticker Specific Placements Around Container */
-    .sticker-pos-tr {
-      top: -16px;
+    /* Specific Placement for the 5 stickers along the right side / corner cluster */
+    .png-sticker-skate-supply {
+      top: -24px;
       right: -16px;
-      transform: rotate(6.5deg);
+      width: 78px;
+      height: auto;
+      transform: rotate(9deg);
     }
-    .sticker-pos-tr:hover {
-      transform: translateY(-8px) rotate(3deg) scale(1.12);
+    .png-sticker-skate-supply:hover {
+      transform: translateY(-8px) rotate(4deg) scale(1.14);
     }
 
-    .sticker-pos-tl {
-      top: -14px;
-      left: 20px;
+    .png-sticker-thrasher {
+      top: 38%;
+      right: -32px;
+      width: 102px;
+      height: auto;
+      transform: rotate(-9deg);
+    }
+    .png-sticker-thrasher:hover {
+      transform: translateY(-8px) rotate(-3deg) scale(1.14);
+    }
+
+    .png-sticker-bhopal-sb {
+      top: -22px;
+      right: 84px;
+      width: 68px;
+      height: auto;
+      transform: rotate(-6deg);
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.8)) brightness(1.2);
+    }
+    .png-sticker-bhopal-sb:hover {
+      transform: translateY(-8px) rotate(-1deg) scale(1.14);
+    }
+
+    .png-sticker-caution-lego {
+      bottom: -22px;
+      right: 76px;
+      width: 58px;
+      height: auto;
       transform: rotate(-7deg);
     }
-    .sticker-pos-tl:hover {
-      transform: translateY(-8px) rotate(-3deg) scale(1.12);
+    .png-sticker-caution-lego:hover {
+      transform: translateY(-8px) rotate(-2deg) scale(1.14);
     }
 
-    .sticker-pos-br {
-      bottom: -15px;
-      right: 32px;
-      transform: rotate(-5.5deg);
+    .png-sticker-cone-graffiti {
+      bottom: -26px;
+      right: -16px;
+      width: 70px;
+      height: auto;
+      transform: rotate(13deg);
     }
-    .sticker-pos-br:hover {
-      transform: translateY(-8px) rotate(-2deg) scale(1.12);
-    }
-
-    .sticker-pos-bl {
-      bottom: -16px;
-      left: -14px;
-      transform: rotate(8deg);
-    }
-    .sticker-pos-bl:hover {
-      transform: translateY(-8px) rotate(4deg) scale(1.12);
-    }
-
-    .sticker-icon {
-      font-size: 0.95rem;
-      line-height: 1;
-      display: inline-block;
+    .png-sticker-cone-graffiti:hover {
+      transform: translateY(-8px) rotate(6deg) scale(1.14);
     }
 
     @media (max-width: 768px) {
@@ -1234,14 +1207,11 @@
         padding: 1.5rem;
         gap: 1.5rem;
       }
-      .sport-sticker {
-        font-size: 0.5rem;
-        padding: 0.32rem 0.6rem;
-      }
-      .sticker-pos-tr { right: -6px; top: -12px; }
-      .sticker-pos-tl { left: 8px; top: -12px; }
-      .sticker-pos-br { right: 12px; bottom: -12px; }
-      .sticker-pos-bl { left: -6px; bottom: -12px; }
+      .png-sticker-skate-supply { width: 62px; top: -18px; right: -8px; }
+      .png-sticker-thrasher { width: 80px; right: -12px; }
+      .png-sticker-bhopal-sb { width: 54px; top: -16px; right: 60px; }
+      .png-sticker-caution-lego { width: 48px; bottom: -16px; right: 54px; }
+      .png-sticker-cone-graffiti { width: 56px; bottom: -18px; right: -8px; }
     }
   </style>
 </head>
@@ -1286,24 +1256,13 @@
     <!-- STAGE WRAPPER WITH INTERACTIVE FLOATING STICKERS -->
     <div class="discipline-stage-wrapper" id="disciplineStageWrapper">
       
-      <!-- FLOATING INTERACTIVE STICKERS LAYER -->
+      <!-- REAL DIE-CUT PNG STICKERS LAYER (ONE-SIDE BLEND) -->
       <div class="stage-stickers-layer" id="stageStickersLayer">
-        <div class="sport-sticker sticker-pos-tr sticker-theme-brand" id="sticker-tr" title="Official Partner / Sponsor">
-          <span class="sticker-icon" id="sticker-tr-icon">🛹</span>
-          <span id="sticker-tr-text">SkateSupplyIndia</span>
-        </div>
-        <div class="sport-sticker sticker-pos-tl sticker-theme-culture" id="sticker-tl" title="Community &amp; Culture">
-          <span class="sticker-icon" id="sticker-tl-icon">⚡</span>
-          <span id="sticker-tl-text">Bhopal Skateboarding</span>
-        </div>
-        <div class="sport-sticker sticker-pos-br sticker-theme-gear" id="sticker-br" title="Equipment Setup">
-          <span class="sticker-icon" id="sticker-br-icon">🔧</span>
-          <span id="sticker-br-text">Indy 149s · Bones 54mm</span>
-        </div>
-        <div class="sport-sticker sticker-pos-bl sticker-theme-badge" id="sticker-bl" title="Athlete Mindset">
-          <span class="sticker-icon" id="sticker-bl-icon">✦</span>
-          <span id="sticker-bl-text">Fall 7x · Stand 8x</span>
-        </div>
+        <img class="png-sticker png-sticker-skate-supply" src="./shashank_files/stickers/sticker-skate-supply.png" alt="Skate Supply India Sticker" title="Skate Supply India · Sponsored" draggable="false"/>
+        <img class="png-sticker png-sticker-thrasher" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Magazine Sticker" title="Thrasher Magazine" draggable="false"/>
+        <img class="png-sticker png-sticker-bhopal-sb" src="./shashank_files/stickers/sticker-bhopal-sb.png" alt="Bhopal Skateboarding Sticker" title="Bhopal Skateboarding Community" draggable="false"/>
+        <img class="png-sticker png-sticker-caution-lego" src="./shashank_files/stickers/sticker-caution-lego.png" alt="Caution Lego Sign Sticker" title="Caution · Step on Lego" draggable="false"/>
+        <img class="png-sticker png-sticker-cone-graffiti" src="./shashank_files/stickers/sticker-cone-graffiti.png" alt="Graffiti Traffic Cone Sticker" title="Street Session" draggable="false"/>
       </div>
 
       <!-- CINEMATIC DISCIPLINE STAGE CARD -->
@@ -2094,23 +2053,6 @@
     }
     if (captionEl) captionEl.textContent = data.caption;
     if (ctaBtn) ctaBtn.textContent = `Explore ${data.title.split("&")[0].trim()} Photos →`;
-
-    // Update Floating Stickers Layer
-    if (data.stickers) {
-      const positions = ["tr", "tl", "br", "bl"];
-      positions.forEach(pos => {
-        const sData = data.stickers[pos];
-        const sEl = document.getElementById(`sticker-${pos}`);
-        const sIcon = document.getElementById(`sticker-${pos}-icon`);
-        const sText = document.getElementById(`sticker-${pos}-text`);
-        if (sEl && sData) {
-          sEl.className = `sport-sticker sticker-pos-${pos} ${sData.theme || ""}`;
-          sEl.title = sData.title || "";
-          if (sIcon) sIcon.textContent = sData.icon || "✦";
-          if (sText) sText.textContent = sData.text || "";
-        }
-      });
-    }
   }
 
   const disciplineTabBtns = document.querySelectorAll(".discipline-tab");
@@ -2138,10 +2080,10 @@
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
-  /* ─── INTERACTIVE FLOATING STICKERS PHYSICS & PARALLAX ─── */
-  (function initFloatingStickersPhysics() {
+  /* ─── INTERACTIVE FLOATING PNG STICKERS PHYSICS & PARALLAX ─── */
+  (function initFloatingPngStickersPhysics() {
     const wrapper = document.getElementById("disciplineStageWrapper");
-    const stickers = document.querySelectorAll(".sport-sticker");
+    const stickers = document.querySelectorAll(".png-sticker");
     if (!wrapper || !stickers.length) return;
 
     let bounds = null;
@@ -2153,10 +2095,11 @@
     let rafId = null;
 
     const stickerOffsets = [
-      { depth: 14, baseRot: 6.5 },   // TR
-      { depth: -12, baseRot: -7 },   // TL
-      { depth: 16, baseRot: -5.5 },  // BR
-      { depth: -14, baseRot: 8 }     // BL
+      { depth: 14, baseRot: 9 },    // Skate Supply
+      { depth: 18, baseRot: -9 },   // Thrasher
+      { depth: 10, baseRot: -6 },   // Bhopal SB
+      { depth: -12, baseRot: -7 },  // Caution Lego
+      { depth: 16, baseRot: 13 }    // Cone Graffiti
     ];
 
     function updateBounds() {
@@ -2189,11 +2132,11 @@
       currentY += (mouseYNorm - currentY) * ease;
 
       stickers.forEach((sticker, i) => {
-        if (sticker.matches(":hover")) return; // Don't override direct sticker hover
-        const offset = stickerOffsets[i] || { depth: 10, baseRot: 0 };
+        if (sticker.matches(":hover")) return; // Preserve direct hover transform
+        const offset = stickerOffsets[i] || { depth: 12, baseRot: 0 };
         const moveX = currentX * offset.depth;
-        const moveY = currentY * (offset.depth * 0.8);
-        const rot = offset.baseRot + currentX * 2.5;
+        const moveY = currentY * (offset.depth * 0.75);
+        const rot = offset.baseRot + currentX * 3;
         sticker.style.transform = `translate3d(${moveX.toFixed(2)}px, ${moveY.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg)`;
       });
 
