@@ -6,7 +6,7 @@
   <link rel="icon" href="./shashank_files/zapp.png" />
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
   <title>Play ✦ Shashank Seth</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./shared.css?v=9.0" />
   <link rel="stylesheet" href="./case-study.css?v=9.0" />
   <link rel="stylesheet" href="./case-enhancements.css?v=9.0" />
@@ -160,33 +160,693 @@
       font-weight: 300;
     }
 
-    /* ─── META GRID ─── */
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin-top: 1.5rem;
-      margin-bottom: 0;
+    /* ─── INTERACTIVE ADVENTURE ID CARD (STICKER & 3D LIFT) ─── */
+    .id-card-wrapper {
+      margin: 1.8rem 0 3.2rem;
+      perspective: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
 
-    .meta {
-      padding: 0.95rem 1rem 0.95rem 0;
-    }
-
-    .meta-label {
+    .id-card-hint {
       font: 500 0.56rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.11em;
       color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .id-hint-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: idPulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes idPulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .id-card {
+      position: relative;
+      width: 100%;
+      max-width: 840px;
+      background: #111417;
+      background: linear-gradient(145deg, #16191d 0%, #0d0f12 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      overflow: hidden;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      transform-style: preserve-3d;
+      transform: rotate(-0.5deg);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: pointer;
+      user-select: none;
+      padding: 1.35rem 1.6rem 0.95rem;
+    }
+
+    .id-card.is-hovered {
+      border-color: rgba(204, 255, 0, 0.45);
+      box-shadow: 0 32px 75px -14px rgba(0, 0, 0, 0.92), 0 0 38px rgba(204, 255, 0, 0.18), inset 0 1px 3px rgba(255, 255, 255, 0.55);
+    }
+
+    /* CARD GUILLOCHE & BACKGROUND */
+    .id-card-bg-pattern {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    .id-guilloche-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* HOLOGRAPHIC & GLARE OVERLAYS */
+    .id-card-holo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 6;
+      opacity: 0.15;
+      mix-blend-mode: color-dodge;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 0, 128, 0.35) 36%, rgba(0, 229, 255, 0.4) 48%, rgba(204, 255, 0, 0.45) 60%, transparent 80%);
+      transition: opacity 0.3s ease;
+    }
+
+    .id-card:hover .id-card-holo {
+      opacity: 0.42;
+    }
+
+    .id-card-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 7;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      background: radial-gradient(circle 360px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.22), transparent 70%);
+    }
+
+    .id-card:hover .id-card-glare {
+      opacity: 1;
+    }
+
+    /* CARD HEADER */
+    .id-card-header {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 0.85rem;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .id-flag-emblem {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font: 600 0.58rem 'DM Mono', monospace;
+      letter-spacing: 0.12em;
+      color: var(--accent);
       margin-bottom: 0.2rem;
     }
 
-    .meta-value {
+    .id-flag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    .id-main-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .id-sub-title {
+      font: 500 0.52rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.22rem;
+    }
+
+    .id-header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .id-real-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: linear-gradient(135deg, #e6b800 0%, #ffdf00 50%, #996e00 100%);
+      padding: 0.26rem 0.55rem;
+      border-radius: 6px;
+      color: #1a1200;
+      font-family: 'DM Mono', monospace;
+      font-weight: 800;
+      font-size: 0.52rem;
+      line-height: 1.1;
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.7);
+    }
+
+    .id-star-icon {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .id-real-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .id-real-top {
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+    }
+
+    .id-real-bot {
+      font-size: 0.46rem;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+    }
+
+    .id-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font: 600 0.54rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(204, 255, 0, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(204, 255, 0, 0.35);
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    .id-status-indicator {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: idPulseDot 1.8s infinite ease-in-out;
+    }
+
+    /* CARD MAIN BODY */
+    .id-card-body {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 135px 1fr 130px;
+      gap: 1.25rem;
+      align-items: start;
+      margin-bottom: 0.95rem;
+    }
+
+    /* LEFT: PHOTO & SIGNATURE */
+    .id-col-photo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .id-photo-frame {
+      position: relative;
+      width: 130px;
+      height: 155px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #181a1d;
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 0 12px rgba(0,0,0,0.8);
+    }
+
+    .id-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.06) brightness(0.96);
+    }
+
+    .id-photo-corner {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-color: var(--accent);
+      border-style: solid;
+      pointer-events: none;
+    }
+
+    .id-photo-corner.tl { top: 4px; left: 4px; border-width: 2px 0 0 2px; }
+    .id-photo-corner.tr { top: 4px; right: 4px; border-width: 2px 2px 0 0; }
+    .id-photo-corner.bl { bottom: 4px; left: 4px; border-width: 0 0 2px 2px; }
+    .id-photo-corner.br { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; }
+
+    .id-photo-side-ribbon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: rgba(0, 0, 0, 0.7);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font: 700 0.42rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+    }
+
+    .id-signature-wrap {
+      width: 100%;
+      margin-top: 0.55rem;
+      padding-top: 0.35rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      text-align: center;
+    }
+
+    .id-signature-label {
+      font: 500 0.46rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .id-signature-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.48rem;
+      font-weight: 700;
+      color: #9fe2ff;
+      text-shadow: 0 0 3px rgba(159, 226, 255, 0.4);
+      transform: rotate(-3deg);
+      line-height: 1.15;
+      margin-top: -0.1rem;
+    }
+
+    /* CENTER: ATHLETE DATA & STATS */
+    .id-col-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .id-row-header-info {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 0.6rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      margin-bottom: 0.7rem;
+    }
+
+    .id-code {
+      font: 700 0.5rem 'DM Mono', monospace;
+      color: var(--accent);
+      margin-right: 0.25rem;
+      opacity: 0.9;
+    }
+
+    .id-lbl {
+      font: 600 0.5rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .id-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: #ffffff;
+      font-weight: 500;
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    .id-name-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+    }
+
+    .id-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 0.75rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .id-stat-card {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 7px;
+      padding: 0.42rem 0.55rem;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .id-stat-card:hover {
+      background: rgba(204, 255, 0, 0.04);
+      border-color: rgba(204, 255, 0, 0.35);
+    }
+
+    .id-stat-head {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.12rem;
+    }
+
+    .id-stat-value {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.92rem;
-      color: var(--ink);
-      font-weight: 400;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .id-stat-accent {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    .id-stat-sub {
+      font: 400 0.5rem 'DM Mono', monospace;
+      color: var(--muted);
+      margin-top: 0.12rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .id-bio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.8rem;
+      padding: 0.4rem 0.55rem;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font: 500 0.52rem 'DM Mono', monospace;
+    }
+
+    .id-bio-item {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .id-bio-lbl {
+      color: var(--muted);
+      margin-right: 0.2rem;
+    }
+
+    .id-bio-val {
+      color: #e2e2e2;
+    }
+
+    .id-val-active {
+      color: var(--accent) !important;
+      font-weight: 700;
+    }
+
+    /* RIGHT: ADVENTURE & PADI STAMPS */
+    .id-col-stamps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      height: 100%;
+    }
+
+    .id-stamp {
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      user-select: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    /* PADI CERTIFICATION STAMP */
+    .id-stamp-padi {
+      width: 92px;
+      height: 92px;
+      border: 2px dashed rgba(0, 220, 255, 0.75);
+      background: radial-gradient(circle, rgba(0, 220, 255, 0.14) 0%, rgba(0, 50, 100, 0.05) 70%, transparent 100%);
+      color: #4de5ff;
+      transform: rotate(-7deg);
+      box-shadow: 0 0 14px rgba(0, 220, 255, 0.12);
+    }
+
+    .id-stamp-padi:hover {
+      transform: rotate(0deg) scale(1.06);
+      box-shadow: 0 0 20px rgba(0, 220, 255, 0.3);
+    }
+
+    .id-stamp-padi-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.2rem;
+    }
+
+    .id-stamp-diver-icon {
+      width: 17px;
+      height: 17px;
+      margin-bottom: 0.12rem;
+      color: #4de5ff;
+    }
+
+    .id-stamp-padi-title {
+      font: 800 0.52rem 'DM Mono', monospace;
+      letter-spacing: 0.08em;
+      line-height: 1.05;
+    }
+
+    .id-stamp-padi-sub {
+      font: 600 0.42rem 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 0.1rem;
+    }
+
+    .id-stamp-padi-num {
+      font: 700 0.42rem 'DM Mono', monospace;
+      color: var(--accent);
+      margin-top: 0.15rem;
+    }
+
+    /* KILIMANJARO SUMMIT STAMP */
+    .id-stamp-summit {
+      width: 86px;
+      height: 86px;
+      border: 2px solid rgba(255, 107, 107, 0.75);
+      background: radial-gradient(circle, rgba(255, 107, 107, 0.12) 0%, transparent 70%);
+      color: #ff7875;
+      transform: rotate(6deg);
+    }
+
+    .id-stamp-summit:hover {
+      transform: rotate(0deg) scale(1.06);
+      box-shadow: 0 0 18px rgba(255, 107, 107, 0.25);
+    }
+
+    .id-stamp-summit-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.2rem;
+    }
+
+    .id-stamp-mtn-icon {
+      width: 16px;
+      height: 16px;
+      margin-bottom: 0.1rem;
+    }
+
+    .id-stamp-summit-text {
+      font: 800 0.48rem 'DM Mono', monospace;
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+    }
+
+    .id-stamp-summit-alt {
+      font: 700 0.45rem 'DM Mono', monospace;
+      color: #ffffff;
+      margin-top: 0.08rem;
+    }
+
+    .id-stamp-summit-loc {
+      font: 500 0.4rem 'DM Mono', monospace;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* GHOST WATERMARK */
+    .id-ghost-portrait {
+      width: 54px;
+      height: 64px;
+      border-radius: 5px;
+      overflow: hidden;
+      opacity: 0.24;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      filter: grayscale(100%) contrast(1.4);
+      position: relative;
+    }
+
+    .id-ghost-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .id-ghost-scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.55) 2px, rgba(0,0,0,0.55) 4px);
+    }
+
+    /* CARD FOOTER MRZ & BARCODE */
+    .id-card-footer {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.75rem;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.1);
+      margin-top: 0.2rem;
+      gap: 1rem;
+    }
+
+    .id-mrz-code {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      font: 500 0.52rem 'DM Mono', monospace;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.42);
+      text-transform: uppercase;
+    }
+
+    .id-mrz-code code {
+      font-family: inherit;
+    }
+
+    .id-barcode-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.2rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .id-barcode-svg {
+      width: 135px;
+      height: 17px;
+      display: block;
+    }
+
+    .id-security-hash {
+      font: 500 0.42rem 'DM Mono', monospace;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE ID CARD */
+    @media (max-width: 768px) {
+      .id-card {
+        padding: 1.1rem 1.1rem 0.85rem;
+        transform: none !important;
+      }
+      .id-card-body {
+        grid-template-columns: 1fr;
+        gap: 1.1rem;
+      }
+      .id-col-photo {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.2rem;
+        width: 100%;
+      }
+      .id-photo-frame {
+        width: 100px;
+        height: 120px;
+        flex-shrink: 0;
+      }
+      .id-signature-wrap {
+        margin-top: 0;
+        border-top: none;
+        border-left: 1px dashed rgba(255, 255, 255, 0.18);
+        padding-left: 1rem;
+        text-align: left;
+      }
+      .id-signature-text {
+        font-size: 1.35rem;
+      }
+      .id-col-stamps {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .id-stamp-padi {
+        width: 82px;
+        height: 82px;
+      }
+      .id-stamp-summit {
+        width: 78px;
+        height: 78px;
+      }
+      .id-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .id-mrz-code {
+        font-size: 0.44rem;
+        letter-spacing: 0.08em;
+        word-break: break-all;
+      }
+      .id-barcode-wrap {
+        align-items: flex-start;
+      }
     }
 
     /* ─── STORY SECTIONS (CLEAN SINGLE COLUMN) ─── */
@@ -1165,23 +1825,232 @@
     <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
   </div>
 
-  <!-- META STATS GRID -->
-  <div class="meta-grid">
-    <div class="meta">
-      <div class="meta-label">Active Sports</div>
-      <div class="meta-value">9 Disciplines</div>
+  <!-- INTERACTIVE ADVENTURE ID CARD (STICKER & 3D LIFT) -->
+  <div class="id-card-wrapper" id="idCardWrapper">
+    <div class="id-card-hint">
+      <span class="id-hint-dot"></span>
+      <span>OFFICIAL ATHLETE EXPEDITION ID · HOVER &amp; TILT TO INSPECT</span>
     </div>
-    <div class="meta">
-      <div class="meta-label">Highest Ascent</div>
-      <div class="meta-value">5,895m (Kilimanjaro)</div>
-    </div>
-    <div class="meta">
-      <div class="meta-label">Overland</div>
-      <div class="meta-value">15,000+ km logged</div>
-    </div>
-    <div class="meta">
-      <div class="meta-label">Diving</div>
-      <div class="meta-value">30+ Ocean Dives</div>
+    
+    <div class="id-card" id="idCard" role="region" aria-label="Shashank Seth Athlete Expedition ID Card">
+      <!-- HOLOGRAPHIC & SPECULAR GLARE OVERLAYS -->
+      <div class="id-card-holo"></div>
+      <div class="id-card-glare" id="idCardGlare"></div>
+      
+      <!-- CARD GUILLOCHE & SECURITY WATERMARK BACKGROUND -->
+      <div class="id-card-bg-pattern">
+        <svg class="id-guilloche-svg" viewBox="0 0 760 440" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="cardSecurityPattern" width="48" height="48" patternUnits="userSpaceOnUse">
+              <path d="M 0 24 Q 12 0 24 24 T 48 24" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+              <path d="M 0 24 Q 12 48 24 24 T 48 24" fill="none" stroke="rgba(204,255,0,0.025)" stroke-width="0.75"/>
+              <circle cx="24" cy="24" r="1.2" fill="rgba(255,255,255,0.04)"/>
+            </pattern>
+            <radialGradient id="cardBgGlow" cx="72%" cy="28%" r="65%">
+              <stop offset="0%" stop-color="rgba(204,255,0,0.09)"/>
+              <stop offset="45%" stop-color="rgba(0,229,255,0.04)"/>
+              <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+            </radialGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cardSecurityPattern)" />
+          <rect width="100%" height="100%" fill="url(#cardBgGlow)" />
+        </svg>
+      </div>
+
+      <!-- CARD HEADER -->
+      <div class="id-card-header">
+        <div class="id-header-left">
+          <div class="id-flag-emblem">
+            <span class="id-flag-dot"></span>
+            <span class="id-flag-text">IND ✦ GLOBAL EXPEDITION</span>
+          </div>
+          <div class="id-title-group">
+            <h2 class="id-main-title">EXPEDITION &amp; ADVENTURE ID</h2>
+            <div class="id-sub-title">VERIFIED ATHLETE FIELD SPECIMEN · PASS #EXP-8894-IN</div>
+          </div>
+        </div>
+        <div class="id-header-right">
+          <div class="id-real-badge" title="Verified Athlete Credential">
+            <svg class="id-star-icon" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+            <div class="id-real-text">
+              <span class="id-real-top">VERIFIED</span>
+              <span class="id-real-bot">FIELD ID</span>
+            </div>
+          </div>
+          <div class="id-status-pill">
+            <span class="id-status-indicator"></span>
+            <span>ACTIVE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD MAIN BODY -->
+      <div class="id-card-body">
+        
+        <!-- LEFT: BIOMETRIC PHOTO & SIGNATURE -->
+        <div class="id-col-photo">
+          <div class="id-photo-frame">
+            <img class="id-photo-img" src="./shashank_files/face.png" alt="Shashank Seth - Athlete ID Photo" />
+            <div class="id-photo-corner tl"></div>
+            <div class="id-photo-corner tr"></div>
+            <div class="id-photo-corner bl"></div>
+            <div class="id-photo-corner br"></div>
+            <div class="id-photo-side-ribbon">SPECIMEN · VALID</div>
+          </div>
+          <div class="id-signature-wrap">
+            <div class="id-signature-label">HOLDER SIGNATURE</div>
+            <div class="id-signature-text">Shashank Seth</div>
+          </div>
+        </div>
+
+        <!-- CENTER: ATHLETE DATA & STATS -->
+        <div class="id-col-info">
+          
+          <!-- ID / NAME ROW -->
+          <div class="id-row-header-info">
+            <div class="id-field id-field-name">
+              <div><span class="id-code">1</span><span class="id-lbl">NAME</span></div>
+              <span class="id-val id-name-val">SETH, SHASHANK</span>
+            </div>
+            <div class="id-field id-field-class">
+              <div><span class="id-code">2</span><span class="id-lbl">DISCIPLINE CLASS</span></div>
+              <span class="id-val">MULTI-SPORT ATHLETE</span>
+            </div>
+          </div>
+
+          <!-- THE 4 CORE STATS (INTEGRATED INTO OFFICIAL ID FIELDS) -->
+          <div class="id-stats-grid">
+            <div class="id-stat-card">
+              <div class="id-stat-head">
+                <span class="id-code">3a</span>
+                <span class="id-lbl">ACTIVE SPORTS</span>
+              </div>
+              <div class="id-stat-value">9 Disciplines</div>
+              <div class="id-stat-sub">Skate · Highline · Mountain · Dive</div>
+            </div>
+
+            <div class="id-stat-card">
+              <div class="id-stat-head">
+                <span class="id-code">3b</span>
+                <span class="id-lbl">HIGHEST ASCENT</span>
+              </div>
+              <div class="id-stat-value">5,895m <span class="id-stat-accent">(Kilimanjaro)</span></div>
+              <div class="id-stat-sub">Uhuru Peak · Africa Summit</div>
+            </div>
+
+            <div class="id-stat-card">
+              <div class="id-stat-head">
+                <span class="id-code">3c</span>
+                <span class="id-lbl">OVERLAND</span>
+              </div>
+              <div class="id-stat-value">15,000+ km logged</div>
+              <div class="id-stat-sub">Ladakh · Vietnam · Trans-Himalaya</div>
+            </div>
+
+            <div class="id-stat-card">
+              <div class="id-stat-head">
+                <span class="id-code">3d</span>
+                <span class="id-lbl">DIVING LOG</span>
+              </div>
+              <div class="id-stat-value">30+ Ocean Dives</div>
+              <div class="id-stat-sub">Cave · Drift · Open Ocean</div>
+            </div>
+          </div>
+
+          <!-- ATHLETE BIOMETRIC / CREDENTIAL ROW -->
+          <div class="id-bio-row">
+            <div class="id-bio-item"><span class="id-code">4a</span><span class="id-bio-lbl">EXP:</span><span class="id-bio-val">LIFETIME</span></div>
+            <div class="id-bio-item"><span class="id-code">4b</span><span class="id-bio-lbl">TERRAIN:</span><span class="id-bio-val">ALL-TERRAIN</span></div>
+            <div class="id-bio-item"><span class="id-code">4c</span><span class="id-bio-lbl">BASE:</span><span class="id-bio-val">INDIA / GLOBAL</span></div>
+            <div class="id-bio-item"><span class="id-code">4d</span><span class="id-bio-lbl">STATUS:</span><span class="id-bio-val id-val-active">AUTHENTIC</span></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: OFFICIAL ADVENTURE & PADI STAMPS -->
+        <div class="id-col-stamps">
+          
+          <!-- PADI CERTIFICATION STAMP -->
+          <div class="id-stamp id-stamp-padi" title="PADI Certified Diver Stamp">
+            <div class="id-stamp-padi-inner">
+              <svg class="id-stamp-diver-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a2 2 0 100 4 2 2 0 000-4zm4.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-2.2 2.8l-2.8-2.8V7h-3v4l2.8 2.8-3.3 6.6 2.2 1.1 2.8-5.6 2.8 5.6 2.2-1.1-3.7-7.6z"/>
+              </svg>
+              <div class="id-stamp-padi-title">PADI DIVER</div>
+              <div class="id-stamp-padi-sub">ADVANCED · FREEDIVE</div>
+              <div class="id-stamp-padi-num">CERT #30+ DIVES</div>
+            </div>
+          </div>
+
+          <!-- KILIMANJARO SUMMIT ADVENTURE STAMP -->
+          <div class="id-stamp id-stamp-summit" title="Mt. Kilimanjaro Summit Stamp">
+            <div class="id-stamp-summit-inner">
+              <svg class="id-stamp-mtn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 20h18L14 4l-4 7-3-4z"/>
+              </svg>
+              <div class="id-stamp-summit-text">UHURU PEAK</div>
+              <div class="id-stamp-summit-alt">5,895M SUMMIT</div>
+              <div class="id-stamp-summit-loc">TANZANIA</div>
+            </div>
+          </div>
+
+          <!-- GHOST SECURITY WATERMARK PORTRAIT -->
+          <div class="id-ghost-portrait" title="Security Halftone Watermark">
+            <img src="./shashank_files/face.png" alt="Ghost watermark security portrait" />
+            <div class="id-ghost-scanlines"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD FOOTER / MACHINE READABLE MRZ STRIP -->
+      <div class="id-card-footer">
+        <div class="id-mrz-code">
+          <code>IDIND&lt;&lt;SETH&lt;&lt;SHASHANK&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>
+          <code>EXP9409154M&lt;5895M&lt;15000KM&lt;30DIVES&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;09</code>
+        </div>
+        <div class="id-barcode-wrap">
+          <svg class="id-barcode-svg" viewBox="0 0 160 22" preserveAspectRatio="none">
+            <rect x="0" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="5" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="9" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="15" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="18" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="23" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="27" y="0" width="5" height="22" fill="currentColor"/>
+            <rect x="34" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="38" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="41" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="47" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="51" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="56" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="59" y="0" width="5" height="22" fill="currentColor"/>
+            <rect x="66" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="70" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="75" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="81" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="84" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="88" y="0" width="5" height="22" fill="currentColor"/>
+            <rect x="95" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="99" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="102" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="108" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="113" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="117" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="123" y="0" width="1" height="22" fill="currentColor"/>
+            <rect x="126" y="0" width="3" height="22" fill="currentColor"/>
+            <rect x="131" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="135" y="0" width="5" height="22" fill="currentColor"/>
+            <rect x="142" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="146" y="0" width="4" height="22" fill="currentColor"/>
+            <rect x="152" y="0" width="2" height="22" fill="currentColor"/>
+            <rect x="156" y="0" width="4" height="22" fill="currentColor"/>
+          </svg>
+          <span class="id-security-hash">SECURE CHIP · NFC VERIFIED</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1961,6 +2830,91 @@
 
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
+
+  /* ─── 3D INTERACTIVE LIFT & TILT FOR EXPEDITION ID CARD ─── */
+  (function initIdCardPhysics() {
+    const card = document.getElementById("idCard");
+    const wrapper = document.getElementById("idCardWrapper");
+    if (!card || !wrapper) return;
+
+    let bounds;
+    let isHovering = false;
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let currentLift = 0;
+    let targetLift = 0;
+    let rafId = null;
+
+    function updateBounds() {
+      bounds = card.getBoundingClientRect();
+    }
+
+    function onMouseEnter(e) {
+      isHovering = true;
+      updateBounds();
+      card.classList.add("is-hovered");
+      targetLift = -10;
+      if (!rafId) {
+        rafId = requestAnimationFrame(animateCard);
+      }
+    }
+
+    function onMouseMove(e) {
+      if (!bounds) updateBounds();
+      const mouseX = e.clientX - bounds.left;
+      const mouseY = e.clientY - bounds.top;
+      
+      const normX = Math.max(-1, Math.min(1, (mouseX / bounds.width) * 2 - 1));
+      const normY = Math.max(-1, Math.min(1, (mouseY / bounds.height) * 2 - 1));
+
+      targetRotateY = normX * 8.5;
+      targetRotateX = -normY * 8.5;
+
+      card.style.setProperty("--mouse-x", `${(mouseX / bounds.width) * 100}%`);
+      card.style.setProperty("--mouse-y", `${(mouseY / bounds.height) * 100}%`);
+    }
+
+    function onMouseLeave() {
+      isHovering = false;
+      card.classList.remove("is-hovered");
+      targetRotateX = 0;
+      targetRotateY = 0;
+      targetLift = 0;
+    }
+
+    function animateCard() {
+      const ease = isHovering ? 0.14 : 0.08;
+      
+      currentRotateX += (targetRotateX - currentRotateX) * ease;
+      currentRotateY += (targetRotateY - currentRotateY) * ease;
+      currentLift += (targetLift - currentLift) * ease;
+
+      const restAngle = isHovering ? 0 : -0.5;
+      
+      card.style.transform = `perspective(1200px) translateY(${currentLift.toFixed(2)}px) translateZ(${Math.abs(currentLift * 2.2).toFixed(2)}px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) rotateZ(${restAngle}deg)`;
+
+      if (!isHovering && Math.abs(currentRotateX) < 0.04 && Math.abs(currentRotateY) < 0.04 && Math.abs(currentLift) < 0.04) {
+        card.style.transform = "rotate(-0.5deg)";
+        rafId = null;
+        return;
+      }
+
+      rafId = requestAnimationFrame(animateCard);
+    }
+
+    wrapper.addEventListener("mouseenter", onMouseEnter);
+    wrapper.addEventListener("mousemove", onMouseMove);
+    wrapper.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("resize", () => {
+      if (isHovering) updateBounds();
+    });
+
+    wrapper.addEventListener("touchstart", () => {
+      card.classList.toggle("is-hovered");
+    }, { passive: true });
+  })();
 
 </script>
 <script src="./case-enhancements.js?v=9.0"></script>
