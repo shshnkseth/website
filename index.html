@@ -142,15 +142,30 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at center, transparent 35%, rgba(14, 14, 14, 0.42) 100%),
-        linear-gradient(180deg, rgba(14, 14, 14, 0.12) 0%, rgba(14, 14, 14, 0.18) 52%, var(--bg) 100%);
+        linear-gradient(90deg, rgba(14, 14, 14, 0.7) 0%, rgba(14, 14, 14, 0.42) 24%, rgba(14, 14, 14, 0.46) 72%, rgba(14, 14, 14, 0.72) 100%),
+        linear-gradient(180deg, rgba(14, 14, 14, 0.4) 0%, rgba(14, 14, 14, 0.36) 48%, rgba(14, 14, 14, 0.78) 76%, var(--bg) 100%);
     }
     .time-hero img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.82;
+      opacity: 0.9;
+      filter: saturate(0.92) contrast(1.04);
+    }
+
+    .case-nav,
+    .profile,
+    .bio,
+    .resume-pill,
+    .section-label {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 3px 18px rgba(0, 0, 0, 0.9);
+    }
+    .bio {
+      color: rgba(234, 230, 222, 0.96);
+    }
+    .profile-meta {
+      color: rgba(234, 230, 222, 0.72);
     }
 
     /* ─── PROFILE ─── */
@@ -1691,10 +1706,10 @@
   }
 
   const heroImages = {
-    morning: "./shashank_files/morning.jpg",
-    afternoon: "./shashank_files/afternoon.jpg",
-    evening: "./shashank_files/evening.jpg",
-    night: "./shashank_files/night.jpg"
+    morning: "./shashank_files/morning-hd.jpg",
+    afternoon: "./shashank_files/afternoon-hd.jpg",
+    evening: "./shashank_files/evening-hd.jpg",
+    night: "./shashank_files/night-hd.jpg"
   };
 
   function getLocalTimeOfDay(date = new Date()) {
