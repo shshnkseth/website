@@ -118,32 +118,12 @@
       padding: 1.8rem 1.6rem 6rem;
     }
 
-    /* ─── META BAR ─── */
-    .meta-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .meta-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.64rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
     /* ─── PROFILE ─── */
     .profile {
       display: flex;
       align-items: center;
       gap: 1.4rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
     }
     .profile-avatar {
       width: 72px;
@@ -169,6 +149,26 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+    .profile-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+    .meta-dot {
+      color: var(--rule-light);
+      opacity: 0.7;
     }
 
     /* ─── BIO ─── */
@@ -1209,7 +1209,6 @@
       .side-card { flex-basis: 100%; }
       .side-nav { top: -1.8rem; }
       .site-footer { font-size: 0.6rem; letter-spacing: 0.07em; }
-      .meta-bar { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
       .lightbox-meta {
         top: 0.6rem;
         left: 0.6rem;
@@ -1247,24 +1246,23 @@
     </div>
   </nav>
 
-  <!-- META BAR -->
-  <div class="meta-bar">
-    <span class="meta-item">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="4"/><path d="M6 2v4l2.5 1.5"/></svg>
-      <span id="time-display">--:--</span>
-    </span>
-    <span class="meta-item">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2C4.3 2 3 3.3 3 5c0 2.6 3 5 3 5s3-2.4 3-5c0-1.7-1.3-3-3-3z"/><circle cx="6" cy="5" r="1.2"/></svg>
-      Bhopal, IN 🇮🇳
-    </span>
-  </div>
-
   <!-- PROFILE -->
   <div class="profile">
     <img class="profile-avatar" src="./shashank_files/face.png" alt="Shashank Seth"/>
     <div class="profile-info">
       <div class="profile-name">Shashank Seth</div>
       <div class="profile-title">Sr. Product Designer ✦ Extreme Sports Athlete</div>
+      <div class="profile-meta">
+        <span class="meta-item">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="4"/><path d="M6 2v4l2.5 1.5"/></svg>
+          <span id="time-display">--:--</span>
+        </span>
+        <span class="meta-dot">·</span>
+        <span class="meta-item">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2C4.3 2 3 3.3 3 5c0 2.6 3 5 3 5s3-2.4 3-5c0-1.7-1.3-3-3-3z"/><circle cx="6" cy="5" r="1.2"/></svg>
+          Bhopal, IN 🇮🇳
+        </span>
+      </div>
     </div>
   </div>
 
