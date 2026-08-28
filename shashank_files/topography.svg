@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <style>
+      .topo-line {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.045);
+        stroke-width: 1.1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .topo-index {
+        fill: none;
+        stroke: rgba(204, 255, 0, 0.07);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g>
+    <!-- Peak 1 - Upper Left Ridge -->
+    <path class="topo-line" d="M 120 40 Q 150 20 180 40 T 240 70 T 260 120 T 220 170 T 160 160 T 100 130 T 90 80 Z" />
+    <path class="topo-line" d="M 130 55 Q 155 38 180 52 T 225 80 T 240 118 T 205 152 T 160 145 T 115 120 T 105 85 Z" />
+    <path class="topo-index" d="M 140 70 Q 160 55 180 65 T 210 90 T 220 118 T 192 138 T 160 132 T 128 112 T 120 90 Z" />
+    <path class="topo-line" d="M 150 82 Q 165 72 180 78 T 198 98 T 202 118 T 182 126 T 160 122 T 140 106 T 135 94 Z" />
+    <path class="topo-line" d="M 160 95 Q 170 88 180 92 T 188 105 T 186 116 T 172 120 T 160 116 T 150 104 Z" />
+
+    <!-- Peak 2 - Center-Right Massive Ridge -->
+    <path class="topo-line" d="M 380 160 Q 440 110 510 140 T 580 220 T 550 320 T 460 360 T 370 330 T 320 250 T 340 190 Z" />
+    <path class="topo-line" d="M 395 180 Q 445 135 500 160 T 555 228 T 530 305 T 455 338 T 385 312 T 342 248 T 360 205 Z" />
+    <path class="topo-index" d="M 410 200 Q 450 160 492 180 T 532 235 T 510 290 T 450 318 T 398 295 T 365 245 T 380 220 Z" />
+    <path class="topo-line" d="M 425 218 Q 455 185 484 200 T 510 242 T 490 278 T 444 298 T 410 280 T 385 244 T 398 230 Z" />
+    <path class="topo-line" d="M 440 234 Q 460 210 478 220 T 490 248 T 472 268 T 438 280 T 420 268 T 405 245 Z" />
+    <path class="topo-line" d="M 452 248 Q 465 232 474 238 T 476 254 T 458 262 T 438 258 Z" />
+
+    <!-- Saddle Pass between ridges -->
+    <path class="topo-line" d="M 0 180 Q 80 170 150 200 T 260 260 T 320 320 T 340 400 T 300 480 T 200 520 T 100 510 T 0 460" />
+    <path class="topo-line" d="M 0 200 Q 75 190 140 220 T 245 275 T 300 330 T 320 400 T 285 465 T 195 500 T 105 492 T 0 445" />
+    <path class="topo-index" d="M 0 220 Q 70 210 130 240 T 230 290 T 280 340 T 300 400 T 270 450 T 190 480 T 110 475 T 0 430" />
+    <path class="topo-line" d="M 0 240 Q 65 230 120 260 T 215 305 T 260 350 T 280 400 T 255 435 T 185 460 T 115 458 T 0 415" />
+
+    <!-- Southern Basin - Plateau -->
+    <path class="topo-line" d="M 420 440 Q 480 390 550 420 T 600 490 T 570 580 T 480 600 T 390 560 T 360 480 Z" />
+    <path class="topo-line" d="M 435 458 Q 485 415 540 438 T 580 492 T 552 562 T 482 580 T 408 545 T 382 485 Z" />
+    <path class="topo-index" d="M 450 475 Q 490 440 530 458 T 560 498 T 535 545 T 482 560 T 425 530 T 405 490 Z" />
+    <path class="topo-line" d="M 465 492 Q 495 465 520 478 T 540 505 T 518 530 T 480 540 T 442 518 T 428 495 Z" />
+
+    <!-- Seamless Border Wraparound lines -->
+    <!-- Top-Right to Bottom-Right -->
+    <path class="topo-line" d="M 520 0 Q 560 40 590 80 T 600 120" />
+    <path class="topo-line" d="M 540 0 Q 570 30 595 65" />
+    <path class="topo-line" d="M 520 600 Q 560 560 590 520 T 600 480" />
+
+    <!-- Top-Left Edge wrap -->
+    <path class="topo-line" d="M 0 60 Q 30 40 60 20 T 90 0" />
+    <path class="topo-line" d="M 0 80 Q 30 60 55 35 T 80 0" />
+    <path class="topo-line" d="M 0 540 Q 40 560 80 580 T 110 600" />
+    <path class="topo-line" d="M 0 560 Q 35 575 70 590 T 95 600" />
+
+    <!-- Broad Valley Contours -->
+    <path class="topo-line" d="M 220 0 Q 250 50 280 90 T 320 140 T 340 170" />
+    <path class="topo-line" d="M 240 0 Q 265 45 295 80 T 330 125 T 350 150" />
+    <path class="topo-line" d="M 180 600 Q 210 550 240 510 T 270 470 T 300 440" />
+    <path class="topo-line" d="M 200 600 Q 225 555 255 520 T 280 485 T 305 455" />
+  </g>
+</svg>
