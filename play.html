@@ -127,579 +127,30 @@
       box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
     }
 
-    /* ─── HERO HEADER (SPLIT LAYOUT: QUOTE ON LEFT & ID CARD ON RIGHT) ─── */
-    .hero.hero-split {
-      display: grid;
-      grid-template-columns: 1.05fr 490px;
-      gap: 2.6rem;
-      align-items: center;
-      padding: 1.6rem 0 2.4rem;
-      margin-bottom: 1.6rem;
+    /* ─── HERO HEADER (CLEAN & WIDE) ─── */
+    .hero {
+      padding: 2.4rem 0 1.8rem;
       border-bottom: 1px solid var(--rule);
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      margin-bottom: 1.8rem;
     }
 
     .eyebrow {
-      font: 500 0.62rem 'DM Mono', monospace;
+      font: 500 0.64rem 'DM Mono', monospace;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.65rem;
     }
 
     .hero h1,
     .hero .hero-quote {
-      font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+      font-size: clamp(2rem, 3.8vw, 3.1rem);
       font-weight: 300;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
       margin: 0;
       color: var(--ink);
-    }
-
-    .hero-right {
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
-
-    /* ─── COMPACT INTERACTIVE ADVENTURE ID CARD (STICKER & 3D LIFT) ─── */
-    .id-card-wrapper {
-      perspective: 1200px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      width: 100%;
-    }
-
-    .id-card {
-      position: relative;
-      width: 100%;
-      max-width: 490px;
-      background: #111417;
-      background: linear-gradient(145deg, #15181c 0%, #0d0f12 100%);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      overflow: hidden;
-      box-shadow: 0 14px 35px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.35);
-      transform-style: preserve-3d;
-      transform: rotate(-0.75deg);
-      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
-      cursor: pointer;
-      user-select: none;
-      padding: 1rem 1.15rem 0.75rem;
-    }
-
-    .id-card.is-hovered {
-      border-color: rgba(204, 255, 0, 0.5);
-      box-shadow: 0 28px 65px -12px rgba(0, 0, 0, 0.95), 0 0 35px rgba(204, 255, 0, 0.22), inset 0 1px 3px rgba(255, 255, 255, 0.6);
-    }
-
-    /* CARD GUILLOCHE & BACKGROUND */
-    .id-card-bg-pattern {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.85;
-      z-index: 1;
-    }
-
-    .id-guilloche-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* HOLOGRAPHIC & GLARE OVERLAYS */
-    .id-card-holo {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 6;
-      opacity: 0.14;
-      mix-blend-mode: color-dodge;
-      background: linear-gradient(115deg, transparent 20%, rgba(255, 0, 128, 0.35) 36%, rgba(0, 229, 255, 0.4) 48%, rgba(204, 255, 0, 0.45) 60%, transparent 80%);
-      transition: opacity 0.3s ease;
-    }
-
-    .id-card:hover .id-card-holo {
-      opacity: 0.42;
-    }
-
-    .id-card-glare {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 7;
-      opacity: 0;
-      transition: opacity 0.18s ease;
-      background: radial-gradient(circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.22), transparent 70%);
-    }
-
-    .id-card:hover .id-card-glare {
-      opacity: 1;
-    }
-
-    /* CARD HEADER */
-    .id-card-header {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 0.65rem;
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
-      margin-bottom: 0.75rem;
-      gap: 0.6rem;
-    }
-
-    .id-flag-emblem {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font: 600 0.52rem 'DM Mono', monospace;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-    }
-
-    .id-flag-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-    }
-
-    .id-main-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #ffffff;
-      line-height: 1.1;
-      margin: 0;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .id-sub-title {
-      font: 500 0.48rem 'DM Mono', monospace;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 0.15rem;
-    }
-
-    .id-header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      flex-shrink: 0;
-    }
-
-    .id-real-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: linear-gradient(135deg, #e6b800 0%, #ffdf00 50%, #996e00 100%);
-      padding: 0.2rem 0.45rem;
-      border-radius: 5px;
-      color: #1a1200;
-      font-family: 'DM Mono', monospace;
-      font-weight: 800;
-      font-size: 0.48rem;
-      line-height: 1.1;
-      box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.7);
-    }
-
-    .id-star-icon {
-      width: 12px;
-      height: 12px;
-      flex-shrink: 0;
-    }
-
-    .id-real-top {
-      font-size: 0.52rem;
-      letter-spacing: 0.05em;
-    }
-
-    .id-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font: 600 0.48rem 'DM Mono', monospace;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: rgba(204, 255, 0, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(204, 255, 0, 0.35);
-      padding: 0.18rem 0.45rem;
-      border-radius: 999px;
-    }
-
-    .id-status-indicator {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 5px var(--accent);
-      animation: idPulseDot 1.8s infinite ease-in-out;
-    }
-
-    /* CARD MAIN BODY */
-    .id-card-body {
-      position: relative;
-      z-index: 3;
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 0.95rem;
-      align-items: start;
-      margin-bottom: 0.75rem;
-    }
-
-    /* LEFT: PHOTO & SIGNATURE & STAMPS */
-    .id-col-photo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .id-photo-frame {
-      position: relative;
-      width: 105px;
-      height: 125px;
-      border-radius: 7px;
-      overflow: hidden;
-      background: #181a1d;
-      border: 1.5px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
-    }
-
-    .id-photo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: contrast(1.06) brightness(0.96);
-    }
-
-    .id-photo-corner {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-color: var(--accent);
-      border-style: solid;
-      pointer-events: none;
-    }
-
-    .id-photo-corner.tl { top: 3px; left: 3px; border-width: 2px 0 0 2px; }
-    .id-photo-corner.tr { top: 3px; right: 3px; border-width: 2px 2px 0 0; }
-    .id-photo-corner.bl { bottom: 3px; left: 3px; border-width: 0 0 2px 2px; }
-    .id-photo-corner.br { bottom: 3px; right: 3px; border-width: 0 2px 2px 0; }
-
-    .id-photo-side-ribbon {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 12px;
-      background: rgba(0, 0, 0, 0.7);
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font: 700 0.38rem 'DM Mono', monospace;
-      letter-spacing: 0.14em;
-      color: rgba(255, 255, 255, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(2px);
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      pointer-events: none;
-    }
-
-    .id-signature-wrap {
-      width: 100%;
-      margin-top: 0.4rem;
-      padding-top: 0.25rem;
-      border-top: 1px dashed rgba(255, 255, 255, 0.18);
-      text-align: center;
-    }
-
-    .id-signature-label {
-      font: 500 0.44rem 'DM Mono', monospace;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .id-signature-text {
-      font-family: 'Caveat', cursive;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #9fe2ff;
-      text-shadow: 0 0 3px rgba(159, 226, 255, 0.4);
-      transform: rotate(-3deg);
-      line-height: 1.1;
-      margin-top: -0.1rem;
-    }
-
-    .id-mini-stamps {
-      display: flex;
-      justify-content: center;
-      gap: 0.35rem;
-      width: 100%;
-      margin-top: 0.35rem;
-    }
-
-    .id-mini-stamp-badge {
-      font: 700 0.42rem 'DM Mono', monospace;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.15rem 0.35rem;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.2rem;
-    }
-
-    .id-stamp-padi-badge {
-      border: 1px dashed rgba(0, 220, 255, 0.7);
-      background: rgba(0, 220, 255, 0.1);
-      color: #4de5ff;
-    }
-
-    .id-stamp-summit-badge {
-      border: 1px solid rgba(255, 107, 107, 0.7);
-      background: rgba(255, 107, 107, 0.1);
-      color: #ff8585;
-    }
-
-    /* RIGHT: ATHLETE DATA & STATS */
-    .id-col-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .id-row-header-info {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem;
-      padding-bottom: 0.45rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-      margin-bottom: 0.55rem;
-    }
-
-    .id-code {
-      font: 700 0.48rem 'DM Mono', monospace;
-      color: var(--accent);
-      margin-right: 0.2rem;
-      opacity: 0.9;
-    }
-
-    .id-lbl {
-      font: 600 0.48rem 'DM Mono', monospace;
-      letter-spacing: 0.1em;
-      color: #a1a1aa;
-      text-transform: uppercase;
-    }
-
-    .id-name-val {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.96rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      display: block;
-      margin-top: 0.05rem;
-    }
-
-    .id-class-val {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      display: block;
-      margin-top: 0.1rem;
-    }
-
-    /* STATS GRID - HIGH LEGIBILITY & CONTRAST */
-    .id-stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.45rem 0.55rem;
-      margin-bottom: 0.55rem;
-    }
-
-    .id-stat-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 6px;
-      padding: 0.38rem 0.5rem;
-      transition: border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .id-stat-card:hover {
-      background: rgba(204, 255, 0, 0.06);
-      border-color: rgba(204, 255, 0, 0.4);
-    }
-
-    .id-stat-head {
-      display: flex;
-      align-items: baseline;
-      margin-bottom: 0.1rem;
-    }
-
-    .id-stat-value {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.96rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-    }
-
-    .id-stat-accent {
-      color: var(--accent);
-      font-weight: 500;
-      font-size: 0.78rem;
-    }
-
-    .id-stat-sub {
-      font: 400 0.48rem 'DM Mono', monospace;
-      color: #9ca3af;
-      margin-top: 0.1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .id-bio-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem 0.6rem;
-      padding: 0.32rem 0.45rem;
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font: 500 0.48rem 'DM Mono', monospace;
-    }
-
-    .id-bio-item {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .id-bio-lbl {
-      color: #9ca3af;
-      margin-right: 0.2rem;
-    }
-
-    .id-bio-val {
-      color: #e5e7eb;
-    }
-
-    .id-val-active {
-      color: var(--accent) !important;
-      font-weight: 700;
-    }
-
-    /* CARD FOOTER MRZ & BARCODE */
-    .id-card-footer {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 0.55rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 0.15rem;
-      gap: 0.6rem;
-    }
-
-    .id-mrz-code {
-      display: flex;
-      flex-direction: column;
-      gap: 0.08rem;
-      font: 500 0.46rem 'DM Mono', monospace;
-      letter-spacing: 0.14em;
-      color: rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-    }
-
-    .id-mrz-code code {
-      font-family: inherit;
-    }
-
-    .id-barcode-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.15rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .id-barcode-svg {
-      width: 105px;
-      height: 14px;
-      display: block;
-    }
-
-    .id-security-hash {
-      font: 500 0.38rem 'DM Mono', monospace;
-      letter-spacing: 0.1em;
-      color: rgba(255, 255, 255, 0.35);
-      text-transform: uppercase;
-    }
-
-    /* RESPONSIVE HERO SPLIT & ID CARD */
-    @media (max-width: 860px) {
-      .hero.hero-split {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .hero-right {
-        justify-content: center;
-      }
-      .id-card-wrapper {
-        align-items: center;
-      }
-      .id-card {
-        max-width: 520px;
-        transform: none !important;
-      }
-    }
-
-    @media (max-width: 540px) {
-      .id-card {
-        padding: 0.9rem;
-      }
-      .id-card-body {
-        grid-template-columns: 1fr;
-        gap: 0.85rem;
-      }
-      .id-col-photo {
-        flex-direction: row;
-        gap: 0.9rem;
-        width: 100%;
-      }
-      .id-photo-frame {
-        width: 85px;
-        height: 105px;
-        flex-shrink: 0;
-      }
-      .id-signature-wrap {
-        border-top: none;
-        border-left: 1px dashed rgba(255, 255, 255, 0.18);
-        padding-left: 0.8rem;
-        margin-top: 0;
-        text-align: left;
-      }
+      max-width: 860px;
     }
 
     /* ─── STORY SECTIONS (CLEAN SINGLE COLUMN) ─── */
@@ -1466,30 +917,354 @@
       font-weight: 600;
     }
 
-    .discipline-stage {
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      border-radius: var(--radius);
-      padding: 1.8rem 2rem;
-      display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
-      gap: 2.2rem;
-      align-items: center;
+    /* ─── FLOATING 3D SPORT ID CARD STAGE ─── */
+    .discipline-stage-wrapper {
+      perspective: 1200px;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .discipline-stage.sport-id-card {
       position: relative;
+      width: 100%;
+      background: #111417;
+      background: linear-gradient(145deg, #15181c 0%, #0d0f12 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
       overflow: hidden;
-      transition: border-color 0.2s ease, box-shadow 0.25s ease;
-    }
-
-    .discipline-stage:hover {
-      border-color: rgba(204, 255, 0, 0.45);
-      box-shadow: 0 12px 32px rgba(204, 255, 0, 0.08);
-    }
-
-    .discipline-content {
+      box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      transform-style: preserve-3d;
+      transform: rotate(-0.4deg);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: default;
+      user-select: none;
+      padding: 1.25rem 1.45rem 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.9rem;
+    }
+
+    .discipline-stage.sport-id-card.is-hovered {
+      border-color: rgba(204, 255, 0, 0.5);
+      box-shadow: 0 30px 75px -14px rgba(0, 0, 0, 0.95), 0 0 40px rgba(204, 255, 0, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+    }
+
+    /* CARD GUILLOCHE & HOLOGRAPHIC OVERLAYS */
+    .sport-id-bg-pattern {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    .sport-id-guilloche-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .sport-id-holo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 6;
+      opacity: 0.14;
+      mix-blend-mode: color-dodge;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 0, 128, 0.35) 36%, rgba(0, 229, 255, 0.4) 48%, rgba(204, 255, 0, 0.45) 60%, transparent 80%);
+      transition: opacity 0.3s ease;
+    }
+
+    .discipline-stage.sport-id-card:hover .sport-id-holo {
+      opacity: 0.4;
+    }
+
+    .sport-id-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 7;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      background: radial-gradient(circle 380px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.2), transparent 70%);
+    }
+
+    .discipline-stage.sport-id-card:hover .sport-id-glare {
+      opacity: 1;
+    }
+
+    /* CARD HEADER */
+    .sport-id-header {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+      gap: 0.8rem;
+    }
+
+    .sport-id-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font: 600 0.54rem 'DM Mono', monospace;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    .sport-id-flag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: idPulseDot 2s infinite ease-in-out;
+    }
+
+    .sport-id-pass-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .sport-id-sub {
+      font: 500 0.5rem 'DM Mono', monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.15rem;
+    }
+
+    .sport-id-header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .sport-id-real-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, #e6b800 0%, #ffdf00 50%, #996e00 100%);
+      padding: 0.22rem 0.5rem;
+      border-radius: 5px;
+      color: #1a1200;
+      font-family: 'DM Mono', monospace;
+      font-weight: 800;
+      font-size: 0.5rem;
+      line-height: 1.1;
+      box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.7);
+    }
+
+    .sport-id-star-icon {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    .sport-id-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      font: 600 0.5rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(204, 255, 0, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(204, 255, 0, 0.35);
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .sport-id-status-indicator {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+      animation: idPulseDot 1.8s infinite ease-in-out;
+    }
+
+    /* CARD MAIN BODY */
+    .sport-id-body {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    /* LEFT: ACTION PHOTO & SIGNATURE */
+    .sport-id-col-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .discipline-visual {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #181a1d;
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 0 12px rgba(0,0,0,0.8);
+      cursor: pointer;
+    }
+
+    .discipline-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.06) brightness(0.96);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .discipline-visual:hover img {
+      transform: scale(1.04);
+    }
+
+    .sport-photo-corner {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-color: var(--accent);
+      border-style: solid;
+      pointer-events: none;
+    }
+
+    .sport-photo-corner.tl { top: 3px; left: 3px; border-width: 2px 0 0 2px; }
+    .sport-photo-corner.tr { top: 3px; right: 3px; border-width: 2px 2px 0 0; }
+    .sport-photo-corner.bl { bottom: 3px; left: 3px; border-width: 0 0 2px 2px; }
+    .sport-photo-corner.br { bottom: 3px; right: 3px; border-width: 0 2px 2px 0; }
+
+    .sport-photo-ribbon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: rgba(0, 0, 0, 0.72);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font: 700 0.4rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+    }
+
+    .discipline-visual-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.4rem 0.6rem;
+      background: linear-gradient(0deg, rgba(8,8,8,0.92) 0%, transparent 100%);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #eae6de;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .discipline-visual-badge {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .sport-signature-wrap {
+      width: 100%;
+      margin-top: 0.55rem;
+      padding-top: 0.35rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      text-align: center;
+    }
+
+    .sport-signature-label {
+      font: 500 0.46rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .sport-signature-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #9fe2ff;
+      text-shadow: 0 0 3px rgba(159, 226, 255, 0.4);
+      transform: rotate(-3deg);
+      line-height: 1.1;
+      margin-top: -0.1rem;
+    }
+
+    /* RIGHT: DATA, PARTNER STAMPS & STATS */
+    .sport-id-col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
       min-width: 0;
+    }
+
+    .sport-id-row-info {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.7rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .sport-code {
+      font: 700 0.5rem 'DM Mono', monospace;
+      color: var(--accent);
+      margin-right: 0.25rem;
+      opacity: 0.9;
+    }
+
+    .sport-lbl {
+      font: 600 0.5rem 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      color: #a1a1aa;
+      text-transform: uppercase;
+    }
+
+    .sport-name-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      display: block;
+      margin-top: 0.05rem;
+    }
+
+    .discipline-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin: 0;
     }
 
     .discipline-kicker {
@@ -1498,16 +1273,7 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #ccff00 !important;
-    }
-
-    .discipline-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.2;
-      margin: 0;
+      color: var(--accent) !important;
     }
 
     .discipline-desc {
@@ -1515,8 +1281,112 @@
       font-size: 0.85rem;
       font-weight: 300;
       color: var(--text-dim);
-      line-height: 1.6;
+      line-height: 1.55;
       margin: 0;
+    }
+
+    /* PARTNER BRAND / OFFICIAL STAMP */
+    .sport-brand-stamp-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.45rem 0.65rem;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .sport-brand-stamp-badge {
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font: 700 0.54rem 'DM Mono', monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .sport-brand-stamp-badge.padi {
+      border: 1.5px dashed rgba(0, 220, 255, 0.8);
+      background: radial-gradient(circle, rgba(0, 220, 255, 0.18) 0%, transparent 80%);
+      color: #4de5ff;
+      box-shadow: 0 0 10px rgba(0, 220, 255, 0.15);
+    }
+
+    .sport-brand-stamp-badge.sponsor {
+      border: 1.5px solid rgba(204, 255, 0, 0.75);
+      background: radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 80%);
+      color: #ccff00;
+      box-shadow: 0 0 10px rgba(204, 255, 0, 0.15);
+    }
+
+    .sport-brand-stamp-badge.summit {
+      border: 1.5px solid rgba(255, 107, 107, 0.8);
+      background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 80%);
+      color: #ff8585;
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.15);
+    }
+
+    .sport-brand-stamp-meta {
+      font: 500 0.5rem 'DM Mono', monospace;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+    }
+
+    /* STATS TILES (HIGH CONTRAST & LEGIBLE) */
+    .discipline-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem 0.75rem;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    .sport-stat-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 7px;
+      padding: 0.42rem 0.6rem;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .sport-stat-box:hover {
+      background: rgba(204, 255, 0, 0.06);
+      border-color: rgba(204, 255, 0, 0.4);
+    }
+
+    .d-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+    }
+
+    .d-stat-val {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 0.1rem;
+      line-height: 1.2;
+    }
+
+    .d-stat-val a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.18s ease;
+    }
+
+    .d-stat-val a:hover {
+      color: #ffffff;
     }
 
     .discipline-badges {
@@ -1527,61 +1397,81 @@
 
     .discipline-badge {
       font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
+      font-size: 0.54rem;
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--ink);
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--rule);
-      padding: 0.18rem 0.52rem;
+      padding: 0.16rem 0.5rem;
       border-radius: 999px;
     }
 
-    .discipline-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-      padding: 0.85rem 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin: 0.3rem 0;
+    .sport-bio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.7rem;
+      padding: 0.35rem 0.5rem;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font: 500 0.5rem 'DM Mono', monospace;
     }
 
-    .d-stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .sport-bio-lbl {
+      color: #9ca3af;
+      margin-right: 0.2rem;
     }
 
-    .d-stat-val {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.86rem;
-      font-weight: 400;
-      color: var(--ink);
+    .sport-bio-val {
+      color: #e5e7eb;
+    }
+
+    /* CARD FOOTER */
+    .sport-id-footer {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.65rem;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.1);
       margin-top: 0.2rem;
+      gap: 1rem;
     }
 
-    .d-stat-val a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-      transition: color 0.18s ease, text-decoration-color 0.18s ease;
+    .sport-id-mrz {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+      font: 500 0.48rem 'DM Mono', monospace;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.42);
+      text-transform: uppercase;
     }
 
-    .d-stat-val a:hover {
-      color: #ffffff;
-      text-decoration-color: #ffffff;
+    .sport-id-mrz code {
+      font-family: inherit;
+    }
+
+    .sport-id-barcode-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .sport-id-barcode-svg {
+      width: 105px;
+      height: 15px;
+      display: block;
+      color: rgba(255, 255, 255, 0.65);
     }
 
     .discipline-cta-btn {
-      align-self: flex-start;
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #0e0e0e;
@@ -1595,6 +1485,7 @@
       gap: 0.4rem;
       box-shadow: 0 0 16px rgba(204, 255, 0, 0.35);
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .discipline-cta-btn:hover {
@@ -1602,57 +1493,26 @@
       box-shadow: 0 0 24px rgba(204, 255, 0, 0.6);
     }
 
-    .discipline-visual {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--rule);
-      background: #000;
-      cursor: pointer;
-    }
-
-    .discipline-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.9);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
-    }
-
-    .discipline-visual:hover img {
-      transform: scale(1.04);
-      filter: brightness(1);
-    }
-
-    .discipline-visual-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.6rem 0.85rem;
-      background: linear-gradient(0deg, rgba(8,8,8,0.92) 0%, transparent 100%);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #eae6de;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .discipline-visual-badge {
-      color: #ccff00;
-      font-weight: 500;
-    }
-
     @media (max-width: 768px) {
-      .discipline-stage {
+      .discipline-stage.sport-id-card {
+        padding: 1rem;
+        transform: none !important;
+      }
+      .sport-id-body {
         grid-template-columns: 1fr;
-        padding: 1.4rem;
-        gap: 1.4rem;
+        gap: 1.2rem;
+      }
+      .discipline-visual {
+        height: 180px;
+      }
+      .sport-id-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .sport-id-barcode-wrap {
+        width: 100%;
+        justify-content: space-between;
       }
     }
   </style>
@@ -1672,198 +1532,13 @@
     </div>
   </nav>
 
-  <!-- HERO HEADER (SPLIT: QUOTE ON LEFT & ID CARD ON RIGHT) -->
-  <div class="hero hero-split">
-    <!-- LEFT: EYEBROW & QUOTE -->
-    <div class="hero-left">
-      <div class="eyebrow">ATHLETE · PLAY &amp; EXPEDITIONS</div>
-      <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
-    </div>
-
-    <!-- RIGHT: COMPACT INTERACTIVE ADVENTURE ID CARD -->
-    <div class="hero-right">
-      <div class="id-card-wrapper" id="idCardWrapper">
-        <div class="id-card" id="idCard" role="region" aria-label="Shashank Seth Athlete Expedition ID Card">
-          <!-- HOLOGRAPHIC & SPECULAR GLARE OVERLAYS -->
-          <div class="id-card-holo"></div>
-          <div class="id-card-glare" id="idCardGlare"></div>
-          
-          <!-- CARD GUILLOCHE & SECURITY WATERMARK BACKGROUND -->
-          <div class="id-card-bg-pattern">
-            <svg class="id-guilloche-svg" viewBox="0 0 500 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="cardSecurityPattern" width="36" height="36" patternUnits="userSpaceOnUse">
-                  <path d="M 0 18 Q 9 0 18 18 T 36 18" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
-                  <path d="M 0 18 Q 9 36 18 18 T 36 18" fill="none" stroke="rgba(204,255,0,0.025)" stroke-width="0.75"/>
-                </pattern>
-                <radialGradient id="cardBgGlow" cx="75%" cy="25%" r="65%">
-                  <stop offset="0%" stop-color="rgba(204,255,0,0.1)"/>
-                  <stop offset="45%" stop-color="rgba(0,229,255,0.04)"/>
-                  <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-                </radialGradient>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#cardSecurityPattern)" />
-              <rect width="100%" height="100%" fill="url(#cardBgGlow)" />
-            </svg>
-          </div>
-
-          <!-- CARD HEADER -->
-          <div class="id-card-header">
-            <div class="id-header-left">
-              <div class="id-flag-emblem">
-                <span class="id-flag-dot"></span>
-                <span class="id-flag-text">IND ✦ GLOBAL EXPEDITION</span>
-              </div>
-              <div class="id-title-group">
-                <h2 class="id-main-title">EXPEDITION &amp; ADVENTURE ID</h2>
-                <div class="id-sub-title">VERIFIED ATHLETE FIELD SPECIMEN · #EXP-8894-IN</div>
-              </div>
-            </div>
-            <div class="id-header-right">
-              <div class="id-real-badge" title="Verified Athlete Credential">
-                <svg class="id-star-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                </svg>
-                <span class="id-real-top">VERIFIED ID</span>
-              </div>
-              <div class="id-status-pill">
-                <span class="id-status-indicator"></span>
-                <span>ACTIVE</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- CARD MAIN BODY -->
-          <div class="id-card-body">
-            
-            <!-- LEFT: BIOMETRIC PHOTO & SIGNATURE & STAMPS -->
-            <div class="id-col-photo">
-              <div class="id-photo-frame">
-                <img class="id-photo-img" src="./shashank_files/face.png" alt="Shashank Seth - Athlete ID Photo" />
-                <div class="id-photo-corner tl"></div>
-                <div class="id-photo-corner tr"></div>
-                <div class="id-photo-corner bl"></div>
-                <div class="id-photo-corner br"></div>
-                <div class="id-photo-side-ribbon">SPECIMEN · VALID</div>
-              </div>
-              <div class="id-signature-wrap">
-                <div class="id-signature-label">HOLDER SIGNATURE</div>
-                <div class="id-signature-text">Shashank Seth</div>
-              </div>
-              <div class="id-mini-stamps">
-                <span class="id-mini-stamp-badge id-stamp-padi-badge" title="PADI Certified Diver">🤿 PADI DIVER</span>
-                <span class="id-mini-stamp-badge id-stamp-summit-badge" title="5,895m Kilimanjaro Summit">🏔 5,895M</span>
-              </div>
-            </div>
-
-            <!-- RIGHT: ATHLETE DATA & STATS -->
-            <div class="id-col-info">
-              
-              <!-- ID / NAME ROW -->
-              <div class="id-row-header-info">
-                <div class="id-field id-field-name">
-                  <div><span class="id-code">1</span><span class="id-lbl">NAME</span></div>
-                  <span class="id-name-val">SETH, SHASHANK</span>
-                </div>
-                <div class="id-field id-field-class">
-                  <div><span class="id-code">2</span><span class="id-lbl">CLASS</span></div>
-                  <span class="id-class-val">MULTI-SPORT ATHLETE</span>
-                </div>
-              </div>
-
-              <!-- THE 4 CORE STATS (INTEGRATED INTO HIGH CONTRAST READABLE TILES) -->
-              <div class="id-stats-grid">
-                <div class="id-stat-card">
-                  <div class="id-stat-head">
-                    <span class="id-code">3a</span>
-                    <span class="id-lbl">ACTIVE SPORTS</span>
-                  </div>
-                  <div class="id-stat-value">9 Disciplines</div>
-                  <div class="id-stat-sub">Skate · Mountain · Dive · Highline</div>
-                </div>
-
-                <div class="id-stat-card">
-                  <div class="id-stat-head">
-                    <span class="id-code">3b</span>
-                    <span class="id-lbl">HIGHEST ASCENT</span>
-                  </div>
-                  <div class="id-stat-value">5,895m <span class="id-stat-accent">(Kilimanjaro)</span></div>
-                  <div class="id-stat-sub">Uhuru Peak · Africa Summit</div>
-                </div>
-
-                <div class="id-stat-card">
-                  <div class="id-stat-head">
-                    <span class="id-code">3c</span>
-                    <span class="id-lbl">OVERLAND</span>
-                  </div>
-                  <div class="id-stat-value">15,000+ km</div>
-                  <div class="id-stat-sub">Ladakh · Vietnam · Trans-Himalaya</div>
-                </div>
-
-                <div class="id-stat-card">
-                  <div class="id-stat-head">
-                    <span class="id-code">3d</span>
-                    <span class="id-lbl">DIVING LOG</span>
-                  </div>
-                  <div class="id-stat-value">30+ Ocean Dives</div>
-                  <div class="id-stat-sub">Cave · Drift · Open Ocean</div>
-                </div>
-              </div>
-
-              <!-- ATHLETE BIOMETRIC / CREDENTIAL ROW -->
-              <div class="id-bio-row">
-                <div class="id-bio-item"><span class="id-code">4a</span><span class="id-bio-lbl">EXP:</span><span class="id-bio-val">LIFETIME</span></div>
-                <div class="id-bio-item"><span class="id-code">4b</span><span class="id-bio-lbl">TERRAIN:</span><span class="id-bio-val">ALL-TERRAIN</span></div>
-                <div class="id-bio-item"><span class="id-code">4c</span><span class="id-bio-lbl">STATUS:</span><span class="id-bio-val id-val-active">AUTHENTIC</span></div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- CARD FOOTER / MACHINE READABLE MRZ STRIP -->
-          <div class="id-card-footer">
-            <div class="id-mrz-code">
-              <code>IDIND&lt;&lt;SETH&lt;&lt;SHASHANK&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>
-              <code>EXP940915&lt;5895M&lt;15000KM&lt;30DIVES&lt;&lt;&lt;&lt;&lt;&lt;09</code>
-            </div>
-            <div class="id-barcode-wrap">
-              <svg class="id-barcode-svg" viewBox="0 0 110 16" preserveAspectRatio="none">
-                <rect x="0" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="4" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="7" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="12" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="15" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="19" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="24" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="27" y="0" width="4" height="16" fill="currentColor"/>
-                <rect x="33" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="37" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="40" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="45" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="49" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="52" y="0" width="4" height="16" fill="currentColor"/>
-                <rect x="58" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="62" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="67" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="70" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="74" y="0" width="4" height="16" fill="currentColor"/>
-                <rect x="80" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="83" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="88" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="92" y="0" width="1" height="16" fill="currentColor"/>
-                <rect x="95" y="0" width="3" height="16" fill="currentColor"/>
-                <rect x="100" y="0" width="2" height="16" fill="currentColor"/>
-                <rect x="104" y="0" width="4" height="16" fill="currentColor"/>
-              </svg>
-              <span class="id-security-hash">SECURE CHIP · NFC VERIFIED</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- HERO HEADER (WIDE & PROMINENT) -->
+  <div class="hero">
+    <div class="eyebrow">ATHLETE · PLAY &amp; EXPEDITIONS</div>
+    <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
   </div>
 
-  <!-- SECTION 1: DISCIPLINES -->
+  <!-- SECTION 1: DISCIPLINES WITH FLOATING SPORT ID CARDS -->
   <section class="story">
     <h2>Nine ways I move, reset, and stay curious.</h2>
 
@@ -1874,41 +1549,182 @@
       <button class="discipline-tab" data-sport-tab="downhill">⚡ Downhill Longboard</button>
       <button class="discipline-tab" data-sport-tab="mountain">🏔 Mountaineering</button>
       <button class="discipline-tab" data-sport-tab="enduro">🏍 Enduro</button>
-      <button class="discipline-tab" data-sport-tab="freedive">🤿 Scuba & Freedive</button>
+      <button class="discipline-tab" data-sport-tab="freedive">🤿 Scuba &amp; Freedive</button>
       <button class="discipline-tab" data-sport-tab="runner">🏃 Running</button>
       <button class="discipline-tab" data-sport-tab="snowboard">🏂 Snowboarding</button>
       <button class="discipline-tab" data-sport-tab="equestrian">🐎 Equestrian</button>
     </div>
 
-    <!-- CINEMATIC STAGE CARD -->
-    <div class="discipline-stage spotlight-card" id="discipline-stage">
-      <div class="discipline-content">
-        <div class="discipline-kicker" id="d-kicker">Fall Seven Times, Stand Up Eight</div>
-        <h3 class="discipline-title" id="d-title">Skateboarder & Sponsored Athlete</h3>
-        <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.</p>
-        <div class="discipline-badges" id="d-badges">
-          <span class="discipline-badge">Bowl & Transition</span>
-          <span class="discipline-badge">Street Skate</span>
-          <span class="discipline-badge">SkateSupplyIndia</span>
+    <!-- FLOATING 3D SPORT ID CARD STAGE -->
+    <div class="discipline-stage-wrapper" id="disciplineStageWrapper">
+      <div class="discipline-stage sport-id-card" id="discipline-stage" role="region" aria-label="Athlete Sport Discipline ID Card">
+        
+        <!-- HOLOGRAPHIC & SPECULAR GLARE OVERLAYS -->
+        <div class="sport-id-holo"></div>
+        <div class="sport-id-glare" id="sportIdGlare"></div>
+        
+        <!-- CARD GUILLOCHE & SECURITY WATERMARK BACKGROUND -->
+        <div class="sport-id-bg-pattern">
+          <svg class="sport-id-guilloche-svg" viewBox="0 0 800 480" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="sportSecurityPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 0 20 Q 10 0 20 20 T 40 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.75"/>
+                <path d="M 0 20 Q 10 40 20 20 T 40 20" fill="none" stroke="rgba(204,255,0,0.025)" stroke-width="0.75"/>
+              </pattern>
+              <radialGradient id="sportCardBgGlow" cx="75%" cy="25%" r="65%">
+                <stop offset="0%" stop-color="rgba(204,255,0,0.09)"/>
+                <stop offset="45%" stop-color="rgba(0,229,255,0.04)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+              </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#sportSecurityPattern)" />
+            <rect width="100%" height="100%" fill="url(#sportCardBgGlow)" />
+          </svg>
         </div>
-        <div class="discipline-stats">
-          <div>
-            <div class="d-stat-label" id="d-stat-label-1">Focus</div>
-            <div class="d-stat-val" id="d-stat-1">Park & Bowl Riding</div>
+
+        <!-- CARD HEADER -->
+        <div class="sport-id-header">
+          <div class="sport-id-header-left">
+            <div class="sport-id-flag">
+              <span class="sport-id-flag-dot"></span>
+              <span>IND ✦ ATHLETE DISCIPLINE PASS</span>
+            </div>
+            <div class="sport-id-title-wrap">
+              <h3 class="sport-id-pass-title" id="d-pass-title">OFFICIAL CREDENTIAL · SKATEBOARDING</h3>
+              <div class="sport-id-sub" id="d-doc-num">ATHLETE FIELD SPECIMEN · #EXP-01-SK8</div>
+            </div>
           </div>
-          <div>
-            <div class="d-stat-label" id="d-stat-label-2">Sponsored</div>
-            <div class="d-stat-val" id="d-stat-2"><a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a></div>
+          <div class="sport-id-header-right">
+            <div class="sport-id-real-badge" title="Verified Sport Credential">
+              <svg class="sport-id-star-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+              </svg>
+              <span>VERIFIED SPORT ID</span>
+            </div>
+            <div class="sport-id-status" id="d-status-pill">
+              <span class="sport-id-status-indicator"></span>
+              <span id="d-status-text">ACTIVE · SPONSORED</span>
+            </div>
           </div>
         </div>
-        <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Skateboarder Photos →</button>
-      </div>
-      <div class="discipline-visual" id="d-visual-container">
-        <img id="d-image" src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Skateboarding frontside 5-0 grind in Gwalior"/>
-        <div class="discipline-visual-caption">
-          <span id="d-caption">Skateboarding · Frontside 5-0 Grind</span>
-          <span class="discipline-visual-badge">View HD ↗</span>
+
+        <!-- CARD MAIN BODY -->
+        <div class="sport-id-body">
+          
+          <!-- LEFT: ACTION PHOTO & SIGNATURE -->
+          <div class="sport-id-col-left">
+            <div class="discipline-visual" id="d-visual-container">
+              <img id="d-image" src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Skateboarding frontside 5-0 grind in Gwalior"/>
+              <div class="sport-photo-corner tl"></div>
+              <div class="sport-photo-corner tr"></div>
+              <div class="sport-photo-corner bl"></div>
+              <div class="sport-photo-corner br"></div>
+              <div class="sport-photo-ribbon">SPECIMEN · VALID</div>
+              <div class="discipline-visual-caption">
+                <span id="d-caption">Skateboarding · Frontside 5-0 Grind</span>
+                <span class="discipline-visual-badge">View HD ↗</span>
+              </div>
+            </div>
+            <div class="sport-signature-wrap">
+              <div class="sport-signature-label">HOLDER SIGNATURE</div>
+              <div class="sport-signature-text">Shashank Seth</div>
+            </div>
+          </div>
+
+          <!-- RIGHT: DATA, PARTNER STAMP & STATS -->
+          <div class="sport-id-col-right">
+            
+            <!-- IDENTITY ROW -->
+            <div class="sport-id-row-info">
+              <div>
+                <div><span class="sport-code">1</span><span class="sport-lbl">NAME</span></div>
+                <span class="sport-name-val">SETH, SHASHANK</span>
+              </div>
+              <div style="text-align:right;">
+                <div><span class="sport-code">2</span><span class="sport-lbl">DISCIPLINE</span></div>
+                <h3 class="discipline-title" id="d-title" style="margin-top:0.05rem;">Skateboarder &amp; Sponsored Athlete</h3>
+              </div>
+            </div>
+
+            <!-- PHILOSOPHY / KICKER -->
+            <div class="discipline-kicker" id="d-kicker">Fall Seven Times, Stand Up Eight</div>
+            <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.</p>
+
+            <!-- PARTNER BRAND & OFFICIAL CERTIFICATION STAMP -->
+            <div class="sport-brand-stamp-wrap" id="sport-brand-stamp-box">
+              <span class="sport-brand-stamp-badge sponsor" id="d-stamp-badge">★ SKATE SUPPLY INDIA ★ SPONSORED PRO ATHLETE</span>
+              <span class="sport-brand-stamp-meta" id="d-stamp-meta">OFFICIAL PARTNER CERTIFIED</span>
+            </div>
+
+            <!-- HIGH CONTRAST KEY STATS GRID -->
+            <div class="discipline-stats">
+              <div class="sport-stat-box">
+                <div class="d-stat-label" id="d-stat-label-1">Focus</div>
+                <div class="d-stat-val" id="d-stat-1">Park &amp; Bowl Riding</div>
+              </div>
+              <div class="sport-stat-box">
+                <div class="d-stat-label" id="d-stat-label-2">Sponsored</div>
+                <div class="d-stat-val" id="d-stat-2"><a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a></div>
+              </div>
+            </div>
+
+            <!-- BADGES & CREDENTIALS -->
+            <div class="discipline-badges" id="d-badges">
+              <span class="discipline-badge">Bowl &amp; Transition</span>
+              <span class="discipline-badge">Street Skate</span>
+              <span class="discipline-badge">SkateSupplyIndia</span>
+            </div>
+
+            <!-- BIOMETRIC VERIFICATION ROW -->
+            <div class="sport-bio-row">
+              <div><span class="sport-bio-lbl">EXP:</span><span class="sport-bio-val">LIFETIME</span></div>
+              <div><span class="sport-bio-lbl">TERRAIN:</span><span class="sport-bio-val" id="d-terrain-val">PARK &amp; STREET</span></div>
+              <div><span class="sport-bio-lbl">AUTH:</span><span class="sport-bio-val" style="color:var(--accent);font-weight:700;">AUTHENTIC</span></div>
+            </div>
+
+          </div>
+
         </div>
+
+        <!-- CARD FOOTER MRZ & ACTION -->
+        <div class="sport-id-footer">
+          <div class="sport-id-mrz">
+            <code id="d-mrz-1">IDIND&lt;&lt;SETH&lt;&lt;SHASHANK&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>
+            <code id="d-mrz-2">EXP940915&lt;SKATEBOARD&lt;SPONSORED&lt;&lt;&lt;&lt;&lt;&lt;01</code>
+          </div>
+          <div class="sport-id-barcode-wrap">
+            <svg class="sport-id-barcode-svg" viewBox="0 0 110 15" preserveAspectRatio="none">
+              <rect x="0" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="4" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="7" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="12" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="15" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="19" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="24" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="27" y="0" width="4" height="15" fill="currentColor"/>
+              <rect x="33" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="37" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="40" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="45" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="49" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="52" y="0" width="4" height="15" fill="currentColor"/>
+              <rect x="58" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="62" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="67" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="70" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="74" y="0" width="4" height="15" fill="currentColor"/>
+              <rect x="80" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="83" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="88" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="92" y="0" width="1" height="15" fill="currentColor"/>
+              <rect x="95" y="0" width="3" height="15" fill="currentColor"/>
+              <rect x="100" y="0" width="2" height="15" fill="currentColor"/>
+              <rect x="104" y="0" width="4" height="15" fill="currentColor"/>
+            </svg>
+            <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Skateboarder Photos →</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2445,27 +2261,22 @@
     if (event.key === "ArrowLeft") stepOverlay(-1);
   });
 
-  // ─── DISCIPLINE SWITCHER CONTROLLER ───
+  // ─── DISCIPLINE SWITCHER CONTROLLER (FLOATING SPORT ID CARDS) ───
   const disciplinesData = {
-    highline: {
-      kicker: "Balance in the Sky",
-      title: "Highliner & Slackliner",
-      desc: "Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.",
-      badges: ["Suru Valley 11,000 ft", "Waterline", "Rigging"],
-      stats: [
-        { label: "Highest Line", value: "11,000 ft (Suru Valley)" },
-        { label: "Takeaway", value: "Calm over panic" }
-      ],
-      image: "./shashank_files/gallery_opt/highline-at-11000ft.jpg",
-      imageAlt: "Highline at 11000 ft in Suru Valley",
-      caption: "Highline · Suru Valley, Ladakh (11,000 ft)",
-      sport: "highline"
-    },
     skateboard: {
       kicker: "Fall Seven Times, Stand Up Eight",
       title: "Skateboarder & Sponsored Athlete",
       desc: "Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.",
       badges: ["Bowl & Transition", "Street Skate", "SkateSupplyIndia"],
+      passTitle: "OFFICIAL CREDENTIAL · SKATEBOARDING",
+      docNum: "ATHLETE FIELD SPECIMEN · #EXP-01-SK8",
+      status: "ACTIVE · SPONSORED",
+      stampBadge: "★ SKATE SUPPLY INDIA ★ SPONSORED PRO ATHLETE",
+      stampMeta: "OFFICIAL PARTNER CERTIFIED",
+      stampClass: "sponsor",
+      terrain: "PARK & STREET",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<SKATEBOARD<SPONSORED<<<<<<01",
       stats: [
         { label: "Focus", value: "Park & Bowl Riding" },
         { label: "Sponsored", value: "SkateSupplyIndia", html: '<a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a>' }
@@ -2475,11 +2286,43 @@
       caption: "Skateboarding · Frontside 5-0 Grind",
       sport: "skateboard"
     },
+    highline: {
+      kicker: "Balance in the Sky",
+      title: "Highliner & Slackliner",
+      desc: "Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.",
+      badges: ["Suru Valley 11,000 ft", "Waterline", "Rigging"],
+      passTitle: "EXPEDITION ID · HIGHLINE & SLACKLINE",
+      docNum: "ALPINE SPECIMEN · #EXP-02-HGL",
+      status: "ACTIVE · RIGGER",
+      stampBadge: "★ SURU VALLEY 11,000 FT ★ HIGH ALTITUDE RIGGER",
+      stampMeta: "SLACKLINE FEDERATION LOGGED",
+      stampClass: "sponsor",
+      terrain: "11,000 FT VALLEY GAP",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<HIGHLINE<11000FT<RIGGER<<<02",
+      stats: [
+        { label: "Highest Line", value: "11,000 ft (Suru Valley)" },
+        { label: "Takeaway", value: "Calm over panic" }
+      ],
+      image: "./shashank_files/gallery_opt/highline-at-11000ft.jpg",
+      imageAlt: "Highline at 11000 ft in Suru Valley",
+      caption: "Highline · Suru Valley, Ladakh (11,000 ft)",
+      sport: "highline"
+    },
     downhill: {
       kicker: "Speed, Grip & Cornering",
       title: "Downhill Longboarder",
       desc: "Carving down steep mountain ghats and closed roads at 60+ km/h is all about trusting your urethane grip. Pitching the board sideways into pre-drifts to shave speed before a hairpin corner requires total commitment: no hesitation, just clean lines and pure adrenaline.",
       badges: ["Downhill Racing", "High Speed Slides", "Hairpin Pre-Drifts"],
+      passTitle: "RACING LICENSE · DOWNHILL SPEED",
+      docNum: "SPEED SPECIMEN · #EXP-03-DWH",
+      status: "ACTIVE · RACER",
+      stampBadge: "★ NATIONAL RACING ★ 60+ KM/H PRE-DRIFT SPEED",
+      stampMeta: "OFFICIAL DOWNHILL CERTIFIED",
+      stampClass: "sponsor",
+      terrain: "MOUNTAIN GHATS & ASPHALT",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<DOWNHILL<85KMH<RACER<<<<<<03",
       stats: [
         { label: "Race Experience", value: "National Downhill Races" },
         { label: "Top Speeds", value: "60+ km/h Descent" }
@@ -2494,6 +2337,15 @@
       title: "Alpine Mountaineer",
       desc: "Climbing big mountains like Kilimanjaro (5,895m) and Friendship Peak (5,289m) is all about patience. You can't rush the summit at minus 15 degrees: you just put your head down and take one slow step at a time. Big goals take small, steady moves.",
       badges: ["Kilimanjaro 5,895m", "Friendship Peak 5,289m", "Pangarchulla"],
+      passTitle: "SUMMIT PERMIT · HIGH ALTITUDE ALPINIST",
+      docNum: "SUMMIT SPECIMEN · #EXP-04-MTN",
+      status: "ACTIVE · SUMMITEER",
+      stampBadge: "🏔 UHURU PEAK 5,895M ★ KILIMANJARO SUMMIT",
+      stampMeta: "TANZANIA NATIONAL PARKS CERTIFIED",
+      stampClass: "summit",
+      terrain: "GLACIATED ALPINE & SUB-ZERO",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<5895M<UHURU<SUMMITEER<<<<<04",
       stats: [
         { label: "Highest Summit", value: "5,895m (Kilimanjaro)" },
         { label: "Lesson", value: "Patience wins" }
@@ -2508,6 +2360,15 @@
       title: "Enduro & Overland Rider",
       desc: "Enduro riding on loose gravel and riverbeds is pure quick thinking: you pick your line in a split second and trust your instincts. Over 15,000 km across Ladakh high passes and rural Vietnam trails, it is my favorite way to explore the world raw.",
       badges: ["15,000+ km Logged", "Ladakh High Passes", "Vietnam Trail"],
+      passTitle: "OVERLAND PASSPORT · ENDURO EXPEDITIONS",
+      docNum: "OVERLAND SPECIMEN · #EXP-05-END",
+      status: "ACTIVE · OVERLAND",
+      stampBadge: "🏍 TRANS-HIMALAYA & VIETNAM ★ 15,000+ KM SOLO",
+      stampMeta: "SOLO EXPEDITION LOGGED",
+      stampClass: "sponsor",
+      terrain: "HIGH PASSES & RIVERBEDS",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<15000KM<OVERLAND<ENDURO<<<05",
       stats: [
         { label: "Total Distance", value: "15,000+ km Solo" },
         { label: "Highlight", value: "5,000 km Vietnam Route" }
@@ -2522,6 +2383,15 @@
       title: "Advanced Scuba & Freediver",
       desc: "Thirty meters underwater, there is no phone signal, no notifications, and zero rush. Swimming alongside manta rays in Nusa Penida or exploring sea caves feels like entering a different world. It is the best place to reset and slow down.",
       badges: ["30+ Deep Dives", "Sea Caves", "Manta Drift"],
+      passTitle: "DIVER CERTIFICATION · SCUBA & FREEDIVE",
+      docNum: "DIVER SPECIMEN · #EXP-06-DIV",
+      status: "ACTIVE · PADI DIVER",
+      stampBadge: "★ PADI CERTIFIED ★ ADVANCED OPEN WATER & FREEDIVE",
+      stampMeta: "30+ OCEAN DIVES LOGGED",
+      stampClass: "padi",
+      terrain: "OPEN OCEAN, CAVES & DRIFT",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<30DIVES<PADI<ADVANCED<<<<<06",
       stats: [
         { label: "Logged Dives", value: "30+ Ocean Dives" },
         { label: "Favorites", value: "Manta Rays & Caves" }
@@ -2536,6 +2406,15 @@
       title: "Endurance Runner",
       desc: "Running is my daily chai for the brain. After a few kilometers, all the clutter clears out and good ideas start flowing on their own. Whether on city roads or rocky trails, it keeps energy levels and focus high all week long.",
       badges: ["10K PB · 52m", "Half Marathon · 2h14m", "Trails"],
+      passTitle: "ATHLETE ID · ENDURANCE RUNNER",
+      docNum: "RUNNER SPECIMEN · #EXP-07-RUN",
+      status: "ACTIVE · RUNNER",
+      stampBadge: "🏃 STRAVA FINISHER ★ 10K 52M · HALF MARATHON",
+      stampMeta: "ENDURANCE TIMED PB",
+      stampClass: "sponsor",
+      terrain: "ROAD & ROCKY TRAILS",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<10K52M<HALFMARATHON<<<<<<<07",
       stats: [
         { label: "10K Best", value: "52 minutes" },
         { label: "Half Marathon", value: "2 hours 14 mins" }
@@ -2550,6 +2429,15 @@
       title: "Snowboarder",
       desc: "Riding fresh snow in Gulmarg at 4,000 meters feels like effortless surfing. You don't fight the mountain, you just find a rhythm and flow with the terrain. It is pure joy and total focus in the cold.",
       badges: ["Gulmarg Phase 2", "Deep Powder", "Backcountry"],
+      passTitle: "BACKCOUNTRY PASS · FREERIDE SNOWBOARD",
+      docNum: "POWDER SPECIMEN · #EXP-08-SNW",
+      status: "ACTIVE · FREERIDER",
+      stampBadge: "🏂 GULMARG PHASE 2 ★ 3,950M BACKCOUNTRY POWDER",
+      stampMeta: "DEEP POWDER FLOW",
+      stampClass: "sponsor",
+      terrain: "3,950M BACKCOUNTRY POWDER",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<3950M<GULMARG<POWDER<<<<<<08",
       stats: [
         { label: "Location", value: "Gulmarg (3,950m)" },
         { label: "Vibe", value: "Flow over force" }
@@ -2564,6 +2452,15 @@
       title: "Equestrian Athlete",
       desc: "Show jumping is pure body connection without speaking a single word. Every stride and jump comes down to micro-cues: a subtle squeeze of the heels, sitting deep in the saddle, and timing rein pressure at the exact split-second to guide the full power and mechanics of a 500kg horse over a high fence.",
       badges: ["Show Jumping", "National Competitor", "Hunter Jumper"],
+      passTitle: "EQUESTRIAN LICENSE · SHOW JUMPING",
+      docNum: "EQUESTRIAN SPECIMEN · #EXP-09-EQS",
+      status: "ACTIVE · JUMPER",
+      stampBadge: "🐎 SHOW JUMPING ★ NATIONAL LEVEL HUNTER JUMPER",
+      stampMeta: "500KG ANIMAL MECHANICS",
+      stampClass: "sponsor",
+      terrain: "SHOW JUMPING COURSES",
+      mrz1: "IDIND<<SETH<<SHASHANK<<<<<<<<<<<<<<<<<",
+      mrz2: "EXP940915<SHOWJUMP<500KG<ATHLETE<<<<09",
       stats: [
         { label: "Discipline", value: "Show Jumping Courses" },
         { label: "Core Skill", value: "Body Balance" }
@@ -2582,21 +2479,41 @@
     if (!data) return;
     currentSportKey = key;
 
+    const passTitleEl = document.getElementById("d-pass-title");
+    const docNumEl = document.getElementById("d-doc-num");
+    const statusTextEl = document.getElementById("d-status-text");
     const kickerEl = document.getElementById("d-kicker");
     const titleEl = document.getElementById("d-title");
     const descEl = document.getElementById("d-desc");
+    const stampBadgeEl = document.getElementById("d-stamp-badge");
+    const stampMetaEl = document.getElementById("d-stamp-meta");
     const badgesEl = document.getElementById("d-badges");
     const stat1LabelEl = document.getElementById("d-stat-label-1");
     const stat1El = document.getElementById("d-stat-1");
     const stat2LabelEl = document.getElementById("d-stat-label-2");
     const stat2El = document.getElementById("d-stat-2");
+    const terrainValEl = document.getElementById("d-terrain-val");
+    const mrz1El = document.getElementById("d-mrz-1");
+    const mrz2El = document.getElementById("d-mrz-2");
     const imageEl = document.getElementById("d-image");
     const captionEl = document.getElementById("d-caption");
     const ctaBtn = document.getElementById("d-cta-btn");
 
+    if (passTitleEl && data.passTitle) passTitleEl.textContent = data.passTitle;
+    if (docNumEl && data.docNum) docNumEl.textContent = data.docNum;
+    if (statusTextEl && data.status) statusTextEl.textContent = data.status;
+
     if (kickerEl) kickerEl.textContent = data.kicker;
     if (titleEl) titleEl.textContent = data.title;
     if (descEl) descEl.textContent = data.desc;
+
+    if (stampBadgeEl && data.stampBadge) {
+      stampBadgeEl.textContent = data.stampBadge;
+      stampBadgeEl.className = `sport-brand-stamp-badge ${data.stampClass || "sponsor"}`;
+    }
+    if (stampMetaEl && data.stampMeta) {
+      stampMetaEl.textContent = data.stampMeta;
+    }
 
     if (badgesEl) {
       badgesEl.innerHTML = data.badges.map(b => `<span class="discipline-badge">${b}</span>`).join("");
@@ -2606,6 +2523,10 @@
     if (stat1El && data.stats[0]) stat1El.innerHTML = data.stats[0].html || data.stats[0].value;
     if (stat2LabelEl && data.stats[1]) stat2LabelEl.textContent = data.stats[1].label;
     if (stat2El && data.stats[1]) stat2El.innerHTML = data.stats[1].html || data.stats[1].value;
+
+    if (terrainValEl && data.terrain) terrainValEl.textContent = data.terrain;
+    if (mrz1El && data.mrz1) mrz1El.textContent = data.mrz1;
+    if (mrz2El && data.mrz2) mrz2El.textContent = data.mrz2;
 
     if (imageEl) {
       imageEl.src = data.image;
@@ -2640,10 +2561,10 @@
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
-  /* ─── 3D INTERACTIVE LIFT & TILT FOR EXPEDITION ID CARD ─── */
-  (function initIdCardPhysics() {
-    const card = document.getElementById("idCard");
-    const wrapper = document.getElementById("idCardWrapper");
+  /* ─── 3D INTERACTIVE LIFT & TILT FOR FLOATING SPORT ID CARD ─── */
+  (function initSportIdCardPhysics() {
+    const card = document.getElementById("discipline-stage");
+    const wrapper = document.getElementById("disciplineStageWrapper");
     if (!card || !wrapper) return;
 
     let bounds;
@@ -2664,7 +2585,7 @@
       isHovering = true;
       updateBounds();
       card.classList.add("is-hovered");
-      targetLift = -10;
+      targetLift = -8;
       if (!rafId) {
         rafId = requestAnimationFrame(animateCard);
       }
@@ -2678,8 +2599,8 @@
       const normX = Math.max(-1, Math.min(1, (mouseX / bounds.width) * 2 - 1));
       const normY = Math.max(-1, Math.min(1, (mouseY / bounds.height) * 2 - 1));
 
-      targetRotateY = normX * 8.5;
-      targetRotateX = -normY * 8.5;
+      targetRotateY = normX * 4.5;
+      targetRotateX = -normY * 4.5;
 
       card.style.setProperty("--mouse-x", `${(mouseX / bounds.width) * 100}%`);
       card.style.setProperty("--mouse-y", `${(mouseY / bounds.height) * 100}%`);
@@ -2700,12 +2621,12 @@
       currentRotateY += (targetRotateY - currentRotateY) * ease;
       currentLift += (targetLift - currentLift) * ease;
 
-      const restAngle = isHovering ? 0 : -0.5;
+      const restAngle = isHovering ? 0 : -0.3;
       
-      card.style.transform = `perspective(1200px) translateY(${currentLift.toFixed(2)}px) translateZ(${Math.abs(currentLift * 2.2).toFixed(2)}px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) rotateZ(${restAngle}deg)`;
+      card.style.transform = `perspective(1200px) translateY(${currentLift.toFixed(2)}px) translateZ(${Math.abs(currentLift * 2).toFixed(2)}px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) rotateZ(${restAngle}deg)`;
 
       if (!isHovering && Math.abs(currentRotateX) < 0.04 && Math.abs(currentRotateY) < 0.04 && Math.abs(currentLift) < 0.04) {
-        card.style.transform = "rotate(-0.5deg)";
+        card.style.transform = "rotate(-0.4deg)";
         rafId = null;
         return;
       }
