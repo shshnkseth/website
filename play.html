@@ -419,114 +419,75 @@
       margin-bottom: 1rem;
     }
 
-    .gallery-filter-bar {
+    /* ─── DUAL-ROW OPPOSITE CONTINUOUS MARQUEE ─── */
+    .marquee-carousel-wrapper {
       display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .gallery-filter-btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      padding: 0.28rem 0.75rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      border-radius: 999px;
-    }
-
-    .gallery-filter-btn:hover {
-      border-color: color-mix(in srgb, var(--accent) 40%, var(--rule));
-      color: var(--ink);
-    }
-
-    .gallery-filter-btn.active {
-      background: var(--accent);
-      color: #0e0e0e;
-      border-color: var(--accent);
-      box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 30%, transparent);
-    }
-
-    .gallery-carousel-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .gallery-nav-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      font-size: 0.75rem;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .gallery-nav-btn:hover {
-      background: var(--accent);
-      color: #0e0e0e;
-      border-color: var(--accent);
-      transform: scale(1.06);
-    }
-
-    .gallery-carousel-container {
-      position: relative;
-      margin: 0 -0.4rem;
-      padding: 0 0.4rem;
-    }
-
-    .gallery-masonry {
-      display: grid;
-      grid-template-rows: repeat(2, 210px);
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 280px);
+      flex-direction: column;
       gap: 0.85rem;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 0.3rem 0 0.9rem;
-      scrollbar-width: thin;
-      scrollbar-color: var(--rule-light) transparent;
-      cursor: grab;
+      position: relative;
+      overflow: hidden;
+      margin: 0.8rem 0 1.2rem;
+      padding: 0.4rem 0;
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
 
-    .gallery-masonry:active {
-      cursor: grabbing;
+    .marquee-row {
+      display: flex;
+      overflow: hidden;
+      user-select: none;
+      width: 100%;
     }
 
-    .gallery-masonry::-webkit-scrollbar {
-      height: 5px;
+    .marquee-track {
+      display: flex;
+      gap: 0.85rem;
+      width: max-content;
+      will-change: transform;
     }
 
-    .gallery-masonry::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 999px;
+    .marquee-row-left .marquee-track {
+      animation: marqueeScrollLeft 46s linear infinite;
     }
 
-    .gallery-masonry::-webkit-scrollbar-thumb {
-      background: var(--rule-light);
-      border-radius: 999px;
+    .marquee-row-right .marquee-track {
+      animation: marqueeScrollRight 46s linear infinite;
     }
 
-    .gallery-masonry::-webkit-scrollbar-thumb:hover {
-      background: var(--muted);
+    /* Pause smoothly on hover */
+    .marquee-row:hover .marquee-track,
+    .marquee-carousel-wrapper:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-group {
+      display: flex;
+      gap: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes marqueeScrollLeft {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(calc(-50% - 0.425rem), 0, 0);
+      }
+    }
+
+    @keyframes marqueeScrollRight {
+      0% {
+        transform: translate3d(calc(-50% - 0.425rem), 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
     }
 
     .gallery-item {
+      width: 270px;
+      height: 205px;
+      flex-shrink: 0;
       position: relative;
       border-radius: var(--radius);
       overflow: hidden;
@@ -537,37 +498,32 @@
       color: inherit;
       display: flex;
       flex-direction: column;
-      scroll-snap-align: start;
-      height: 100%;
-      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, box-shadow 0.22s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s ease;
     }
 
     .gallery-item:hover {
-      transform: translateY(-3px);
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-    }
-
-    .gallery-item.hidden {
-      display: none !important;
+      transform: translateY(-4px) scale(1.02);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--rule));
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+      z-index: 5;
     }
 
     .gallery-item img {
       width: 100%;
-      height: 165px;
+      height: 160px;
       object-fit: cover;
       display: block;
       filter: brightness(0.88);
-      transition: filter 0.22s ease, transform 0.3s ease;
+      transition: filter 0.22s ease, transform 0.35s ease;
     }
 
     .gallery-item:hover img {
       filter: brightness(0.98);
-      transform: scale(1.02);
+      transform: scale(1.04);
     }
 
     .gallery-item-caption {
-      padding: 0.55rem 0.8rem;
+      padding: 0.52rem 0.75rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.06em;
@@ -897,10 +853,18 @@
         width: 100%;
         margin-top: 0.2rem;
       }
-      .gallery-masonry {
-        grid-template-rows: repeat(2, 185px);
-        grid-auto-columns: 230px;
-        gap: 0.65rem;
+      .gallery-item {
+        width: 220px;
+        height: 175px;
+      }
+      .gallery-item img {
+        height: 135px;
+      }
+      .marquee-row-left .marquee-track {
+        animation-duration: 32s;
+      }
+      .marquee-row-right .marquee-track {
+        animation-duration: 32s;
       }
       .case-footer {
         grid-template-columns: 1fr;
@@ -1369,168 +1333,225 @@
       </div>
   </section>
 
-  <!-- SECTION 3: ARCHIVE -->
+  <!-- SECTION 3: ARCHIVE (DUAL-ROW OPPOSITE CONTINUOUS MARQUEE) -->
   <section class="story">
     <h2>Snapshots from lines, summits, and open roads.</h2>
 
-    <div class="gallery-header-row">
-      <div class="gallery-filter-bar">
-        <button class="gallery-filter-btn active" data-filter="all">All</button>
-        <button class="gallery-filter-btn" data-filter="highline">Highline</button>
-        <button class="gallery-filter-btn" data-filter="skate">Skate & Downhill</button>
-        <button class="gallery-filter-btn" data-filter="mountain">Mountain</button>
-        <button class="gallery-filter-btn" data-filter="ride">Enduro / Ride</button>
-        <button class="gallery-filter-btn" data-filter="water">Water / Scuba</button>
-        <button class="gallery-filter-btn" data-filter="snow">Snowboard</button>
-        <button class="gallery-filter-btn" data-filter="run">Running</button>
-        <button class="gallery-filter-btn" data-filter="equestrian">Equestrian</button>
+    <div class="marquee-carousel-wrapper">
+      <!-- ROW 1: Moves Left -->
+      <div class="marquee-row marquee-row-left">
+        <div class="marquee-track">
+          <!-- Group A (Original) -->
+          <div class="marquee-group">
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="snowboard" data-tag="snow" href="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-full="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · Gulmarg Phase 2 Powder Run">
+              <img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding powder day in Gulmarg"/>
+              <span class="gallery-item-caption">Snowboarding · Gulmarg Phase 2</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-full="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-date="Sept 2025" data-location="Suru Valley, Ladakh, IN" data-caption="Highline · 11,000 ft above sea level">
+              <img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 feet"/>
+              <span class="gallery-item-caption">Highline · 11,000 ft Ladakh</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-full="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-date="Feb 2024" data-location="Uhuru Peak, Tanzania" data-caption="Mt. Kilimanjaro · 5,895m Summit">
+              <img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Uhuru peak summit"/>
+              <span class="gallery-item-caption">Kilimanjaro · 5,895m Summit</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-full="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-date="2025" data-location="Gwalior, MP, IN" data-caption="Skateboarding · Frontside 5-0 Grind">
+              <img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Frontside five-o in Gwalior"/>
+              <span class="gallery-item-caption">Skate · Frontside 5-0</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-full="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-date="2025" data-location="Skatepark Session, IN" data-caption="Skateboarding · Doubles Session on Fire Coping">
+              <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Skateboarding doubles session on fire coping"/>
+              <span class="gallery-item-caption">Skate · Fire Coping Doubles</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-full="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-date="2025" data-location="Outdoor Skatepark, IN" data-caption="Skateboarding · Bowl Transfer & Grab">
+              <img src="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" alt="Skateboarding bowl air transfer"/>
+              <span class="gallery-item-caption">Skate · Bowl Air Grab</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-full="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-date="2025" data-location="Night Park Session, IN" data-caption="Skateboarding · Fire Coping Slash Grind">
+              <img src="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" alt="Skateboarding fire coping slash grind"/>
+              <span class="gallery-item-caption">Skate · Fire Slash Grind</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-full="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-date="2025" data-location="Transition Session, IN" data-caption="Skateboarding · Coping Axle Stall">
+              <img src="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" alt="Skateboarding coping axle stall"/>
+              <span class="gallery-item-caption">Skate · Axle Stall</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-full="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-date="Jun 2024" data-location="Nusa Penida, Indonesia" data-caption="Freediving · Oceanic Manta Rays">
+              <img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays"/>
+              <span class="gallery-item-caption">Freedive · Manta Rays</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · River Crossing on Ho Chi Minh Trail">
+              <img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" alt="Vietnam trail river crossing"/>
+              <span class="gallery-item-caption">Enduro · Vietnam Trail</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-full="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-date="July 2024" data-location="Friendship Peak, Himachal, IN" data-caption="Friendship Peak · 5,289m Alpine Summit">
+              <img src="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" alt="Friendship peak summit"/>
+              <span class="gallery-item-caption">Friendship Peak · 5,289m</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-full="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-date="Sept 2025" data-location="Suru Valley, Kargil, Ladakh, IN" data-caption="Highline · Kargil Canyon Rig">
+              <img src="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" alt="Highline at Suru Valley"/>
+              <span class="gallery-item-caption">Highline · Kargil Canyon</span>
+            </a>
+          </div>
+          <!-- Group B (Duplicate for seamless loop) -->
+          <div class="marquee-group" aria-hidden="true">
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="snowboard" data-tag="snow" href="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-full="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · Gulmarg Phase 2 Powder Run">
+              <img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding powder day in Gulmarg"/>
+              <span class="gallery-item-caption">Snowboarding · Gulmarg Phase 2</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-full="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-date="Sept 2025" data-location="Suru Valley, Ladakh, IN" data-caption="Highline · 11,000 ft above sea level">
+              <img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 feet"/>
+              <span class="gallery-item-caption">Highline · 11,000 ft Ladakh</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-full="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-date="Feb 2024" data-location="Uhuru Peak, Tanzania" data-caption="Mt. Kilimanjaro · 5,895m Summit">
+              <img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Uhuru peak summit"/>
+              <span class="gallery-item-caption">Kilimanjaro · 5,895m Summit</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-full="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-date="2025" data-location="Gwalior, MP, IN" data-caption="Skateboarding · Frontside 5-0 Grind">
+              <img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Frontside five-o in Gwalior"/>
+              <span class="gallery-item-caption">Skate · Frontside 5-0</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-full="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-date="2025" data-location="Skatepark Session, IN" data-caption="Skateboarding · Doubles Session on Fire Coping">
+              <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Skateboarding doubles session on fire coping"/>
+              <span class="gallery-item-caption">Skate · Fire Coping Doubles</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-full="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-date="2025" data-location="Outdoor Skatepark, IN" data-caption="Skateboarding · Bowl Transfer & Grab">
+              <img src="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" alt="Skateboarding bowl air transfer"/>
+              <span class="gallery-item-caption">Skate · Bowl Air Grab</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-full="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-date="2025" data-location="Night Park Session, IN" data-caption="Skateboarding · Fire Coping Slash Grind">
+              <img src="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" alt="Skateboarding fire coping slash grind"/>
+              <span class="gallery-item-caption">Skate · Fire Slash Grind</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-full="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-date="2025" data-location="Transition Session, IN" data-caption="Skateboarding · Coping Axle Stall">
+              <img src="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" alt="Skateboarding coping axle stall"/>
+              <span class="gallery-item-caption">Skate · Axle Stall</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-full="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-date="Jun 2024" data-location="Nusa Penida, Indonesia" data-caption="Freediving · Oceanic Manta Rays">
+              <img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays"/>
+              <span class="gallery-item-caption">Freedive · Manta Rays</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · River Crossing on Ho Chi Minh Trail">
+              <img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" alt="Vietnam trail river crossing"/>
+              <span class="gallery-item-caption">Enduro · Vietnam Trail</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-full="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-date="July 2024" data-location="Friendship Peak, Himachal, IN" data-caption="Friendship Peak · 5,289m Alpine Summit">
+              <img src="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" alt="Friendship peak summit"/>
+              <span class="gallery-item-caption">Friendship Peak · 5,289m</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-full="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-date="Sept 2025" data-location="Suru Valley, Kargil, Ladakh, IN" data-caption="Highline · Kargil Canyon Rig">
+              <img src="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" alt="Highline at Suru Valley"/>
+              <span class="gallery-item-caption">Highline · Kargil Canyon</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="gallery-carousel-nav">
-        <button class="gallery-nav-btn" id="gallery-prev" aria-label="Previous photos" type="button">←</button>
-        <button class="gallery-nav-btn" id="gallery-next" aria-label="Next photos" type="button">→</button>
-      </div>
-    </div>
 
-    <div class="gallery-carousel-container">
-      <div class="gallery-masonry" id="gallery-grid">
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="snowboard" data-tag="snow" href="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-full="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" data-date="Feb 2025" data-location="Gulmarg, J&K, IN" data-caption="Snowboarding · Gulmarg Phase 2 Powder Run">
-          <img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding powder day in Gulmarg"/>
-          <span class="gallery-item-caption">Snowboarding · Gulmarg Phase 2</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-full="./shashank_files/gallery_opt/highline-at-11000ft.jpg" data-date="Sept 2025" data-location="Suru Valley, Ladakh, IN" data-caption="Highline · 11,000 ft above sea level">
-          <img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 feet"/>
-          <span class="gallery-item-caption">Highline · 11,000 ft Ladakh</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-full="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" data-date="Feb 2024" data-location="Uhuru Peak, Tanzania" data-caption="Mt. Kilimanjaro · 5,895m Summit">
-          <img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Uhuru peak summit"/>
-          <span class="gallery-item-caption">Kilimanjaro · 5,895m Summit</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-full="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" data-date="2025" data-location="Gwalior, MP, IN" data-caption="Skateboarding · Frontside 5-0 Grind">
-          <img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Frontside five-o in Gwalior"/>
-          <span class="gallery-item-caption">Skate · Frontside 5-0</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-full="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" data-date="2025" data-location="Skatepark Session, IN" data-caption="Skateboarding · Doubles Session on Fire Coping">
-          <img src="./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg" alt="Skateboarding doubles session on fire coping"/>
-          <span class="gallery-item-caption">Skate · Fire Coping Doubles</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-full="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" data-date="2025" data-location="Outdoor Skatepark, IN" data-caption="Skateboarding · Bowl Transfer & Grab">
-          <img src="./shashank_files/gallery_opt/skateboard-bowl-air-grab.jpg" alt="Skateboarding bowl air transfer"/>
-          <span class="gallery-item-caption">Skate · Bowl Air Grab</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-full="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" data-date="2025" data-location="Night Park Session, IN" data-caption="Skateboarding · Fire Coping Slash Grind">
-          <img src="./shashank_files/gallery_opt/skateboard-fire-coping-carve.jpg" alt="Skateboarding fire coping slash grind"/>
-          <span class="gallery-item-caption">Skate · Fire Slash Grind</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="skateboard" data-tag="skate" href="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-full="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" data-date="2025" data-location="Transition Session, IN" data-caption="Skateboarding · Coping Axle Stall">
-          <img src="./shashank_files/gallery_opt/skateboard-coping-axle-stall.jpg" alt="Skateboarding coping axle stall"/>
-          <span class="gallery-item-caption">Skate · Axle Stall</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-full="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" data-date="Jun 2024" data-location="Nusa Penida, Indonesia" data-caption="Freediving · Oceanic Manta Rays">
-          <img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays"/>
-          <span class="gallery-item-caption">Freedive · Manta Rays</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-full="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" data-date="Sept 2022" data-location="Vietnam" data-caption="Enduro · River Crossing on Ho Chi Minh Trail">
-          <img src="./shashank_files/gallery_opt/Ho-chi-minh-trail-vietnam-2-opt.jpg" alt="Vietnam trail river crossing"/>
-          <span class="gallery-item-caption">Enduro · Vietnam Trail</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-full="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" data-date="July 2024" data-location="Friendship Peak, Himachal, IN" data-caption="Friendship Peak · 5,289m Alpine Summit">
-          <img src="./shashank_files/gallery_opt/summit-friendship-peak-opt.jpg" alt="Friendship peak summit"/>
-          <span class="gallery-item-caption">Friendship Peak · 5,289m</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="highline" data-tag="highline" href="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-full="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" data-date="Sept 2025" data-location="Suru Valley, Kargil, Ladakh, IN" data-caption="Highline · Kargil Canyon Rig">
-          <img src="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" alt="Highline at Suru Valley"/>
-          <span class="gallery-item-caption">Highline · Kargil Canyon</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · Underwater Rock Cracks">
-          <img src="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" alt="Scuba diving through underwater rock cracks"/>
-          <span class="gallery-item-caption">Scuba · Underwater Cracks</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-full="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-date="Aug 2024" data-location="Fotu La, Ladakh, IN" data-caption="Enduro · Fotu La High Pass Bypass">
-          <img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Fotu La bypass trail in Ladakh"/>
-          <span class="gallery-item-caption">Enduro · Fotu La Bypass</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-date="2025" data-location="Mountain Ghats, IN" data-caption="Downhill Longboarding · Mountain Hairpin Pre-Drift">
-          <img src="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" alt="Downhill longboarding on mountain hairpin"/>
-          <span class="gallery-item-caption">Downhill · Mountain Hairpin</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Hairpin Slide">
-          <img src="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" alt="Downhill longboard hairpin slide"/>
-          <span class="gallery-item-caption">Downhill · Hairpin Slide</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · Slide Glove Puck on Asphalt">
-          <img src="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" alt="Downhill longboard slide glove touch"/>
-          <span class="gallery-item-caption">Downhill · Slide Glove</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-full="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-date="2025" data-location="Navi Mumbai, MH, IN" data-caption="Downhill Longboarding · Race Run, Navi Mumbai">
-          <img src="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" alt="Downhill longboard race at Navi Mumbai"/>
-          <span class="gallery-item-caption">Downhill · Race Run</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · High Speed Coleman Slide">
-          <img src="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" alt="Downhill longboard coleman slide"/>
-          <span class="gallery-item-caption">Downhill · Coleman Slide</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Corner Drift Line">
-          <img src="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" alt="Downhill longboard corner drift"/>
-          <span class="gallery-item-caption">Downhill · Corner Drift</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-full="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-date="Apr 2025" data-location="Pangarchulla, Uttarakhand, IN" data-caption="Pangarchulla · 4,700m Winter Ridge">
-          <img src="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" alt="Pangarchulla summit"/>
-          <span class="gallery-item-caption">Pangarchulla · 4,700m</span>
-        </a>
-
-        <!-- RUNNER PHOTOS -->
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-road-run.jpg" data-full="./shashank_files/gallery_opt/10k-road-run.jpg" data-date="2024" data-location="Race Track, IN" data-caption="Endurance Runner · 10K Road Race Finish">
-          <img src="./shashank_files/gallery_opt/10k-road-run.jpg" alt="10k road run race"/>
-          <span class="gallery-item-caption">Running · 10K Road Race</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-trail-run.jpg" data-full="./shashank_files/gallery_opt/10k-trail-run.jpg" data-date="2024" data-location="Forest Trails, IN" data-caption="Endurance Runner · 10K Mountain Trail Run">
-          <img src="./shashank_files/gallery_opt/10k-trail-run.jpg" alt="10k trail run"/>
-          <span class="gallery-item-caption">Running · Trail Pace</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/race-day-track.jpg" data-full="./shashank_files/gallery_opt/race-day-track.jpg" data-date="2024" data-location="Athletics Track, IN" data-caption="Endurance Runner · Track Practice & Intervals">
-          <img src="./shashank_files/gallery_opt/race-day-track.jpg" alt="Race day track practice"/>
-          <span class="gallery-item-caption">Running · Track Intervals</span>
-        </a>
-
-        <!-- EQUESTRIAN PHOTOS -->
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="equestrian" data-tag="equestrian" href="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-full="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-date="Training" data-location="Riding Arena, IN" data-caption="Equestrian Athlete · Show Jumping Course">
-          <img src="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" alt="Horse show jumping training"/>
-          <span class="gallery-item-caption">Equestrian · Show Jumping</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="equestrian" data-tag="equestrian" href="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" data-full="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" data-date="Competition" data-location="Show Grounds, IN" data-caption="Equestrian Athlete · National Show Jumping Course">
-          <img src="./shashank_files/gallery_opt/horse-show-jumping-earlydays.JPG" alt="Horse show jumping competition"/>
-          <span class="gallery-item-caption">Equestrian · Course Clearance</span>
-        </a>
-
-        <a class="gallery-item spotlight-card gallery-trigger" data-sport="equestrian" data-tag="equestrian" href="./shashank_files/gallery_opt/showjuming-night.jpg" data-full="./shashank_files/gallery_opt/showjuming-night.jpg" data-date="Arena" data-location="Equestrian Arena, IN" data-caption="Equestrian Athlete · Floodlit Arena Training">
-          <img src="./shashank_files/gallery_opt/showjuming-night.jpg" alt="Show jumping under arena lights"/>
-          <span class="gallery-item-caption">Equestrian · Arena Training</span>
-        </a>
-
+      <!-- ROW 2: Moves Right -->
+      <div class="marquee-row marquee-row-right">
+        <div class="marquee-track">
+          <!-- Group A (Original) -->
+          <div class="marquee-group">
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · Underwater Rock Cracks">
+              <img src="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" alt="Scuba diving through underwater rock cracks"/>
+              <span class="gallery-item-caption">Scuba · Underwater Cracks</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-full="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-date="Aug 2024" data-location="Fotu La, Ladakh, IN" data-caption="Enduro · Fotu La High Pass Bypass">
+              <img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Fotu La bypass trail in Ladakh"/>
+              <span class="gallery-item-caption">Enduro · Fotu La Bypass</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-date="2025" data-location="Mountain Ghats, IN" data-caption="Downhill Longboarding · Mountain Hairpin Pre-Drift">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" alt="Downhill longboarding on mountain hairpin"/>
+              <span class="gallery-item-caption">Downhill · Mountain Hairpin</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Hairpin Slide">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" alt="Downhill longboard hairpin slide"/>
+              <span class="gallery-item-caption">Downhill · Hairpin Slide</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · Slide Glove Puck on Asphalt">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" alt="Downhill longboard slide glove touch"/>
+              <span class="gallery-item-caption">Downhill · Slide Glove</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-full="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-date="2025" data-location="Navi Mumbai, MH, IN" data-caption="Downhill Longboarding · Race Run, Navi Mumbai">
+              <img src="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" alt="Downhill longboard race at Navi Mumbai"/>
+              <span class="gallery-item-caption">Downhill · Race Run</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · High Speed Coleman Slide">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" alt="Downhill longboard coleman slide"/>
+              <span class="gallery-item-caption">Downhill · Coleman Slide</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Corner Drift Line">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" alt="Downhill longboard corner drift"/>
+              <span class="gallery-item-caption">Downhill · Corner Drift</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-full="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-date="Apr 2025" data-location="Pangarchulla, Uttarakhand, IN" data-caption="Pangarchulla · 4,700m Winter Ridge">
+              <img src="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" alt="Pangarchulla summit"/>
+              <span class="gallery-item-caption">Pangarchulla · 4,700m</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-road-run.jpg" data-full="./shashank_files/gallery_opt/10k-road-run.jpg" data-date="2024" data-location="Race Track, IN" data-caption="Endurance Runner · 10K Road Race Finish">
+              <img src="./shashank_files/gallery_opt/10k-road-run.jpg" alt="10k road run race"/>
+              <span class="gallery-item-caption">Running · 10K Road Race</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-trail-run.jpg" data-full="./shashank_files/gallery_opt/10k-trail-run.jpg" data-date="2024" data-location="Forest Trails, IN" data-caption="Endurance Runner · 10K Mountain Trail Run">
+              <img src="./shashank_files/gallery_opt/10k-trail-run.jpg" alt="10k trail run"/>
+              <span class="gallery-item-caption">Running · Trail Pace</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="equestrian" data-tag="equestrian" href="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-full="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-date="Training" data-location="Riding Arena, IN" data-caption="Equestrian Athlete · Show Jumping Course">
+              <img src="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" alt="Horse show jumping training"/>
+              <span class="gallery-item-caption">Equestrian · Show Jumping</span>
+            </a>
+          </div>
+          <!-- Group B (Duplicate for seamless loop) -->
+          <div class="marquee-group" aria-hidden="true">
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="freedive" data-tag="water" href="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-full="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" data-date="2024" data-location="Thailand" data-caption="Scuba Diving · Underwater Rock Cracks">
+              <img src="./shashank_files/gallery_opt/scubadive-through-underwater-cracks-thailanf-opt.jpg" alt="Scuba diving through underwater rock cracks"/>
+              <span class="gallery-item-caption">Scuba · Underwater Cracks</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="enduro" data-tag="ride" href="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-full="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" data-date="Aug 2024" data-location="Fotu La, Ladakh, IN" data-caption="Enduro · Fotu La High Pass Bypass">
+              <img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Fotu La bypass trail in Ladakh"/>
+              <span class="gallery-item-caption">Enduro · Fotu La Bypass</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" data-date="2025" data-location="Mountain Ghats, IN" data-caption="Downhill Longboarding · Mountain Hairpin Pre-Drift">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" alt="Downhill longboarding on mountain hairpin"/>
+              <span class="gallery-item-caption">Downhill · Mountain Hairpin</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Hairpin Slide">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" alt="Downhill longboard hairpin slide"/>
+              <span class="gallery-item-caption">Downhill · Hairpin Slide</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · Slide Glove Puck on Asphalt">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-slide-glove.jpg" alt="Downhill longboard slide glove touch"/>
+              <span class="gallery-item-caption">Downhill · Slide Glove</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-full="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" data-date="2025" data-location="Navi Mumbai, MH, IN" data-caption="Downhill Longboarding · Race Run, Navi Mumbai">
+              <img src="./shashank_files/gallery_opt/downhill-race-at-navimumbai.jpg" alt="Downhill longboard race at Navi Mumbai"/>
+              <span class="gallery-item-caption">Downhill · Race Run</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" data-date="2025" data-location="Ghat Roads, IN" data-caption="Downhill Longboarding · High Speed Coleman Slide">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-colemanslide.jpg" alt="Downhill longboard coleman slide"/>
+              <span class="gallery-item-caption">Downhill · Coleman Slide</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="downhill" data-tag="skate" href="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-full="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" data-date="2025" data-location="Mountain Passes, IN" data-caption="Downhill Longboarding · Corner Drift Line">
+              <img src="./shashank_files/gallery_opt/downhill-longboard-corner-drift.jpg" alt="Downhill longboard corner drift"/>
+              <span class="gallery-item-caption">Downhill · Corner Drift</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="mountain" data-tag="mountain" href="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-full="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" data-date="Apr 2025" data-location="Pangarchulla, Uttarakhand, IN" data-caption="Pangarchulla · 4,700m Winter Ridge">
+              <img src="./shashank_files/gallery_opt/summit-pangarchulla-opt.jpg" alt="Pangarchulla summit"/>
+              <span class="gallery-item-caption">Pangarchulla · 4,700m</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-road-run.jpg" data-full="./shashank_files/gallery_opt/10k-road-run.jpg" data-date="2024" data-location="Race Track, IN" data-caption="Endurance Runner · 10K Road Race Finish">
+              <img src="./shashank_files/gallery_opt/10k-road-run.jpg" alt="10k road run race"/>
+              <span class="gallery-item-caption">Running · 10K Road Race</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="runner" data-tag="run" href="./shashank_files/gallery_opt/10k-trail-run.jpg" data-full="./shashank_files/gallery_opt/10k-trail-run.jpg" data-date="2024" data-location="Forest Trails, IN" data-caption="Endurance Runner · 10K Mountain Trail Run">
+              <img src="./shashank_files/gallery_opt/10k-trail-run.jpg" alt="10k trail run"/>
+              <span class="gallery-item-caption">Running · Trail Pace</span>
+            </a>
+            <a class="gallery-item spotlight-card gallery-trigger" data-sport="equestrian" data-tag="equestrian" href="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-full="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" data-date="Training" data-location="Riding Arena, IN" data-caption="Equestrian Athlete · Show Jumping Course">
+              <img src="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" alt="Horse show jumping training"/>
+              <span class="gallery-item-caption">Equestrian · Show Jumping</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1615,8 +1636,8 @@
   const nextButton = document.getElementById("lightbox-next");
   const closeButton = document.getElementById("lightbox-close");
 
-  const triggers = Array.from(document.querySelectorAll(".gallery-trigger"));
-  const items = triggers.map((trigger) => ({
+  const uniqueTriggers = Array.from(document.querySelectorAll(".marquee-group:not([aria-hidden='true']) .gallery-trigger"));
+  const items = uniqueTriggers.map((trigger) => ({
     thumb: trigger.querySelector("img")?.src || trigger.getAttribute("href"),
     full: trigger.getAttribute("data-full") || trigger.getAttribute("href"),
     alt: trigger.querySelector("img")?.alt || "Gallery image",
@@ -1696,10 +1717,13 @@
     openAt(currentIndex + delta);
   }
 
-  triggers.forEach((trigger, index) => {
+  // Bind click to all gallery triggers (including duplicate marquee items)
+  document.querySelectorAll(".gallery-trigger").forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
-      openCollection(items, index);
+      const fullSrc = trigger.getAttribute("data-full") || trigger.getAttribute("href");
+      const foundIndex = items.findIndex((it) => it.full === fullSrc);
+      openCollection(items, foundIndex >= 0 ? foundIndex : 0);
     });
   });
 
@@ -1925,134 +1949,6 @@
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
-  // Gallery Filter & 2-Row Carousel Navigation with Auto-Play
-  const galleryFilterBtns = document.querySelectorAll(".gallery-filter-btn");
-  const galleryItems = document.querySelectorAll(".gallery-item");
-  const galleryGrid = document.getElementById("gallery-grid");
-  const galleryPrevBtn = document.getElementById("gallery-prev");
-  const galleryNextBtn = document.getElementById("gallery-next");
-
-  // Auto Carousel Controller
-  let autoPlayTimer = null;
-  let isUserInteracting = false;
-  const AUTO_PLAY_INTERVAL = 3200;
-
-  function stepAutoCarousel() {
-    if (!galleryGrid || isUserInteracting || document.hidden) return;
-    const maxScroll = galleryGrid.scrollWidth - galleryGrid.clientWidth;
-    if (maxScroll <= 0) return;
-
-    if (galleryGrid.scrollLeft >= maxScroll - 20) {
-      galleryGrid.scrollTo({ left: 0, behavior: "smooth" });
-    } else {
-      const stepWidth = Math.min(300, galleryGrid.clientWidth * 0.65);
-      galleryGrid.scrollBy({ left: stepWidth, behavior: "smooth" });
-    }
-  }
-
-  function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayTimer = setInterval(stepAutoCarousel, AUTO_PLAY_INTERVAL);
-  }
-
-  function stopAutoPlay() {
-    if (autoPlayTimer) {
-      clearInterval(autoPlayTimer);
-      autoPlayTimer = null;
-    }
-  }
-
-  function pauseAutoPlayBriefly(resumeDelay = 4500) {
-    stopAutoPlay();
-    isUserInteracting = true;
-    clearTimeout(window._galleryResumeTimeout);
-    window._galleryResumeTimeout = setTimeout(() => {
-      isUserInteracting = false;
-      startAutoPlay();
-    }, resumeDelay);
-  }
-
-  galleryFilterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      pauseAutoPlayBriefly(5000);
-      galleryFilterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filter = btn.dataset.filter;
-      galleryItems.forEach((item) => {
-        const itemTag = item.dataset.tag || "";
-        const shouldHide = filter !== "all" && itemTag !== filter;
-        item.classList.toggle("hidden", shouldHide);
-      });
-      if (galleryGrid) {
-        galleryGrid.scrollTo({ left: 0, behavior: "smooth" });
-      }
-    });
-  });
-
-  if (galleryGrid && galleryPrevBtn && galleryNextBtn) {
-    galleryPrevBtn.addEventListener("click", () => {
-      pauseAutoPlayBriefly(5000);
-      galleryGrid.scrollBy({ left: -560, behavior: "smooth" });
-    });
-    galleryNextBtn.addEventListener("click", () => {
-      pauseAutoPlayBriefly(5000);
-      galleryGrid.scrollBy({ left: 560, behavior: "smooth" });
-    });
-
-    let isDown = false;
-    let startX;
-    let scrollLeftStart;
-
-    galleryGrid.addEventListener("mouseenter", () => {
-      isUserInteracting = true;
-      stopAutoPlay();
-    });
-
-    galleryGrid.addEventListener("mouseleave", () => {
-      if (!isDown) {
-        isUserInteracting = false;
-        startAutoPlay();
-      }
-    });
-
-    galleryGrid.addEventListener("touchstart", () => {
-      pauseAutoPlayBriefly(6000);
-    }, { passive: true });
-
-    galleryGrid.addEventListener("mousedown", (e) => {
-      isDown = true;
-      isUserInteracting = true;
-      stopAutoPlay();
-      startX = e.pageX - galleryGrid.offsetLeft;
-      scrollLeftStart = galleryGrid.scrollLeft;
-    });
-
-    window.addEventListener("mouseup", () => {
-      if (isDown) {
-        isDown = false;
-        pauseAutoPlayBriefly(4000);
-      }
-    });
-
-    galleryGrid.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      const x = e.pageX - galleryGrid.offsetLeft;
-      const walk = (x - startX) * 1.4;
-      galleryGrid.scrollLeft = scrollLeftStart - walk;
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stopAutoPlay();
-      } else {
-        startAutoPlay();
-      }
-    });
-
-    // Start auto carousel initially
-    startAutoPlay();
-  }
 </script>
 <script src="./case-enhancements.js?v=9.0"></script>
 </body>
