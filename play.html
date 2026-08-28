@@ -1051,6 +1051,19 @@
       margin-top: 0.2rem;
     }
 
+    .d-stat-val a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.18s ease, text-decoration-color 0.18s ease;
+    }
+
+    .d-stat-val a:hover {
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+    }
+
     .discipline-cta-btn {
       align-self: flex-start;
       font-family: 'DM Mono', monospace;
@@ -1193,12 +1206,12 @@
     <div class="discipline-stage spotlight-card" id="discipline-stage">
       <div class="discipline-content">
         <div class="discipline-kicker" id="d-kicker">Fall Seven Times, Stand Up Eight</div>
-        <h3 class="discipline-title" id="d-title">Skateboarder & Builder</h3>
-        <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do. Building the community with Bhopal SB is my way of passing on that everyday grit.</p>
+        <h3 class="discipline-title" id="d-title">Skateboarder & Sponsored Athlete</h3>
+        <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.</p>
         <div class="discipline-badges" id="d-badges">
           <span class="discipline-badge">Bowl & Transition</span>
           <span class="discipline-badge">Street Skate</span>
-          <span class="discipline-badge">Bhopal SB</span>
+          <span class="discipline-badge">SkateSupplyIndia</span>
         </div>
         <div class="discipline-stats">
           <div>
@@ -1206,8 +1219,8 @@
             <div class="d-stat-val" id="d-stat-1">Park & Bowl Riding</div>
           </div>
           <div>
-            <div class="d-stat-label" id="d-stat-label-2">Building</div>
-            <div class="d-stat-val" id="d-stat-2">Bhopal SB</div>
+            <div class="d-stat-label" id="d-stat-label-2">Sponsored</div>
+            <div class="d-stat-val" id="d-stat-2"><a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a></div>
           </div>
         </div>
         <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Skateboarder Photos →</button>
@@ -1772,12 +1785,12 @@
     },
     skateboard: {
       kicker: "Fall Seven Times, Stand Up Eight",
-      title: "Skateboarder & Builder",
-      desc: "Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do. Building the community with Bhopal SB is my way of passing on that everyday grit.",
-      badges: ["Bowl & Transition", "Street Skate", "Bhopal SB"],
+      title: "Skateboarder & Sponsored Athlete",
+      desc: "Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.",
+      badges: ["Bowl & Transition", "Street Skate", "SkateSupplyIndia"],
       stats: [
         { label: "Focus", value: "Park & Bowl Riding" },
-        { label: "Building", value: "Bhopal SB" }
+        { label: "Sponsored", value: "SkateSupplyIndia", html: '<a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a>' }
       ],
       image: "./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg",
       imageAlt: "Skateboarding frontside 5-0 grind in Gwalior",
@@ -1912,9 +1925,9 @@
     }
 
     if (stat1LabelEl && data.stats[0]) stat1LabelEl.textContent = data.stats[0].label;
-    if (stat1El && data.stats[0]) stat1El.textContent = data.stats[0].value;
+    if (stat1El && data.stats[0]) stat1El.innerHTML = data.stats[0].html || data.stats[0].value;
     if (stat2LabelEl && data.stats[1]) stat2LabelEl.textContent = data.stats[1].label;
-    if (stat2El && data.stats[1]) stat2El.textContent = data.stats[1].value;
+    if (stat2El && data.stats[1]) stat2El.innerHTML = data.stats[1].html || data.stats[1].value;
 
     if (imageEl) {
       imageEl.src = data.image;
