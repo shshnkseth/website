@@ -1925,15 +1925,56 @@
   if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
   if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
 
-  // Gallery Filter & 2-Row Carousel Navigation
+  // Gallery Filter & 2-Row Carousel Navigation with Auto-Play
   const galleryFilterBtns = document.querySelectorAll(".gallery-filter-btn");
   const galleryItems = document.querySelectorAll(".gallery-item");
   const galleryGrid = document.getElementById("gallery-grid");
   const galleryPrevBtn = document.getElementById("gallery-prev");
   const galleryNextBtn = document.getElementById("gallery-next");
 
+  // Auto Carousel Controller
+  let autoPlayTimer = null;
+  let isUserInteracting = false;
+  const AUTO_PLAY_INTERVAL = 3200;
+
+  function stepAutoCarousel() {
+    if (!galleryGrid || isUserInteracting || document.hidden) return;
+    const maxScroll = galleryGrid.scrollWidth - galleryGrid.clientWidth;
+    if (maxScroll <= 0) return;
+
+    if (galleryGrid.scrollLeft >= maxScroll - 20) {
+      galleryGrid.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      const stepWidth = Math.min(300, galleryGrid.clientWidth * 0.65);
+      galleryGrid.scrollBy({ left: stepWidth, behavior: "smooth" });
+    }
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayTimer = setInterval(stepAutoCarousel, AUTO_PLAY_INTERVAL);
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  function pauseAutoPlayBriefly(resumeDelay = 4500) {
+    stopAutoPlay();
+    isUserInteracting = true;
+    clearTimeout(window._galleryResumeTimeout);
+    window._galleryResumeTimeout = setTimeout(() => {
+      isUserInteracting = false;
+      startAutoPlay();
+    }, resumeDelay);
+  }
+
   galleryFilterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      pauseAutoPlayBriefly(5000);
       galleryFilterBtns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
@@ -1951,9 +1992,11 @@
 
   if (galleryGrid && galleryPrevBtn && galleryNextBtn) {
     galleryPrevBtn.addEventListener("click", () => {
+      pauseAutoPlayBriefly(5000);
       galleryGrid.scrollBy({ left: -560, behavior: "smooth" });
     });
     galleryNextBtn.addEventListener("click", () => {
+      pauseAutoPlayBriefly(5000);
       galleryGrid.scrollBy({ left: 560, behavior: "smooth" });
     });
 
@@ -1961,15 +2004,35 @@
     let startX;
     let scrollLeftStart;
 
+    galleryGrid.addEventListener("mouseenter", () => {
+      isUserInteracting = true;
+      stopAutoPlay();
+    });
+
+    galleryGrid.addEventListener("mouseleave", () => {
+      if (!isDown) {
+        isUserInteracting = false;
+        startAutoPlay();
+      }
+    });
+
+    galleryGrid.addEventListener("touchstart", () => {
+      pauseAutoPlayBriefly(6000);
+    }, { passive: true });
+
     galleryGrid.addEventListener("mousedown", (e) => {
-      // Only drag if not clicking a link directly
       isDown = true;
+      isUserInteracting = true;
+      stopAutoPlay();
       startX = e.pageX - galleryGrid.offsetLeft;
       scrollLeftStart = galleryGrid.scrollLeft;
     });
 
     window.addEventListener("mouseup", () => {
-      isDown = false;
+      if (isDown) {
+        isDown = false;
+        pauseAutoPlayBriefly(4000);
+      }
     });
 
     galleryGrid.addEventListener("mousemove", (e) => {
@@ -1978,6 +2041,17 @@
       const walk = (x - startX) * 1.4;
       galleryGrid.scrollLeft = scrollLeftStart - walk;
     });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAutoPlay();
+      } else {
+        startAutoPlay();
+      }
+    });
+
+    // Start auto carousel initially
+    startAutoPlay();
   }
 </script>
 <script src="./case-enhancements.js?v=9.0"></script>
