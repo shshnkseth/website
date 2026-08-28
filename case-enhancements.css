@@ -60,6 +60,24 @@
   border-radius: 100px;
 }
 
+.llm-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: 400 0.62rem 'DM Mono', monospace;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 0.3rem 0.65rem;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+
+.llm-pill svg {
+  color: var(--project);
+  flex-shrink: 0;
+}
+
 .hero-link-pill {
   display: inline-flex;
   align-items: center;
@@ -78,6 +96,79 @@
   background: color-mix(in srgb, var(--project) 20%, var(--surface));
   border-color: var(--project);
   transform: translateY(-1px);
+}
+
+/* Editorial LLM Disclosure Card */
+.case-disclosure {
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.35rem 1.6rem;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.case-disclosure:hover {
+  border-color: var(--rule-light);
+}
+
+.disclosure-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.disclosure-badge {
+  font: 500 0.62rem 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--project);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.disclosure-tag {
+  font: 400 0.58rem 'DM Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+}
+
+.disclosure-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0 0 0.8rem;
+}
+
+.disclosure-source {
+  font: 400 0.62rem 'DM Mono', monospace;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  padding-top: 0.65rem;
+}
+
+.disclosure-source a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.disclosure-source a:hover {
+  color: var(--project);
 }
 
 /* Spotlight Interactive Card Physics */

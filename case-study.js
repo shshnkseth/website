@@ -988,6 +988,7 @@ function renderCaseStudy() {
       <p class="lede">${d.lede}</p>
       <div class="hero-actions">
         <span class="read-time-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 5 min read</span>
+        <span class="llm-pill" title="Narrative text rephrased and polished with LLM assistance for clarity and language"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> LLM Refined</span>
         <a class="hero-link-pill" href="${d.source}" target="_blank" rel="noopener">Notion Brief ↗</a>
       </div>
     </header>
@@ -1015,7 +1016,18 @@ function renderCaseStudy() {
     ${mediaBlock}
     ${takeawaysBlock}
 
-    <div class="source">Adapted from the original <a href="${d.source}" target="_blank" rel="noopener">Notion case study ↗</a></div>
+    <div class="case-disclosure spotlight-card">
+      <div class="disclosure-header">
+        <span class="disclosure-badge">✦ Editorial Note</span>
+        <span class="disclosure-tag">LLM-Assisted Copy</span>
+      </div>
+      <p class="disclosure-text">
+        The case study narrative, technical framing, and synthesis on this page have been rephrased and structured with the assistance of Large Language Models (LLMs) for clarity, conciseness, and improved use of language. All featured product decisions, design systems, UX artifacts, and shipped metrics reflect my authentic work and real-world execution.
+      </p>
+      <div class="disclosure-source">
+        Adapted from original raw archives · <a href="${d.source}" target="_blank" rel="noopener">View original Notion brief ↗</a>
+      </div>
+    </div>
   `;
 }
 
