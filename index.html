@@ -122,6 +122,22 @@
       padding: 1.8rem 1.6rem 6rem;
     }
 
+    /* ─── TIME-AWARE HERO ─── */
+    .time-hero {
+      width: 100%;
+      aspect-ratio: 763 / 505;
+      margin-bottom: 2.8rem;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #1b1b1b, #101010);
+    }
+    .time-hero img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     /* ─── PROFILE ─── */
     .profile {
       display: flex;
@@ -1330,6 +1346,18 @@
     </div>
   </nav>
 
+  <div class="time-hero" aria-label="A scene that changes with your local time of day">
+    <img
+      id="time-hero-image"
+      alt=""
+      width="763"
+      height="505"
+      decoding="async"
+      fetchpriority="high"
+      data-image-fallback
+    />
+  </div>
+
   <!-- PROFILE -->
   <div class="profile">
     <div class="profile-avatar-wrap" title="Hey there!">
@@ -1647,8 +1675,41 @@
     if (slot) slot.textContent = label;
   }
 
+  const heroImages = {
+    morning: "./shashank_files/morning.jpg",
+    afternoon: "./shashank_files/afternoon.jpg",
+    evening: "./shashank_files/evening.jpg",
+    night: "./shashank_files/night.jpg"
+  };
+
+  function getLocalTimeOfDay(date = new Date()) {
+    const hour = date.getHours();
+    if (hour >= 5 && hour < 12) return "morning";
+    if (hour >= 12 && hour < 17) return "afternoon";
+    if (hour >= 17 && hour < 21) return "evening";
+    return "night";
+  }
+
+  function updateTimeHero() {
+    const image = document.getElementById("time-hero-image");
+    if (!image) return;
+
+    const period = getLocalTimeOfDay();
+    const nextSrc = heroImages[period];
+    if (image.dataset.period === period) return;
+
+    image.dataset.period = period;
+    image.alt = `${period.charAt(0).toUpperCase() + period.slice(1)} landscape`;
+    image.onerror = () => {
+      image.onerror = null;
+      image.src = "./shashank_files/cover.jpg";
+      image.alt = "Portfolio hero image";
+    };
+    image.src = nextSrc;
+  }
+
   function setupImageFallbacks() {
-    document.querySelectorAll("img").forEach((img) => {
+    document.querySelectorAll("img:not([data-image-fallback])").forEach((img) => {
       img.addEventListener("error", () => {
         img.style.display = "none";
       }, { once: true });
@@ -2070,7 +2131,14 @@
 
   async function initPage() {
     updateTime();
-    setInterval(updateTime, 60000);
+    updateTimeHero();
+    setInterval(() => {
+      updateTime();
+      updateTimeHero();
+    }, 60000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updateTimeHero();
+    });
     setupImageFallbacks();
     shuffleGalleryTracks();
     setupGalleryMarquee();
