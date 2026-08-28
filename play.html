@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="./shashank_files/zapp.png" />
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
-  <title>Sports & Adventure ✦ Shashank Seth</title>
+  <title>Play ✦ Shashank Seth</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./shared.css?v=9.0" />
   <link rel="stylesheet" href="./case-study.css?v=9.0" />
@@ -27,6 +27,12 @@
       --radius: 12px;
       --status-bg: var(--bg);
       --status-sep: #333;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -65,7 +71,7 @@
       align-items: center;
       padding-bottom: 1.1rem;
       border-bottom: 1px solid var(--rule);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.2rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.64rem;
       font-weight: 500;
@@ -121,9 +127,9 @@
       box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
     }
 
-    /* ─── HERO HEADER ─── */
+    /* ─── HERO HEADER (EDITORIAL STORY / CALLOUT QUOTE STYLE) ─── */
     .hero {
-      padding: 3rem 0 2rem;
+      padding: 2.8rem 0 2.2rem;
     }
 
     .eyebrow {
@@ -134,20 +140,23 @@
       margin-bottom: 0.85rem;
     }
 
-    .hero h1 {
-      font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+    .hero h1,
+    .hero .hero-quote {
+      font-size: clamp(1.85rem, 3.8vw, 2.85rem);
       font-weight: 300;
-      line-height: 1.06;
-      letter-spacing: -0.04em;
+      line-height: 1.22;
+      letter-spacing: -0.03em;
       margin: 0 0 1rem;
       color: var(--ink);
+      max-width: 820px;
+      font-style: italic;
     }
 
     .hero .lede {
-      font-size: clamp(1rem, 1.6vw, 1.22rem);
-      line-height: 1.55;
+      font-size: clamp(0.96rem, 1.5vw, 1.12rem);
+      line-height: 1.6;
       color: var(--text-dim);
-      max-width: 720px;
+      max-width: 680px;
       margin: 0;
       font-weight: 300;
     }
@@ -1109,11 +1118,11 @@
     </div>
   </nav>
 
-  <!-- HERO HEADER (MATCH CASE STUDY) -->
+  <!-- HERO HEADER (EDITORIAL STORY / CALLOUT QUOTE STYLE) -->
   <div class="hero">
     <div class="eyebrow">FIELD LOGS & EXPEDITIONS ✦ ATHLETE</div>
-    <h1>Sports & Adventure</h1>
-    <p class="lede">Movement is where I reset, evaluate risk, and stay curious : from alpine summits and 11,000ft highlines to downhill skateparks, deep-sea diving, and multi-thousand km overland trail rides.</p>
+    <h1 class="hero-quote">“Movement does for the soul what education does for the mind.”</h1>
+    <p class="lede">Field notes, highlines, summits, and open trails. Where I reset, evaluate risk, and stay curious.</p>
   </div>
 
   <!-- META STATS GRID (CASE STUDY STYLE) -->
@@ -1488,8 +1497,8 @@
 
   <!-- QUOTE BLOCK (CASE STUDY EDITORIAL) -->
   <div class="quote-box spotlight-card">
-    <p class="quote-text">“Movement does for the soul what education does for the mind.”</p>
-    <div class="quote-author">Shashank Seth · Field Notes</div>
+    <p class="quote-text">“Every terrain is a canvas. Balance on a 1-inch webbing, carving an asphalt hairpin, or breathing underwater : you learn to listen to your body, respect the elements, and move forward.”</p>
+    <div class="quote-author">Shashank Seth · Field Journal</div>
   </div>
 
   <!-- SOCIAL / POLARSTEPS BANNER -->
