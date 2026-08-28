@@ -120,22 +120,37 @@
       max-width: 880px;
       margin: 0 auto;
       padding: 1.8rem 1.6rem 6rem;
+      position: relative;
+      z-index: 1;
     }
 
     /* ─── TIME-AWARE HERO ─── */
     .time-hero {
-      width: 100%;
-      aspect-ratio: 763 / 505;
-      margin-bottom: 2.8rem;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 50%;
+      width: 100vw;
+      aspect-ratio: 21 / 9;
+      transform: translateX(-50%);
       overflow: hidden;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, #1b1b1b, #101010);
+      pointer-events: none;
+      background: #101010;
+    }
+    .time-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(14, 14, 14, 0.48), rgba(14, 14, 14, 0.12) 50%, rgba(14, 14, 14, 0.48)),
+        linear-gradient(180deg, rgba(14, 14, 14, 0.18) 0%, rgba(14, 14, 14, 0.2) 48%, var(--bg) 100%);
     }
     .time-hero img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0.82;
     }
 
     /* ─── PROFILE ─── */
@@ -1346,7 +1361,7 @@
     </div>
   </nav>
 
-  <div class="time-hero" aria-label="A scene that changes with your local time of day">
+  <div class="time-hero" aria-hidden="true">
     <img
       id="time-hero-image"
       alt=""
@@ -1699,11 +1714,9 @@
     if (image.dataset.period === period) return;
 
     image.dataset.period = period;
-    image.alt = `${period.charAt(0).toUpperCase() + period.slice(1)} landscape`;
     image.onerror = () => {
       image.onerror = null;
       image.src = "./shashank_files/cover.jpg";
-      image.alt = "Portfolio hero image";
     };
     image.src = nextSrc;
   }
