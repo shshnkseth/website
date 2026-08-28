@@ -1210,12 +1210,12 @@
 
   <!-- SECTION 1: DISCIPLINES -->
   <section class="story">
-    <h2>Nine ways to move, reset, and stay curious.</h2>
+    <h2>Nine ways I move, reset, and stay curious.</h2>
 
     <!-- DISCIPLINE SELECTOR TABS -->
     <div class="discipline-tabs" id="discipline-tabs">
-      <button class="discipline-tab active" data-sport-tab="highline">🪢 Highline</button>
-      <button class="discipline-tab" data-sport-tab="skateboard">🛹 Skateboarding</button>
+      <button class="discipline-tab active" data-sport-tab="skateboard">🛹 Skateboarding</button>
+      <button class="discipline-tab" data-sport-tab="highline">🪢 Highline</button>
       <button class="discipline-tab" data-sport-tab="downhill">⚡ Downhill Longboard</button>
       <button class="discipline-tab" data-sport-tab="mountain">🏔 Mountaineering</button>
       <button class="discipline-tab" data-sport-tab="enduro">🏍 Enduro</button>
@@ -1228,30 +1228,30 @@
     <!-- CINEMATIC STAGE CARD -->
     <div class="discipline-stage spotlight-card" id="discipline-stage">
       <div class="discipline-content">
-        <div class="discipline-kicker" id="d-kicker">Balance in the Sky</div>
-        <h3 class="discipline-title" id="d-title">Highliner & Slackliner</h3>
-        <p class="discipline-desc" id="d-desc">Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.</p>
+        <div class="discipline-kicker" id="d-kicker">Fall Seven Times, Stand Up Eight</div>
+        <h3 class="discipline-title" id="d-title">Skateboarder & Coach</h3>
+        <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do. Coaching young skaters with SkateSupplyIndia is my way of passing on that everyday grit.</p>
         <div class="discipline-badges" id="d-badges">
-          <span class="discipline-badge">Suru Valley 11,000 ft</span>
-          <span class="discipline-badge">Waterline</span>
-          <span class="discipline-badge">Rigging</span>
+          <span class="discipline-badge">Bowl & Transition</span>
+          <span class="discipline-badge">Street Skate</span>
+          <span class="discipline-badge">Youth Coach</span>
         </div>
         <div class="discipline-stats">
           <div>
-            <div class="d-stat-label" id="d-stat-label-1">Highest Line</div>
-            <div class="d-stat-val" id="d-stat-1">11,000 ft (Suru Valley)</div>
+            <div class="d-stat-label" id="d-stat-label-1">Focus</div>
+            <div class="d-stat-val" id="d-stat-1">Park & Bowl Riding</div>
           </div>
           <div>
-            <div class="d-stat-label" id="d-stat-label-2">Takeaway</div>
-            <div class="d-stat-val" id="d-stat-2">Calm over panic</div>
+            <div class="d-stat-label" id="d-stat-label-2">Coaching</div>
+            <div class="d-stat-val" id="d-stat-2">SkateSupplyIndia</div>
           </div>
         </div>
-        <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Highliner Photos →</button>
+        <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Skateboarder Photos →</button>
       </div>
       <div class="discipline-visual" id="d-visual-container">
-        <img id="d-image" src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 ft in Suru Valley"/>
+        <img id="d-image" src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Skateboarding frontside 5-0 grind in Gwalior"/>
         <div class="discipline-visual-caption">
-          <span id="d-caption">Highline · Suru Valley, Ladakh (11,000 ft)</span>
+          <span id="d-caption">Skateboarding · Frontside 5-0 Grind</span>
           <span class="discipline-visual-badge">View HD ↗</span>
         </div>
       </div>
@@ -1755,9 +1755,9 @@
         { label: "Focus", value: "Park & Bowl Riding" },
         { label: "Coaching", value: "SkateSupplyIndia" }
       ],
-      image: "./shashank_files/gallery_opt/skateboard-doubles-fire-session.jpg",
-      imageAlt: "Skateboarding fire session on bowl coping",
-      caption: "Skateboarding · Fire Coping Night Session",
+      image: "./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg",
+      imageAlt: "Skateboarding frontside 5-0 grind in Gwalior",
+      caption: "Skateboarding · Frontside 5-0 Grind",
       sport: "skateboard"
     },
     downhill: {
@@ -1860,7 +1860,7 @@
     }
   };
 
-  let currentSportKey = "highline";
+  let currentSportKey = "skateboard";
 
   function renderDiscipline(key) {
     const data = disciplinesData[key];
