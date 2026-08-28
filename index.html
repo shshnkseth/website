@@ -125,18 +125,76 @@
       gap: 1.15rem;
       margin-bottom: 1.8rem;
     }
+    .profile-avatar-wrap {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      perspective: 600px;
+    }
     .profile-avatar {
       width: 58px;
       height: auto;
       object-fit: contain;
+      display: block;
       flex-shrink: 0;
       border: none;
       background: transparent;
       filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: 50% 85%;
+      animation: avatarIdleBreath 6.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      transition: filter 0.25s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
-    .profile-avatar:hover {
-      transform: scale(1.08) rotate(4deg);
+
+    @keyframes avatarIdleBreath {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1, 1);
+      }
+      12% {
+        /* Inhale */
+        transform: translateY(-2px) rotate(-1deg) scale(0.99, 1.025);
+      }
+      24% {
+        /* Glance left */
+        transform: translateY(-1px) translateX(-2.2px) rotate(-3.8deg) scale(1, 1.01);
+      }
+      36% {
+        /* Exhale return center */
+        transform: translateY(1.5px) rotate(-0.5deg) scale(1.02, 0.98);
+      }
+      48% {
+        /* Inhale & Glance right */
+        transform: translateY(-2.5px) translateX(2.2px) rotate(3.2deg) scale(0.985, 1.03);
+      }
+      60% {
+        /* Head tilt right / inquisitive gaze */
+        transform: translateY(-1.5px) translateX(1.5px) rotate(4.8deg) scale(1, 1.015);
+      }
+      72% {
+        /* Exhale / settle */
+        transform: translateY(1.2px) translateX(0) rotate(1deg) scale(1.02, 0.985);
+      }
+      84% {
+        /* Gentle nod / look slightly down */
+        transform: translateY(2px) rotate(-1.5deg) scale(1.015, 0.98);
+      }
+      92% {
+        /* Returning up */
+        transform: translateY(-0.5px) rotate(-0.5deg) scale(0.995, 1.01);
+      }
+      100% {
+        transform: translateY(0) rotate(0deg) scale(1, 1);
+      }
+    }
+
+    .profile-avatar-wrap:hover .profile-avatar {
+      animation-play-state: paused;
+      transform: translateY(-4px) scale(1.12) rotate(5deg);
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 12px color-mix(in srgb, var(--accent) 35%, transparent));
+    }
+
+    .profile-avatar-wrap:active .profile-avatar {
+      transform: translateY(1px) scale(0.94) rotate(-3deg);
     }
     .profile-name {
       font-family: 'DM Sans', -apple-system, sans-serif;
@@ -1253,7 +1311,9 @@
 
   <!-- PROFILE -->
   <div class="profile">
-    <img class="profile-avatar" src="./shashank_files/face.png" alt="Shashank Seth"/>
+    <div class="profile-avatar-wrap" title="Hey there!">
+      <img class="profile-avatar" src="./shashank_files/face.png" alt="Shashank Seth"/>
+    </div>
     <div class="profile-info">
       <div class="profile-name">Shashank Seth</div>
       <div class="profile-title">Sr. Product Designer ✦ Extreme Sports Athlete</div>
