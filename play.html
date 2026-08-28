@@ -1144,61 +1144,26 @@
       filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(204, 255, 0, 0.35));
     }
 
-    /* Specific Placement for the 5 stickers along the right side / corner cluster */
-    .png-sticker-skate-supply {
+    /* Specific Placement Positions along the right side / corner cluster */
+    .png-pos-tr1 {
       top: -24px;
       right: -16px;
-      width: 78px;
-      height: auto;
-      transform: rotate(9deg);
     }
-    .png-sticker-skate-supply:hover {
-      transform: translateY(-8px) rotate(4deg) scale(1.14);
-    }
-
-    .png-sticker-thrasher {
-      top: 38%;
-      right: -32px;
-      width: 102px;
-      height: auto;
-      transform: rotate(-9deg);
-    }
-    .png-sticker-thrasher:hover {
-      transform: translateY(-8px) rotate(-3deg) scale(1.14);
-    }
-
-    .png-sticker-bhopal-sb {
+    .png-pos-tr2 {
       top: -22px;
-      right: 84px;
-      width: 68px;
-      height: auto;
-      transform: rotate(-6deg);
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.8)) brightness(1.2);
+      right: 80px;
     }
-    .png-sticker-bhopal-sb:hover {
-      transform: translateY(-8px) rotate(-1deg) scale(1.14);
+    .png-pos-mr {
+      top: 36%;
+      right: -28px;
     }
-
-    .png-sticker-caution-lego {
+    .png-pos-br1 {
+      bottom: -24px;
+      right: -14px;
+    }
+    .png-pos-br2 {
       bottom: -22px;
-      right: 76px;
-      width: 58px;
-      height: auto;
-      transform: rotate(-7deg);
-    }
-    .png-sticker-caution-lego:hover {
-      transform: translateY(-8px) rotate(-2deg) scale(1.14);
-    }
-
-    .png-sticker-cone-graffiti {
-      bottom: -26px;
-      right: -16px;
-      width: 70px;
-      height: auto;
-      transform: rotate(13deg);
-    }
-    .png-sticker-cone-graffiti:hover {
-      transform: translateY(-8px) rotate(6deg) scale(1.14);
+      right: 72px;
     }
 
     @media (max-width: 768px) {
@@ -1207,11 +1172,14 @@
         padding: 1.5rem;
         gap: 1.5rem;
       }
-      .png-sticker-skate-supply { width: 62px; top: -18px; right: -8px; }
-      .png-sticker-thrasher { width: 80px; right: -12px; }
-      .png-sticker-bhopal-sb { width: 54px; top: -16px; right: 60px; }
-      .png-sticker-caution-lego { width: 48px; bottom: -16px; right: 54px; }
-      .png-sticker-cone-graffiti { width: 56px; bottom: -18px; right: -8px; }
+      .png-sticker {
+        max-width: 70px !important;
+      }
+      .png-pos-tr1 { top: -18px; right: -8px; }
+      .png-pos-tr2 { top: -16px; right: 54px; }
+      .png-pos-mr { right: -10px; }
+      .png-pos-br1 { bottom: -18px; right: -8px; }
+      .png-pos-br2 { bottom: -16px; right: 52px; }
     }
   </style>
 </head>
@@ -1258,11 +1226,11 @@
       
       <!-- REAL DIE-CUT PNG STICKERS LAYER (ONE-SIDE BLEND) -->
       <div class="stage-stickers-layer" id="stageStickersLayer">
-        <img class="png-sticker png-sticker-skate-supply" src="./shashank_files/stickers/sticker-skate-supply.png" alt="Skate Supply India Sticker" title="Skate Supply India · Sponsored" draggable="false"/>
-        <img class="png-sticker png-sticker-thrasher" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Magazine Sticker" title="Thrasher Magazine" draggable="false"/>
-        <img class="png-sticker png-sticker-bhopal-sb" src="./shashank_files/stickers/sticker-bhopal-sb.png" alt="Bhopal Skateboarding Sticker" title="Bhopal Skateboarding Community" draggable="false"/>
-        <img class="png-sticker png-sticker-caution-lego" src="./shashank_files/stickers/sticker-caution-lego.png" alt="Caution Lego Sign Sticker" title="Caution · Step on Lego" draggable="false"/>
-        <img class="png-sticker png-sticker-cone-graffiti" src="./shashank_files/stickers/sticker-cone-graffiti.png" alt="Graffiti Traffic Cone Sticker" title="Street Session" draggable="false"/>
+        <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-skate-supply.png" alt="Skate Supply India" title="Skate Supply India · Sponsored" style="width:82px; transform: rotate(9deg);" data-rot="9" draggable="false"/>
+        <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Magazine" title="Thrasher Magazine" style="width:104px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
+        <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-bhopal-sb.png" alt="Bhopal Skateboarding" title="Bhopal Skateboarding Community" style="width:68px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+        <img class="png-sticker png-pos-br2" src="./shashank_files/stickers/sticker-caution-lego.png" alt="Caution Lego Sign" title="Caution · Step on Lego" style="width:54px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+        <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-cone-graffiti.png" alt="Graffiti Traffic Cone" title="Street Session" style="width:64px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
       </div>
 
       <!-- CINEMATIC DISCIPLINE STAGE CARD -->
@@ -1831,7 +1799,7 @@
     if (event.key === "ArrowLeft") stepOverlay(-1);
   });
 
-  // ─── DISCIPLINE SWITCHER CONTROLLER (WITH INTERACTIVE FLOATING STICKERS) ───
+  // ─── DISCIPLINE SWITCHER CONTROLLER (WITH DYNAMIC STICKERS) ───
   const disciplinesData = {
     skateboard: {
       kicker: "Fall Seven Times, Stand Up Eight",
@@ -1842,12 +1810,13 @@
         { label: "Focus", value: "Park & Bowl Riding" },
         { label: "Sponsored", value: "SkateSupplyIndia", html: '<a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a>' }
       ],
-      stickers: {
-        tr: { text: "SkateSupplyIndia", icon: "🛹", theme: "sticker-theme-brand", title: "Official Sponsor" },
-        tl: { text: "Bhopal Skateboarding", icon: "⚡", theme: "sticker-theme-culture", title: "Community Division" },
-        br: { text: "Indy 149s · Bones 54mm", icon: "🔧", theme: "sticker-theme-gear", title: "Deck Setup" },
-        bl: { text: "Fall 7x · Stand 8x", icon: "✦", theme: "sticker-theme-badge", title: "Mindset" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-skate-supply.png", alt: "Skate Supply India", title: "Skate Supply India · Sponsored", posClass: "png-pos-tr1", width: 82, rot: 9 },
+        { src: "./shashank_files/stickers/sticker-thrasher.png", alt: "Thrasher Magazine", title: "Thrasher Magazine", posClass: "png-pos-mr", width: 104, rot: -8 },
+        { src: "./shashank_files/stickers/sticker-bhopal-sb.png", alt: "Bhopal Skateboarding", title: "Bhopal Skateboarding Community", posClass: "png-pos-tr2", width: 68, rot: -6 },
+        { src: "./shashank_files/stickers/sticker-caution-lego.png", alt: "Caution Lego Sign", title: "Caution · Step on Lego", posClass: "png-pos-br2", width: 54, rot: -6 },
+        { src: "./shashank_files/stickers/sticker-cone-graffiti.png", alt: "Graffiti Traffic Cone", title: "Street Session", posClass: "png-pos-br1", width: 64, rot: 12 }
+      ],
       image: "./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg",
       imageAlt: "Skateboarding frontside 5-0 grind in Gwalior",
       caption: "Skateboarding · Frontside 5-0 Grind",
@@ -1862,12 +1831,11 @@
         { label: "Highest Line", value: "11,000 ft (Suru Valley)" },
         { label: "Takeaway", value: "Calm over panic" }
       ],
-      stickers: {
-        tr: { text: "Suru Highline · 11,000 Ft", icon: "🏔", theme: "sticker-theme-stamp", title: "Ladakh Highline Festival" },
-        tl: { text: "Alpine Rigging Pro", icon: "🪢", theme: "sticker-theme-gear", title: "Webbing & Rigging" },
-        br: { text: "1\" Tubular · Weblock", icon: "⚙️", theme: "sticker-theme-gear", title: "Gear Specs" },
-        bl: { text: "Breathe · Zero Panic", icon: "✦", theme: "sticker-theme-badge", title: "Flow State" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-slackistan.png", alt: "Slackistan Highline", title: "Slackistan Highline Community", posClass: "png-pos-tr1", width: 108, rot: -5 },
+        { src: "./shashank_files/stickers/sticker-highline-slings.png", alt: "Highline Tree Slings & Webbing", title: "Tubular Tree Slings & Anchor Webbing", posClass: "png-pos-mr", width: 94, rot: 14 },
+        { src: "./shashank_files/stickers/sticker-carabiner.png", alt: "Screw-Lock Carabiner", title: "Screw-Lock Rigging Carabiner", posClass: "png-pos-br1", width: 64, rot: -10 }
+      ],
       image: "./shashank_files/gallery_opt/highline-at-11000ft.jpg",
       imageAlt: "Highline at 11000 ft in Suru Valley",
       caption: "Highline · Suru Valley, Ladakh (11,000 ft)",
@@ -1882,12 +1850,11 @@
         { label: "Race Experience", value: "National Downhill Races" },
         { label: "Top Speeds", value: "60+ km/h Descent" }
       ],
-      stickers: {
-        tr: { text: "National Downhill Racing", icon: "⚡", theme: "sticker-theme-brand", title: "National Speed Division" },
-        tl: { text: "85 km/h · Pre-Drift Club", icon: "🏎", theme: "sticker-theme-stamp", title: "Top Speed Log" },
-        br: { text: "Puck Slide · Ceramic 78A", icon: "🛞", theme: "sticker-theme-gear", title: "Urethane Grip" },
-        bl: { text: "Apex Cornering · Ghats", icon: "✦", theme: "sticker-theme-badge", title: "Race Line" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-skate-supply.png", alt: "Skate Supply India", title: "Skate Supply India · Sponsored", posClass: "png-pos-tr1", width: 82, rot: 9 },
+        { src: "./shashank_files/stickers/sticker-thrasher.png", alt: "Thrasher Magazine", title: "Thrasher Speed", posClass: "png-pos-mr", width: 104, rot: -8 },
+        { src: "./shashank_files/stickers/sticker-cone-graffiti.png", alt: "Race Cone", title: "Hairpin Apex", posClass: "png-pos-br1", width: 64, rot: 12 }
+      ],
       image: "./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg",
       imageAlt: "Downhill longboard hairpin slide",
       caption: "Downhill Longboard · Mountain Hairpin Slide",
@@ -1902,12 +1869,10 @@
         { label: "Highest Summit", value: "5,895m (Kilimanjaro)" },
         { label: "Lesson", value: "Patience wins" }
       ],
-      stickers: {
-        tr: { text: "Uhuru Peak · 5,895M", icon: "🏔", theme: "sticker-theme-stamp", title: "Mt. Kilimanjaro Summit" },
-        tl: { text: "Friendship Peak · 5,289M", icon: "❄️", theme: "sticker-theme-culture", title: "Alpine Climb" },
-        br: { text: "Crampons · Ice Axe", icon: "⛏", theme: "sticker-theme-gear", title: "Glacier Gear" },
-        bl: { text: "Pole Pole · Slow & Steady", icon: "✦", theme: "sticker-theme-badge", title: "Summit Patience" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-carabiner.png", alt: "Alpine Carabiner", title: "Glacier Rigging Carabiner", posClass: "png-pos-tr1", width: 66, rot: 8 },
+        { src: "./shashank_files/stickers/sticker-highline-slings.png", alt: "Anchor Slings", title: "Alpine Rigging Slings", posClass: "png-pos-br1", width: 88, rot: -12 }
+      ],
       image: "./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg",
       imageAlt: "Uhuru peak summit Mt. Kilimanjaro",
       caption: "Mt. Kilimanjaro · 5,895m Summit",
@@ -1922,12 +1887,10 @@
         { label: "Total Distance", value: "15,000+ km Solo" },
         { label: "Highlight", value: "5,000 km Vietnam Route" }
       ],
-      stickers: {
-        tr: { text: "Trans-Himalaya · 15,000+ KM", icon: "🏍", theme: "sticker-theme-brand", title: "Solo Distance Log" },
-        tl: { text: "Ho Chi Minh Trail · Vietnam", icon: "📍", theme: "sticker-theme-stamp", title: "5,000 km Jungle Route" },
-        br: { text: "Tool Roll & Extra Spokes", icon: "🔧", theme: "sticker-theme-gear", title: "Trail Spares" },
-        bl: { text: "No Signal · Pure Dirt", icon: "✦", theme: "sticker-theme-badge", title: "Overland Philosophy" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-cone-graffiti.png", alt: "Trail Cone", title: "Offroad Trail Mark", posClass: "png-pos-tr1", width: 68, rot: 10 },
+        { src: "./shashank_files/stickers/sticker-caution-lego.png", alt: "Caution Loose Gravel", title: "Caution · Loose Gravel", posClass: "png-pos-br1", width: 56, rot: -8 }
+      ],
       image: "./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg",
       imageAlt: "Fotu La bypass trail in Ladakh",
       caption: "Enduro · Fotu La Bypass, Ladakh",
@@ -1942,12 +1905,9 @@
         { label: "Logged Dives", value: "30+ Ocean Dives" },
         { label: "Favorites", value: "Manta Rays & Caves" }
       ],
-      stickers: {
-        tr: { text: "PADI Advanced Ocean Diver", icon: "🤿", theme: "sticker-theme-brand", title: "Certified Ocean Diver" },
-        tl: { text: "Nusa Penida · Manta Drift", icon: "🌊", theme: "sticker-theme-culture", title: "Drift Dive" },
-        br: { text: "Carbon Fins · Low-Vol Mask", icon: "⚡", theme: "sticker-theme-gear", title: "Dive Rig" },
-        bl: { text: "30M Depth · Total Silence", icon: "✦", theme: "sticker-theme-badge", title: "Underwater Reset" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-carabiner.png", alt: "Dive Clip", title: "Underwater Rigging Clip", posClass: "png-pos-tr1", width: 62, rot: -6 }
+      ],
       image: "./shashank_files/gallery_opt/freedive-with-manta-rays.jpg",
       imageAlt: "Freediving with manta rays in Nusa Penida",
       caption: "Freediving · Nusa Penida, Indonesia",
@@ -1962,12 +1922,10 @@
         { label: "10K Best", value: "52 minutes" },
         { label: "Half Marathon", value: "2 hours 14 mins" }
       ],
-      stickers: {
-        tr: { text: "Strava 10K PB · 52 Min", icon: "🏃", theme: "sticker-theme-brand", title: "Timed 10K Best" },
-        tl: { text: "Half Marathon · 2h14m", icon: "⏱", theme: "sticker-theme-stamp", title: "Endurance Race" },
-        br: { text: "Carbon Plate · High Pace", icon: "⚡", theme: "sticker-theme-gear", title: "Running Kit" },
-        bl: { text: "Daily Chai for the Brain", icon: "✦", theme: "sticker-theme-badge", title: "Daily Habit" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-cone-graffiti.png", alt: "Pace Marker", title: "10K Kilometer Marker", posClass: "png-pos-tr1", width: 64, rot: 8 },
+        { src: "./shashank_files/stickers/sticker-caution-lego.png", alt: "Step on Lego", title: "Tough Feet · No Excuses", posClass: "png-pos-br1", width: 52, rot: -6 }
+      ],
       image: "./shashank_files/gallery_opt/10k-road-run.jpg",
       imageAlt: "10K road run race",
       caption: "Runner · 10K Road Race Finish",
@@ -1982,12 +1940,10 @@
         { label: "Location", value: "Gulmarg (3,950m)" },
         { label: "Vibe", value: "Flow over force" }
       ],
-      stickers: {
-        tr: { text: "Gulmarg Phase 2 · 3,950M", icon: "🏂", theme: "sticker-theme-stamp", title: "Backcountry Powder" },
-        tl: { text: "Deep Japow · First Tracks", icon: "❄️", theme: "sticker-theme-culture", title: "Powder Days" },
-        br: { text: "Powder Camber · Beacon", icon: "🏔", theme: "sticker-theme-gear", title: "Backcountry Safety" },
-        bl: { text: "Flow Over Force", icon: "✦", theme: "sticker-theme-badge", title: "Mountain Rhythm" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-thrasher.png", alt: "Thrasher Shred", title: "Snow Shred", posClass: "png-pos-tr1", width: 98, rot: -8 },
+        { src: "./shashank_files/stickers/sticker-carabiner.png", alt: "Backcountry Clip", title: "Backcountry Pack Clip", posClass: "png-pos-br1", width: 60, rot: 10 }
+      ],
       image: "./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg",
       imageAlt: "Snowboarding powder day in Gulmarg",
       caption: "Snowboarding · Gulmarg Phase 2",
@@ -2002,12 +1958,10 @@
         { label: "Discipline", value: "Show Jumping Courses" },
         { label: "Core Skill", value: "Body Balance" }
       ],
-      stickers: {
-        tr: { text: "National Show Jumping", icon: "🐎", theme: "sticker-theme-brand", title: "National Level Competitor" },
-        tl: { text: "Hunter Jumper Division", icon: "🏇", theme: "sticker-theme-culture", title: "Show Jumping Course" },
-        br: { text: "Leather Saddle · Micro-Cues", icon: "⚡", theme: "sticker-theme-gear", title: "Equestrian Tack" },
-        bl: { text: "500kg Horse Mechanics", icon: "✦", theme: "sticker-theme-badge", title: "Silent Connection" }
-      },
+      stickers: [
+        { src: "./shashank_files/stickers/sticker-carabiner.png", alt: "Equestrian Clip", title: "Tack & Lead Clip", posClass: "png-pos-tr1", width: 64, rot: 8 },
+        { src: "./shashank_files/stickers/sticker-caution-lego.png", alt: "Caution Oxer", title: "Clear The Fence", posClass: "png-pos-br1", width: 54, rot: -7 }
+      ],
       image: "./shashank_files/gallery_opt/horse-jumping-earlydays.jpg",
       imageAlt: "Horse jumping training",
       caption: "Equestrian · Show Jumping Course",
@@ -2053,6 +2007,15 @@
     }
     if (captionEl) captionEl.textContent = data.caption;
     if (ctaBtn) ctaBtn.textContent = `Explore ${data.title.split("&")[0].trim()} Photos →`;
+
+    // Render dynamic sport PNG stickers
+    const stickersLayer = document.getElementById("stageStickersLayer");
+    if (stickersLayer && data.stickers) {
+      stickersLayer.innerHTML = data.stickers.map(s => `
+        <img class="png-sticker ${s.posClass}" src="${s.src}" alt="${s.alt}" title="${s.title}" style="width:${s.width}px; transform: rotate(${s.rot}deg);" data-rot="${s.rot}" draggable="false"/>
+      `).join("");
+      if (window.updateStickerPhysicsListeners) window.updateStickerPhysicsListeners();
+    }
   }
 
   const disciplineTabBtns = document.querySelectorAll(".discipline-tab");
@@ -2083,9 +2046,9 @@
   /* ─── INTERACTIVE FLOATING PNG STICKERS PHYSICS & PARALLAX ─── */
   (function initFloatingPngStickersPhysics() {
     const wrapper = document.getElementById("disciplineStageWrapper");
-    const stickers = document.querySelectorAll(".png-sticker");
-    if (!wrapper || !stickers.length) return;
+    if (!wrapper) return;
 
+    let stickers = document.querySelectorAll(".png-sticker");
     let bounds = null;
     let isHovering = false;
     let mouseXNorm = 0;
@@ -2094,13 +2057,9 @@
     let currentY = 0;
     let rafId = null;
 
-    const stickerOffsets = [
-      { depth: 14, baseRot: 9 },    // Skate Supply
-      { depth: 18, baseRot: -9 },   // Thrasher
-      { depth: 10, baseRot: -6 },   // Bhopal SB
-      { depth: -12, baseRot: -7 },  // Caution Lego
-      { depth: 16, baseRot: 13 }    // Cone Graffiti
-    ];
+    window.updateStickerPhysicsListeners = function() {
+      stickers = document.querySelectorAll(".png-sticker");
+    };
 
     function updateBounds() {
       bounds = wrapper.getBoundingClientRect();
@@ -2133,18 +2092,19 @@
 
       stickers.forEach((sticker, i) => {
         if (sticker.matches(":hover")) return; // Preserve direct hover transform
-        const offset = stickerOffsets[i] || { depth: 12, baseRot: 0 };
-        const moveX = currentX * offset.depth;
-        const moveY = currentY * (offset.depth * 0.75);
-        const rot = offset.baseRot + currentX * 3;
+        const baseRot = parseFloat(sticker.dataset.rot) || 0;
+        const depth = 12 + (i % 3) * 4 * (i % 2 === 0 ? 1 : -1);
+        const moveX = currentX * depth;
+        const moveY = currentY * (depth * 0.75);
+        const rot = baseRot + currentX * 2.5;
         sticker.style.transform = `translate3d(${moveX.toFixed(2)}px, ${moveY.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg)`;
       });
 
       if (!isHovering && Math.abs(currentX) < 0.01 && Math.abs(currentY) < 0.01) {
-        stickers.forEach((sticker, i) => {
+        stickers.forEach((sticker) => {
           if (!sticker.matches(":hover")) {
-            const offset = stickerOffsets[i] || { baseRot: 0 };
-            sticker.style.transform = `rotate(${offset.baseRot}deg)`;
+            const baseRot = parseFloat(sticker.dataset.rot) || 0;
+            sticker.style.transform = `rotate(${baseRot}deg)`;
           }
         });
         rafId = null;
