@@ -127,9 +127,21 @@
       box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
     }
 
-    /* ─── HERO HEADER (EDITORIAL STORY / CALLOUT QUOTE STYLE) ─── */
-    .hero {
-      padding: 1.8rem 0 1.2rem;
+    /* ─── HERO HEADER (SPLIT LAYOUT: QUOTE ON LEFT & ID CARD ON RIGHT) ─── */
+    .hero.hero-split {
+      display: grid;
+      grid-template-columns: 1.05fr 490px;
+      gap: 2.6rem;
+      align-items: center;
+      padding: 1.6rem 0 2.4rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .eyebrow {
@@ -137,72 +149,23 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.55rem;
     }
 
     .hero h1,
     .hero .hero-quote {
-      font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+      font-size: clamp(1.85rem, 3.2vw, 2.75rem);
       font-weight: 300;
       line-height: 1.2;
       letter-spacing: -0.03em;
-      margin: 0 0 0.8rem;
-      color: var(--ink);
-      max-width: 860px;
-    }
-
-    /* ─── HERO SHOWCASE (QUOTE ABOVE, SIDE-BY-SIDE INTRO & COMPACT ID CARD) ─── */
-    .hero-showcase {
-      display: grid;
-      grid-template-columns: 1fr 490px;
-      gap: 2.2rem;
-      align-items: center;
-      margin-top: 1.4rem;
-      margin-bottom: 2.6rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    .hero-side-intro {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-
-    .hero-lead-text {
-      font-size: clamp(0.92rem, 1.3vw, 1.02rem);
-      line-height: 1.65;
-      color: var(--text-dim);
       margin: 0;
-      font-weight: 300;
-    }
-
-    .hero-pill-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .hero-badge-pill {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
       color: var(--ink);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      padding: 0.22rem 0.65rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: border-color 0.15s ease, background 0.15s ease;
     }
 
-    .hero-badge-pill:hover {
-      border-color: rgba(204, 255, 0, 0.4);
-      background: rgba(204, 255, 0, 0.05);
-      color: #fff;
+    .hero-right {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
     }
 
     /* ─── COMPACT INTERACTIVE ADVENTURE ID CARD (STICKER & 3D LIFT) ─── */
@@ -210,34 +173,8 @@
       perspective: 1200px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-end;
       width: 100%;
-    }
-
-    .id-card-hint {
-      font: 500 0.54rem 'DM Mono', monospace;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      margin-bottom: 0.65rem;
-      align-self: flex-start;
-    }
-
-    .id-hint-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 7px var(--accent);
-      animation: idPulseDot 2s infinite ease-in-out;
-    }
-
-    @keyframes idPulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.75); }
     }
 
     .id-card {
@@ -720,11 +657,14 @@
       text-transform: uppercase;
     }
 
-    /* RESPONSIVE HERO SHOWCASE & ID CARD */
+    /* RESPONSIVE HERO SPLIT & ID CARD */
     @media (max-width: 860px) {
-      .hero-showcase {
+      .hero.hero-split {
         grid-template-columns: 1fr;
-        gap: 1.8rem;
+        gap: 2rem;
+      }
+      .hero-right {
+        justify-content: center;
       }
       .id-card-wrapper {
         align-items: center;
@@ -1732,31 +1672,17 @@
     </div>
   </nav>
 
-  <!-- HERO HEADER & SIDE-BY-SIDE ID SHOWCASE -->
-  <div class="hero">
-    <div class="eyebrow">ATHLETE · PLAY &amp; EXPEDITIONS</div>
-    <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
-    
-    <div class="hero-showcase">
-      <!-- LEFT: EDITORIAL INTRO & CREDENTIAL PILLS -->
-      <div class="hero-side-intro">
-        <p class="hero-lead-text">Nine extreme disciplines across high altitudes, ocean depths, and asphalt. An active field log of physical training, flow state, and calculated risk.</p>
-        <div class="hero-pill-badges">
-          <span class="hero-badge-pill">🛹 Skate Supply Sponsored</span>
-          <span class="hero-badge-pill">🏔 5,895m Mt. Kilimanjaro Summit</span>
-          <span class="hero-badge-pill">🤿 PADI Advanced Ocean Diver</span>
-          <span class="hero-badge-pill">⚡ 85km/h Downhill Longboard</span>
-          <span class="hero-badge-pill">🪢 Highline Rigging &amp; Slackline</span>
-        </div>
-      </div>
+  <!-- HERO HEADER (SPLIT: QUOTE ON LEFT & ID CARD ON RIGHT) -->
+  <div class="hero hero-split">
+    <!-- LEFT: EYEBROW & QUOTE -->
+    <div class="hero-left">
+      <div class="eyebrow">ATHLETE · PLAY &amp; EXPEDITIONS</div>
+      <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
+    </div>
 
-      <!-- RIGHT: COMPACT INTERACTIVE ADVENTURE ID CARD -->
+    <!-- RIGHT: COMPACT INTERACTIVE ADVENTURE ID CARD -->
+    <div class="hero-right">
       <div class="id-card-wrapper" id="idCardWrapper">
-        <div class="id-card-hint">
-          <span class="id-hint-dot"></span>
-          <span>FIELD IDENTITY PASS · HOVER TO INSPECT</span>
-        </div>
-        
         <div class="id-card" id="idCard" role="region" aria-label="Shashank Seth Athlete Expedition ID Card">
           <!-- HOLOGRAPHIC & SPECULAR GLARE OVERLAYS -->
           <div class="id-card-holo"></div>
