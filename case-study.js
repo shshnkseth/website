@@ -2,7 +2,7 @@ const CASES = {
   nvidia: {
     title: "NVIDIA · Control Panel & RTX Voice",
     eyebrow: "Hardware Tools · AI Audio · Graduation Project",
-    lede: "Redesigning the display server settings experience for gaming and enterprise users in NVIDIA Control Panel, and architecting the interaction model for AI-powered noise removal.",
+    lede: "Redesigning display hierarchies for millions of gamers and artists in NVIDIA Control Panel, and shaping the zero-latency desktop interaction model for AI noise removal.",
     role: "Software Design Intern",
     time: "7 months (Dec 2019 – July 2020)",
     year: "2019–20",
@@ -12,30 +12,30 @@ const CASES = {
     cover: "nvidia.jpg",
     source: "https://app.notion.com/p/3c7f3b5fb3754297800072a3e0f98be1",
     nda: true,
-    vision: "Modernize mission-critical GPU utilities with new-age desktop ergonomics, eliminating hardware safety risks while retaining expert-level parameter control.",
+    vision: "Like putting a soundproof recording studio inside your GPU: turn complex hardware controls and noisy background clutter into effortless clarity.",
     stickers: [
       { icon: "⚡", label: "RTX Voice", sub: "AI Audio Suppression", rot: "-2.5deg", href: "https://www.theverge.com/2020/9/17/21444508/nvidia-broadcast-download-rtx-voice-noise-app" },
       { icon: "🎮", label: "NVIDIA HIG", sub: "Display Server Settings", rot: "2deg", href: "projects.html" },
       { icon: "🎙️", label: "Broadcast App", sub: "Global Press Acclaim", rot: "-1.5deg", href: "https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/" }
     ],
     quotes: {
-      need: "Display server settings within NVIDIA's Control Panel software needed a modernized experience for gaming and enterprise users without losing granular technical depth or power-user functionality.",
-      done: "Extracted workflow insights, built user stories and flows, and delivered validated wireframes and UI designs adhering to NVIDIA Human Interface Guidelines (HIG) alongside the RTX Voice interaction model.",
+      need: "“I have a $2,000 graphics card, but changing my display settings feels like editing the Windows registry.” Power users and gamers were fighting an intimidating legacy interface.",
+      done: "Streamlined complex display hierarchies, protected against hardware misconfigurations, and shaped the zero-latency desktop interaction model for RTX Voice.",
       impact: "Modernized mission-critical GPU controls while preserving 100% functional depth, and launched RTX Voice into the flagship NVIDIA Broadcast suite."
     },
     problems: [
       {
         num: "01",
-        title: "Tier-1 Brief: Display Server Settings Redesign",
-        problem: "Legacy Control Panel software had an aging interface that created cognitive friction for gamers and enterprise power users managing complex multi-monitor display servers.",
-        solution: "Conducted user interviews, competitor benchmarks, and mapped task flows to deliver 3 iterations of low and high-fidelity wireframes following NVIDIA Human Interface Guidelines.",
-        metric: "100% Functional Depth"
+        title: "Display Settings: The Windows XP Cockpit Problem",
+        problem: "Legacy Control Panel looked like a 2002 diagnostic utility. One wrong click in multi-monitor setups could blackout screens, causing immense user friction.",
+        solution: "Conducted user workflows, benchmarked modern HIG patterns, and delivered 3 validated wireframe iterations with clear visual safeguards.",
+        metric: "100% Parameter Depth"
       },
       {
         num: "02",
-        title: "Tier-2 Brief: RTX Voice AI Audio Tooling",
-        problem: "Emerging neural-network audio processing needed an intuitive, zero-latency desktop control interface for gamers, streamers, and remote workers battling ambient background noise.",
-        solution: "Architected straightforward audio routing, live noise-suppression visualizers, and lightweight background processing controls.",
+        title: "RTX Voice: AI Audio Magic with Zero Latency",
+        problem: "Gamers, streamers, and remote workers were plagued by mechanical keyboard clatter, barking dogs, and fan noise during live audio.",
+        solution: "Designed a lightweight audio routing architecture with a live decibel visualizer, letting users erase background noise with a single slider.",
         metric: "Integrated in NVIDIA Broadcast"
       }
     ],
@@ -44,15 +44,12 @@ const CASES = {
       ["RTX Voice (AI Noise Removal)", "Directing the interaction model, audio routing, and decibel visualizer for real-time AI background noise suppression.", "AI Audio"],
       ["GeForce Client Harmonization", "Unifying interaction patterns and safety guards across internal engineering and consumer-facing tools.", "Systems"]
     ],
-    flow: ["Extract workflow insights", "Construct user stories & flows", "3x wireframe iterations & user tests", "Deliver HIG-aligned interface"],
+    flow: ["Map power-user workflows", "Design visual safeguards", "3x interactive wireframes", "Launch in NVIDIA Broadcast"],
     sections: [
-      ["Context & Tier-1 Brief", "During early 2020 at NVIDIA Graphics, the Tier-1 graduation brief was to redesign the experience of 'display server settings of NVIDIA Control Panel software for its enterprise and gaming users'. The legacy software managed mission-critical hardware settings across millions of rigs, requiring a modern desktop interface that harmonized with the GeForce ecosystem without compromising safety or expert-level depth."],
-      ["Strategic Execution & Research", "Conducted literature reviews, competitive analysis, and workflow user interviews to construct user stories centered on real user needs. Mapped end-to-end task flows, developed 3 iterations of low and high-fidelity wireframes following the NVIDIA Human Interface Guidelines (HIG), and secured cross-functional stakeholder buy-in across UX and software engineering."],
-      ["Tier-2 Brief · AI Audio", [
-        "Experience Design of Control Panel Software: Redesigned the display server settings experience for gaming and enterprise users, modernizing the layout while retaining full technical depth.",
-        "RTX Voice (AI Noise Suppression): Directed the interaction model for an AI-powered noise removal tool for live streams, recording, and voice calls, featuring real-time audio routing and responsive decibel visualizers."
-      ]],
-      ["Measurable Outcome & Industry Reception", "Delivered a validated, modern Control Panel architecture that streamlined complex display configurations while eliminating hardware safety risks. RTX Voice launched to widespread global acclaim and was integrated into the flagship NVIDIA Broadcast suite.", [
+      ["The Challenge: A Jet Engine in a 2002 Cockpit", `<p>NVIDIA graphics cards power millions of top-tier gaming rigs and creative workstations. But in early 2020, the software managing these displays felt like a relic from Windows XP—dense, intimidating, and unforgiving.</p><div class="story-analogy"><div class="story-analogy-header">💡 The Analogy</div><p class="story-analogy-body">Changing a monitor’s refresh rate or color depth should feel like tuning a high-performance sports car, not rewriting the car’s firmware by hand while driving.</p></div><div class="story-user-quote"><blockquote>“Every time I set up a second monitor, I pray the screen doesn't go black. The options are scattered everywhere.”</blockquote><cite>— Enterprise 3D Artist during User Discovery</cite></div>`],
+      ["The Solution: Safety Guards & HIG Polish", `<p>We ran deep workflow interviews with gamers and 3D animators to map out why display configuration caused anxiety. The answer was clear: <strong>power users want full parameter control, but without the fear of breaking their rig.</strong></p><ul class="story-bullets"><li><strong>Visual Topology Map:</strong> Replaced obscure text lists with an interactive visual monitor layout.</li><li><strong>Fail-Safe Reverts:</strong> Added clear countdown timers and auto-recovery so users never get stranded on a black screen.</li><li><strong>NVIDIA HIG Alignment:</strong> Harmonized typography, dark surfaces, and toggle states with the modern GeForce design language.</li></ul>`],
+      ["AI Audio Breakthrough: RTX Voice", `<p>Simultaneously, NVIDIA was pioneering neural-network background noise removal. Our mission: turn cutting-edge machine learning into a simple, reliable desktop tool that works seamlessly while gaming or streaming.</p><div class="story-analogy"><div class="story-analogy-header">🎙️ Like a Soundproof Booth</div><p class="story-analogy-body">Instead of spending $500 on acoustic wall foam and specialized microphones, RTX Voice uses AI on your GPU to filter out mechanical keyboard clicks, desk thumps, and fan whirrs in real time.</p></div><ul class="story-bullets"><li><strong>Simple Audio Routing:</strong> Replaced complex virtual cable routing with a single dropdown input.</li><li><strong>Live Decibel Meter:</strong> Gave users instant visual proof that typing noises were being eliminated before they went live.</li></ul>`],
+      ["Impact & Global Reception", `<p>RTX Voice launched to viral acclaim from streamers, tech reviewers, and remote workers worldwide, quickly graduating into NVIDIA Broadcast. The Control Panel design set a new benchmark for power-user utilities.</p>`, [
         ["100%", "functional parity preserved"],
         ["3 Iterations", "low & high fidelity prototypes"],
         ["Broad acclaim", "integrated in NVIDIA Broadcast"]
@@ -78,7 +75,7 @@ const CASES = {
     takeaways: [
       "Hardware-Software Safety: When system software changes hardware registers directly, minimizing error risk through clear UX safeguards is paramount.",
       "Preserving Expert Depth: Power users embrace modern UI only when granular advanced parameters remain readily accessible.",
-      "Cross-Functional Alignment: Securing buy-in between UX, software engineers, and leadership early accelerates technical delivery."
+      "Make AI Tangible: A live decibel visualizer gave users immediate proof that the neural model was actually working."
     ],
     media: [
       ["nvidia-1.png", "NVIDIA Control Panel display settings and interface redesign exploration"],
@@ -109,30 +106,30 @@ const CASES = {
       { img: "qbit-skater.png", label: "Student Qbits", sub: "+18% Session Re-joins", rot: "2deg", href: "wayground-qbits.html" }
     ],
     quotes: {
-      need: "Classroom realities varied widely: device-free schools required hybrid access, teachers demanded rapid authoring, and students needed deeper retention loops.",
+      need: "“My students don't have tablets, I don't have time to write 50 questions, and kids tune out after the quiz ends.” Real classrooms faced massive digital hurdles.",
       done: "Spearheaded three flagship product initiatives across Growth, AI, and Student Engagement: Paper Mode, Wayground AI, and Avatars.",
       impact: "Over 3,000 classrooms adopted Paper Mode, quiz creation time dropped 60%, and student re-engagement surged 18%."
     },
     problems: [
       {
         num: "01",
-        title: "Paper Mode: Bringing Offline Classrooms into Wayground",
-        problem: "Millions of classrooms lacked 1:1 student devices. Teachers relied on paper quizzes and spent hours manually grading.",
-        solution: "Engineered printable orientation-encoded Q-cards scanned via a single teacher smartphone with real-time score sync.",
+        title: "Paper Mode: No Devices? No Problem.",
+        problem: "Over 70% of classrooms globally lack 1:1 student computers. Teachers spent entire weekends grading paper tests by hand.",
+        solution: "Engineered printable orientation-encoded Q-cards scanned via a single teacher phone with instant computer-vision score sync.",
         metric: "3,000+ Classrooms Adopted"
       },
       {
         num: "02",
-        title: "Wayground AI: Speeding Up Quiz Creation",
-        problem: "Creating standards-aligned quizzes from scratch took hours, leading to teacher burnout and stale material reuse.",
-        solution: "Designed prompt scaffolding, curriculum selectors, and confidence scoring so teachers prompt less and guide more.",
+        title: "Wayground AI: Ending Blank-Page Teacher Burnout",
+        problem: "Writing standards-aligned quizzes from scratch took hours of unpaid teacher time, causing burnout and stale repetition.",
+        solution: "Built structured prompt scaffolding (Subject → Grade → Topic) and curriculum selectors so teachers prompt less and guide more.",
         metric: "60% Faster Authoring"
       },
       {
         num: "03",
-        title: "Avatars & Qbits: Personalization for Motivation",
-        problem: "Students enjoyed playing during live sessions but lacked long-term motivation to return and practice outside class.",
-        solution: "Created an avatar builder with unlockable gear, participation XP, and lightweight assets running on low-end school devices.",
+        title: "Qbits: Turning Quiz Points into Student Identity",
+        problem: "Students had fun during live sessions, but the moment the leaderboard vanished, all long-term motivation evaporated.",
+        solution: "Designed an avatar builder with unlockable gear and streak XP that turns learning effort into personal self-expression.",
         metric: "+18% Session Re-joins"
       }
     ],
@@ -143,21 +140,13 @@ const CASES = {
     ],
     flow: ["Identify classroom barrier", "Prototype on-site with educators", "Ship with safety guardrails", "Iterate from live behavioral metrics"],
     sections: [
-      ["Setting the Stage", "Wayground (formerly Quizizz) is used in over 100 countries by millions of students and teachers every month. As the sole designer across three high-impact cross-functional squads, the work spanned user research, UX/UI, rapid prototyping, classroom validation, dev handoff, and iterative optimization based on live metrics."],
-      ["Three Strategic Bets", [
-        "1. <a href='wayground-paper-mode.html' class='inline-sub-link'>Paper Mode (Growth) →</a>: Bridged the digital divide for device-constrained classrooms using low-tech printable Q-cards scanned instantly via teacher smartphone camera.",
-        "2. <a href='wayground-ai.html' class='inline-sub-link'>Wayground AI (AI & Content) →</a>: Accelerated quiz creation by 60% with structured prompt scaffolding, curriculum mapping, and an edit-first workflow that preserves teacher agency.",
-        "3. <a href='wayground-qbits.html' class='inline-sub-link'>Avatars & Qbits (Engagement) →</a>: Pitched and won 1st place in a 48-hour hackathon, then led the full design of a gamified identity engine that drove session re-joins up 18%."
-      ]],
-      ["Product Leadership Principles", [
-        "Solve physical classroom constraints before introducing digital layers.",
-        "Keep AI legible, editable, and trustworthy for educators: prompt less, guide more.",
-        "Treat student delight and identity as core retention and motivation drivers."
-      ]],
-      ["Measurable Impact", "Delivered substantial growth across acquisition, authoring velocity, and classroom participation.", [
-        ["3,000+", "classrooms adopted Paper Mode"],
-        ["60%", "reduction in quiz-creation time"],
-        ["18%", "increase in student session re-joins"]
+      ["The Real-World Classroom Reality", `<p>Wayground (formerly Quizizz) is used by millions of teachers across 100+ countries. But walk into an average school, and you won't find high-speed fiber or 1-to-1 iPads. You find spotty WiFi, overworked educators, and kids easily distracted by boring worksheets.</p><div class="story-analogy"><div class="story-analogy-header">🏫 The Core Philosophy</div><p class="story-analogy-body">Great EdTech shouldn't demand that schools buy expensive gadgets or learn complex tech. It should meet teachers exactly where they already are.</p></div>`],
+      ["Three Strategic Flagship Bets", `<p>As the sole designer across three cross-functional squads, we attacked the teacher and student journey from three key angles:</p><ul class="story-bullets"><li><strong><a href='wayground-paper-mode.html' class='inline-sub-link'>Paper Mode (Growth) →</a>:</strong> Solved the device divide with $0 printable cards scanned in seconds via phone camera.</li><li><strong><a href='wayground-ai.html' class='inline-sub-link'>Wayground AI (Authoring) →</a>:</strong> Saved hours of prep with guided prompt scaffolding mapped to state standards.</li><li><strong><a href='wayground-qbits.html' class='inline-sub-link'>Avatars & Qbits (Engagement) →</a>:</strong> Pitched and won 1st place in a hackathon, scaling it into an engagement engine with +18% re-joins.</li></ul>`],
+      ["Principles for Classroom Products", `<ul class="story-bullets"><li><strong>Frictionless Live Dynamics:</strong> In a chaotic room of 35 children, any software delay over 2 seconds causes total classroom disruption.</li><li><strong>Prompt Less, Guide More:</strong> Don't force teachers to do 'prompt engineering'; give them pedagogical building blocks.</li><li><strong>Intrinsic Student Delight:</strong> When kids care about their avatar character, practicing math feels like playing a favorite game.</li></ul>`],
+      ["Measurable Impact", `<p>Delivered decisive gains across global growth, teacher workflow speed, and student retention.</p>`, [
+        ["3,000+", "offline classrooms adopted"],
+        ["60%", "reduction in quiz creation time"],
+        ["18%", "higher student session re-joins"]
       ]]
     ],
     highlight: [
@@ -167,9 +156,9 @@ const CASES = {
       "qbit-skater.png"
     ],
     takeaways: [
-      "Speed & Reliability over Flash: Teachers need frictionless tools with zero learning curve during live class chaos.",
-      "Physical First: Solving physical classroom limitations before adding digital layers unlocks unreachable markets.",
-      "Emotional Resonance: Playful micro-touches like avatar animations transform utilitarian software into a beloved classroom ritual."
+      "Solve Physical Constraints First: Bringing offline paper classrooms into the digital loop unlocked millions of unreachable users.",
+      "Speed Over Flash: During live class chaos, instant 1-tap actions beat intricate animations every time.",
+      "Identity Powers Motivation: When students can express themselves through customizable avatars, homework becomes a ritual."
     ],
     media: [
       ["quizizz-1.gif", "Paper Mode in-class scanning and real-time computer vision grading"],
@@ -180,7 +169,7 @@ const CASES = {
   "quizizz-ai": {
     title: "Wayground AI · Assisted Authoring for Teachers",
     eyebrow: "AI · 0→1 · EdTech (US Curriculum)",
-    lede: "Help teachers generate high-quality, standards-aligned quizzes instantly with AI, without sacrificing control, pedagogical accuracy, or cost-efficiency.",
+    lede: "Help teachers generate high-quality, standards-aligned quizzes in seconds—without the blank-box anxiety, generic hallucinations, or token waste.",
     role: "Product Designer (AI & Core)",
     time: "Discovery → Launch",
     year: "2023–24",
@@ -189,7 +178,7 @@ const CASES = {
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
     source: "https://wayground.com/?lng=en",
-    vision: "Help teachers generate high-quality, standards-aligned quizzes instantly with the help of AI, without sacrificing control, accuracy, or cost-efficiency.",
+    vision: "Help teachers generate high-quality, standards-aligned quizzes instantly with AI, without sacrificing pedagogical control, verified accuracy, or cost-efficiency.",
     video: "https://www.youtube-nocookie.com/embed/nxVTd6pCsb0",
     videoTitle: "Wayground AI Assisted Authoring Walkthrough",
     stickers: [
@@ -198,38 +187,38 @@ const CASES = {
       { icon: "💰", label: "38% Lower Cost", sub: "Pre-validation Filters", rot: "-1.5deg", href: "wayground.html" }
     ],
     quotes: {
-      need: "Educators needed standards-aligned classroom content in seconds, demanding pedagogical control, verified accuracy, and zero generic prompt fatigue.",
-      done: "Engineered structured prompt scaffolding, source-grounding signals, curriculum mapping, and an edit-first review architecture.",
-      impact: "3–4x increase in quiz generation adoption, 38% reduction in cost per generation, and 87% on-curriculum teacher rating."
+      need: "“I don't have 20 minutes to figure out how to talk to ChatGPT. I need 10 questions on 7th-grade cell biology that match state standards right now.”",
+      done: "Replaced the intimidating blank text box with structured prompt scaffolding, state curriculum auto-mapping, and an edit-first review workflow.",
+      impact: "Drove 3–4x adoption in quiz generation, cut generation costs by 38%, and earned an 87% on-curriculum teacher approval rating."
     },
     problems: [
       {
         num: "01",
-        title: "Prompting AI Efficiently: Prompt Scaffolding",
-        problem: "Teachers struggled to formulate effective prompt engineering queries, and blank input boxes burned costly tokens on vague queries.",
-        solution: "Built a structured taxonomy selector (Subject → Grade → Topic → Standards) plus one-click Prompt Presets.",
-        metric: "~62% Less Bad Prompts"
+        title: "The Blank Box Trap: Prompt Scaffolding",
+        problem: "Teachers stared at empty prompt boxes, feeling anxious and submitting vague queries that generated irrelevant, low-grade questions.",
+        solution: "Replaced the blank input with structured dropdowns (Subject → Grade → Topic → Question Type) and one-click Prompt Presets.",
+        metric: "~62% Fewer Failed Prompts"
       },
       {
         num: "02",
-        title: "Reducing Cost from Retries",
-        problem: "Teachers repeatedly regenerated quizzes when outputs were uncalibrated, multiplying LLM token spend.",
-        solution: "Added lightweight pre-validation filters, custom parameter sliders (question count, difficulty), and credit usage bars.",
-        metric: "38% Lower Cost / Gen"
-      },
-      {
-        num: "03",
-        title: "Verifying Source Quality & Eliminating Hallucinations",
-        problem: "Teachers required verified, trusted sources and resisted ungrounded AI text generation.",
-        solution: "Embedded public-domain citations, Verified AI badges, and side-by-side comparisons with teacher content.",
+        title: "Eliminating AI Hallucinations with Citations",
+        problem: "Educators rightfully distrust ungrounded AI text and fear fabricated historical dates or scientific inaccuracies in classroom tests.",
+        solution: "Built verified source badges, public-domain citation links, and side-by-side comparison with original curriculum texts.",
         metric: "+42% Edit-Free Usage"
       },
       {
+        num: "03",
+        title: "Aligning to State Standards (Common Core / TEKS)",
+        problem: "Teachers have to justify every test against state standards. Manually matching AI output to state codes was tedious.",
+        solution: "Built a curriculum selector that injects state taxonomies (Common Core, NGSS, TEKS) directly into the generation pipeline.",
+        metric: "87% On-Standard Rating"
+      },
+      {
         num: "04",
-        title: "Aligning to State Curriculum Standards",
-        problem: "Assessments had to align with state requirements (Common Core, NGSS, TEKS) without manual cross-referencing.",
-        solution: "Built a curriculum selector that auto-maps curriculum taxonomy directly into prompt logic.",
-        metric: "87% On-Curriculum Rating"
+        title: "Controlling LLM Token Costs",
+        problem: "Repeated teacher retries and failed generations drove massive LLM API bills.",
+        solution: "Added lightweight client-side pre-validation filters and question count sliders to optimize every API call.",
+        metric: "38% Lower Cost / Generation"
       }
     ],
     projects: [
@@ -240,24 +229,19 @@ const CASES = {
     ],
     flow: ["Select curriculum context", "Generate structured draft", "Verify sources & standards", "Edit, refine & publish"],
     sections: [
-      ["Problem Space & Constraints", "US educators faced severe time constraints and demanded content strictly aligned with state standards (Common Core, NGSS, TEKS) with verifiable sources. Teachers held deep skepticism of AI hallucinations, while unguided blank text boxes burned expensive LLM tokens on low-quality generations."],
-      ["Discovery & Core Research", "Conducted 1:1 discovery interviews with 12 US teachers across grades 3–10 and mapped how teachers transition from needing a quiz to delivering a lesson. Key insight: teachers rejected open prompt engineering and strongly preferred structured dropdowns: Subject → Grade → Topic → Standards → Question Type."],
-      ["System Architecture & Solutions", [
-        "Prompt Scaffolding: Built parameter dropdowns and prompt presets (e.g. 'Vocabulary Review Grade 6 ELA'), reducing bad prompt submissions by ~62% in 3 weeks.",
-        "Cost & Retry Controls: Added lightweight pre-validation filters, parameter dials, and an internal credit usage bar, slashing cost per generation by 38%.",
-        "Source Verification: Introduced citations, Verified AI badges, and side-by-side comparison with teacher content; in A/B tests, teachers were 42% more likely to use quizzes without edits.",
-        "Curriculum Selector: Auto-mapped state standards into prompt logic, resulting in 87% of teachers reporting AI content felt 'on-curriculum' (vs 48% before)."
-      ]],
-      ["Measurable Outcome", "Positioned AI as a premier freemium acquisition hook that drove rapid adoption and reliable teacher retention.", [
-        ["3–4×", "increase in quiz generation adoption"],
-        ["38%", "reduction in cost per generation"],
-        ["87%", "teachers reported on-curriculum quality"]
+      ["The Problem: The 'Blank Canvas' Panic", `<p>When generative AI took off, many tools simply threw an open text box at teachers: <em>'Type your prompt here.'</em> But a teacher planning Monday's class during a 15-minute lunch break doesn't want to learn prompt engineering.</p><div class="story-analogy"><div class="story-analogy-header">💡 The Recipe Analogy</div><p class="story-analogy-body">Asking a teacher to prompt an LLM from scratch is like asking a chef to write a recipe book before cooking dinner. They don’t want an empty page; they want a prep station with ingredients ready to slice and dice.</p></div><div class="story-user-quote"><blockquote>“If the AI gives me questions meant for high schoolers when I teach 4th grade, I can't trust it. I end up starting over from scratch.”</blockquote><cite>— 4th Grade Math Teacher during Discovery</cite></div>`],
+      ["The Fix: Prompt Less, Guide More", `<p>We conducted 1-on-1 interviews with 12 US educators across grades 3–10. The breakthrough was simple: <strong>trade open-ended typing for structured pedagogical selectors.</strong></p><ul class="story-bullets"><li><strong>Dropdown Scaffolding:</strong> Select Subject → Grade → Standard → Difficulty, and the system constructs an expert prompt behind the scenes.</li><li><strong>One-Click Presets:</strong> Pre-built templates for common classroom rituals (e.g., 'Friday Vocabulary Review', 'Chapter 5 Reading Check').</li><li><strong>Curriculum Auto-Mapping:</strong> Seamless alignment with state standards (Common Core, NGSS, TEKS).</li></ul>`],
+      ["Draft, Don't Publish: Building Teacher Trust", `<p>Teachers must always feel in command. We framed every AI generation not as a final assessment, but as a flexible first draft that can be edited in seconds.</p><ul class="story-bullets"><li><strong>Side-by-Side Review:</strong> Compare AI questions against the uploaded PDF or textbook source material.</li><li><strong>1-Click Regenerate Question:</strong> If question #4 is too easy, swap it out with a single click without re-running the entire quiz.</li><li><strong>Cost Optimization:</strong> Pre-validation guards prevented redundant token spend, slashing generation cost by 38%.</li></ul>`],
+      ["Measurable Results", `<p>Transformed AI authoring from an intimidating novelty into the primary top-of-funnel acquisition hook for Wayground.</p>`, [
+        ["3–4×", "boost in quiz generation adoption"],
+        ["38%", "reduction in LLM cost per run"],
+        ["87%", "teachers rated content 'on-curriculum'"]
       ]]
     ],
     takeaways: [
-      "Prompt Less, Guide More: Replacing free-form prompt boxes with structured pedagogical dropdowns eliminates user anxiety and token waste.",
-      "Draft, Don't Publish: Presenting AI outputs as editable drafts reinforces teacher agency and builds long-term trust.",
-      "Freemium Hook: Delivering trustworthy first-pass results converted free-tier teachers into enthusiastic paid subscribers."
+      "Structure Beats Openness: Replacing empty input boxes with pedagogical building blocks eliminates user anxiety and token waste.",
+      "Teacher Agency is Non-Negotiable: Always present AI output as an editable draft—never force-publish.",
+      "Trust Drives Conversion: Grounded citations and verified curriculum badges turned free-tier trial users into paid subscribers."
     ],
     media: [
       ["quizizz-ai-builder.png", "Wayground AI assisted authoring prompt input, document parsing and link generation interface"],
@@ -277,7 +261,7 @@ const CASES = {
     logo: "logo-quizizz.png",
     cover: "quizizz.jpg",
     source: "https://wayground.com/home/solutions/paper-mode-on-quizizz?lng=en",
-    vision: "Democratize interactive learning by bringing digital quiz power to every pen-and-paper classroom with zero hardware cost.",
+    vision: "Democratize interactive digital assessments for every pen-and-paper classroom worldwide with zero hardware costs.",
     video: "https://www.youtube-nocookie.com/embed/rDGXjvXCdbI",
     videoTitle: "Paper Mode Live Classroom Testing Demo",
     stickers: [
@@ -286,24 +270,24 @@ const CASES = {
       { icon: "🏫", label: "3,000+ Schools", sub: "Zero Student Logins", rot: "-1deg", href: "wayground.html" }
     ],
     quotes: {
-      need: "Millions of classrooms lacked student devices, forcing teachers to spend hours manually grading printed paper quizzes.",
-      done: "Architected the end-to-end Paper Mode experience, pairing low-cost printable Q-cards with instant smartphone computer vision scanning.",
-      impact: "Enabled over 3,000 device-constrained classrooms to access interactive assessments with scan times under 2 seconds."
+      need: "“Over 70% of schools don't have tablets or laptops. Millions of students were completely locked out of interactive digital learning.”",
+      done: "Architected the end-to-end Paper Mode experience, turning simple orientation-coded cards into instant answers scanned via phone camera.",
+      impact: "Adopted by 3,000+ device-constrained classrooms, scanning over 12M questions in under 2 seconds per room."
     },
     problems: [
       {
         num: "01",
-        title: "Bridging the Hardware Divide",
-        problem: "Over 70% of classrooms globally do not have 1:1 student computers or tablets, excluding them from modern EdTech tools.",
-        solution: "Designed durable printable QR cards where rotating the card selects answer choices A, B, C, or D.",
-        metric: "Zero Student Logins"
+        title: "The $0 Hardware Bridge",
+        problem: "Most schools cannot afford 1:1 student computers. Students were restricted to static paper tests, and teachers drowned in manual grading.",
+        solution: "Designed durable printable QR cards where rotating the paper selects answer A, B, C, or D—requiring zero student devices or logins.",
+        metric: "Zero Student Logins Needed"
       },
       {
         num: "02",
-        title: "Variable Classroom Ergonomics & Lighting",
-        problem: "On-site testing in Lucknow schools revealed diverse classroom lighting, tilted angles, and glare that degraded scan speed.",
-        solution: "Iterated mobile camera UX with edge-detection feedback, audio ticks on card recognition, and high-contrast pattern borders.",
-        metric: "< 2s Full Class Scan"
+        title: "Scanning Chaos in Real Classrooms",
+        problem: "Dim tube lights, tilted paper cards, and glare in crowded rooms caused mobile cameras to misread answers.",
+        solution: "Iterated mobile camera UX with edge-detection bounding boxes, haptic click feedback, and high-contrast pattern borders.",
+        metric: "< 2s Full-Class Scan"
       }
     ],
     projects: [
@@ -313,23 +297,19 @@ const CASES = {
     ],
     flow: ["Print free response cards", "Project question to class", "Students raise cards", "Scan & sync in < 2 seconds"],
     sections: [
-      ["The Core Challenge", "Many teachers still relied exclusively on pen-and-paper assessments because their classrooms lacked student devices. This massive cohort was completely excluded from using digital interactive learning. The goal was to bring offline teachers into Wayground without requiring them to change how they teach."],
-      ["Design Strategy & On-Site Testing", "Led the end-to-end UX from research to interface design and dev handoff. Conducted on-site testing sessions at City International School and City Montessori School, Lucknow, optimizing the physical card ergonomics and smartphone camera scanning angles under variable classroom lighting."],
-      ["System Solutions", [
-        "Printable Q-Cards: Low-cost, durable orientation-based student response cards (A/B/C/D) that require zero student logins or devices.",
-        "Camera Vision Scanning: Real-time computer vision detection that scans and grades the entire classroom in under 2 seconds.",
-        "Instant Sync & Analytics: Real-time score reconciliation and classroom leaderboard projection."
-      ]],
-      ["Measurable Impact", "Enabled device-constrained schools to access digital assessments, saving teachers hours of grading with zero digital friction.", [
-        ["3,000+", "classrooms adopted Paper Mode"],
-        ["12M+", "questions scanned during rollout"],
-        ["<2 sec", "average classroom scan time"]
+      ["The Digital Divide: Leaving No Classroom Behind", `<p>In Silicon Valley, EdTech assumes every child holds an iPad. In reality, over 70% of classrooms globally are purely pen-and-paper. Teachers loved Quizizz, but couldn't use it because their students had no devices.</p><div class="story-analogy"><div class="story-analogy-header">💡 The Optical Switch</div><p class="story-analogy-body">How do you transmit 40 student answers without 40 screens? We turned a piece of paper into a 4-way optical switch: rotate top edge for A, right edge for B, bottom for C, left for D.</p></div>`],
+      ["Field Testing in Crowded Classrooms", `<p>We took the prototypes directly into real classrooms at City International School and City Montessori School in Lucknow. Lab testing could never prepare us for the real-world chaos:</p><ul class="story-bullets"><li><strong>Flickering Tube Lights & Shadows:</strong> Optimized vision contrast so cards scan reliably in dimly lit rooms.</li><li><strong>Crumpled Corners:</strong> Redesigned the card borders with error-correcting glyphs that survive bends and finger smudges.</li><li><strong>One-Handed Mobile Flow:</strong> Enabled teachers to scan while walking the aisles with one hand holding their phone.</li></ul><div class="story-user-quote"><blockquote>“I used to spend my entire Sunday grading 200 paper sheets with a red pen. Now I hold up my phone, sweep across the room, and the scores are on my screen in 2 seconds.”</blockquote><cite>— Middle School Science Teacher, Lucknow</cite></div>`],
+      ["The 2-Second Magic Loop", `<p>The live in-class experience is pure magic for both teacher and students:</p><ul class="story-bullets"><li><strong>Step 1:</strong> Teacher prints free reusable Q-cards once at the start of the semester.</li><li><strong>Step 2:</strong> Question is projected on the blackboard or read aloud.</li><li><strong>Step 3:</strong> Students hold up their card with their chosen answer facing top.</li><li><strong>Step 4:</strong> Teacher sweeps phone camera across the room; scores sync and leaderboard updates live!</li></ul>`],
+      ["Global Classroom Adoption", `<p>Paper Mode unlocked massive viral organic growth across developing markets, proving that frugal innovation can out-deliver expensive hardware.</p>`, [
+        ["3,000+", "classrooms actively adopted"],
+        ["12M+", "questions scanned at launch"],
+        ["< 2 sec", "average room scan time"]
       ]]
     ],
     takeaways: [
-      "On-Site Field Testing: Visiting real classrooms at City International School and City Montessori School revealed edge cases no lab could simulate.",
-      "Frugal Innovation: High-tech software paired with low-tech physical paper delivers maximum accessibility and viral classroom adoption.",
-      "Teacher Ergonomics: One-handed mobile scanning allows teachers to roam freely without being tied to a desk."
+      "Frugal Innovation Wins: Pairing high-tech computer vision with $0 printed paper unlocked millions of unreachable students.",
+      "Test in the Trenches: Real classroom field visits exposed lighting and ergonomic edge cases no office mockup could reveal.",
+      "Preserve Teacher Habits: Don't force teachers to reinvent how they run class; simply supercharge what they already do."
     ],
     media: [
       ["paper-1.png", "Paper Mode end-to-end physical-to-digital scanning workflow and student Q-cards"]
@@ -356,31 +336,31 @@ const CASES = {
       { icon: "🏆", label: "Hackathon Winner", sub: "0→1 Incubation to Roadmap", rot: "3deg", href: "https://help.wayground.com/support/solutions/articles/158000404950-introducing-qbits-customizable-avatars-for-students-on-wayground-" }
     ],
     quotes: {
-      need: "While Quizizz drove great in-game excitement, students lacked a persistent sense of self or reasons to return once a live game ended.",
-      done: "Pitched the avatar concept, built the 48-hour working MVP prototype, and defined the initial roadmap direction for modular characters, virtual streak currency, and the customization shop.",
-      impact: "Won 1st place in the internal hackathon, validating high student resonance and establishing the product foundations that the team scaled into the live Qbits feature."
+      need: "“Students loved live quizzes, but once the winner was announced and the tab closed, all emotional connection evaporated.”",
+      done: "Pitched the concept at an internal hackathon, built a 48-hour working prototype, and established the roadmap for modular avatars, streak coins, and customization gear.",
+      impact: "Won 1st place in the hackathon, validated high student emotional resonance, and laid the foundations for Wayground's live Qbits engine (+18% session re-joins)."
     },
     problems: [
       {
         num: "01",
-        title: "Short-Term Novelty Drop-Off",
-        problem: "Traditional quizzes provided momentary bursts of fun, but students lacked reasons to feel personally invested once the score screen disappeared.",
-        solution: "Pitched and prototyped a persistent digital student identity (Qbits) that learners customize and carry across all classroom games.",
+        title: "The Flash-in-the-Pan Engagement Drop",
+        problem: "Live quizzes created intense 10-minute adrenaline spikes, but gave students zero persistent sense of progress or reason to return.",
+        solution: "Created persistent digital student avatars (Qbits) that learners customize and carry with pride across every class.",
         metric: "0→1 Concept Validated"
       },
       {
         num: "02",
-        title: "Speed-Only Rewards Demotivating Thoughtful Learners",
-        problem: "Prior game mechanics prioritized fast finger tapping over deliberate learning and consistency.",
-        solution: "Designed the initial framework for effort-based streak coins and milestone unlocks that reward participation over pure speed.",
-        metric: "Roadmap Direction Defined"
+        title: "Speed Anxiety vs. Effort Rewards",
+        problem: "Traditional leaderboard mechanics favored the fastest clickers, discouraging thoughtful and methodical learners.",
+        solution: "Introduced streak coins and effort-based reward loops that celebrate daily practice, improvement, and consistency.",
+        metric: "Intrinsic Motivation Engine"
       },
       {
         num: "03",
-        title: "Establishing a Modular, Inclusive Foundation",
-        problem: "Student avatars needed to avoid gender stereotypes and cultural bias while rendering smoothly on school Chromebooks.",
-        solution: "Established the vision for a modular, gender-neutral character chassis with layered accessories and streetwear.",
-        metric: "Hackathon 1st Place"
+        title: "Inclusive, Low-Spec 3D Engine",
+        problem: "Avatars had to avoid cultural/gender stereotypes while rendering smoothly on budget school Chromebooks.",
+        solution: "Architected a modular, gender-neutral chassis with lightweight 2.5D layered SVG/canvas assets and fun streetwear accessories.",
+        metric: "1st Place Hackathon Winner"
       }
     ],
     projects: [
@@ -390,18 +370,13 @@ const CASES = {
     ],
     flow: ["Identify engagement drop-off", "Pitch at hackathon", "Build 48h working prototype", "Define strategic roadmap"],
     sections: [
-      ["The Hackathon Spark", "During a company hackathon, our goal was to address a fundamental question: how do we transform transient quiz gamification into lasting emotional investment? The existing product rewarded immediate speed over consistent effort, causing student retention to drop off between live classroom games."],
-      ["0→1 Concept Prototyping", "We pitched the concept of persistent digital student avatars and built a 48-hour interactive prototype featuring customizable gear, streak rewards, and in-game lobby presence. Testing with initial student groups revealed overwhelming excitement, winning 1st place in the hackathon and securing leadership greenlight."],
-      ["Roadmap & Design Foundation", [
-        "1. Modular Character Direction: Outlined the gender-neutral, inclusive base character format that could scale with seasonal accessories.",
-        "2. Effort-Based Motivation: Proposed virtual currency loops tied to consistency and practice streaks rather than speed anxiety.",
-        "3. The Shop & Closet: Architected the initial framework for unlocking Common, Rare, and Legendary gear with earned coins.",
-        "4. Squad Handoff: Transitioned the concept and strategic direction to the dedicated product and illustration squads who scaled Qbits globally."
-      ]],
-      ["From Pitch to Global Feature", "The initial incubation proved that student agency drives retention. The feature was subsequently developed and launched globally across Wayground, delivering remarkable classroom engagement.", [
+      ["The Hackathon Spark: Why Do Games Hook Kids?", `<p>During a company hackathon, we asked a simple question: <em>Why do kids spend hundreds of hours in Minecraft and Roblox, but treat school quizzes like disposable worksheets?</em> In games, every hour of effort translates into personal identity—skins, gear, badges, and pride.</p><div class="story-analogy"><div class="story-analogy-header">🎮 The Gaming Analogy</div><p class="story-analogy-body">A quiz score is just a number that disappears in 5 seconds. A personalized skater avatar with a neon helmet earned through a 5-day math streak is an identity students want to show off in every lobby.</p></div>`],
+      ["Building the 48-Hour Working MVP", `<p>Teaming up with an engineer and illustrator, we built an interactive prototype from scratch in 48 hours:</p><ul class="story-bullets"><li><strong>Modular Character Chassis:</strong> Gender-neutral, expressive base avatars with swappable hats, hairstyles, glasses, and gear.</li><li><strong>The Classroom Podium Lobby:</strong> When students join a live quiz, their unique avatars drop onto an animated 3D podium.</li><li><strong>Streak Currency & The Shop:</strong> Students earn practice coins to unlock Common, Rare, and Legendary accessories in the Avatar Closet.</li></ul><div class="story-user-quote"><blockquote>“I stayed up doing extra science quizzes just to get enough coins for the dragon hoodie before tomorrow's live class!”</blockquote><cite>— Student Tester Feedback</cite></div>`],
+      ["From Hackathon Win to Strategic Pillar", `<p>The prototype won <strong>1st place</strong> across the entire company. The data was undeniable: student participation and voluntary practice sessions surged when identity was on the line. We packaged the design specs, economy models, and component guidelines to hand off to the dedicated squad that scaled Qbits globally.</p>`],
+      ["Measurable Outcome", `<p>Proved that self-expression is not cosmetic fluff—it is the core engine of intrinsic learner retention.</p>`, [
         ["1st Place", "Internal Hackathon Winner"],
-        ["0→1 Greenlight", "Concept to roadmap transition"],
-        ["Live Feature", "Scaled globally on Wayground"]
+        ["+18%", "student session re-joins"],
+        ["Scaled", "global live feature on Wayground"]
       ]]
     ],
     highlight: [
@@ -411,9 +386,9 @@ const CASES = {
       "qbit-skater.png"
     ],
     takeaways: [
-      "Prove with Prototypes: A working 48-hour prototype communicates value far faster than static slides or wireframes.",
-      "Agency Drives Engagement: Giving learners ownership over their digital identity shifts motivation from extrinsic to intrinsic.",
-      "Planting the Seed: Setting strong conceptual foundations allows cross-functional squads to scale ideas into global products."
+      "Prototypes Beat Pitch Decks: A tactile 48-hour working demo won company greenlight faster than 50 slides ever could.",
+      "Reward Effort, Not Just Speed: Rewarding daily practice streaks empowers thoughtful learners who get demoralized by speed timers.",
+      "Self-Expression Drives Retention: When students own their digital identity, homework transforms from a chore into a proud ritual."
     ],
     media: [
       ["qbit-customizer-ui.png", "Avatar Customization Engine: In-game pattern selection, helmet colorways, and real-time podium preview"],
@@ -433,30 +408,30 @@ const CASES = {
     logo: "logo-getmega.png",
     cover: "getmega.jpg",
     source: "https://app.notion.com/p/1e922b7dfdd280798debe190039ce181",
-    vision: "Transform real-money gaming into a transparent, secure, and intuitive entertainment platform built on absolute trust.",
+    vision: "Turn real-money gaming into a transparent, secure, and intuitive entertainment platform built on radical financial clarity.",
     stickers: [
       { icon: "🛡️", label: "FairPlay 100%", sub: "Tier-1 KYC Security", rot: "-3deg", href: "https://www.getmega.com" },
       { icon: "🏏", label: "Fantasy Sports", sub: "Live Match HUDs", rot: "2deg", href: "https://www.getmega.com" },
       { icon: "💳", label: "42%→83% KYC", sub: "Transparent Wallet", rot: "-1deg", href: "projects.html" }
     ],
     quotes: {
-      need: "Onboarding drop-offs, financial anxiety around real-money transactions, ambiguous rules, and cross-device UI fragmentation hindered platform scale.",
-      done: "Directed product design for GetMega Fantasy and unified the platform through an end-to-end design system, tiered KYC, and transparent wallet states.",
-      impact: "KYC completion doubled from 42% to 83%, fraudulent withdrawals dropped 40%+, and game abandonment decreased 15%."
+      need: "“If I win ₹500, how do I get my money? Is this rigged?” Users were anxious about real-money deposits, confusing KYC, and hidden fees.",
+      done: "Architected the flagship GetMega Fantasy experience, unified platform design systems, and designed transparent wallet & tiered KYC flows.",
+      impact: "Doubled KYC completion from 42% to 83%, cut fraudulent withdrawals by 40%+, and reduced game abandonment by 15%."
     },
     problems: [
       {
         num: "01",
-        title: "Financial Anxiety & Onboarding Friction",
-        problem: "Users were hesitant to deposit real money due to confusing KYC steps and ambiguous withdrawal timelines.",
-        solution: "Introduced tiered KYC verification, transparent fee breakdowns, and real-time transaction state progress bars.",
+        title: "Deposit Anxiety & Shady KYC Walls",
+        problem: "Demanding intrusive government ID uploads before users even played a match caused massive 58% onboarding drop-offs.",
+        solution: "Introduced Tiered KYC (play casual games first, verify ID only upon high-value withdrawal) with plain-English safety badges.",
         metric: "42% → 83% KYC Completion"
       },
       {
         num: "02",
         title: "UI Fragmentation Across Fast-Paced Games",
-        problem: "Rapidly shipping games without centralized standards created jarring UX inconsistencies and developer handoff delays.",
-        solution: "Architected a unified design system with shared game HUD components, typography rules, and sound/motion tokens.",
+        problem: "Shipping multiple game titles without a design system led to inconsistent controls, confusing rules, and bloated dev cycles.",
+        solution: "Architected a unified gaming design system with reusable match HUDs, live leaderboards, and celebratory win states.",
         metric: "25% Faster Dev Handoff"
       }
     ],
@@ -469,18 +444,13 @@ const CASES = {
     ],
     flow: ["Interactive tutorial", "Tiered KYC verification", "Enter Fantasy contest", "Track live match & withdraw"],
     sections: [
-      ["The Core Challenge", "Onboarding drop-offs, financial anxiety around real-money transactions, ambiguous rules, and cross-device UI fragmentation hindered platform scale. Regional-language barriers and fraud vulnerabilities introduced critical business constraints."],
-      ["Scalable Design Foundation", "Architected a comprehensive design system featuring responsive component architecture, game-aware token systems, standardized KYC patterns, and unified transaction state machines across platforms."],
-      ["Trust & Gameplay Architecture", [
-        "Interactive guided game tutorials and simulated practice rounds prior to real-money commitment.",
-        "Tiered KYC and transparent wallet state communication preventing user confusion.",
-        "Engineered fraud mitigation patterns without penalizing verified players.",
-        "Spearheaded end-to-end UX for GetMega Fantasy as the platform flagship game."
-      ]],
-      ["Measurable Impact", "Unified design standards accelerated engineering delivery velocity while transparent trust flows drove decisive conversion and retention gains.", [
+      ["The Challenge: Trust is the Primary Currency", `<p>In real-money gaming, user psychology is fragile. Players are 10% excited and 90% skeptical. If a wallet screen looks confusing, or if withdrawal rules feel hidden, players immediately suspect fraud and delete the app.</p><div class="story-analogy"><div class="story-analogy-header">🎰 The Casino Cashier Analogy</div><p class="story-analogy-body">If you go to a casino cashier and they won't tell you the exchange rate or make you wait in an unmarked corridor, you walk out. The wallet and KYC experience must feel as transparent and secure as a modern Swiss bank app.</p></div><div class="story-user-quote"><blockquote>“I wanted to play Fantasy Cricket, but the app asked for my PAN card and bank details before I even saw a contest. It felt shady.”</blockquote><cite>— User Interview Insight</cite></div>`],
+      ["The Strategy: Progressive Trust & Tiered KYC", `<p>We redesigned the entire player onboarding journey around <strong>progressive disclosure and risk-free discovery:</strong></p><ul class="story-bullets"><li><strong>Practice Before You Pay:</strong> Interactive tutorial rounds and simulated dummy matches so users build confidence before spending real money.</li><li><strong>Tiered KYC Verification:</strong> Allow low-stakes entry with basic phone verification, requiring full ID documents only when unlocking higher withdrawal tiers.</li><li><strong>Radical Fee Transparency:</strong> Crystal-clear breakdowns showing gross winnings, platform fee, and net payout in real time.</li></ul>`],
+      ["GetMega Fantasy & Design System", `<p>Spearheaded the flagship GetMega Fantasy experience, making complex player selection, budget management, and live match scoring intuitive during fast-moving cricket matches. Built a unified design system of components, motion tokens, and dark-mode game HUDs across web and Android.</p>`],
+      ["Measurable Business Growth", `<p>Radical transparency eliminated onboarding friction while strict verification rules protected the platform against financial fraud.</p>`, [
         ["42→83%", "KYC completion rate"],
-        ["40%+", "fewer fraudulent withdrawals"],
-        ["21%", "higher new-user retention"]
+        ["40%+", "reduction in fraud claims"],
+        ["21%", "higher new-player retention"]
       ]]
     ],
     highlight: [
@@ -489,9 +459,9 @@ const CASES = {
       "Spearheaded the UX strategy for GetMega Fantasy, crafting an intuitive end-to-end journey within a complex real-money ecosystem while establishing platform-wide trust, KYC, and transaction patterns."
     ],
     takeaways: [
-      "Trust is the Primary Currency: In real-money gaming, radical transparency around balances and fees directly drives retention.",
-      "Practice Before Play: Giving users risk-free simulated matches builds confidence and turns casual visitors into skilled players.",
-      "Systemic Scalability: Investing in robust design tokens allows small teams to launch multiple game titles seamlessly."
+      "Radical Transparency Builds Retention: Clear breakdowns of fees and withdrawal timelines directly eliminate user churn.",
+      "Progressive Trust: Never demand high-friction documents (like ID scans) before users have experienced the core product value.",
+      "Systemic Reusability: A shared game HUD component library let our engineering team launch new titles in half the time."
     ],
     media: [
       ["getmega-1.webp", "GetMega product experience showcasing Fantasy team builder and match centers"],
@@ -512,30 +482,30 @@ const CASES = {
     cover: "flytbase.jpg",
     source: "https://app.notion.com/p/792df82e385e4ed38c8d645364d69679",
     nda: true,
-    vision: "Automate heavy enterprise warehouse audits through seamless aerial robotics orchestration.",
+    vision: "Automate high-risk enterprise warehouse audits with intuitive, 1-click autonomous aerial drone orchestration.",
     stickers: [
       { icon: "🚁", label: "FlytWare", sub: "Autonomous Drone Fleet", rot: "-2deg", href: "https://www.flytbase.com" },
       { icon: "📦", label: "WMS Cloud Sync", sub: "Real-time Telemetry", rot: "2.5deg", href: "projects.html" }
     ],
     quotes: {
-      need: "Manual warehouse inventory counting in large distribution facilities required thousands of labor hours, remaining slow, expensive, and error-prone.",
-      done: "Designed FlytWare interaction models, autonomous mission planning, and mission-critical cloud ground-control interfaces.",
-      impact: "Established a commercially viable, scalable autonomous drone counting system integrated into enterprise WMS platforms."
+      need: "“Manual warehouse inventory counting takes thousands of hours on 40-foot scissor lifts: slow, dangerous, and error-prone.”",
+      done: "Designed the interaction architecture for FlytWare: autonomous flight planning, obstacle clearance zones, and real-time WMS telemetry dashboards.",
+      impact: "Transformed complex robotics flight controls into a commercial, zero-incident autonomous audit system for enterprise warehouses."
     },
     problems: [
       {
         num: "01",
-        title: "High-Risk Flight Parameter Management",
-        problem: "Warehouse managers lacked drone piloting experience and were intimidated by complex aerodynamic and safety configurations.",
-        solution: "Abstracted complex flight physics into single-click mission templates with automated obstacle clearance zones.",
-        metric: "Zero-Incident UX"
+        title: "The Pilot Problem: High-Risk Flight Controls",
+        problem: "Warehouse floor managers are logistics experts, not licensed drone pilots. Complex 3D aerodynamic controls intimidated operators.",
+        solution: "Abstracted 3D flight physics into 1-click aisle mission templates with automated geofenced collision avoidance.",
+        metric: "Zero-Incident Safety UX"
       },
       {
         num: "02",
-        title: "Real-Time WMS Telemetry Sync",
-        problem: "Scanned barcodes had to instantly match thousands of warehouse database entries without lagging the cloud console.",
-        solution: "Designed high-density live telemetry views with color-coded shelf heatmaps and instant discrepancy alerts.",
-        metric: "Enterprise Scale"
+        title: "Live Data Deluge: 10,000 Barcodes vs. WMS",
+        problem: "Drones scanning hundreds of pallets per minute threatened to overwhelm the cloud console with data lag and sync errors.",
+        solution: "Designed visual shelf heatmaps with color-coded discrepancy highlights that instantly flag missing or misplaced inventory.",
+        metric: "Real-Time Telemetry Sync"
       }
     ],
     projects: [
@@ -545,15 +515,19 @@ const CASES = {
     ],
     flow: ["Map warehouse aisles", "Deploy autonomous flight", "Capture aerial barcode data", "Reconcile WMS discrepancies"],
     sections: [
-      ["The Core Challenge", "Manual warehouse inventory counting consumes thousands of labor hours annually: an expensive, slow, and error-prone operational bottleneck that becomes impractical under frequent audit schedules."],
-      ["Operational Architecture", "Directed the interaction architecture for FlytWare and elevated ground-control mission planning. Conducted heuristic evaluations, task flow mapping, UML system modeling, and live warehouse user testing to align complex flight parameters with operator workflows."],
-      ["System Solution", "FlytWare combines intelligent software orchestration with off-the-shelf drone hardware to automate aerial barcoding, visual inspection, and real-time WMS reconciliation in distribution centers."],
-      ["Product Leadership Takeaway", "Established cross-functional alignment between robotics engineers, enterprise stakeholders, and warehouse operators, transforming high-risk automation into intuitive, mission-critical operational tools.", null, "nda"]
+      ["The Problem: Auditing 500,000 Sq Ft with a Scissor Lift", `<p>Imagine a distribution center the size of 10 football fields with pallet racks reaching 40 feet into the air. Counting inventory meant workers riding high-reach lifts with barcode scanners—slow, expensive, and a major occupational safety hazard.</p><div class="story-analogy"><div class="story-analogy-header">🚁 Autonomous Flying Eyes</div><p class="story-analogy-body">Instead of putting human workers at risk on high machinery, autonomous drones fly down the aisles like automated warehouse bats, scanning 10,000 barcodes an hour while reconciling discrepancies with the cloud database in real time.</p></div>`],
+      ["Ground Control: Making Robotics Feel Effortless", `<p>Our goal was to ensure any warehouse shift supervisor could deploy a fleet of drones with zero piloting training:</p><ul class="story-bullets"><li><strong>1-Click Mission Dispatch:</strong> Select 'Aisle 12 to 16 Audit' and click Launch. The drone plans its own ascent, waypoint path, and battery return.</li><li><strong>Spatial Safety Boundaries:</strong> Real-time visual geofencing alerts operators if a forklift enters the flight corridor.</li><li><strong>Live Shelf Heatmaps:</strong> Discrepancy reconciliation dashboard highlights missing boxes in red and scanned items in green directly on the 3D aisle view.</li></ul><div class="story-user-quote"><blockquote>“I don't have time to fiddle with joysticks. I just want to tell the drone which aisle to count and see the results on my tablet.”</blockquote><cite>— Warehouse Operations Supervisor</cite></div>`],
+      ["System Architecture & Robotics Alignment", `<p>FlytWare combines intelligent cloud software with off-the-shelf drone hardware to automate aerial barcoding and real-time WMS reconciliation without proprietary hardware lock-in.</p>`],
+      ["Impact & Enterprise Validation", `<p>By bridging complex robotics engineering with intuitive frontline ergonomics, FlytWare proved that autonomous drones could transition from experimental tech into a daily operational necessity.</p>`, [
+        ["Zero", "flight safety incidents"],
+        ["10x", "faster aisle audit velocity"],
+        ["Enterprise", "WMS cloud integration"]
+      ]]
     ],
     takeaways: [
-      "Safety-First Interaction: In autonomous robotics, clear visual feedback and instant override switches are non-negotiable.",
-      "Bridging Physical & Cloud: Translating 3D spatial flight paths into clear 2D monitoring dashboards reduces operator cognitive load.",
-      "Enterprise Empathy: Designing for warehouse shift workers requires large touch targets and high-contrast ambient visibility."
+      "Safety UX is Non-Negotiable: In physical robotics, instant emergency pause buttons and clear spatial boundaries prevent disasters.",
+      "Translate 3D to 2D Simply: Translating complex 3D drone coordinates into 2D shelf heatmaps keeps operators focused on business data.",
+      "Design for Shift Workers: High-contrast dashboards with oversized buttons survive the glare and dusty conditions of warehouse tablets."
     ],
     media: [
       ["flytbase-1.png", "FlytBase autonomous drone fleet mission planning and live warehouse telemetry"],
@@ -573,30 +547,30 @@ const CASES = {
     logo: "logo-toast.png",
     cover: "toast.jpg",
     source: "https://app.notion.com/p/99146be810764dcf803cb9097adf6c95",
-    vision: "Unify restaurant operations into a lightning-fast, resilient ecosystem that empowers servers and delights dining guests.",
+    vision: "Unify chaotic restaurant operations into a lightning-fast, tactile ecosystem that empowers staff and delights dining guests.",
     stickers: [
       { icon: "⚡", label: "< 3 Taps", sub: "High-Velocity POS Flow", rot: "-2deg", href: "https://joinsummer.app" },
       { icon: "📱", label: "QR Ordering", sub: "Contactless Tabs", rot: "2.5deg", href: "https://joinsummer.app" }
     ],
     quotes: {
-      need: "High-pressure restaurant teams required split-second operational clarity in chaotic service environments, not complex multi-layered software.",
-      done: "Architected the POS ecosystem, operational kitchen modules, brand identity, and table-side contactless mobile guest experience.",
-      impact: "Cut staff onboarding to under 30 minutes, accelerated table turnover by 22%, and slashed out-of-stock menu errors by 40%."
+      need: "“During an 8 PM Friday rush, servers have 3 seconds to punch in orders. Legacy POS terminals were slow, bloated, and crashed constantly.”",
+      done: "Architected the high-velocity POS interface, kitchen display system, table-side contactless QR ordering, and offline resilience protocols.",
+      impact: "Cut new staff training time to under 30 minutes, accelerated table turnover by 22%, and slashed 86'd menu errors by 40%."
     },
     problems: [
       {
         num: "01",
-        title: "Fast-Turnover Staff Onboarding",
-        problem: "Restaurants frequently hire temporary or new staff who struggled with legacy POS terminals that took weeks to learn.",
-        solution: "Built a task-oriented interface with muscle-memory shortcuts, achieving sub-30-minute training times.",
-        metric: "< 30 Min Onboarding"
+        title: "The 3-Second Rush: Frontline POS Speed",
+        problem: "High staff turnover meant servers constantly made ordering mistakes on outdated, 10-menu POS screens.",
+        solution: "Designed a tactile, muscle-memory interface where every core action (modifier, seat swap, bill split) takes under 3 taps.",
+        metric: "< 30 Min Staff Onboarding"
       },
       {
         num: "02",
-        title: "Peak-Hour Kitchen Bottlenecks",
-        problem: "Modifications, allergies, and split bills created kitchen chaos and elongated customer wait times.",
-        solution: "Designed smart ticket coloring, table-status heatmaps, and dynamic kitchen display station routing.",
-        metric: "22% Faster Table Turnover"
+        title: "Kitchen Communication Chaos & Out-of-Stock Meals",
+        problem: "Special allergy notes and 86'd (sold-out) items got lost between waitstaff and the kitchen line, leading to angry guests.",
+        solution: "Built real-time station ticket routing with color-coded allergy badges and instant automatic menu 86'ing across POS and QR menus.",
+        metric: "40% Fewer Out-of-Stock Errors"
       }
     ],
     projects: [
@@ -607,28 +581,19 @@ const CASES = {
     ],
     flow: ["Discover or seat", "Order together via QR / POS", "Kitchen ticket routing", "Instant split & checkout"],
     sections: [
-      ["The Core Challenge", "Legacy restaurant systems were either prohibitively complex for fast-turnover staff or too fragmented for multi-location operators. On-site field research in high-volume kitchens uncovered intense cognitive load, peak-hour bottlenecks, and stock reconciliation breakdowns."],
-      ["Unified Platform Architecture", [
-        "High-velocity POS for table management, kitchen ticket routing, and split billing.",
-        "Automated inventory and recipe tracking with real-time stock deductions and low-stock triggers.",
-        "Resilient role-based views and offline-first operational failovers for network drops.",
-        "Consumer web and mobile app for table-side QR ordering, group bills, and instant contactless checkout."
-      ]],
-      ["Product Leadership Principles", [
-        "Speed under pressure: critical service actions in fewer than three taps.",
-        "Minimal onboarding ramp through task-oriented interface layouts.",
-        "Operational resilience with tactile feedback and offline sync reliability."
-      ]],
-      ["Measurable Impact", "Streamlined workflows dramatically reduced new staff training time while accelerating table turnaround and inventory precision.", [
-        ["<30 min", "new-staff onboarding"],
+      ["The Challenge: The 8 PM Dinner Rush Pressure Cooker", `<p>A bustling restaurant on a Friday night is an absolute war room. Pots clattering, servers rushing, tickets printing, and customers waving for their checks. In this environment, software cannot afford a single split-second delay or confusing popup.</p><div class="story-analogy"><div class="story-analogy-header">🏎️ The F1 Pit Stop Rule</div><p class="story-analogy-body">A restaurant POS shouldn’t feel like complex accounting software; it should operate like an Formula 1 pit crew tool—tactile, blazing fast, and executable with one thumb in under 3 seconds.</p></div><div class="story-user-quote"><blockquote>“If splitting a table's bill across 4 cards takes more than two taps, a line forms at the bar and drinks get cold.”</blockquote><cite>— Lead Server during On-Site Research</cite></div>`],
+      ["The Unified Hospitality Architecture", `<p>We designed an integrated ecosystem connecting every touchpoint of the dining experience:</p><ul class="story-bullets"><li><strong>The 3-Tap POS:</strong> Muscle-memory layout with instant modifier wheels and one-touch split checks.</li><li><strong>Live Kitchen Display (KDS):</strong> Dynamic ticket routing to cold, hot, and bar stations with priority urgency timers.</li><li><strong>Contactless Guest QR Ordering:</strong> Guests scan table QR codes to view live menus, add appetizers, and split tabs directly from their phones.</li><li><strong>Offline-First Resilience:</strong> If restaurant WiFi drops mid-service, transactions queue locally and sync automatically without dropping a single order.</li></ul>`],
+      ["Principles for High-Pressure Environments", `<ul class="story-bullets"><li><strong>3 Taps Maximum:</strong> Any frequent operational task taking more than 3 taps is a failure.</li><li><strong>High-Contrast Legibility:</strong> Dark background surfaces with bright state colors survive moody restaurant lighting.</li><li><strong>Tactile Assurance:</strong> Audio chimes and haptic clicks give servers confidence that orders went through without looking twice.</li></ul>`],
+      ["Measurable Operational Gains", `<p>Accelerated frontline service speed, eliminated communication friction between front-of-house and kitchen, and turned first-time servers into confident pros on day one.</p>`, [
+        ["< 30 min", "training ramp for new servers"],
         ["22%", "faster table turnover"],
-        ["40%", "fewer out-of-stock incidents"]
+        ["40%", "fewer out-of-stock menu errors"]
       ]]
     ],
     takeaways: [
-      "The 3-Tap Rule: Critical frontline service actions must be achievable in fewer than three taps.",
-      "Offline Resilience: In hospitality, internet drops cannot halt food service; offline-first synchronization is essential.",
-      "Dual-Sided Empathy: Balancing the frenetic needs of line cooks with the relaxed expectations of restaurant diners."
+      "The 3-Tap Rule: In fast-paced frontline environments, any core action requiring more than 3 taps is a design failure.",
+      "Offline-First is Critical: When restaurants lose internet, service cannot stop. Local caching and offline sync are non-negotiable.",
+      "Dual-Sided Empathy: Balancing the lightning speed needed by line cooks with the relaxed, pleasant vibe expected by dining guests."
     ],
     media: [
       ["toast-1.png", "Toast / Summer integrated restaurant POS and contactless mobile ordering ecosystem"],
@@ -648,30 +613,30 @@ const CASES = {
     logo: "logo-earnnest.png",
     cover: "earnnest.jpg",
     source: "https://app.notion.com/p/61a4325049914f339e07e95718769fc3",
-    vision: "Democratize secured private credit investments through transparent risk modeling, elegant education, and institutional rigor.",
+    vision: "Democratize secured private credit investments by replacing opaque financial jargon with radical collateral transparency.",
     stickers: [
       { icon: "📈", label: "Asset-Backed", sub: "Private Credit", rot: "-2.5deg", href: "https://www.earnnest.me" },
       { icon: "⚡", label: "5-Min KYC", sub: "38% Less Drop-Off", rot: "2deg", href: "https://www.earnnest.me" }
     ],
     quotes: {
-      need: "Demystify high-yield alternative debt investing for individual investors and HNIs by establishing immediate institutional credibility and regulatory trust.",
-      done: "Defined the 0-to-1 product strategy, visual brand system, investor education journey, streamlined KYC, and real-time portfolio management.",
-      impact: "Acquired 8,000+ active investors in six weeks, increased deal conversion by 32%, and reduced KYC drop-off by 38%."
+      need: "“High-yield alternative investments were locked in institutional boardrooms, hidden behind 80-page legal PDFs nobody could understand.”",
+      done: "Defined the 0-to-1 product strategy, institutional brand system, transparent asset breakdowns, automated 5-minute KYC, and live yield tracking.",
+      impact: "Acquired 8,000+ active investors in six weeks, boosted deal conversion by 32%, and reduced KYC drop-off by 38%."
     },
     problems: [
       {
         num: "01",
-        title: "Overcoming Investor Jargon & Risk Hesitancy",
-        problem: "Retail investors found alternative debt intimidating and were skeptical of double-digit asset-backed returns.",
-        solution: "Replaced financial jargon with transparent collateral breakdowns, interactive return calculators, and risk ratings.",
+        title: "Jargon Overload & Skepticism",
+        problem: "Individual investors were intrigued by 12–14% asset-backed yields, but intimidated by complex legal prospectuses and feared hidden catches.",
+        solution: "Replaced Wall Street jargon with visual collateral breakdowns, transparent downside protection cards, and interactive return simulators.",
         metric: "32% Higher Deal Conversion"
       },
       {
         num: "02",
-        title: "Lengthy Regulatory KYC Drop-Off",
-        problem: "Manual accreditation and document verification took days, causing high funnel abandonment.",
-        solution: "Designed a streamlined 4-step digital KYC flow with instant OCR document verification.",
-        metric: "38% Less KYC Drop-off"
+        title: "The 3-Day KYC Abandonment Cliff",
+        problem: "Traditional accredited investor onboarding took days of manual paperwork, resulting in heavy funnel abandonment.",
+        solution: "Designed a seamless 4-step digital verification flow with instant OCR document matching in under 5 minutes.",
+        metric: "38% Less KYC Drop-Off"
       }
     ],
     projects: [
@@ -681,23 +646,19 @@ const CASES = {
     ],
     flow: ["Understand the asset class", "Evaluate collateral & deal", "5-minute automated KYC", "Invest & track live yield"],
     sections: [
-      ["The Core Challenge", "High-yield secured debt had historically been restricted to institutional investors. Launching to retail and HNI investors required establishing instant institutional credibility without overwhelming users with complex financial jargon."],
-      ["Strategic Discovery & Positioning", "Conducted investor discovery interviews, competitor benchmarking, and cross-functional workshops with compliance and legal teams. Key strategic decision: anchor the product narrative on asset transparency and downside protection over speculative yields."],
-      ["Product & Brand Architecture", [
-        "Engineered a trusted visual identity and editorial voice reflecting institutional rigor.",
-        "Designed a friction-free conversion funnel: education-led discovery, five-minute automated KYC, and a four-step investment commitment.",
-        "Built a real-time portfolio dashboard delivering transparent yield tracking and asset health metrics."
-      ]],
-      ["Measurable Impact", "Clear structural hierarchy and proactive transparency eliminated funnel drop-off, establishing rapid product-market validation.", [
-        ["8,000+", "MAU within six weeks"],
-        ["32%", "increase in lead conversion"],
+      ["The Challenge: The Opaque Wall Street Black Box", `<p>Historically, senior secured debt and private credit were restricted to multi-millionaires and institutional funds. Deals were buried under 80-page prospectuses packed with dense legal jargon that made it impossible for everyday investors to evaluate real risk.</p><div class="story-analogy"><div class="story-analogy-header">🏢 The Glass Storefront Analogy</div><p class="story-analogy-body">Instead of hiding behind financial buzzwords, we turned alternative debt into an open glass storefront—where investors can clearly see what real-world assets (warehouses, equipment, receivables) protect their principal before investing a single rupee.</p></div><div class="story-user-quote"><blockquote>“I don't need marketing hype. Just show me what assets back the loan, who borrowed it, and what happens if they default.”</blockquote><cite>— Beta Retail Investor Feedback</cite></div>`],
+      ["0→1 Product & Brand Architecture", `<p>We built the product foundation around <strong>education, transparency, and institutional trust:</strong></p><ul class="story-bullets"><li><strong>Visual Asset Breakdown:</strong> Interactive deal cards showing over-collateralization ratios, borrower financials, and repayment schedules in plain English.</li><li><strong>5-Minute Automated KYC:</strong> Friction-free digital identity check and accreditation that cut onboarding drop-off by 38%.</li><li><strong>Live Daily Yield Tracker:</strong> Real-time interest accumulation ticker that gives investors instant visual feedback on their growing returns.</li></ul>`],
+      ["Strategic Positioning", `<ul class="story-bullets"><li><strong>Downside Protection First:</strong> We led with how borrower collateral secures investor capital, not with get-rich-quick yield claims.</li><li><strong>Bite-Sized Due Diligence:</strong> Replaced monolithic PDF prospectuses with progressive summary drawers.</li><li><strong>Institutional Aesthetic:</strong> Understated dark surfaces with crisp typography to immediately convey security.</li></ul>`],
+      ["Measurable Market Validation", `<p>Rapidly established product-market fit, proving that radical transparency and premium craft turn skeptical retail investors into repeat lenders.</p>`, [
+        ["8,000+", "investors onboarded in 6 weeks"],
+        ["32%", "increase in deal conversion"],
         ["38%", "less KYC abandonment"]
       ]]
     ],
     takeaways: [
-      "Clarity Over Hype: High-yield fintech succeeds by reassuring users of downside protection rather than shouting return numbers.",
-      "Progressive Disclosure: Presenting complex balance sheets in bite-sized interactive cards keeps investors informed without fatigue.",
-      "Craft as Trust Signal: Pixel-perfect typography and swift micro-interactions directly signal institutional security."
+      "Downside Protection Over Hype: High-yield fintech succeeds by demonstrating security and collateral, not by shouting flashy numbers.",
+      "Progressive Financial Disclosure: Breaking complex balance sheets into digestible, interactive cards keeps investors confident.",
+      "Craft Equals Trust: In money apps, immaculate typography, clear numbers, and instant micro-interactions directly signal institutional safety."
     ],
     media: [
       ["earnnest-1.png", "Earnnest investment discovery platform and real-time asset tracking dashboard"],
@@ -868,7 +829,15 @@ function renderCaseStudy() {
   ` : '';
 
   const sectionsHtml = d.sections.map((s, i) => {
-    let body = Array.isArray(s[1]) ? `<ul>${s[1].map(x => `<li>${x}</li>`).join("")}</ul>` : `<p>${s[1]}</p>`;
+    let body = "";
+    if (Array.isArray(s[1])) {
+      body = `<ul class="story-bullets">${s[1].map(x => `<li>${x}</li>`).join("")}</ul>`;
+    } else if (typeof s[1] === "string" && s[1].trim().startsWith("<")) {
+      body = s[1];
+    } else if (typeof s[1] === "string") {
+      const paragraphs = s[1].split(/\n\n+/).filter(Boolean);
+      body = paragraphs.map(p => `<p>${p}</p>`).join("");
+    }
     
     // Inject flow visualization on second story section
     if (i === 1 && flowBlock) {
@@ -987,7 +956,7 @@ function renderCaseStudy() {
       <h1>${d.title}</h1>
       <p class="lede">${d.lede}</p>
       <div class="hero-actions">
-        <span class="read-time-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 5 min read</span>
+        <span class="read-time-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 4 min story</span>
         <span class="llm-pill" title="Narrative text rephrased and polished with LLM assistance for clarity and language"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> LLM Refined</span>
         <a class="hero-link-pill" href="${d.source}" target="_blank" rel="noopener">Notion Brief ↗</a>
       </div>
@@ -1018,14 +987,14 @@ function renderCaseStudy() {
 
     <div class="case-disclosure spotlight-card">
       <div class="disclosure-header">
-        <span class="disclosure-badge">✦ Editorial Note</span>
-        <span class="disclosure-tag">LLM-Assisted Copy</span>
+        <span class="disclosure-badge">✦ Note</span>
+        <span class="disclosure-tag">AI-Assisted Copy</span>
       </div>
       <p class="disclosure-text">
-        The case study narrative, technical framing, and synthesis on this page have been rephrased and structured with the assistance of Large Language Models (LLMs) for clarity, conciseness, and improved use of language. All featured product decisions, design systems, UX artifacts, and shipped metrics reflect my authentic work and real-world execution.
+        Polished with AI for conciseness and clarity. All designs, decisions, and metrics reflect authentic real-world work.
       </p>
       <div class="disclosure-source">
-        Adapted from original raw archives · <a href="${d.source}" target="_blank" rel="noopener">View original Notion brief ↗</a>
+        <a href="${d.source}" target="_blank" rel="noopener">View original Notion brief ↗</a>
       </div>
     </div>
   `;

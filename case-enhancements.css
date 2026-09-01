@@ -241,6 +241,101 @@
   font-weight: 300;
 }
 
+/* Story Analogy & Scenario Cards */
+.story-analogy {
+  margin: 1.2rem 0 1.45rem;
+  padding: 1.15rem 1.35rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--project) 10%, var(--surface)) 0%, var(--surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--project) 35%, var(--rule));
+  border-radius: var(--radius);
+  position: relative;
+  box-shadow: 0 4px 18px -4px rgba(0, 0, 0, 0.4);
+}
+
+.story-analogy-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font: 500 0.58rem 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--project);
+  margin-bottom: 0.55rem;
+}
+
+.story-analogy-body {
+  font-size: 0.91rem !important;
+  line-height: 1.6 !important;
+  color: #dedad2 !important;
+  font-weight: 300;
+  margin: 0 !important;
+}
+
+.story-analogy-body strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* User / Research Story Quote */
+.story-user-quote {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1.1rem 1.35rem;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border-left: 3px solid var(--project);
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.story-user-quote blockquote {
+  margin: 0 0 0.45rem;
+  padding: 0;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: #f3efe6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.story-user-quote cite {
+  display: block;
+  font: 500 0.56rem 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Crisp Story Bullets */
+.story-bullets {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 1rem 0 1.35rem !important;
+}
+
+.story-bullets li {
+  position: relative;
+  padding-left: 1.35rem;
+  margin: 0.65rem 0 !important;
+  line-height: 1.62 !important;
+  font-size: 0.91rem !important;
+  color: #c2beb5 !important;
+}
+
+.story-bullets li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  font-size: 0.65rem;
+  color: var(--project);
+}
+
+.story-bullets li strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
 /* Leadership Callout Quotes */
 .case-summary-quotes {
   display: grid;
