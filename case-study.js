@@ -664,6 +664,73 @@ const CASES = {
       ["earnnest-1.png", "Earnnest investment discovery platform and real-time asset tracking dashboard"],
       ["earnnest-2.jpg", "Trust-led color palette, typography hierarchy, and institutional brand tokens"]
     ]
+  },
+
+  astralyogi: {
+    title: "AstralYogi · AI Astrology & Cosmic Life Guide",
+    eyebrow: "GenAI · Consumer Mobile · 0→1 Design",
+    lede: "Crafting a deeply personalized AI astrologer and spiritual companion that transforms complex planetary mathematics into empathetic, actionable daily life guidance.",
+    role: "Solo Product Designer & Strategist",
+    time: "4 months (0→1)",
+    year: "2025",
+    team: "Founding Squad (AI Engineers, Vedic Scholars, Product)",
+    color: "#a855f7",
+    logo: "logo-astralyogi.png",
+    cover: "astralyogi.jpg",
+    source: "https://www.astralyogi.ai/",
+    vision: "Bridging ancient celestial calculations with modern conversational intelligence: turning intimidating natal charts into an empathetic daily compass for self-reflection and clarity.",
+    stickers: [
+      { icon: "🔮", label: "AI Natal Chart", sub: "Vedic & Western Engine", rot: "-2.5deg", href: "https://www.astralyogi.ai/" },
+      { icon: "✨", label: "Astral Oracle", sub: "Empathetic Daily Advice", rot: "2deg", href: "https://www.astralyogi.ai/" },
+      { icon: "🪐", label: "Transit Radar", sub: "Planetary Alignments", rot: "-1.5deg", href: "https://www.astralyogi.ai/" }
+    ],
+    quotes: {
+      need: "“Traditional astrology reports are 40-page incomprehensible PDFs, and online horoscopes are generic clickbait. People wanted real, nuanced personal guidance without the mystical jargon.”",
+      done: "Architected the 0-to-1 conversational interface, intuitive birth chart breakdown, daily transit feed, relationship compatibility matrix, and warm celestial design system.",
+      impact: "Achieved 4.8★ user rating in beta, +42% daily reflection retention, and 65% conversational query completion rate."
+    },
+    problems: [
+      {
+        num: "01",
+        title: "The 40-Page PDF vs. Generic Horoscope Divide",
+        problem: "Users seeking personal clarity were stranded between generic daily horoscopes and dense mathematical charts full of retrograde planetary degrees they couldn't decipher.",
+        solution: "Designed an interactive natal wheel with progressive disclosure, translating planetary house placements into conversational, human insights.",
+        metric: "4.8★ Beta Rating"
+      },
+      {
+        num: "02",
+        title: "The AI Tone Dilemma: Cold Robot vs. Carnival Fortune Teller",
+        problem: "Generic LLMs sounded either dry and clinical or exaggerated like carnival fortune-tellers, eroding trust during vulnerable life questions.",
+        solution: "Crafted a refined prompt architecture and empathetic conversational UI with contextual suggestion chips, reflective journaling prompts, and safe emotional guardrails.",
+        metric: "+42% Daily Reflection Retention"
+      }
+    ],
+    projects: [
+      ["Conversational AI Oracle", "Natural-language query interface with real-time transit awareness and contextual follow-up prompts.", "AI Chat", "https://www.astralyogi.ai/"],
+      ["Interactive Natal Wheel", "Dynamic planetary wheel with interactive house exploration and plain-English aspect explanations.", "Data Viz", "https://www.astralyogi.ai/"],
+      ["Daily Cosmic Briefing", "Personalized morning forecast, planetary retrogrades, and mindful reflection prompts.", "Daily Feed", "https://www.astralyogi.ai/"],
+      ["Celestial Brand & Design System", "Ethereal dark mode aesthetic, celestial geometry, and glowing cosmic micro-interactions.", "Design System", "https://www.astralyogi.ai/"]
+    ],
+    flow: ["Input birth time & coordinates", "Instant ephemeris calculation", "Conversational AI synthesis", "Daily guidance & transit tracking"],
+    sections: [
+      ["The Challenge: Ancient Wisdom Trapped in 1990s Software", `<p>Astrology has captivated humanity for millennia as a mirror for psychology and life cycles. Yet modern digital astrology was polarized: either ultra-dense software designed for professional astrologers that looked like Windows 95 spreadsheets, or pop-culture horoscopes offering one-size-fits-all vague predictions.</p><div class="story-analogy"><div class="story-analogy-header">🌌 The Pocket Astrologer Analogy</div><p class="story-analogy-body">Imagine having a wise, empathetic mentor in your pocket who knows the exact planetary alignment of the moment you were born, and translates complex cosmic geometry into gentle, actionable advice for your career, relationships, and mindset.</p></div><div class="story-user-quote"><blockquote>“I don't just want to know that Mercury is in retrograde. I want to know how that affects my difficult team meeting this Thursday, and what mindset I should bring.”</blockquote><cite>— Beta User Discovery Session</cite></div>`],
+      ["0→1 Architecture: The Empathetic AI Companion", `<p>We built AstralYogi around <strong>three core user experience pillars:</strong></p><ul class="story-bullets"><li><strong>Conversational Oracle:</strong> Instead of static report paragraphs, users ask natural questions (e.g., <em>“Why am I feeling anxious about career changes this month?”</em>) and receive contextual insights mapped to their specific transits.</li><li><strong>Interactive Natal Blueprint:</strong> Replaced flat planetary tables with a kinetic celestial wheel. Tapping any planet or house reveals plain-English psychological insights and planetary aspects (Trine, Square, Opposition).</li><li><strong>Mindful Daily Briefing:</strong> A calming morning feed featuring daily aura energy, personalized affirmations, and cosmic transit highlights tailored to the user's rising sign.</li></ul>`],
+      ["Crafting the Celestial Design Language", `<ul class="story-bullets"><li><strong>Ethereal Dark Palette:</strong> Deep cosmic blacks (<code>#0a0814</code>) paired with radiant violet (<code>#a855f7</code>) and warm celestial gold (<code>#fbbf24</code>) to create a sacred, calming digital sanctuary.</li><li><strong>Subtle Glow & Constellations:</strong> Gentle radial lighting and delicate geometric lines evoke the serenity of stargazing.</li><li><strong>Contextual Prompt Scaffolding:</strong> Guided question chips ensure users never stare at an empty chat box when seeking clarity.</li></ul>`],
+      ["Validation & Engagement Gains", `<p>Early beta cohorts demonstrated exceptional organic engagement, proving that empathetic tone and intuitive visual charts create high daily retention.</p>`, [
+        ["4.8★", "average beta app store rating"],
+        ["+42%", "higher 30-day retention vs benchmark"],
+        ["65%", "conversational query completion rate"]
+      ]]
+    ],
+    takeaways: [
+      "Emotional Tone is Everything in AI: People don't want a cold calculator; they want a mindful guide that listens with warmth, empathy, and psychological nuance.",
+      "Progressive Depth over Data Dumps: Lead with clear, actionable insights first, allowing users to dive deeper into planetary degrees and house aspects only when curious.",
+      "Atmosphere Drives Daily Ritual: Ethereal deep-space palettes, luminous typography, and calming micro-interactions turn a utility into a serene sanctuary for daily mindfulness."
+    ],
+    media: [
+      ["case-studies/astralyogi-1.png", "AstralYogi mobile experience — daily cosmic overview, interactive natal chart wheel, and conversational AI astrologer chat"],
+      ["case-studies/astralyogi-2.png", "AstralYogi celestial design system — typography tokens, color palette swatches, zodiac iconography, and planetary aspect components"]
+    ]
   }
 };
 
