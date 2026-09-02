@@ -667,69 +667,72 @@ const CASES = {
   },
 
   astralyogi: {
-    title: "AstralYogi · AI Astrology & Cosmic Life Guide",
+    title: "AstralYogi · AI Vedic Astrology & Life Guide",
     eyebrow: "GenAI · Consumer Mobile · 0→1 Design",
-    lede: "Crafting a deeply personalized AI astrologer and spiritual companion that transforms complex planetary mathematics into empathetic, actionable daily life guidance.",
+    lede: "Designing a personalized AI astrologer and mindful spiritual companion that translates complex Vedic Kundli calculations into empathetic, bite-sized daily guidance and interactive chart explorations.",
     role: "Solo Product Designer & Strategist",
     time: "4 months (0→1)",
     year: "2025",
     team: "Founding Squad (AI Engineers, Vedic Scholars, Product)",
-    color: "#a855f7",
+    color: "#d4af37",
     logo: "logo-astralyogi.png",
     cover: "astralyogi.jpg",
     source: "https://www.astralyogi.ai/",
-    vision: "Bridging ancient celestial calculations with modern conversational intelligence: turning intimidating natal charts into an empathetic daily compass for self-reflection and clarity.",
+    vision: "Bridging ancient Vedic wisdom with conversational machine learning: turning complex mathematical Kundlis into an empathetic daily life compass and sacred digital sanctuary.",
     stickers: [
-      { icon: "🔮", label: "AI Natal Chart", sub: "Vedic & Western Engine", rot: "-2.5deg", href: "https://www.astralyogi.ai/" },
-      { icon: "✨", label: "Astral Oracle", sub: "Empathetic Daily Advice", rot: "2deg", href: "https://www.astralyogi.ai/" },
-      { icon: "🪐", label: "Transit Radar", sub: "Planetary Alignments", rot: "-1.5deg", href: "https://www.astralyogi.ai/" }
+      { icon: "🧘‍♂️", label: "Sage Vashishth", sub: "Empathetic AI Astrologer", rot: "-2.5deg", href: "https://www.astralyogi.ai/" },
+      { icon: "✨", label: "Daily Shorts", sub: "10-Word Insights", rot: "2deg", href: "https://www.astralyogi.ai/" },
+      { icon: "🪐", label: "Interactive Lagna", sub: "Bhavas & Planetary Drawer", rot: "-1.5deg", href: "https://www.astralyogi.ai/" }
     ],
     quotes: {
-      need: "“Traditional astrology reports are 40-page incomprehensible PDFs, and online horoscopes are generic clickbait. People wanted real, nuanced personal guidance without the mystical jargon.”",
-      done: "Architected the 0-to-1 conversational interface, intuitive birth chart breakdown, daily transit feed, relationship compatibility matrix, and warm celestial design system.",
+      need: "“Traditional astrology reports are 40-page incomprehensible PDFs, and online horoscopes are generic clickbait. People wanted real, nuanced Kundli guidance without the mystical jargon.”",
+      done: "Architected the 0-to-1 conversational interface with Sage Vashishth, Daily Insights Shorts, interactive diamond Vedic Lagna chart, Panchang transit timeline, and warm celestial design system.",
       impact: "Achieved 4.8★ user rating in beta, +42% daily reflection retention, and 65% conversational query completion rate."
     },
     problems: [
       {
         num: "01",
-        title: "The 40-Page PDF vs. Generic Horoscope Divide",
-        problem: "Users seeking personal clarity were stranded between generic daily horoscopes and dense mathematical charts full of retrograde planetary degrees they couldn't decipher.",
-        solution: "Designed an interactive natal wheel with progressive disclosure, translating planetary house placements into conversational, human insights.",
+        title: "The 40-Page Kundli vs. Generic Horoscope Divide",
+        problem: "Users seeking self-reflection were stranded between vague newspaper horoscopes and dense mathematical Kundli charts full of Sanskrit terminology and planetary degrees they couldn't decipher.",
+        solution: "Engineered an interactive diamond Lagna chart with progressive disclosure—tapping any house opens plain-English psychological interpretations with a direct bridge to ask Sage Vashishth.",
         metric: "4.8★ Beta Rating"
       },
       {
         num: "02",
-        title: "The AI Tone Dilemma: Cold Robot vs. Carnival Fortune Teller",
-        problem: "Generic LLMs sounded either dry and clinical or exaggerated like carnival fortune-tellers, eroding trust during vulnerable life questions.",
-        solution: "Crafted a refined prompt architecture and empathetic conversational UI with contextual suggestion chips, reflective journaling prompts, and safe emotional guardrails.",
+        title: "Cognitive Overload in Daily Astrological Feeds",
+        problem: "Users felt overwhelmed by dense walls of text in traditional astrology apps during quick morning routines.",
+        solution: "Structured 'Daily Insights Shorts' with strict content budgets (≤10-word punchy headings, ≤100-word descriptions) paired with hand-crafted spiritual character illustrations.",
         metric: "+42% Daily Reflection Retention"
       }
     ],
     projects: [
-      ["Conversational AI Oracle", "Natural-language query interface with real-time transit awareness and contextual follow-up prompts.", "AI Chat", "https://www.astralyogi.ai/"],
-      ["Interactive Natal Wheel", "Dynamic planetary wheel with interactive house exploration and plain-English aspect explanations.", "Data Viz", "https://www.astralyogi.ai/"],
-      ["Daily Cosmic Briefing", "Personalized morning forecast, planetary retrogrades, and mindful reflection prompts.", "Daily Feed", "https://www.astralyogi.ai/"],
-      ["Celestial Brand & Design System", "Ethereal dark mode aesthetic, celestial geometry, and glowing cosmic micro-interactions.", "Design System", "https://www.astralyogi.ai/"]
+      ["Sage Vashishth AI Conversational Guide", "Vedic intelligence assistant synthesizing real-time transit positions, Dasha cycles, and personal chart data into empathetic advice.", "AI Chat Experience", "https://www.astralyogi.ai/"],
+      ["Interactive Vedic Lagna Chart", "Dynamic diamond Kundli visualizer where tapping any house reveals planetary placements, aspects, and deep psychological meanings.", "Data Visualization", "https://www.astralyogi.ai/"],
+      ["Daily Insights Shorts & Micro-Guidance", "Swipeable daily cards featuring lucky colors, aura energy scores, and actionable dos & don'ts.", "Daily Feed", "https://www.astralyogi.ai/"],
+      ["Panchang & Planetary Hours Timeline", "Real-time auspicious timing tracker mapping Rahu Kaal, Abhijit Muhurat, and planetary energies to daily scheduling.", "Timing System", "https://www.astralyogi.ai/"]
     ],
-    flow: ["Input birth time & coordinates", "Instant ephemeris calculation", "Conversational AI synthesis", "Daily guidance & transit tracking"],
+    flow: ["Input birth time & coordinates", "Instant Vedic ephemeris calculation", "Conversational AI synthesis with Sage Vashishth", "Daily Shorts & Panchang tracking"],
     sections: [
-      ["The Challenge: Ancient Wisdom Trapped in 1990s Software", `<p>Astrology has captivated humanity for millennia as a mirror for psychology and life cycles. Yet modern digital astrology was polarized: either ultra-dense software designed for professional astrologers that looked like Windows 95 spreadsheets, or pop-culture horoscopes offering one-size-fits-all vague predictions.</p><div class="story-analogy"><div class="story-analogy-header">🌌 The Pocket Astrologer Analogy</div><p class="story-analogy-body">Imagine having a wise, empathetic mentor in your pocket who knows the exact planetary alignment of the moment you were born, and translates complex cosmic geometry into gentle, actionable advice for your career, relationships, and mindset.</p></div><div class="story-user-quote"><blockquote>“I don't just want to know that Mercury is in retrograde. I want to know how that affects my difficult team meeting this Thursday, and what mindset I should bring.”</blockquote><cite>— Beta User Discovery Session</cite></div>`],
-      ["0→1 Architecture: The Empathetic AI Companion", `<p>We built AstralYogi around <strong>three core user experience pillars:</strong></p><ul class="story-bullets"><li><strong>Conversational Oracle:</strong> Instead of static report paragraphs, users ask natural questions (e.g., <em>“Why am I feeling anxious about career changes this month?”</em>) and receive contextual insights mapped to their specific transits.</li><li><strong>Interactive Natal Blueprint:</strong> Replaced flat planetary tables with a kinetic celestial wheel. Tapping any planet or house reveals plain-English psychological insights and planetary aspects (Trine, Square, Opposition).</li><li><strong>Mindful Daily Briefing:</strong> A calming morning feed featuring daily aura energy, personalized affirmations, and cosmic transit highlights tailored to the user's rising sign.</li></ul>`],
-      ["Crafting the Celestial Design Language", `<ul class="story-bullets"><li><strong>Ethereal Dark Palette:</strong> Deep cosmic blacks (<code>#0a0814</code>) paired with radiant violet (<code>#a855f7</code>) and warm celestial gold (<code>#fbbf24</code>) to create a sacred, calming digital sanctuary.</li><li><strong>Subtle Glow & Constellations:</strong> Gentle radial lighting and delicate geometric lines evoke the serenity of stargazing.</li><li><strong>Contextual Prompt Scaffolding:</strong> Guided question chips ensure users never stare at an empty chat box when seeking clarity.</li></ul>`],
-      ["Validation & Engagement Gains", `<p>Early beta cohorts demonstrated exceptional organic engagement, proving that empathetic tone and intuitive visual charts create high daily retention.</p>`, [
+      ["The Challenge: Ancient Wisdom Trapped in 1990s Software", `<p>Astrology in India is deeply rooted in culture, decision-making, and self-reflection. Yet modern digital astrology remained polarized: either archaic software that looked like dense 1995 spreadsheets, or clickbait horoscopes offering vague, one-size-fits-all generalities.</p><div class="story-analogy"><div class="story-analogy-header">🌌 The Pocket Sage Analogy</div><p class="story-analogy-body">Imagine having a compassionate Vedic scholar in your pocket who understands your exact birth chart and planetary periods (Dashas), translating cosmic geometry into gentle, grounded advice for your career, relationships, and mindfulness.</p></div><div class="story-user-quote"><blockquote>“I don't just want to know that Saturn is transiting my 10th house. I want to know how that affects my career transition this month, and what mental posture I should adopt.”</blockquote><cite>— Beta User Discovery Session</cite></div>`],
+      ["0→1 Architecture: The Empathetic AI Companion", `<p>We built AstralYogi around <strong>four interconnected product experiences:</strong></p><ul class="story-bullets"><li><strong>Sage Vashishth AI:</strong> A mindful conversational guide that combines LLM reasoning with precise Vedic astronomical ephemeris, offering contextual prompt chips (<em>“How can I improve my day today?”</em>, <em>“Tell me about my health this week”</em>, <em>“Help me with a mantra”</em>).</li><li><strong>Daily Insights Shorts:</strong> Bite-sized narrative cards with strict cognitive constraints (≤10 word titles, ≤100 word bodies) and warm spiritual art for effortless morning reading.</li><li><strong>Interactive Lagna Chart:</strong> Replaced flat planetary tables with an interactive diamond Vedic chart. Users tap any of the 12 houses to inspect planetary occupants and open a slide-up explanation drawer.</li><li><strong>Panchang & Energy Schedule:</strong> A real-time timeline displaying auspicious windows (Abhijit Muhurat) and challenging periods (Rahu Kaal) to help users plan focus work and meditation.</li></ul>`],
+      ["Celestial Brand & Sacred Aesthetic", `<ul class="story-bullets"><li><strong>Warm Sandalwood & Gold Palette:</strong> Blended sacred ivory parchment (<code>#fcf9f2</code>) and warm saffron-gold (<code>#d4af37</code>) with deep cosmic dark surfaces for an elevated, meditative reading experience.</li><li><strong>Bespoke Spiritual Illustration:</strong> Illustrated Vedic deities and meditating yogis to bring warmth, human warmth, and cultural reverence.</li><li><strong>Conversational Bridge:</strong> Seamless 1-tap entry points from any chart element directly into a chat query with Sage Vashishth.</li></ul>`],
+      ["Validation & Engagement Gains", `<p>Beta cohorts showed immediate daily habit formation, proving that bite-sized storytelling and conversational depth create enduring user trust.</p>`, [
         ["4.8★", "average beta app store rating"],
-        ["+42%", "higher 30-day retention vs benchmark"],
+        ["+42%", "higher 30-day reflection retention"],
         ["65%", "conversational query completion rate"]
       ]]
     ],
     takeaways: [
-      "Emotional Tone is Everything in AI: People don't want a cold calculator; they want a mindful guide that listens with warmth, empathy, and psychological nuance.",
-      "Progressive Depth over Data Dumps: Lead with clear, actionable insights first, allowing users to dive deeper into planetary degrees and house aspects only when curious.",
-      "Atmosphere Drives Daily Ritual: Ethereal deep-space palettes, luminous typography, and calming micro-interactions turn a utility into a serene sanctuary for daily mindfulness."
+      "Empathy Over Determinism: Users don't want fatalistic predictions; they seek psychological clarity, reassurance, and mindfulness for navigating life's crossroads.",
+      "Strict Content Budgets Create Habit: Restricting daily insights to under 100 words makes spiritual reflection an effortless 60-second morning ritual.",
+      "Bridge Data Viz with Conversation: Complex data visualizations (like a Kundli chart) become exponentially more valuable when users can tap any element to start a natural conversation about it."
     ],
     media: [
-      ["case-studies/astralyogi-1.png", "AstralYogi mobile experience — daily cosmic overview, interactive natal chart wheel, and conversational AI astrologer chat"],
-      ["case-studies/astralyogi-2.png", "AstralYogi celestial design system — typography tokens, color palette swatches, zodiac iconography, and planetary aspect components"]
+      ["case-studies/astralyogi-hero.png", "AstralYogi brand identity and Sage Vashishth conversational AI astrologer chat interface"],
+      ["case-studies/astralyogi-shorts.png", "Daily Insights Shorts — structured bite-sized cards with strict word count budgets and bespoke spiritual illustrations"],
+      ["case-studies/astralyogi-lagna.png", "Interactive Vedic Lagna Chart (Kundli) — house exploration, planetary breakdown drawer, and 1-tap AI query bridge"],
+      ["case-studies/astralyogi-panchang.png", "Panchang & Daily Energy Timeline — Auspicious Muhurat, Rahu Kaal, and planetary hours schedule"],
+      ["case-studies/astralyogi-profile.png", "Personalized Kundli Profile — Multi-chart management, exact birth coordinates, and Ascendant details"]
     ]
   }
 };
