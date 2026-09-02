@@ -712,6 +712,13 @@ const CASES = {
       ["Panchang & Planetary Hours Timeline", "Real-time auspicious timing tracker mapping Rahu Kaal, Abhijit Muhurat, and planetary energies to daily scheduling.", "Timing System", "https://www.astralyogi.ai/"]
     ],
     flow: ["Input birth time & coordinates", "Instant Vedic ephemeris calculation", "Conversational AI synthesis with Sage Vashishth", "Daily Shorts & Panchang tracking"],
+    highlight: [
+      "First Impressions · Onboarding",
+      "The Astral Gateway: Sacred Mobile Splash",
+      "Setting an immediate meditative tone from the moment the app launches. The splash screen pairs ancient celestial iconography (the Sun and orbiting cosmos) with the central Astral Yogi bindu vortex on warm ivory parchment, leading into a single mindful prompt: <em>“Begin Your Journey”</em>.",
+      "case-studies/astralyogi-splash.png",
+      "Astral Gateway ✦ Splash Screen"
+    ],
     sections: [
       ["The Challenge: Ancient Wisdom Trapped in 1990s Software", `<p>Astrology in India is deeply rooted in culture, decision-making, and self-reflection. Yet modern digital astrology remained polarized: either archaic software that looked like dense 1995 spreadsheets, or clickbait horoscopes offering vague, one-size-fits-all generalities.</p><div class="story-analogy"><div class="story-analogy-header">🌌 The Pocket Sage Analogy</div><p class="story-analogy-body">Imagine having a compassionate Vedic scholar in your pocket who understands your exact birth chart and planetary periods (Dashas), translating cosmic geometry into gentle, grounded advice for your career, relationships, and mindfulness.</p></div><div class="story-user-quote"><blockquote>“I don't just want to know that Saturn is transiting my 10th house. I want to know how that affects my career transition this month, and what mental posture I should adopt.”</blockquote><cite>— Beta User Discovery Session</cite></div>`],
       ["0→1 Architecture: The Empathetic AI Companion", `<p>We built AstralYogi around <strong>four interconnected product experiences:</strong></p><ul class="story-bullets"><li><strong>Sage Vashishth AI:</strong> A mindful conversational guide that combines LLM reasoning with precise Vedic astronomical ephemeris, offering contextual prompt chips (<em>“How can I improve my day today?”</em>, <em>“Tell me about my health this week”</em>, <em>“Help me with a mantra”</em>).</li><li><strong>Daily Insights Shorts:</strong> Bite-sized narrative cards with strict cognitive constraints (≤10 word titles, ≤100 word bodies) and warm spiritual art for effortless morning reading.</li><li><strong>Interactive Lagna Chart:</strong> Replaced flat planetary tables with an interactive diamond Vedic chart. Users tap any of the 12 houses to inspect planetary occupants and open a slide-up explanation drawer.</li><li><strong>Panchang & Energy Schedule:</strong> A real-time timeline displaying auspicious windows (Abhijit Muhurat) and challenging periods (Rahu Kaal) to help users plan focus work and meditation.</li></ul>`],
@@ -728,6 +735,7 @@ const CASES = {
       "Bridge Data Viz with Conversation: Complex data visualizations (like a Kundli chart) become exponentially more valuable when users can tap any element to start a natural conversation about it."
     ],
     media: [
+      ["case-studies/astralyogi-splash.png", "AstralYogi mobile splash screen — celestial geometry, sun iconography, and 'Begin Your Journey' onboarding entryway"],
       ["case-studies/astralyogi-hero.png", "AstralYogi brand identity and Sage Vashishth conversational AI astrologer chat interface"],
       ["case-studies/astralyogi-shorts.png", "Daily Insights Shorts — structured bite-sized cards with strict word count budgets and bespoke spiritual illustrations"],
       ["case-studies/astralyogi-lagna.png", "Interactive Vedic Lagna Chart (Kundli) — house exploration, planetary breakdown drawer, and 1-tap AI query bridge"],
@@ -878,8 +886,8 @@ function renderCaseStudy() {
         ${d.highlight[3] ? `
           <div class="highlight-avatar-col">
             <div class="avatar-glow-ring"></div>
-            <img src="shashank_files/${d.highlight[3]}" alt="Wayground Qbit Avatar Character" class="avatar-qbit-character">
-            <div class="avatar-pill-badge">Student Qbit ✦ 3D Engine</div>
+            <img src="shashank_files/${d.highlight[3]}" alt="${d.highlight[1]}" class="avatar-qbit-character ${d.highlight[3].includes('splash') ? 'splash-screen-frame' : ''}" onerror="this.src='shashank_files/case-studies/${d.highlight[3]}'">
+            <div class="avatar-pill-badge">${d.highlight[4] || 'Feature Highlight'}</div>
           </div>
         ` : ''}
       </div>

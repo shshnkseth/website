@@ -772,7 +772,19 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.highlight-avatar-col:hover .avatar-qbit-character {
+.splash-screen-frame {
+  max-width: 140px !important;
+  border-radius: 18px !important;
+  border: 2px solid rgba(212, 175, 55, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 175, 55, 0.15) !important;
+  animation: floatAvatar 4s ease-in-out infinite alternate !important;
+}
+
+.highlight-avatar-col:hover .splash-screen-frame {
+  transform: scale(1.05) translateY(-4px) !important;
+}
+
+.highlight-avatar-col:hover .avatar-qbit-character:not(.splash-screen-frame) {
   transform: scale(1.08) rotate(3deg);
 }
 
