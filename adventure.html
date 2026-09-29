@@ -5,21 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" href="./shashank_files/zapp.png" />
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
-  <title>Zanskar & Suru · Playable 3D Expedition ✦ Shashank Seth</title>
-  <meta name="description" content="An interactive miniature 3D road trip based on my actual Himalayan overland expedition across Zanskar, Suru and Drang-Drung Glacier." />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <title>Road to Ladakh · Playable 3D Relive ✦ Polarsteps × Shashank Seth</title>
+  <meta name="description" content="An interactive 3D Polarsteps Relive road trip across Zanskar, Suru, and Drang-Drung Glacier behind the wheel of a Suzuki Jimny 4x4 and downhill longboard." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #090a0d;
-      --surface: rgba(14, 16, 22, 0.85);
-      --surface-border: rgba(255, 255, 255, 0.1);
-      --ink: #f1ede4;
-      --muted: #888b94;
-      --accent: #e5903b;
-      --glacier: #5eead4;
-      --yellow: #facc15;
-      --green: #22c55e;
-      --radius: 8px;
+      /* Polarsteps Signature Color Palette */
+      --ps-coral: #FF5A5F;
+      --ps-coral-hover: #FF385C;
+      --ps-coral-glow: rgba(255, 90, 95, 0.35);
+      --ps-mint: #00D2B4;
+      --ps-mint-glow: rgba(0, 210, 180, 0.25);
+      --ps-gold: #FFA726;
+      --ps-navy-900: #0C1219;
+      --ps-navy-800: #141C26;
+      --ps-navy-700: #1C2735;
+      --ps-surface: rgba(20, 28, 38, 0.88);
+      --ps-surface-card: rgba(24, 34, 46, 0.94);
+      --ps-border: rgba(255, 255, 255, 0.09);
+      --ps-border-hover: rgba(255, 255, 255, 0.22);
+      --ps-text: #FFFFFF;
+      --ps-muted: #94A3B8;
+      --ps-subtle: #64748B;
+      --ps-radius-sm: 8px;
+      --ps-radius-md: 14px;
+      --ps-radius-lg: 20px;
+      --ps-radius-full: 999px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,9 +39,9 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', -apple-system, sans-serif;
+      background-color: var(--ps-navy-900);
+      color: var(--ps-text);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       user-select: none;
       -webkit-user-select: none;
     }
@@ -45,12 +56,12 @@
       z-index: 1;
     }
 
-    /* ─── TOP FLOATING NAV ─── */
-    .top-nav-bar {
+    /* ─── POLARSTEPS FLOATING TOP NAV ─── */
+    .ps-top-nav {
       position: absolute;
       top: 1rem;
-      left: 1rem;
-      right: 1rem;
+      left: 1.2rem;
+      right: 1.2rem;
       z-index: 50;
       display: flex;
       justify-content: space-between;
@@ -58,362 +69,539 @@
       pointer-events: none;
     }
 
-    .nav-btn, .nav-brand-pill {
+    .ps-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       pointer-events: auto;
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--surface-border);
-      border-radius: 30px;
-      padding: 0.5rem 1rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.64rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink);
+    }
+
+    .ps-pill-btn {
+      background: var(--ps-surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-full);
+      padding: 0.55rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ps-text);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-      transition: all 0.15s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
+      line-height: 1;
     }
 
-    .nav-btn:hover {
-      background: rgba(229, 144, 59, 0.15);
-      border-color: var(--accent);
+    .ps-pill-btn:hover {
+      background: var(--ps-navy-700);
+      border-color: var(--ps-border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+    }
+
+    .ps-pill-btn.active {
+      background: var(--ps-coral);
+      border-color: var(--ps-coral);
       color: #fff;
+      box-shadow: 0 4px 20px var(--ps-coral-glow);
     }
 
-    .nav-brand-pill {
-      font-weight: 500;
-      color: var(--accent);
-    }
-
-    .nav-controls-right {
+    .ps-brand-badge {
       display: flex;
+      align-items: center;
       gap: 0.5rem;
-      pointer-events: auto;
+      background: var(--ps-surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-full);
+      padding: 0.45rem 1rem 0.45rem 0.6rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
-    /* ─── HUD OVERLAYS ─── */
-    .hud-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 40;
+    .ps-logo-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #FF5A5F, #FF385C);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px var(--ps-coral-glow);
+    }
+
+    .ps-trip-meta {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 4.5rem 1.2rem 1.2rem;
     }
 
-    .hud-upper {
+    .ps-trip-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .ps-trip-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--ps-mint);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── POLARSTEPS ITINERARY TRACKER (LEFT COLUMN) ─── */
+    .ps-itinerary-card {
+      position: absolute;
+      top: 5rem;
+      left: 1.2rem;
+      z-index: 40;
+      width: 260px;
+      background: var(--ps-surface-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-md);
+      padding: 1rem 1.1rem;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .ps-tracker-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ps-border);
     }
 
-    .glass-card {
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius);
-      padding: 0.8rem 1.1rem;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-      pointer-events: auto;
-    }
-
-    .location-card {
-      max-width: 320px;
-    }
-
-    .loc-kicker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      letter-spacing: 0.12em;
-      color: var(--accent);
+    .ps-tracker-heading {
+      font-size: 0.72rem;
+      font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 0.2rem;
+      letter-spacing: 0.08em;
+      color: var(--ps-muted);
+    }
+
+    .ps-tracker-progress-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ps-coral);
+      font-weight: 500;
+    }
+
+    .ps-steps-timeline {
+      position: relative;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .ps-steps-timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    .ps-step-item {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding: 0.2rem 0.3rem;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .ps-step-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .ps-step-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ps-navy-700);
+      border: 2px solid var(--ps-subtle);
+      color: var(--ps-muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .ps-step-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .ps-step-name {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ps-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s ease;
+    }
+
+    .ps-step-elev {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--ps-subtle);
+    }
+
+    .ps-step-item.active .ps-step-badge {
+      background: var(--ps-coral);
+      border-color: #fff;
+      color: #fff;
+      box-shadow: 0 0 14px var(--ps-coral-glow);
+      transform: scale(1.15);
+    }
+
+    .ps-step-item.active .ps-step-name {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .ps-step-item.active .ps-step-elev {
+      color: var(--ps-mint);
+    }
+
+    .ps-step-item.completed .ps-step-badge {
+      background: var(--ps-mint);
+      border-color: var(--ps-mint);
+      color: #0c1219;
+    }
+
+    .ps-step-item.completed .ps-step-name {
+      color: #e2e8f0;
+    }
+
+    /* ─── POLARSTEPS FLOATING SIDE TOOLTIP / PHOTO CARD (RIGHT SIDE) ─── */
+    .ps-side-tooltip {
+      position: absolute;
+      top: 5rem;
+      right: 1.2rem;
+      z-index: 60;
+      width: 320px;
+      max-width: calc(100vw - 2.4rem);
+      background: var(--ps-surface-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-md);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 20px rgba(255, 90, 95, 0.12);
+      overflow: hidden;
+      pointer-events: auto;
+      transform: translateX(360px);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .ps-side-tooltip.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .ps-tooltip-media {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .ps-tooltip-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .ps-tooltip-media:hover img {
+      transform: scale(1.04);
+    }
+
+    .ps-tooltip-badge-pill {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.6rem;
+      background: rgba(12, 18, 25, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--ps-radius-full);
+      padding: 0.25rem 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: var(--ps-coral);
       display: flex;
       align-items: center;
       gap: 0.35rem;
     }
 
-    .loc-title {
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.2;
-    }
-
-    .loc-elev {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--glacier);
-      margin-top: 0.15rem;
-    }
-
-    /* ─── PROGRESS CHECKLIST (TOP-RIGHT) ─── */
-    .progress-tracker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      min-width: 170px;
-    }
-
-    .progress-header {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.45rem;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 0.25rem;
-    }
-
-    .stop-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.22rem;
-    }
-
-    .stop-item {
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: color 0.2s ease;
-    }
-
-    .stop-item.active {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .stop-item.completed {
-      color: var(--ink);
-    }
-
-    .stop-dot {
-      width: 5px;
-      height: 5px;
+    .ps-tooltip-close {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: var(--muted);
-    }
-
-    .stop-item.active .stop-dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
-    .stop-item.completed .stop-dot { background: var(--glacier); }
-
-    /* ─── HUD LOWER ─── */
-    .hud-lower {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1rem;
-    }
-
-    .fuel-card {
-      min-width: 140px;
-    }
-
-    .fuel-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .fuel-track {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 0.35rem;
-    }
-
-    .fuel-fill {
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(90deg, #ef4444, #e5903b 30%, #5eead4 80%);
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
-
-    .controls-hint-pill {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--muted);
-      background: var(--surface);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--surface-border);
-      border-radius: 20px;
-      padding: 0.5rem 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .kbd {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      padding: 0.12rem 0.4rem;
-      color: var(--ink);
-      font-size: 0.58rem;
-    }
-
-    /* ─── ACTION PROMPTS & TOASTS ─── */
-    .action-prompt-banner {
-      position: absolute;
-      top: 22%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: rgba(15, 18, 26, 0.92);
-      border: 1px solid var(--accent);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(229, 144, 59, 0.2);
-      border-radius: 10px;
-      padding: 0.9rem 1.4rem;
-      text-align: center;
-      pointer-events: none;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 60;
-    }
-
-    .action-prompt-banner.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .action-prompt-title {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .action-prompt-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--accent);
-      margin-top: 0.25rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* ─── COMPACT PHOTO OVERLAY MODAL ─── */
-    .photo-card-modal {
-      position: absolute;
-      inset: 0;
-      background: rgba(4, 5, 8, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 80;
+      background: rgba(12, 18, 25, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .photo-card-modal.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .photo-card-body {
-      max-width: 520px;
-      width: 100%;
-      background: #111319;
-      border: 1px solid var(--surface-border);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
-      transform: scale(0.96);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .photo-card-modal.open .photo-card-body {
-      transform: scale(1);
-    }
-
-    .photo-box {
-      width: 100%;
-      height: 310px;
-      background: #000;
-      position: relative;
-    }
-
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-details {
-      padding: 1.1rem 1.3rem 1.3rem;
-    }
-
-    .photo-kicker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--glacier);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .photo-title {
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin: 0.2rem 0 0.35rem;
-    }
-
-    .photo-caption {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .photo-btn {
-      margin-top: 1rem;
-      width: 100%;
-      padding: 0.65rem;
-      background: #191c26;
-      border: 1px solid var(--surface-border);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      border-radius: 6px;
+      font-size: 0.85rem;
       cursor: pointer;
       transition: background 0.15s ease;
     }
 
-    .photo-btn:hover {
-      background: rgba(229, 144, 59, 0.2);
-      border-color: var(--accent);
+    .ps-tooltip-close:hover {
+      background: var(--ps-coral);
     }
 
-    /* ─── FINALE MODAL ─── */
-    .finale-modal {
+    .ps-tooltip-body {
+      padding: 0.9rem 1.1rem 1.1rem;
+    }
+
+    .ps-tooltip-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .ps-tooltip-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--ps-mint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .ps-tooltip-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--ps-subtle);
+    }
+
+    .ps-tooltip-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .ps-tooltip-desc {
+      font-size: 0.76rem;
+      color: var(--ps-muted);
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    .ps-tooltip-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .ps-tooltip-btn {
+      flex: 1;
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--ps-radius-full);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--ps-border);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ps-tooltip-btn:hover {
+      background: var(--ps-coral);
+      border-color: var(--ps-coral);
+    }
+
+    /* ─── HUD LOWER TELEMETRY BAR ─── */
+    .ps-bottom-bar {
       position: absolute;
-      inset: 0;
-      background: rgba(6, 8, 12, 0.9);
+      bottom: 1.2rem;
+      left: 1.2rem;
+      right: 1.2rem;
+      z-index: 40;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: none;
+      gap: 1rem;
+    }
+
+    .ps-telemetry-pill {
+      pointer-events: auto;
+      background: var(--ps-surface-card);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-lg);
+      padding: 0.7rem 1.2rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .ps-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ps-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ps-subtle);
+      margin-bottom: 0.15rem;
+    }
+
+    .ps-stat-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ps-stat-val.highlight {
+      color: var(--ps-mint);
+    }
+
+    .ps-stat-val.coral {
+      color: var(--ps-coral);
+    }
+
+    /* Mode Badge Indicator */
+    .ps-vehicle-mode-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 90, 95, 0.12);
+      border: 1px solid rgba(255, 90, 95, 0.35);
+      border-radius: var(--ps-radius-full);
+      padding: 0.35rem 0.8rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--ps-coral);
+    }
+
+    .ps-controls-pill {
+      pointer-events: auto;
+      background: var(--ps-surface);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--ps-border);
+      border-radius: var(--ps-radius-full);
+      padding: 0.5rem 1.1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ps-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ps-kbd {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 600;
+    }
+
+    /* ─── EXPEDITION TOAST NOTIFICATION ─── */
+    .ps-toast-banner {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: var(--ps-navy-800);
+      border: 1px solid var(--ps-coral);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 24px var(--ps-coral-glow);
+      border-radius: var(--ps-radius-md);
+      padding: 0.8rem 1.4rem;
+      text-align: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 70;
+    }
+
+    .ps-toast-banner.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .ps-toast-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ps-toast-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ps-mint);
+      margin-top: 0.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── POLARSTEPS TRIP COMPLETED CELEBRATION MODAL ─── */
+    .ps-finale-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 12, 17, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       z-index: 90;
       display: flex;
       align-items: center;
@@ -424,117 +612,135 @@
       transition: opacity 0.4s ease;
     }
 
-    .finale-modal.open {
+    .ps-finale-modal.open {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .finale-card {
-      max-width: 500px;
+    .ps-finale-card {
+      max-width: 520px;
       width: 100%;
-      background: linear-gradient(145deg, #151822, #0d0f15);
-      border: 1px solid rgba(94, 234, 212, 0.35);
-      border-radius: 16px;
-      padding: 2rem;
+      background: linear-gradient(160deg, #182330, #101721);
+      border: 1px solid rgba(0, 210, 180, 0.3);
+      border-radius: 20px;
+      padding: 2.2rem;
       text-align: center;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(94, 234, 212, 0.15);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.85), 0 0 50px var(--ps-mint-glow);
     }
 
-    .finale-kicker {
+    .ps-finale-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 210, 180, 0.15);
+      border: 1px solid var(--ps-mint);
+      border-radius: var(--ps-radius-full);
+      padding: 0.3rem 0.8rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      color: var(--glacier);
-      letter-spacing: 0.14em;
+      color: var(--ps-mint);
       text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
     }
 
-    .finale-title {
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin: 0.4rem 0 0.8rem;
+    .ps-finale-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
     }
 
-    .finale-route {
+    .ps-finale-route-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.6rem;
-      border-radius: 6px;
-      margin-bottom: 1.4rem;
+      color: var(--ps-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--ps-border);
+      padding: 0.65rem;
+      border-radius: 8px;
+      margin: 0.8rem 0 1.4rem;
     }
 
-    .finale-grid {
+    .ps-finale-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
+      gap: 0.65rem;
+      margin-bottom: 1.6rem;
     }
 
-    .finale-cell {
-      background: #11131a;
-      border: 1px solid var(--surface-border);
-      border-radius: 6px;
-      padding: 0.75rem 0.5rem;
+    .ps-finale-stat-box {
+      background: rgba(12, 18, 25, 0.7);
+      border: 1px solid var(--ps-border);
+      border-radius: 10px;
+      padding: 0.85rem 0.5rem;
     }
 
-    .finale-cell small {
+    .ps-finale-stat-box small {
       display: block;
       font-family: 'DM Mono', monospace;
-      font-size: 0.52rem;
-      color: var(--muted);
+      font-size: 0.54rem;
+      color: var(--ps-subtle);
       text-transform: uppercase;
     }
 
-    .finale-cell strong {
+    .ps-finale-stat-box strong {
       font-family: 'DM Mono', monospace;
-      font-size: 0.95rem;
-      color: var(--ink);
+      font-size: 1.05rem;
+      color: #fff;
       margin-top: 0.2rem;
       display: block;
     }
 
-    .finale-btn-group {
+    .ps-finale-actions {
       display: flex;
       gap: 0.8rem;
     }
 
-    .finale-btn-pri {
+    .ps-btn-coral {
       flex: 1;
-      padding: 0.75rem;
-      background: var(--glacier);
-      color: #0b0c0e;
+      padding: 0.8rem;
+      background: var(--ps-coral);
+      color: #fff;
       border: none;
-      border-radius: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      border-radius: var(--ps-radius-full);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
       cursor: pointer;
+      box-shadow: 0 4px 18px var(--ps-coral-glow);
+      transition: all 0.15s ease;
     }
 
-    .finale-btn-sec {
+    .ps-btn-coral:hover {
+      background: var(--ps-coral-hover);
+      transform: translateY(-1px);
+    }
+
+    .ps-btn-outline {
       flex: 1;
-      padding: 0.75rem;
+      padding: 0.8rem;
       background: transparent;
-      border: 1px solid var(--surface-border);
-      color: var(--ink);
-      border-radius: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      border: 1px solid var(--ps-border);
+      color: #fff;
+      border-radius: var(--ps-radius-full);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.15s ease;
     }
 
-    /* ─── MOBILE TOUCH CONTROLS ─── */
+    .ps-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--ps-border-hover);
+    }
+
+    /* ─── TOUCH CONTROLS (MOBILE) ─── */
     .touch-controls-layer {
       display: none;
       position: absolute;
@@ -556,7 +762,7 @@
     }
 
     .t-btn {
-      background: rgba(18, 21, 29, 0.82);
+      background: rgba(20, 28, 38, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 8px;
       color: #fff;
@@ -564,10 +770,10 @@
       align-items: center;
       justify-content: center;
       font-size: 1.1rem;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
-    .t-btn:active { background: var(--accent); color: #000; }
+    .t-btn:active { background: var(--ps-coral); color: #fff; }
     .t-up { grid-column: 2; grid-row: 1; }
     .t-left { grid-column: 1; grid-row: 2; }
     .t-down { grid-column: 2; grid-row: 2; }
@@ -578,27 +784,31 @@
       width: 68px;
       height: 68px;
       border-radius: 50%;
-      background: rgba(229, 144, 59, 0.25);
-      border: 2px solid var(--accent);
+      background: rgba(255, 90, 95, 0.25);
+      border: 2px solid var(--ps-coral);
       color: #fff;
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px var(--ps-coral-glow);
     }
 
-    .touch-gas-pedal:active { background: var(--accent); color: #000; }
+    .touch-gas-pedal:active { background: var(--ps-coral); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
+      .ps-itinerary-card { display: none; }
+      .ps-side-tooltip { width: 290px; top: 4.5rem; right: 0.8rem; }
+      .ps-telemetry-pill { padding: 0.55rem 0.85rem; gap: 0.8rem; }
+      .ps-stat-item:nth-child(3), .ps-stat-item:nth-child(4) { display: none; }
+      .ps-controls-pill { display: none; }
       .touch-controls-layer { display: flex; }
-      .controls-hint-pill { display: none; }
-      .hud-overlay { padding: 4rem 0.8rem 0.8rem; }
-      .location-card { max-width: 220px; }
-      .progress-tracker { display: none; }
+      .ps-top-nav { left: 0.8rem; right: 0.8rem; }
+      .ps-bottom-bar { left: 0.8rem; right: 0.8rem; bottom: 5.5rem; }
     }
   </style>
 </head>
@@ -607,128 +817,179 @@
   <!-- 3D WEBGL STAGE -->
   <canvas id="webgl-canvas"></canvas>
 
-  <!-- TOP MINIMAL NAV -->
-  <header class="top-nav-bar">
-    <a href="index.html" class="nav-btn">← Back to Portfolio</a>
-    <div class="nav-brand-pill">🏔 Zanskar & Suru · Playable Relive</div>
-    <div class="nav-controls-right">
-      <button class="nav-btn" id="btn-sound" type="button">🔈 Audio</button>
-      <button class="nav-btn" id="btn-reset" type="button">↺ Re-center</button>
+  <!-- POLARSTEPS TOP NAV BAR -->
+  <header class="ps-top-nav">
+    <div class="ps-nav-group">
+      <a href="index.html" class="ps-pill-btn">← Portfolio</a>
+      <div class="ps-brand-badge">
+        <div class="ps-logo-icon">P</div>
+        <div class="ps-trip-meta">
+          <span class="ps-trip-title">Road to Ladakh · Relive</span>
+          <span class="ps-trip-sub">Zanskar & Suru Valley</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ps-nav-group">
+      <button class="ps-pill-btn" id="btn-vehicle-toggle" type="button" title="Switch between Suzuki Jimny and Downhill Longboard">
+        <span id="vehicle-toggle-icon">🚗</span> <span id="vehicle-toggle-label">Jimny 4x4</span>
+      </button>
+      <button class="ps-pill-btn" id="btn-sound" type="button">🔈 Audio</button>
+      <button class="ps-pill-btn" id="btn-reset" type="button">↺ Re-center</button>
     </div>
   </header>
 
-  <!-- MINIMAL EXPLORER HUD -->
-  <div class="hud-overlay">
-    
-    <!-- UPPER INFO -->
-    <div class="hud-upper">
-      
-      <!-- CURRENT LOCATION -->
-      <div class="glass-card location-card">
-        <div class="loc-kicker">
-          <span>📍</span> <span id="hud-leg">Leg 01 · Foothills</span>
-        </div>
-        <div class="loc-title" id="hud-title">Manali Valley Base</div>
-        <div class="loc-elev" id="hud-elevation">Elev: 6,700 FT</div>
-      </div>
-
-      <!-- PROGRESS TRACKER -->
-      <div class="glass-card progress-tracker">
-        <div class="progress-header">
-          <span>Expedition Route</span>
-          <span id="hud-odometer">0 / 420 KM</span>
-        </div>
-        <ul class="stop-list">
-          <li class="stop-item active" id="stop-0"><span class="stop-dot"></span> Manali Valley</li>
-          <li class="stop-item" id="stop-1"><span class="stop-dot"></span> Shinkula Pass (16,700 FT)</li>
-          <li class="stop-item" id="stop-2"><span class="stop-dot"></span> Padum & Camp (Zanskar)</li>
-          <li class="stop-item" id="stop-3"><span class="stop-dot"></span> Penzila Downhill Run</li>
-          <li class="stop-item" id="stop-4"><span class="stop-dot"></span> Suru Valley Highline</li>
-          <li class="stop-item" id="stop-5"><span class="stop-dot"></span> Drang-Drung Glacier</li>
-        </ul>
-      </div>
-
+  <!-- POLARSTEPS ITINERARY TRACKER (LEFT COLUMN) -->
+  <div class="ps-itinerary-card" id="itinerary-card">
+    <div class="ps-tracker-header">
+      <span class="ps-tracker-heading">Trip Itinerary</span>
+      <span class="ps-tracker-progress-badge" id="itinerary-progress-text">Step 1 of 6</span>
     </div>
-
-    <!-- LOWER TELEMETRY -->
-    <div class="hud-lower">
-      
-      <!-- FUEL GAUGE -->
-      <div class="glass-card fuel-card">
-        <div class="fuel-label">
-          <span>Fuel</span>
-          <span id="fuel-text">100%</span>
+    <ul class="ps-steps-timeline">
+      <li class="ps-step-item active" data-step="0" id="step-0">
+        <div class="ps-step-badge">1</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Manali Foothills Base</span>
+          <span class="ps-step-elev">6,700 FT · Start</span>
         </div>
-        <div class="fuel-track">
-          <div class="fuel-fill" id="fuel-fill"></div>
+      </li>
+      <li class="ps-step-item" data-step="1" id="step-1">
+        <div class="ps-step-badge">2</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Shinkula Pass Summit</span>
+          <span class="ps-step-elev">16,700 FT · High Pass</span>
         </div>
-      </div>
-
-      <!-- CONTROLS PROMPT -->
-      <div class="controls-hint-pill" id="controls-hint">
-        <span>Drive:</span>
-        <span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span>
-        <span>or</span>
-        <span class="kbd">↑</span><span class="kbd">←</span><span class="kbd">↓</span><span class="kbd">→</span>
-        <span>·</span>
-        <span class="kbd">Shift</span> <span>Boost</span>
-        <span>·</span>
-        <span class="kbd">E</span> <span>Action</span>
-      </div>
-
-    </div>
-
+      </li>
+      <li class="ps-step-item" data-step="2" id="step-2">
+        <div class="ps-step-badge">3</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Padum Camp & Fuel Stop</span>
+          <span class="ps-step-elev">12,000 FT · Zanskar</span>
+        </div>
+      </li>
+      <li class="ps-step-item" data-step="3" id="step-3">
+        <div class="ps-step-badge">4</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Penzila Downhill Run</span>
+          <span class="ps-step-elev">14,435 FT · Longboard</span>
+        </div>
+      </li>
+      <li class="ps-step-item" data-step="4" id="step-4">
+        <div class="ps-step-badge">5</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Suru Valley Highline</span>
+          <span class="ps-step-elev">10,500 FT · Gorge</span>
+        </div>
+      </li>
+      <li class="ps-step-item" data-step="5" id="step-5">
+        <div class="ps-step-badge">6</div>
+        <div class="ps-step-info">
+          <span class="ps-step-name">Drang-Drung Glacier</span>
+          <span class="ps-step-elev">14,200 FT · Finale</span>
+        </div>
+      </li>
+    </ul>
   </div>
 
-  <!-- ACTION TOAST PROMPT -->
-  <div class="action-prompt-banner" id="action-toast">
-    <div class="action-prompt-title" id="toast-title">Shinkula Pass · 16,700 FT</div>
-    <div class="action-prompt-sub" id="toast-sub">Highest pass conquered</div>
-  </div>
-
-  <!-- PHOTO DISCOVERY MODAL -->
-  <div class="photo-card-modal" id="photo-modal">
-    <div class="photo-card-body">
-      <div class="photo-box">
-        <img id="photo-modal-img" src="" alt="Expedition photograph" />
+  <!-- POLARSTEPS FLOATING SIDE TOOLTIP / DISCOVERY CARD (RIGHT SIDE) -->
+  <aside class="ps-side-tooltip" id="side-tooltip" aria-label="Milestone Discovery">
+    <div class="ps-tooltip-media">
+      <img id="tooltip-img" src="./shashank_files/gallery_opt/one-with-mighty-hanuman-tibba-opt.jpg" alt="Polarsteps Expedition Photograph" />
+      <div class="ps-tooltip-badge-pill">
+        <span>📍</span> <span id="tooltip-step-badge">STEP 01</span>
       </div>
-      <div class="photo-details">
-        <div class="photo-kicker" id="photo-modal-kicker">Expedition Photo Spotlight</div>
-        <h3 class="photo-title" id="photo-modal-title">Photo Title</h3>
-        <p class="photo-caption" id="photo-modal-caption">Photo caption text</p>
-        <button class="photo-btn" id="photo-modal-close" type="button">Continue Expedition (Esc)</button>
+      <button class="ps-tooltip-close" id="tooltip-close-btn" type="button" aria-label="Dismiss Card">✕</button>
+    </div>
+    <div class="ps-tooltip-body">
+      <div class="ps-tooltip-meta-row">
+        <span class="ps-tooltip-tag" id="tooltip-tag">Manali · Pir Panjal</span>
+        <span class="ps-tooltip-time" id="tooltip-time">16 SEP · 08:30</span>
+      </div>
+      <h3 class="ps-tooltip-title" id="tooltip-title">Base Camp & Pine Valleys</h3>
+      <p class="ps-tooltip-desc" id="tooltip-desc">
+        Setting off from Manali valley in the Suzuki Jimny 4x4, packing gear and climbing toward the Great Himalayan Range.
+      </p>
+      <div class="ps-tooltip-actions">
+        <button class="ps-tooltip-btn" id="tooltip-drive-btn" type="button">
+          <span>Continue Driving</span> <span>→</span>
+        </button>
       </div>
     </div>
+  </aside>
+
+  <!-- LOWER POLARSTEPS TELEMETRY BAR -->
+  <footer class="ps-bottom-bar">
+    <!-- Live Telemetry Stats -->
+    <div class="ps-telemetry-pill">
+      <div class="ps-vehicle-mode-indicator" id="hud-mode-pill">
+        <span id="hud-mode-icon">🚗</span>
+        <span id="hud-mode-text">Suzuki Jimny 4WD</span>
+      </div>
+      <div class="ps-stat-item">
+        <span class="ps-stat-label">Altitude</span>
+        <span class="ps-stat-val highlight" id="hud-elevation">6,700 FT</span>
+      </div>
+      <div class="ps-stat-item">
+        <span class="ps-stat-label">Distance</span>
+        <span class="ps-stat-val" id="hud-odometer">0 / 420 KM</span>
+      </div>
+      <div class="ps-stat-item">
+        <span class="ps-stat-label">Weather</span>
+        <span class="ps-stat-val" id="hud-weather">☀️ 14°C</span>
+      </div>
+      <div class="ps-stat-item">
+        <span class="ps-stat-label">Fuel / Stamina</span>
+        <span class="ps-stat-val coral" id="fuel-text">100%</span>
+      </div>
+    </div>
+
+    <!-- Drive Controls Pill -->
+    <div class="ps-controls-pill">
+      <span>Drive:</span>
+      <span class="ps-kbd">W</span><span class="ps-kbd">A</span><span class="ps-kbd">S</span><span class="ps-kbd">D</span>
+      <span>or</span>
+      <span class="ps-kbd">↑</span><span class="ps-kbd">←</span><span class="ps-kbd">↓</span><span class="ps-kbd">→</span>
+      <span>·</span>
+      <span class="ps-kbd">Shift</span> <span>Boost</span>
+      <span>·</span>
+      <span class="ps-kbd">E</span> <span>Switch Ride</span>
+    </div>
+  </footer>
+
+  <!-- ACTION TOAST BANNER -->
+  <div class="ps-toast-banner" id="action-toast">
+    <div class="ps-toast-title" id="toast-title">Shinkula Pass · 16,700 FT</div>
+    <div class="ps-toast-sub" id="toast-sub">Highest pass conquered</div>
   </div>
 
-  <!-- JOURNEY COMPLETE FINALE MODAL -->
-  <div class="finale-modal" id="finale-modal">
-    <div class="finale-card">
-      <div class="finale-kicker">Expedition Complete</div>
-      <h2 class="finale-title">Drang-Drung Glacier</h2>
-      <div class="finale-route">
-        MANALI → SHINKULA (16,700 FT) → PADUM → PENZILA → SURU → DRANG-DRUNG
+  <!-- POLARSTEPS CELEBRATION MODAL (AT GLACIER FINALE) -->
+  <div class="ps-finale-modal" id="finale-modal">
+    <div class="ps-finale-card">
+      <div class="ps-finale-badge">🏔 Trip Relive Complete</div>
+      <h2 class="ps-finale-title">Drang-Drung Glacier</h2>
+      <div class="ps-finale-route-tag">
+        MANALI ➔ SHINKULA PASS (16,700 FT) ➔ PADUM ➔ PENZILA LONGBOARD ➔ SURU ➔ DRANG-DRUNG
       </div>
-      <div class="finale-grid">
-        <div class="finale-cell">
-          <small>Max Altitude</small>
+      <div class="ps-finale-grid">
+        <div class="ps-finale-stat-box">
+          <small>Peak Altitude</small>
           <strong>16,700 FT</strong>
         </div>
-        <div class="finale-cell">
-          <small>Checkpoints</small>
-          <strong>6 / 6 Unlocked</strong>
+        <div class="ps-finale-stat-box">
+          <small>Steps Logged</small>
+          <strong>6 / 6 Completed</strong>
         </div>
-        <div class="finale-cell">
-          <small>Photos Logged</small>
-          <strong id="finale-photo-count">4 / 4 Real Photos</strong>
+        <div class="ps-finale-stat-box">
+          <small>Expedition Mode</small>
+          <strong>Jimny + Longboard</strong>
         </div>
       </div>
-      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;">
-        You've completed the interactive miniature road trip across the high-altitude Zanskar and Suru valleys.
+      <p style="font-size:0.82rem;color:var(--ps-muted);margin-bottom:1.6rem;line-height:1.5;">
+        You've completed the interactive 3D Polarsteps road trip across Zanskar and Suru valley.
       </p>
-      <div class="finale-btn-group">
-        <button class="finale-btn-pri" id="btn-replay" type="button">↺ Replay Road Trip</button>
-        <a href="index.html" class="finale-btn-sec">Portfolio Home →</a>
+      <div class="ps-finale-actions">
+        <button class="ps-btn-coral" id="btn-replay" type="button">↺ Relive Road Trip</button>
+        <a href="index.html" class="ps-btn-outline">Portfolio Home →</a>
       </div>
     </div>
   </div>
@@ -741,7 +1002,7 @@
       <button class="t-btn t-down" id="t-down" type="button">▼</button>
       <button class="t-btn t-right" id="t-right" type="button">▶</button>
     </div>
-    <button class="touch-gas-pedal" id="t-gas" type="button">Gas</button>
+    <button class="touch-gas-pedal" id="t-gas" type="button">Drive</button>
   </div>
 
   <!-- THREE.JS ENGINE SCRIPT -->
@@ -749,14 +1010,14 @@
 
   <script>
     /* ==========================================================
-       ZANSKAR & SURU 3D INTERACTIVE EXPEDITION ENGINE
-       A playable miniature open-world road trip across Ladakh.
+       POLARSTEPS 3D EXPEDITION ENGINE: ZANSKAR & SURU
+       Interactive Suzuki Jimny 4x4 & Downhill Longboard Road Trip
        ========================================================== */
 
     (function() {
       'use strict';
 
-      // 1. SETUP CANVAS & THREE.JS SCENE
+      // 1. SETUP CANVAS & THREE.JS RENDERER
       const canvas = document.getElementById('webgl-canvas');
       const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
@@ -769,32 +1030,31 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0c0f16);
-      scene.fog = new THREE.FogExp2(0x0c0f16, 0.0055);
+      scene.background = new THREE.Color(0x0a0f16);
+      scene.fog = new THREE.FogExp2(0x0a0f16, 0.0052);
 
-      // Camera: Isometric perspective follow camera
+      // Camera: Elevated 3D follow perspective
       const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
-      camera.position.set(0, 35, 45);
+      camera.position.set(0, 32, 42);
 
-      // 2. LIGHTING
-      const ambientLight = new THREE.AmbientLight(0xdde3ea, 0.65);
+      // 2. LIGHTING (Crisp Himalayan Sun & Mountain Ambient)
+      const ambientLight = new THREE.AmbientLight(0xdbeafe, 0.65);
       scene.add(ambientLight);
 
-      const sunLight = new THREE.DirectionalLight(0xfff3db, 1.25);
-      sunLight.position.set(60, 110, 40);
+      const sunLight = new THREE.DirectionalLight(0xfffaed, 1.35);
+      sunLight.position.set(65, 115, 45);
       sunLight.castShadow = true;
       sunLight.shadow.mapSize.width = 2048;
       sunLight.shadow.mapSize.height = 2048;
       sunLight.shadow.camera.near = 10;
-      sunLight.shadow.camera.far = 300;
-      sunLight.shadow.camera.left = -90;
-      sunLight.shadow.camera.right = 90;
-      sunLight.shadow.camera.top = 90;
-      sunLight.shadow.camera.bottom = -90;
+      sunLight.shadow.camera.far = 320;
+      sunLight.shadow.camera.left = -95;
+      sunLight.shadow.camera.right = 95;
+      sunLight.shadow.camera.top = 95;
+      sunLight.shadow.camera.bottom = -95;
       scene.add(sunLight);
 
       // 3. EXPEDITION ROAD PATH (Catmull-Rom Spline through 6 Key Landmarks)
-      // Manali (0,0) -> Shinkula (High elevation) -> Padum -> Penzila (Downhill) -> Suru -> Drang-Drung (Glacier)
       const waypoints = [
         // 0: MANALI VALLEY (Start)
         new THREE.Vector3(0, 0, 0),
@@ -818,7 +1078,7 @@
         
         // 3: PENZILA PASS & LONGBOARD RUN
         new THREE.Vector3(-18, 18, -520),
-        new THREE.Vector3(15, 21, -560), // Penzila Summit
+        new THREE.Vector3(15, 21, -560), // Penzila Summit (Longboard Swap Zone)
         new THREE.Vector3(-20, 16, -600),// Steep downhill curves
         new THREE.Vector3(18, 11, -640),
         new THREE.Vector3(-10, 7, -680),
@@ -837,12 +1097,9 @@
       const roadCurve = new THREE.CatmullRomCurve3(waypoints, false, 'catmullrom', 0.25);
       const totalRoadLength = roadCurve.getLength();
 
-      // 4. GENERATE ROAD RIBBON MESH WITH CLEAR MARKINGS
-      const roadSegments = 300;
-      const roadWidth = 4.2;
-      const roadPoints = roadCurve.getPoints(roadSegments);
-
-      const roadGeom = new THREE.BufferGeometry();
+      // 4. GENERATE ASPHALT ROAD RIBBON MESH
+      const roadSegments = 320;
+      const roadWidth = 4.4;
       const roadPositions = [];
       const roadUVs = [];
       const roadIndices = [];
@@ -860,8 +1117,8 @@
         roadPositions.push(pLeft.x, pLeft.y + 0.08, pLeft.z);
         roadPositions.push(pRight.x, pRight.y + 0.08, pRight.z);
 
-        roadUVs.push(0, t * 60);
-        roadUVs.push(1, t * 60);
+        roadUVs.push(0, t * 65);
+        roadUVs.push(1, t * 65);
 
         if (i < roadSegments) {
           const row1 = i * 2;
@@ -871,25 +1128,26 @@
         }
       }
 
+      const roadGeom = new THREE.BufferGeometry();
       roadGeom.setAttribute('position', new THREE.Float32BufferAttribute(roadPositions, 3));
       roadGeom.setAttribute('uv', new THREE.Float32BufferAttribute(roadUVs, 2));
       roadGeom.setIndex(roadIndices);
       roadGeom.computeVertexNormals();
 
-      // Procedural Asphalt Texture with Dashed Centerline
+      // Procedural Asphalt Texture with Dashed Centerline & Yellow Mountain Curbs
       const roadCanvas = document.createElement('canvas');
       roadCanvas.width = 128;
       roadCanvas.height = 512;
       const rCtx = roadCanvas.getContext('2d');
-      // Dark asphalt
-      rCtx.fillStyle = '#1c1e24';
+      // Dark mountain asphalt
+      rCtx.fillStyle = '#181b22';
       rCtx.fillRect(0, 0, 128, 512);
       // Yellow shoulders
-      rCtx.fillStyle = '#e5903b';
-      rCtx.fillRect(4, 0, 4, 512);
-      rCtx.fillRect(120, 0, 4, 512);
-      // Dashed white center
-      rCtx.fillStyle = '#f8fafc';
+      rCtx.fillStyle = '#FFA726';
+      rCtx.fillRect(3, 0, 4, 512);
+      rCtx.fillRect(121, 0, 4, 512);
+      // Dashed center line
+      rCtx.fillStyle = '#f1f5f9';
       for (let y = 0; y < 512; y += 48) {
         rCtx.fillRect(62, y + 8, 4, 28);
       }
@@ -907,7 +1165,7 @@
       scene.add(roadMesh);
 
       // 5. SURROUNDING TERRAIN & HIMALAYAN MOUNTAINS
-      const terrainGeom = new THREE.PlaneGeometry(360, 1100, 70, 160);
+      const terrainGeom = new THREE.PlaneGeometry(380, 1120, 75, 160);
       terrainGeom.rotateX(-Math.PI / 2);
       terrainGeom.translate(0, -2, -450);
 
@@ -916,7 +1174,6 @@
         const vx = posAttr.getX(i);
         const vz = posAttr.getZ(i);
 
-        // Calculate distance from road
         const approxT = THREE.MathUtils.clamp(-vz / 920, 0, 1);
         const roadPt = roadCurve.getPointAt(approxT);
         const distToRoad = Math.hypot(vx - roadPt.x, vz - roadPt.z);
@@ -926,25 +1183,25 @@
         
         // Massive outer mountain ranges
         if (Math.abs(vx) > 35) {
-          const mountainFactor = (Math.abs(vx) - 35) * 0.9;
+          const mountainFactor = (Math.abs(vx) - 35) * 0.95;
           elev += mountainFactor * 1.8 + Math.cos(vz * 0.04) * 22;
         }
 
-        // Near road blending
+        // Blend smooth valley floor near road
         if (distToRoad < 9) {
-          elev = THREE.MathUtils.lerp(roadPt.y - 1.2, elev, Math.max(0, (distToRoad - 3.5) / 5.5));
+          elev = THREE.MathUtils.lerp(roadPt.y - 1.2, elev, Math.max(0, (distToRoad - 3.6) / 5.4));
         }
 
         // Shinkula and Drang-Drung dramatic summits
-        if (vz < -160 && vz > -260) { elev += 15; } // Shinkula
-        if (vz < -800) { elev += 25; }               // Drang-Drung amphitheater
+        if (vz < -160 && vz > -260) { elev += 16; } // Shinkula
+        if (vz < -800) { elev += 26; }               // Drang-Drung glacier bowl
 
         posAttr.setY(i, elev);
       }
       terrainGeom.computeVertexNormals();
 
       const terrainMat = new THREE.MeshStandardMaterial({
-        color: 0x181c24,
+        color: 0x141a22,
         roughness: 0.95,
         metalness: 0.05,
         flatShading: true
@@ -953,141 +1210,343 @@
       terrainMesh.receiveShadow = true;
       scene.add(terrainMesh);
 
-      // 6. EXPEDITION 4x4 VEHICLE MESH
-      const vehicleGroup = new THREE.Group();
+      // 6. BUILD DETAILED 3D SUZUKI JIMNY 4x4 MESH
+      const jimnyGroup = new THREE.Group();
 
-      // Car body
-      const bodyGeom = new THREE.BoxGeometry(2.1, 1.0, 3.8);
-      const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.35, metalness: 0.3 });
-      const bodyMesh = new THREE.Mesh(bodyGeom, bodyMat);
-      bodyMesh.position.y = 0.95;
-      bodyMesh.castShadow = true;
-      vehicleGroup.add(bodyMesh);
+      // Jimny Color Tokens
+      const jimnyBodyColor = 0xd4e036; // Kinetic Yellow
+      const jimnyRoofColor = 0x111317; // Black Contrast Roof
+      const jimnyBumperColor = 0x1e2126; // Textured Matt Bumper / Arches
+      const jimnyGlassColor = 0x0d1218;
 
-      // Cabin / Roof
-      const cabinGeom = new THREE.BoxGeometry(1.8, 0.8, 2.2);
-      const cabinMat = new THREE.MeshStandardMaterial({ color: 0x161820, roughness: 0.2, metalness: 0.8 });
-      const cabinMesh = new THREE.Mesh(cabinGeom, cabinMat);
-      cabinMesh.position.set(0, 1.7, -0.2);
-      cabinMesh.castShadow = true;
-      vehicleGroup.add(cabinMesh);
+      // A) Main Lower Body Tub (Boxy, compact 3-door SUV proportion)
+      const jBodyGeom = new THREE.BoxGeometry(1.85, 0.75, 3.3);
+      const jBodyMat = new THREE.MeshStandardMaterial({ color: jimnyBodyColor, roughness: 0.35, metalness: 0.25 });
+      const jBodyMesh = new THREE.Mesh(jBodyGeom, jBodyMat);
+      jBodyMesh.position.y = 0.85;
+      jBodyMesh.castShadow = true;
+      jimnyGroup.add(jBodyMesh);
 
-      // Roof Rack with expedition luggage & spare tire
-      const rackGeom = new THREE.BoxGeometry(1.6, 0.1, 2.0);
-      const rackMat = new THREE.MeshStandardMaterial({ color: 0x2b2d35, metalness: 0.9 });
-      const rackMesh = new THREE.Mesh(rackGeom, rackMat);
-      rackMesh.position.set(0, 2.15, -0.2);
-      vehicleGroup.add(rackMesh);
+      // B) Front Hood / Bonnet
+      const hoodGeom = new THREE.BoxGeometry(1.8, 0.2, 1.1);
+      const hoodMesh = new THREE.Mesh(hoodGeom, jBodyMat);
+      hoodMesh.position.set(0, 1.25, 1.05);
+      hoodMesh.castShadow = true;
+      jimnyGroup.add(hoodMesh);
 
-      const luggageGeom = new THREE.BoxGeometry(1.2, 0.45, 1.4);
-      const luggageMat = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.8 });
-      const luggageMesh = new THREE.Mesh(luggageGeom, luggageMat);
-      luggageMesh.position.set(0, 2.45, -0.3);
-      vehicleGroup.add(luggageMesh);
+      // C) Classic Jimny 5-Slot Vertical Front Grille & Face
+      const grilleGeom = new THREE.BoxGeometry(1.7, 0.45, 0.1);
+      const grilleMat = new THREE.MeshStandardMaterial({ color: jimnyBumperColor, roughness: 0.8 });
+      const grilleMesh = new THREE.Mesh(grilleGeom, grilleMat);
+      grilleMesh.position.set(0, 0.95, 1.66);
+      jimnyGroup.add(grilleMesh);
 
-      // Wheels
-      const wheelGeom = new THREE.CylinderGeometry(0.48, 0.48, 0.4, 16);
-      wheelGeom.rotateZ(Math.PI / 2);
-      const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111317, roughness: 0.9 });
+      // 5 Vertical Grille Slits
+      const slotMat = new THREE.MeshBasicMaterial({ color: 0x050608 });
+      for (let s = -2; s <= 2; s++) {
+        const slotGeom = new THREE.BoxGeometry(0.12, 0.28, 0.05);
+        const slot = new THREE.Mesh(slotGeom, slotMat);
+        slot.position.set(s * 0.22, 0.95, 1.72);
+        jimnyGroup.add(slot);
+      }
 
-      const wheels = [];
-      const wheelOffsets = [
-        [-1.05, 0.48, 1.2],
-        [1.05, 0.48, 1.2],
-        [-1.05, 0.48, -1.2],
-        [1.05, 0.48, -1.2]
-      ];
-
-      wheelOffsets.forEach((pos) => {
-        const w = new THREE.Mesh(wheelGeom, wheelMat);
-        w.position.set(pos[0], pos[1], pos[2]);
-        w.castShadow = true;
-        vehicleGroup.add(w);
-        wheels.push(w);
+      // Iconic Round Headlights (Classic Jimny face)
+      const headLampGeom = new THREE.CylinderGeometry(0.18, 0.18, 0.08, 16);
+      headLampGeom.rotateX(Math.PI / 2);
+      const headLampMat = new THREE.MeshStandardMaterial({
+        color: 0xfffaed,
+        emissive: 0xfffaed,
+        emissiveIntensity: 0.85,
+        roughness: 0.1
       });
 
-      // Headlights & Light Cones
-      const headLightLeft = new THREE.SpotLight(0xfff5dd, 2.2, 35, Math.PI / 6, 0.4);
-      headLightLeft.position.set(-0.7, 0.9, 1.9);
-      headLightLeft.target.position.set(-0.7, 0.2, 12);
-      vehicleGroup.add(headLightLeft);
-      vehicleGroup.add(headLightLeft.target);
+      const leftLamp = new THREE.Mesh(headLampGeom, headLampMat);
+      leftLamp.position.set(-0.68, 0.95, 1.72);
+      jimnyGroup.add(leftLamp);
 
-      const headLightRight = new THREE.SpotLight(0xfff5dd, 2.2, 35, Math.PI / 6, 0.4);
-      headLightRight.position.set(0.7, 0.9, 1.9);
-      headLightRight.target.position.set(0.7, 0.2, 12);
-      vehicleGroup.add(headLightRight);
-      vehicleGroup.add(headLightRight.target);
+      const rightLamp = new THREE.Mesh(headLampGeom, headLampMat);
+      rightLamp.position.set(0.68, 0.95, 1.72);
+      jimnyGroup.add(rightLamp);
 
-      scene.add(vehicleGroup);
+      // Amber Round Turn Indicators
+      const turnLampGeom = new THREE.CylinderGeometry(0.08, 0.08, 0.06, 12);
+      turnLampGeom.rotateX(Math.PI / 2);
+      const turnLampMat = new THREE.MeshBasicMaterial({ color: 0xff9900 });
+      const leftTurn = new THREE.Mesh(turnLampGeom, turnLampMat);
+      leftTurn.position.set(-0.84, 0.95, 1.71);
+      jimnyGroup.add(leftTurn);
 
-      // 7. LONGBOARDER RACER MODEL (For Penzila Downhill Mode)
+      const rightTurn = new THREE.Mesh(turnLampGeom, turnLampMat);
+      rightTurn.position.set(0.84, 0.95, 1.71);
+      jimnyGroup.add(rightTurn);
+
+      // Front Off-Road Bumper & Skid Plate
+      const frontBumperGeom = new THREE.BoxGeometry(1.9, 0.4, 0.35);
+      const frontBumper = new THREE.Mesh(frontBumperGeom, grilleMat);
+      frontBumper.position.set(0, 0.52, 1.68);
+      frontBumper.castShadow = true;
+      jimnyGroup.add(frontBumper);
+
+      const skidPlateGeom = new THREE.BoxGeometry(0.9, 0.25, 0.1);
+      const skidPlateMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8, roughness: 0.3 });
+      const skidPlate = new THREE.Mesh(skidPlateGeom, skidPlateMat);
+      skidPlate.position.set(0, 0.4, 1.86);
+      skidPlate.rotation.x = 0.3;
+      jimnyGroup.add(skidPlate);
+
+      // D) Cabin Green-house & Black Roof
+      const cabinGeom = new THREE.BoxGeometry(1.68, 0.82, 1.95);
+      const cabinMat = new THREE.MeshStandardMaterial({ color: jimnyGlassColor, roughness: 0.1, metalness: 0.9 });
+      const cabinMesh = new THREE.Mesh(cabinGeom, cabinMat);
+      cabinMesh.position.set(0, 1.58, -0.28);
+      jimnyGroup.add(cabinMesh);
+
+      // Jimny Signature Black Roof Top
+      const roofGeom = new THREE.BoxGeometry(1.72, 0.15, 2.05);
+      const roofMat = new THREE.MeshStandardMaterial({ color: jimnyRoofColor, roughness: 0.5, metalness: 0.2 });
+      const roofMesh = new THREE.Mesh(roofGeom, roofMat);
+      roofMesh.position.set(0, 2.02, -0.28);
+      roofMesh.castShadow = true;
+      jimnyGroup.add(roofMesh);
+
+      // Boxy Black Side Mirrors
+      const mirrorGeom = new THREE.BoxGeometry(0.24, 0.16, 0.12);
+      const mirrorLeft = new THREE.Mesh(mirrorGeom, grilleMat);
+      mirrorLeft.position.set(-0.98, 1.45, 0.52);
+      jimnyGroup.add(mirrorLeft);
+
+      const mirrorRight = new THREE.Mesh(mirrorGeom, grilleMat);
+      mirrorRight.position.set(0.98, 1.45, 0.52);
+      jimnyGroup.add(mirrorRight);
+
+      // E) Flared Black Wheel Arches (Fender Flares)
+      const archGeom = new THREE.BoxGeometry(0.12, 0.38, 0.95);
+      const archOffsets = [
+        [-0.96, 0.72, 0.98],
+        [0.96, 0.72, 0.98],
+        [-0.96, 0.72, -0.98],
+        [0.96, 0.72, -0.98]
+      ];
+      archOffsets.forEach(pos => {
+        const arch = new THREE.Mesh(archGeom, grilleMat);
+        arch.position.set(pos[0], pos[1], pos[2]);
+        jimnyGroup.add(arch);
+      });
+
+      // F) Rear Tailgate & Mounted External Spare Tire (Iconic Jimny Feature)
+      const rearBumperGeom = new THREE.BoxGeometry(1.9, 0.38, 0.3);
+      const rearBumper = new THREE.Mesh(rearBumperGeom, grilleMat);
+      rearBumper.position.set(0, 0.52, -1.65);
+      jimnyGroup.add(rearBumper);
+
+      // Rear bumper tail lights (horizontal split)
+      const tailLightMat = new THREE.MeshBasicMaterial({ color: 0xff2222 });
+      const tailLightL = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.12, 0.05), tailLightMat);
+      tailLightL.position.set(-0.7, 0.54, -1.81);
+      jimnyGroup.add(tailLightL);
+
+      const tailLightR = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.12, 0.05), tailLightMat);
+      tailLightR.position.set(0.7, 0.54, -1.81);
+      jimnyGroup.add(tailLightR);
+
+      // Mounted Spare Tire
+      const spareTireGeom = new THREE.CylinderGeometry(0.44, 0.44, 0.28, 16);
+      spareTireGeom.rotateX(Math.PI / 2);
+      const spareTireMat = new THREE.MeshStandardMaterial({ color: 0x181a1f, roughness: 0.9 });
+      const spareTire = new THREE.Mesh(spareTireGeom, spareTireMat);
+      spareTire.position.set(0.2, 1.05, -1.74);
+      spareTire.castShadow = true;
+      jimnyGroup.add(spareTire);
+
+      const spareCoverGeom = new THREE.CylinderGeometry(0.36, 0.36, 0.06, 16);
+      spareCoverGeom.rotateX(Math.PI / 2);
+      const spareCoverMat = new THREE.MeshStandardMaterial({ color: jimnyRoofColor, roughness: 0.4 });
+      const spareCover = new THREE.Mesh(spareCoverGeom, spareCoverMat);
+      spareCover.position.set(0.2, 1.05, -1.89);
+      jimnyGroup.add(spareCover);
+
+      // G) Adventure Expedition Roof Rack & Luggage
+      const rackFrameGeom = new THREE.BoxGeometry(1.55, 0.08, 1.8);
+      const rackFrameMat = new THREE.MeshStandardMaterial({ color: 0x1a1d22, metalness: 0.8, roughness: 0.3 });
+      const rackMesh = new THREE.Mesh(rackFrameGeom, rackFrameMat);
+      rackMesh.position.set(0, 2.15, -0.28);
+      jimnyGroup.add(rackMesh);
+
+      // Expedition Jerry Can (Fuel Tank)
+      const jerryGeom = new THREE.BoxGeometry(0.32, 0.45, 0.48);
+      const jerryMat = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.5 });
+      const jerryCan = new THREE.Mesh(jerryGeom, jerryMat);
+      jerryCan.position.set(-0.45, 2.42, -0.4);
+      jerryCan.rotation.y = 0.2;
+      jimnyGroup.add(jerryCan);
+
+      // Expedition Cargo Hardcase
+      const cargoCaseGeom = new THREE.BoxGeometry(0.65, 0.35, 0.95);
+      const cargoCaseMat = new THREE.MeshStandardMaterial({ color: 0x27272a, roughness: 0.6 });
+      const cargoCase = new THREE.Mesh(cargoCaseGeom, cargoCaseMat);
+      cargoCase.position.set(0.28, 2.38, -0.25);
+      jimnyGroup.add(cargoCase);
+
+      // H) 4 Chunky All-Terrain Wheels with 5-Spoke Rims
+      const jimnyWheels = [];
+      const wheelGeom = new THREE.CylinderGeometry(0.46, 0.46, 0.36, 16);
+      wheelGeom.rotateZ(Math.PI / 2);
+      const wheelMat = new THREE.MeshStandardMaterial({ color: 0x121417, roughness: 0.95 });
+
+      const rimGeom = new THREE.CylinderGeometry(0.26, 0.26, 0.38, 12);
+      rimGeom.rotateZ(Math.PI / 2);
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8, roughness: 0.3 });
+
+      const wheelOffsets = [
+        [-0.92, 0.46, 1.05],
+        [0.92, 0.46, 1.05],
+        [-0.92, 0.46, -1.05],
+        [0.92, 0.46, -1.05]
+      ];
+
+      wheelOffsets.forEach(pos => {
+        const wGroup = new THREE.Group();
+        wGroup.position.set(pos[0], pos[1], pos[2]);
+
+        const tire = new THREE.Mesh(wheelGeom, wheelMat);
+        tire.castShadow = true;
+        wGroup.add(tire);
+
+        const rim = new THREE.Mesh(rimGeom, rimMat);
+        wGroup.add(rim);
+
+        jimnyGroup.add(wGroup);
+        jimnyWheels.push(wGroup);
+      });
+
+      // Headlight Beams (Spotlights)
+      const leftBeam = new THREE.SpotLight(0xfff8e7, 2.4, 38, Math.PI / 6, 0.35);
+      leftBeam.position.set(-0.68, 0.95, 1.7);
+      leftBeam.target.position.set(-0.68, 0.2, 14);
+      jimnyGroup.add(leftBeam);
+      jimnyGroup.add(leftBeam.target);
+
+      const rightBeam = new THREE.SpotLight(0xfff8e7, 2.4, 38, Math.PI / 6, 0.35);
+      rightBeam.position.set(0.68, 0.95, 1.7);
+      rightBeam.target.position.set(0.68, 0.2, 14);
+      jimnyGroup.add(rightBeam);
+      jimnyGroup.add(rightBeam.target);
+
+      scene.add(jimnyGroup);
+
+      // 7. BUILD 3D DOWNHILL LONGBOARDER RACER MESH
       const skaterGroup = new THREE.Group();
       skaterGroup.visible = false;
 
-      // Deck
-      const deckGeom = new THREE.BoxGeometry(0.75, 0.08, 2.2);
-      const deckMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.4 });
+      // Downhill Longboard Deck (Drop-through downhill speed deck)
+      const deckGeom = new THREE.BoxGeometry(0.72, 0.08, 2.3);
+      const deckMat = new THREE.MeshStandardMaterial({ color: 0x00d2b4, roughness: 0.3, metalness: 0.2 }); // Polarsteps Mint deck
       const deckMesh = new THREE.Mesh(deckGeom, deckMat);
-      deckMesh.position.y = 0.25;
+      deckMesh.position.y = 0.24;
+      deckMesh.castShadow = true;
       skaterGroup.add(deckMesh);
 
-      // Skater Body in Speed Tuck
-      const skaterBodyGeom = new THREE.BoxGeometry(0.65, 0.9, 0.9);
-      const skaterBodyMat = new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.7 });
-      const skaterBodyMesh = new THREE.Mesh(skaterBodyGeom, skaterBodyMat);
-      skaterBodyMesh.position.set(0, 0.8, -0.1);
-      skaterBodyMesh.rotation.x = 0.35;
-      skaterGroup.add(skaterBodyMesh);
+      // Neon Skateboard Wheels
+      const skateWheelGeom = new THREE.CylinderGeometry(0.14, 0.14, 0.16, 12);
+      skateWheelGeom.rotateZ(Math.PI / 2);
+      const skateWheelMat = new THREE.MeshStandardMaterial({ color: 0xff5a5f, roughness: 0.2 }); // Polarsteps Coral wheels
 
-      // Aerodynamic Helmet
-      const helmetGeom = new THREE.SphereGeometry(0.3, 12, 12);
-      const helmetMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.3 });
-      const helmetMesh = new THREE.Mesh(helmetGeom, helmetMat);
-      helmetMesh.position.set(0, 1.25, 0.35);
-      skaterGroup.add(helmetMesh);
+      const skateWheelOffsets = [
+        [-0.38, 0.14, 0.85],
+        [0.38, 0.14, 0.85],
+        [-0.38, 0.14, -0.85],
+        [0.38, 0.14, -0.85]
+      ];
+      skateWheelOffsets.forEach(pos => {
+        const sw = new THREE.Mesh(skateWheelGeom, skateWheelMat);
+        sw.position.set(pos[0], pos[1], pos[2]);
+        skaterGroup.add(sw);
+      });
 
+      // Skater Body in Downhill Aerodynamic Speed-Tuck
+      const riderGroup = new THREE.Group();
+      riderGroup.position.set(0, 0.3, 0);
+
+      // Legs / Thighs in low tuck
+      const legsGeom = new THREE.BoxGeometry(0.55, 0.45, 0.95);
+      const suitMat = new THREE.MeshStandardMaterial({ color: 0x141c26, roughness: 0.7 });
+      const legs = new THREE.Mesh(legsGeom, suitMat);
+      legs.position.set(0, 0.3, -0.15);
+      riderGroup.add(legs);
+
+      // Torso tucked flat over knees
+      const torsoGeom = new THREE.BoxGeometry(0.62, 0.45, 0.9);
+      const jacketMat = new THREE.MeshStandardMaterial({ color: 0xff5a5f, roughness: 0.5 }); // Polarsteps Coral race jacket
+      const torso = new THREE.Mesh(torsoGeom, jacketMat);
+      torso.position.set(0, 0.65, 0.12);
+      torso.rotation.x = 0.35;
+      riderGroup.add(torso);
+
+      // Aerodynamic Full-Face Downhill Helmet
+      const helmetGeom = new THREE.SphereGeometry(0.32, 16, 16);
+      const helmetMat = new THREE.MeshStandardMaterial({ color: 0xffa726, roughness: 0.2, metalness: 0.3 });
+      const helmet = new THREE.Mesh(helmetGeom, helmetMat);
+      helmet.position.set(0, 0.95, 0.58);
+      helmet.scale.set(0.9, 0.9, 1.2);
+      riderGroup.add(helmet);
+
+      // Visor (Tinted Gold/Black)
+      const visorGeom = new THREE.BoxGeometry(0.35, 0.14, 0.2);
+      const visorMat = new THREE.MeshBasicMaterial({ color: 0x0a0e14 });
+      const visor = new THREE.Mesh(visorGeom, visorMat);
+      visor.position.set(0, 0.95, 0.82);
+      riderGroup.add(visor);
+
+      // Slide Gloves tucked back
+      const gloveGeom = new THREE.BoxGeometry(0.18, 0.12, 0.25);
+      const puckMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const gloveLeft = new THREE.Mesh(gloveGeom, puckMat);
+      gloveLeft.position.set(-0.45, 0.42, -0.3);
+      riderGroup.add(gloveLeft);
+
+      const gloveRight = new THREE.Mesh(gloveGeom, puckMat);
+      gloveRight.position.set(0.45, 0.42, -0.3);
+      riderGroup.add(gloveRight);
+
+      skaterGroup.add(riderGroup);
       scene.add(skaterGroup);
 
-      // 8. SIGNBOARDS & REAL EXPEDITION MILESTONES (BRO Himalayan Markers)
+      // 8. SIGNBOARDS & HIMALAYAN BORDER ROAD MARKERS
       function createSignboard(text, sub, x, y, z, rotY = 0) {
         const signGroup = new THREE.Group();
         signGroup.position.set(x, y, z);
         signGroup.rotation.y = rotY;
 
-        // Post
         const postGeom = new THREE.CylinderGeometry(0.08, 0.08, 2.8, 8);
-        const postMat = new THREE.MeshStandardMaterial({ color: 0x22242a });
+        const postMat = new THREE.MeshStandardMaterial({ color: 0x1f2937 });
         const post = new THREE.Mesh(postGeom, postMat);
         post.position.y = 1.4;
         post.castShadow = true;
         signGroup.add(post);
 
-        // Yellow Board
-        const boardGeom = new THREE.BoxGeometry(2.4, 1.2, 0.1);
-        const boardMat = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.5 });
+        const boardGeom = new THREE.BoxGeometry(2.5, 1.2, 0.1);
+        const boardMat = new THREE.MeshStandardMaterial({ color: 0xffa726, roughness: 0.5 });
         const board = new THREE.Mesh(boardGeom, boardMat);
         board.position.y = 2.3;
         board.castShadow = true;
         signGroup.add(board);
 
-        // Text Canvas Texture
         const sCanvas = document.createElement('canvas');
         sCanvas.width = 256;
         sCanvas.height = 128;
         const sCtx = sCanvas.getContext('2d');
-        sCtx.fillStyle = '#facc15';
+        sCtx.fillStyle = '#FFA726';
         sCtx.fillRect(0, 0, 256, 128);
-        sCtx.fillStyle = '#000000';
+        sCtx.fillStyle = '#0c1219';
         sCtx.font = 'bold 24px monospace';
         sCtx.textAlign = 'center';
-        sCtx.fillText(text, 128, 55);
+        sCtx.fillText(text, 128, 52);
         if (sub) {
-          sCtx.font = '16px monospace';
-          sCtx.fillText(sub, 128, 90);
+          sCtx.font = '15px monospace';
+          sCtx.fillText(sub, 128, 88);
         }
         const sTex = new THREE.CanvasTexture(sCanvas);
-        const labelGeom = new THREE.PlaneGeometry(2.2, 1.05);
+        const labelGeom = new THREE.PlaneGeometry(2.3, 1.05);
         const labelMat = new THREE.MeshBasicMaterial({ map: sTex });
         const labelMesh = new THREE.Mesh(labelGeom, labelMat);
         labelMesh.position.set(0, 2.3, 0.06);
@@ -1097,8 +1556,7 @@
         return signGroup;
       }
 
-      // Add physical signboards along the route
-      createSignboard('MANALI', 'START · 6,700 FT', 3.5, 0.2, -10, -0.2);
+      createSignboard('MANALI', 'START · 6,700 FT', 3.6, 0.2, -10, -0.2);
       createSignboard('SHINKULA PASS', '16,700 FT →', 4.5, 25.5, -232, -0.4);
       createSignboard('PADUM (ZANSKAR)', 'CAMP & FUEL ⛽', 5.2, 8.2, -390, 0.2);
       createSignboard('PENZILA PASS', 'DOWNHILL RUN 🛹', -4.8, 20.8, -552, 0.5);
@@ -1109,7 +1567,7 @@
       // A) Tibetan Prayer Flags across Shinkula Pass
       const flagGroup = new THREE.Group();
       flagGroup.position.set(0, 26.5, -240);
-      const flagColors = [0x3b82f6, 0xf8fafc, 0xef4444, 0x22c55e, 0xeab308];
+      const flagColors = [0x3b82f6, 0xf8fafc, 0xff5a5f, 0x00d2b4, 0xffa726];
       for (let f = -12; f <= 12; f += 1.4) {
         const flagGeom = new THREE.PlaneGeometry(0.7, 0.5);
         const flagMat = new THREE.MeshStandardMaterial({
@@ -1123,25 +1581,24 @@
       }
       scene.add(flagGroup);
 
-      // B) Expedition Camp at Padum (Tents & Fire)
+      // B) Expedition Camp at Padum (Tents & Fuel Station)
       const campGroup = new THREE.Group();
       campGroup.position.set(8, 8.2, -400);
 
       const tentGeom = new THREE.ConeGeometry(2.4, 2.2, 4);
       tentGeom.rotateY(Math.PI / 4);
-      const tentMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.9 });
+      const tentMat = new THREE.MeshStandardMaterial({ color: 0xffa726, roughness: 0.9 });
       const tent1 = new THREE.Mesh(tentGeom, tentMat);
       tent1.position.set(0, 1.1, 0);
       campGroup.add(tent1);
 
-      const tentMat2 = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.9 });
+      const tentMat2 = new THREE.MeshStandardMaterial({ color: 0x00d2b4, roughness: 0.9 });
       const tent2 = new THREE.Mesh(tentGeom, tentMat2);
       tent2.position.set(4.5, 1.1, 3);
       campGroup.add(tent2);
 
-      // Fuel Pump Depot
       const pumpGeom = new THREE.BoxGeometry(1.2, 2.2, 1.0);
-      const pumpMat = new THREE.MeshStandardMaterial({ color: 0xef4444, metalness: 0.6 });
+      const pumpMat = new THREE.MeshStandardMaterial({ color: 0xff5a5f, metalness: 0.6 });
       const pump = new THREE.Mesh(pumpGeom, pumpMat);
       pump.position.set(-6, 1.1, 2);
       campGroup.add(pump);
@@ -1153,19 +1610,18 @@
 
       const cableGeom = new THREE.CylinderGeometry(0.04, 0.04, 38, 8);
       cableGeom.rotateZ(Math.PI / 2);
-      const cableMat = new THREE.MeshBasicMaterial({ color: 0xff4444 });
+      const cableMat = new THREE.MeshBasicMaterial({ color: 0xff5a5f });
       const cable = new THREE.Mesh(cableGeom, cableMat);
       highlineGroup.add(cable);
 
-      // Human Silhouette on Highline
       const humanGeom = new THREE.BoxGeometry(0.4, 1.4, 0.3);
-      const humanMat = new THREE.MeshBasicMaterial({ color: 0x111317 });
+      const humanMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
       const human = new THREE.Mesh(humanGeom, humanMat);
       human.position.set(-2, 0.7, 0);
       highlineGroup.add(human);
       scene.add(highlineGroup);
 
-      // D) Colossal Drang-Drung Glacier (Curving White & Cyan Ice Tongue)
+      // D) Colossal Drang-Drung Glacier
       const glacierGroup = new THREE.Group();
       glacierGroup.position.set(15, 12, -940);
 
@@ -1190,55 +1646,95 @@
       glacierGroup.add(glacierMesh);
       scene.add(glacierGroup);
 
-      // 10. AUTHENTIC EXPEDITION PHOTO STOPS (Real Photographs)
-      const photoStops = [
+      // 10. POLARSTEPS EXPEDITION STEPS & REAL PHOTOGRAPHS DATA
+      const polarstepsLog = [
         {
-          t: 0.12,
-          tag: 'Hanuman Tibba / Manali',
-          title: 'Base Camp & Pir Panjal Peaks',
-          caption: 'Setting off through lush pine valley floors towards the high passes of Ladakh.',
+          t: 0.05,
+          stepNum: 'STEP 01',
+          tag: 'Manali · Pir Panjal',
+          title: 'Base Camp & Mighty Hanuman Tibba',
+          time: '16 SEP 2024 · 07:45',
+          elev: '6,700 FT',
+          weather: '☀️ 14°C',
+          desc: 'Departing through dense deodar forests in the Suzuki Jimny 4x4, packing expedition highline gear toward the high Himalayan passes.',
           img: './shashank_files/gallery_opt/one-with-mighty-hanuman-tibba-opt.jpg',
           discovered: false
         },
         {
-          t: 0.28,
+          t: 0.25,
+          stepNum: 'STEP 02',
           tag: 'Shinkula Pass (16,700 FT)',
-          title: 'Summit of Shinkula',
-          caption: '16,700 FT altitude crossing into Zanskar amid freezing snow cuts and fluttering prayer flags.',
+          title: 'Summit Crossing into Zanskar',
+          time: '17 SEP 2024 · 13:15',
+          elev: '16,700 FT',
+          weather: '❄️ -2°C',
+          desc: '16,700 FT highest mountain pass crossing. Freezing blizzard winds, colorful Tibetan prayer flags, and raw glacial scree.',
           img: './shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg',
           discovered: false
         },
         {
+          t: 0.44,
+          stepNum: 'STEP 03',
+          tag: 'Padum · Zanskar Valley',
+          title: 'Zanskar Riverside Camp & Refuel',
+          time: '18 SEP 2024 · 17:30',
+          elev: '12,000 FT',
+          weather: '🌤 8°C',
+          desc: 'Setting up riverside tents under the Milky Way in Padum. Topping off the Jimny fuel tanks before the rugged remote Penzila ascent.',
+          img: './shashank_files/gallery_opt/bhopal-sb-opt.jpg',
+          discovered: false
+        },
+        {
           t: 0.62,
+          stepNum: 'STEP 04',
           tag: 'Penzila Pass (14,435 FT)',
           title: 'Downhill Longboard Speed Run',
-          caption: 'Carving high-speed downhill hairpins on asphalt beneath towering mountain walls.',
+          time: '19 SEP 2024 · 11:20',
+          elev: '14,435 FT',
+          weather: '☀️ 6°C',
+          desc: 'Swapping from the Jimny to the downhill longboard! Carving steep, high-altitude mountain hairpins on smooth asphalt surrounded by sheer peaks.',
           img: './shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg',
           discovered: false
         },
         {
-          t: 0.82,
-          tag: 'Suru Valley Gorge',
-          title: 'Highline Across Mountain Canyon',
-          caption: 'Rigging a highline webbing cable across the sheer rocky river gorge in Suru.',
+          t: 0.80,
+          stepNum: 'STEP 05',
+          tag: 'Suru Valley Canyon',
+          title: 'Highline Rigged Above Suru Gorge',
+          time: '20 SEP 2024 · 15:40',
+          elev: '10,500 FT',
+          weather: '🌤 11°C',
+          desc: 'Rigging a 1-inch slackline webbing high above the roaring Suru river canyon between sheer granite walls.',
           img: './shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg',
+          discovered: false
+        },
+        {
+          t: 0.96,
+          stepNum: 'STEP 06',
+          tag: 'Drang-Drung Glacier',
+          title: 'The Great Glacial Finale',
+          time: '21 SEP 2024 · 14:10',
+          elev: '14,200 FT',
+          weather: '❄️ 2°C',
+          desc: 'Gazing across Ladakh’s largest curving glacial river of ice. 420 kilometers of raw mountain road trip conquered.',
+          img: './shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg',
           discovered: false
         }
       ];
 
-      // Add 3D markers for photo stops
-      photoStops.forEach(p => {
+      // 3D Visual Floating Pulsing Rings at Photo Milestones
+      polarstepsLog.forEach(p => {
         const pt = roadCurve.getPointAt(p.t);
         const markerGroup = new THREE.Group();
         markerGroup.position.set(pt.x + 3.2, pt.y + 0.5, pt.z);
 
-        const ringGeom = new THREE.RingGeometry(0.8, 1.2, 16);
+        const ringGeom = new THREE.RingGeometry(0.85, 1.3, 20);
         ringGeom.rotateX(-Math.PI / 2);
-        const ringMat = new THREE.MeshBasicMaterial({ color: 0x5eead4, side: THREE.DoubleSide });
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0xff5a5f, side: THREE.DoubleSide });
         const ring = new THREE.Mesh(ringGeom, ringMat);
         markerGroup.add(ring);
 
-        const iconGeom = new THREE.BoxGeometry(0.6, 0.4, 0.4);
+        const iconGeom = new THREE.BoxGeometry(0.65, 0.45, 0.45);
         const iconMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const icon = new THREE.Mesh(iconGeom, iconMat);
         icon.position.y = 0.8;
@@ -1257,8 +1753,8 @@
         if (code === 'KeyA' || code === 'ArrowLeft') keys.left = state;
         if (code === 'KeyD' || code === 'ArrowRight') keys.right = state;
         if (code === 'ShiftLeft' || code === 'ShiftRight') keys.boost = state;
-        if (state && code === 'KeyE') toggleActionMode();
-        if (state && code === 'Escape') closePhotoModal();
+        if (state && code === 'KeyE') toggleVehicleRide();
+        if (state && code === 'Escape') closeSideTooltip();
       }
 
       window.addEventListener('keydown', (e) => setKey(e.code, true));
@@ -1277,27 +1773,44 @@
       setupTouchBtn('t-right', 'right');
       setupTouchBtn('t-gas', 'forward');
 
-      // 12. VEHICLE PHYSICS & STATE
-      let roadProgress = 0.002; // Normalized 0 to 1 along curve
+      // 12. VEHICLE STATE & GAME ENGINE VARIABLES
+      let roadProgress = 0.002;
       let carSpeed = 0;
-      const maxSpeed = 0.0014;
-      const accel = 0.00008;
-      const decel = 0.00004;
-      let lateralOffset = 0; // -1 to +1 across road width
+      const maxSpeed = 0.00145;
+      const accel = 0.000085;
+      const decel = 0.000045;
+      let lateralOffset = 0;
       let fuel = 100;
       let isLongboardMode = false;
-      let currentLegIndex = 0;
+      let currentStepIndex = 0;
+      let autoSwitchedLongboard = false;
 
-      // HUD Elements
-      const hudLeg = document.getElementById('hud-leg');
-      const hudTitle = document.getElementById('hud-title');
+      // HUD UI Elements
       const hudElev = document.getElementById('hud-elevation');
       const hudOdo = document.getElementById('hud-odometer');
-      const fuelFill = document.getElementById('fuel-fill');
+      const hudWeather = document.getElementById('hud-weather');
       const fuelText = document.getElementById('fuel-text');
+      const hudModePill = document.getElementById('hud-mode-pill');
+      const hudModeIcon = document.getElementById('hud-mode-icon');
+      const hudModeText = document.getElementById('hud-mode-text');
       const actionToast = document.getElementById('action-toast');
       const toastTitle = document.getElementById('toast-title');
       const toastSub = document.getElementById('toast-sub');
+      const vehicleToggleBtn = document.getElementById('btn-vehicle-toggle');
+      const vehicleToggleIcon = document.getElementById('vehicle-toggle-icon');
+      const vehicleToggleLabel = document.getElementById('vehicle-toggle-label');
+      const itineraryProgressText = document.getElementById('itinerary-progress-text');
+
+      // Floating Side Tooltip Elements
+      const sideTooltip = document.getElementById('side-tooltip');
+      const tooltipImg = document.getElementById('tooltip-img');
+      const tooltipStepBadge = document.getElementById('tooltip-step-badge');
+      const tooltipTag = document.getElementById('tooltip-tag');
+      const tooltipTime = document.getElementById('tooltip-time');
+      const tooltipTitle = document.getElementById('tooltip-title');
+      const tooltipDesc = document.getElementById('tooltip-desc');
+      const tooltipCloseBtn = document.getElementById('tooltip-close-btn');
+      const tooltipDriveBtn = document.getElementById('tooltip-drive-btn');
 
       function showToast(title, sub, dur = 3200) {
         toastTitle.textContent = title;
@@ -1306,47 +1819,76 @@
         setTimeout(() => actionToast.classList.remove('visible'), dur);
       }
 
-      function toggleActionMode() {
-        // Toggle between 4x4 Truck and Downhill Longboard
-        isLongboardMode = !isLongboardMode;
-        vehicleGroup.visible = !isLongboardMode;
+      function updateVehicleVisuals() {
+        jimnyGroup.visible = !isLongboardMode;
         skaterGroup.visible = isLongboardMode;
+
+        if (isLongboardMode) {
+          hudModeIcon.textContent = '🛹';
+          hudModeText.textContent = 'Downhill Longboard';
+          hudModePill.style.borderColor = 'var(--ps-mint)';
+          hudModePill.style.background = 'rgba(0, 210, 180, 0.12)';
+          hudModePill.style.color = 'var(--ps-mint)';
+          vehicleToggleIcon.textContent = '🛹';
+          vehicleToggleLabel.textContent = 'Longboard';
+        } else {
+          hudModeIcon.textContent = '🚗';
+          hudModeText.textContent = 'Suzuki Jimny 4WD';
+          hudModePill.style.borderColor = 'rgba(255, 90, 95, 0.35)';
+          hudModePill.style.background = 'rgba(255, 90, 95, 0.12)';
+          hudModePill.style.color = 'var(--ps-coral)';
+          vehicleToggleIcon.textContent = '🚗';
+          vehicleToggleLabel.textContent = 'Jimny 4x4';
+        }
+      }
+
+      function toggleVehicleRide(explicitState) {
+        if (typeof explicitState === 'boolean') {
+          isLongboardMode = explicitState;
+        } else {
+          isLongboardMode = !isLongboardMode;
+        }
+        updateVehicleVisuals();
         showToast(
-          isLongboardMode ? '🛹 Longboard Mode Active' : '🚗 4x4 Expedition Vehicle Active',
-          isLongboardMode ? 'Downhill speed sprint' : 'Overland cruise'
+          isLongboardMode ? '🛹 Longboard Mode Active' : '🚗 Suzuki Jimny 4x4 Active',
+          isLongboardMode ? 'Penzila Downhill Speed Run' : 'Overland 4WD Himalayan Cruise'
         );
       }
 
-      // Checkpoint Regions
-      const milestones = [
-        { t: 0.0, name: 'Manali Valley', elev: '6,700 FT', leg: 'Leg 01 · Foothills' },
-        { t: 0.22, name: 'Shinkula Pass', elev: '16,700 FT', leg: 'Leg 02 · High Altitude Pass' },
-        { t: 0.44, name: 'Padum & Zanskar Camp', elev: '12,000 FT', leg: 'Leg 03 · Heart of Zanskar' },
-        { t: 0.60, name: 'Penzila Downhill Run', elev: '14,435 FT', leg: 'Leg 04 · Downhill Longboard' },
-        { t: 0.78, name: 'Suru Valley Gorge', elev: '10,500 FT', leg: 'Leg 05 · Highline Canyon' },
-        { t: 0.95, name: 'Drang-Drung Glacier', elev: '14,200 FT', leg: 'Leg 06 · Glacier Finale' }
-      ];
-
-      // 13. PHOTO MODAL INTERACTION
-      const photoModal = document.getElementById('photo-modal');
-      const photoModalImg = document.getElementById('photo-modal-img');
-      const photoModalKicker = document.getElementById('photo-modal-kicker');
-      const photoModalTitle = document.getElementById('photo-modal-title');
-      const photoModalCaption = document.getElementById('photo-modal-caption');
-      const photoModalClose = document.getElementById('photo-modal-close');
-
-      function openPhotoModal(p) {
-        photoModalImg.src = p.img;
-        photoModalKicker.textContent = p.tag;
-        photoModalTitle.textContent = p.title;
-        photoModalCaption.textContent = p.caption;
-        photoModal.classList.add('open');
+      if (vehicleToggleBtn) {
+        vehicleToggleBtn.addEventListener('click', () => toggleVehicleRide());
       }
 
-      function closePhotoModal() {
-        photoModal.classList.remove('open');
+      // Non-intrusive Side Tooltip Display Logic
+      function openSideTooltip(stepData) {
+        tooltipImg.src = stepData.img;
+        tooltipStepBadge.textContent = stepData.stepNum;
+        tooltipTag.textContent = stepData.tag;
+        tooltipTime.textContent = stepData.time;
+        tooltipTitle.textContent = stepData.title;
+        tooltipDesc.textContent = stepData.desc;
+        sideTooltip.classList.add('visible');
       }
-      if (photoModalClose) photoModalClose.addEventListener('click', closePhotoModal);
+
+      function closeSideTooltip() {
+        sideTooltip.classList.remove('visible');
+      }
+
+      if (tooltipCloseBtn) tooltipCloseBtn.addEventListener('click', closeSideTooltip);
+      if (tooltipDriveBtn) tooltipDriveBtn.addEventListener('click', closeSideTooltip);
+
+      // Clickable Step Pins on Itinerary
+      document.querySelectorAll('.ps-step-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const stepIdx = parseInt(item.getAttribute('data-step'), 10);
+          if (polarstepsLog[stepIdx]) {
+            roadProgress = polarstepsLog[stepIdx].t;
+            carSpeed = 0;
+            openSideTooltip(polarstepsLog[stepIdx]);
+            showToast('📍 Navigated to ' + polarstepsLog[stepIdx].title, polarstepsLog[stepIdx].elev);
+          }
+        });
+      });
 
       // Finale Modal
       const finaleModal = document.getElementById('finale-modal');
@@ -1357,18 +1899,21 @@
           roadProgress = 0.002;
           carSpeed = 0;
           fuel = 100;
-          photoStops.forEach(p => p.discovered = false);
-          document.querySelectorAll('.stop-item').forEach((s, idx) => {
-            s.className = 'stop-item' + (idx === 0 ? ' active' : '');
+          autoSwitchedLongboard = false;
+          toggleVehicleRide(false);
+          polarstepsLog.forEach(p => p.discovered = false);
+          document.querySelectorAll('.ps-step-item').forEach((s, idx) => {
+            s.className = 'ps-step-item' + (idx === 0 ? ' active' : '');
           });
+          closeSideTooltip();
         });
       }
 
-      // Nav Buttons
+      // Re-center
       document.getElementById('btn-reset').addEventListener('click', () => {
         carSpeed = 0;
         lateralOffset = 0;
-        showToast('↺ Vehicle Re-centered', 'Back on main highway');
+        showToast('↺ Vehicle Re-centered', 'Back on highway center');
       });
 
       // Sound Simulation
@@ -1377,22 +1922,32 @@
       audioBtn.addEventListener('click', () => {
         audioOn = !audioOn;
         audioBtn.textContent = audioOn ? '🔊 Audio ON' : '🔈 Audio';
-        showToast(audioOn ? 'Ambient Engine & Mountain Wind ON' : 'Audio Muted', 'Interactive Soundscape');
+        audioBtn.classList.toggle('active', audioOn);
+        showToast(audioOn ? 'Mountain Wind & Engine Audio Active' : 'Audio Muted', 'Interactive Soundscape');
       });
 
-      // 14. GAME LOOP & ANIMATION
+      // 13. GAME LOOP & ANIMATION
       const clock = new THREE.Clock();
 
       function animate() {
         requestAnimationFrame(animate);
         const delta = Math.min(clock.getDelta(), 0.1);
 
-        // Physics Update
-        const topSpeed = (isLongboardMode ? maxSpeed * 1.4 : maxSpeed) * (keys.boost ? 1.5 : 1.0);
+        // Dynamic Vehicle Switch on Penzila Downhill Segment (t: 0.58 to 0.76)
+        if (roadProgress >= 0.58 && roadProgress <= 0.76 && !isLongboardMode && !autoSwitchedLongboard) {
+          autoSwitchedLongboard = true;
+          toggleVehicleRide(true);
+        } else if (roadProgress > 0.77 && isLongboardMode && autoSwitchedLongboard) {
+          autoSwitchedLongboard = false;
+          toggleVehicleRide(false); // Switch back to Jimny for Suru Valley & Drang-Drung
+        }
+
+        // Acceleration & Physics
+        const topSpeed = (isLongboardMode ? maxSpeed * 1.35 : maxSpeed) * (keys.boost ? 1.5 : 1.0);
 
         if (keys.forward) {
           carSpeed = Math.min(carSpeed + accel, topSpeed);
-          fuel = Math.max(0, fuel - delta * 1.2);
+          fuel = Math.max(0, fuel - delta * 1.1);
         } else if (keys.backward) {
           carSpeed = Math.max(carSpeed - accel, -maxSpeed * 0.4);
         } else {
@@ -1413,46 +1968,54 @@
         const up = new THREE.Vector3(0, 1, 0);
         const side = new THREE.Vector3().crossVectors(tangent, up).normalize();
 
-        const activeVehicle = isLongboardMode ? skaterGroup : vehicleGroup;
+        const activeMesh = isLongboardMode ? skaterGroup : jimnyGroup;
         const vPos = new THREE.Vector3().copy(currPoint).addScaledVector(side, lateralOffset * (roadWidth * 0.35));
         
-        activeVehicle.position.copy(vPos);
-        activeVehicle.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tangent);
+        activeMesh.position.copy(vPos);
+        activeMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tangent);
         
-        // Steering tilt & wheel spin
+        // Steering tilt & Jimny wheel rotation
         if (!isLongboardMode) {
-          const steerTilt = (keys.left ? 0.06 : 0) - (keys.right ? 0.06 : 0);
-          activeVehicle.rotation.z += steerTilt;
-          wheels.forEach(w => w.rotation.x += carSpeed * 80);
+          const steerTilt = (keys.left ? 0.05 : 0) - (keys.right ? 0.05 : 0);
+          activeMesh.rotation.z += steerTilt;
+          jimnyWheels.forEach(w => w.rotation.x += carSpeed * 85);
+        } else {
+          // Longboard banking carve
+          const carveBank = (keys.left ? 0.22 : 0) - (keys.right ? 0.22 : 0);
+          activeMesh.rotation.z += carveBank;
         }
 
-        // Camera Follow (Smooth Elevated Isometric Orbit)
+        // Camera Follow (Elevated cinematic perspective)
+        const camDistance = isLongboardMode ? -20 : -24;
+        const camHeight = isLongboardMode ? 12 : 16;
         const camOffset = new THREE.Vector3()
           .copy(vPos)
-          .addScaledVector(tangent, -24)
-          .add(new THREE.Vector3(0, 16, 0));
+          .addScaledVector(tangent, camDistance)
+          .add(new THREE.Vector3(0, camHeight, 0));
         
         camera.position.lerp(camOffset, 0.08);
-        const lookTarget = new THREE.Vector3().copy(vPos).addScaledVector(tangent, 12);
+        const lookTarget = new THREE.Vector3().copy(vPos).addScaledVector(tangent, 10);
         camera.lookAt(lookTarget);
 
-        // Check milestones & update HUD
-        for (let m = milestones.length - 1; m >= 0; m--) {
-          if (roadProgress >= milestones[m].t) {
-            if (currentLegIndex !== m) {
-              currentLegIndex = m;
-              hudLeg.textContent = milestones[m].leg;
-              hudTitle.textContent = milestones[m].name;
-              hudElev.textContent = 'Elev: ' + milestones[m].elev;
-              
-              // Update checklist
-              document.querySelectorAll('.stop-item').forEach((sEl, sIdx) => {
-                if (sIdx < m) sEl.className = 'stop-item completed';
-                else if (sIdx === m) sEl.className = 'stop-item active';
-                else sEl.className = 'stop-item';
+        // Step Progression & Side Tooltip Triggering
+        for (let s = polarstepsLog.length - 1; s >= 0; s--) {
+          if (roadProgress >= polarstepsLog[s].t) {
+            if (currentStepIndex !== s) {
+              currentStepIndex = s;
+              hudElev.textContent = polarstepsLog[s].elev;
+              hudWeather.textContent = polarstepsLog[s].weather;
+              itineraryProgressText.textContent = `Step ${s + 1} of 6`;
+
+              // Update Itinerary step badges
+              document.querySelectorAll('.ps-step-item').forEach((itemEl, itemIdx) => {
+                if (itemIdx < s) itemEl.className = 'ps-step-item completed';
+                else if (itemIdx === s) itemEl.className = 'ps-step-item active';
+                else itemEl.className = 'ps-step-item';
               });
 
-              showToast(milestones[m].name, 'Reached: ' + milestones[m].elev);
+              // Show non-blocking side card with real photo
+              openSideTooltip(polarstepsLog[s]);
+              showToast(polarstepsLog[s].title, `${polarstepsLog[s].stepNum} · ${polarstepsLog[s].elev}`);
             }
             break;
           }
@@ -1461,24 +2024,19 @@
         // Padum Camp Fuel Refill Zone
         if (Math.abs(roadProgress - 0.44) < 0.03 && fuel < 98) {
           fuel = Math.min(100, fuel + delta * 25);
-          showToast('⛽ Fuel Refill Active', 'Padum Zanskar Fuel Depot · Full Tank');
+          showToast('⛽ Padum Zanskar Fuel Depot', '100% Full Tank Refilled');
         }
 
         // Update HUD Values
         hudOdo.textContent = Math.round(roadProgress * 420) + ' / 420 KM';
-        fuelFill.style.width = Math.round(fuel) + '%';
         fuelText.textContent = Math.round(fuel) + '%';
 
-        // Check Photo Stops
-        photoStops.forEach(p => {
+        // Rotate 3D Markers
+        polarstepsLog.forEach(p => {
           if (p.marker) p.marker.rotation.y += delta * 1.5;
-          if (!p.discovered && Math.abs(roadProgress - p.t) < 0.015) {
-            p.discovered = true;
-            openPhotoModal(p);
-          }
         });
 
-        // Trigger Finale at Drang-Drung
+        // Drang-Drung Glacier Grand Finale Celebration Modal
         if (roadProgress >= 0.985 && !finaleModal.classList.contains('open')) {
           finaleModal.classList.add('open');
         }
