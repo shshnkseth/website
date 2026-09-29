@@ -5,422 +5,367 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" href="./shashank_files/zapp.png" />
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
-  <title>Project Drang-Drung · Interactive Expedition Case Study ✦ Shashank Seth</title>
-  <meta name="description" content="Project Drang-Drung: An experimental interactive 3D adventure case study transforming a real Himalayan expedition across Zanskar into an explore-first digital relive experience." />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./shared.css?v=9.0" />
-  <link rel="stylesheet" href="./case-study.css?v=9.0" />
-  <link rel="stylesheet" href="./case-enhancements.css?v=9.0" />
+  <title>Zanskar & Suru · Playable 3D Expedition ✦ Shashank Seth</title>
+  <meta name="description" content="An interactive miniature 3D road trip based on my actual Himalayan overland expedition across Zanskar, Suru and Drang-Drung Glacier." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0c0e;
-      --surface: #131418;
-      --surface2: #191b22;
-      --rule: #23252e;
-      --rule-light: #2d303b;
-      --ink: #eae6de;
-      --muted: #787a82;
-      --text-dim: #a0a3ad;
+      --bg: #090a0d;
+      --surface: rgba(14, 16, 22, 0.85);
+      --surface-border: rgba(255, 255, 255, 0.1);
+      --ink: #f1ede4;
+      --muted: #888b94;
       --accent: #e5903b;
       --glacier: #5eead4;
-      --glacier-deep: #0f766e;
-      --snow: #f8fafc;
-      --radius: 12px;
+      --yellow: #facc15;
+      --green: #22c55e;
+      --radius: 8px;
     }
 
-    html {
-      font-size: 15px;
-      background-color: var(--bg);
-      color: var(--ink);
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight: 300;
-      background-color: var(--bg);
-      color: var(--ink);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── CASE HEADER / NAV ─── */
-    .exp-nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 12, 14, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-      padding: 0.9rem 1.6rem;
-    }
-
-    .exp-nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .exp-nav a {
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .exp-nav a:hover { color: var(--ink); }
-
-    .exp-nav-brand {
-      color: var(--ink) !important;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .exp-nav-tag {
-      color: var(--accent);
-      border: 1px solid rgba(229, 144, 59, 0.35);
-      background: rgba(229, 144, 59, 0.08);
-      padding: 0.15rem 0.45rem;
-      border-radius: 3px;
-      font-size: 0.55rem;
-    }
-
-    /* ─── 3D STAGE CONTAINER ─── */
-    .adventure-hero {
-      position: relative;
-      width: 100vw;
-      height: 86vh;
-      min-height: 560px;
-      max-height: 920px;
-      background: #090a0d;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', -apple-system, sans-serif;
       user-select: none;
       -webkit-user-select: none;
     }
 
     #webgl-canvas {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       display: block;
       outline: none;
+      z-index: 1;
+    }
+
+    /* ─── TOP FLOATING NAV ─── */
+    .top-nav-bar {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .nav-btn, .nav-brand-pill {
+      pointer-events: auto;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--surface-border);
+      border-radius: 30px;
+      padding: 0.5rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      background: rgba(229, 144, 59, 0.15);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .nav-brand-pill {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .nav-controls-right {
+      display: flex;
+      gap: 0.5rem;
+      pointer-events: auto;
     }
 
     /* ─── HUD OVERLAYS ─── */
-    .hud-layer {
+    .hud-overlay {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 20;
+      z-index: 40;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 1.2rem;
+      padding: 4.5rem 1.2rem 1.2rem;
     }
 
-    .hud-top {
+    .hud-upper {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
     }
 
-    .hud-card {
-      background: rgba(15, 17, 22, 0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
+    .glass-card {
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.1rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
       pointer-events: auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
-    .hud-title-card {
-      max-width: 380px;
+    .location-card {
+      max-width: 320px;
     }
 
-    .hud-kicker {
+    .loc-kicker {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       letter-spacing: 0.12em;
       color: var(--accent);
       text-transform: uppercase;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      margin-bottom: 0.2rem;
+      gap: 0.35rem;
     }
 
-    .hud-location {
-      font-family: 'DM Sans', sans-serif;
+    .loc-title {
       font-size: 1.15rem;
       font-weight: 500;
       color: var(--ink);
       line-height: 1.2;
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
     }
 
-    .hud-elevation {
+    .loc-elev {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
       color: var(--glacier);
-      font-weight: 400;
+      margin-top: 0.15rem;
     }
 
-    .hud-subtext {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      margin-top: 0.25rem;
-      line-height: 1.4;
-    }
-
-    .hud-stats-card {
-      display: flex;
-      gap: 1.2rem;
+    /* ─── PROGRESS CHECKLIST (TOP-RIGHT) ─── */
+    .progress-tracker {
       font-family: 'DM Mono', monospace;
-      text-align: right;
+      font-size: 0.58rem;
+      min-width: 170px;
     }
 
-    .hud-stat-item {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hud-stat-label {
-      font-size: 0.54rem;
+    .progress-header {
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.25rem;
     }
 
-    .hud-stat-value {
-      font-size: 0.88rem;
-      color: var(--ink);
+    .stop-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .stop-item {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .stop-item.active {
+      color: var(--accent);
       font-weight: 500;
-      margin-top: 0.1rem;
     }
 
-    /* ─── BOTTOM HUD ─── */
-    .hud-bottom {
+    .stop-item.completed {
+      color: var(--ink);
+    }
+
+    .stop-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .stop-item.active .stop-dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .stop-item.completed .stop-dot { background: var(--glacier); }
+
+    /* ─── HUD LOWER ─── */
+    .hud-lower {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       gap: 1rem;
     }
 
-    .hud-telemetry {
+    .fuel-card {
+      min-width: 140px;
+    }
+
+    .fuel-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
     }
 
-    .hud-fuel-gauge {
-      width: 130px;
-    }
-
-    .hud-gauge-bar {
+    .fuel-track {
       height: 6px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 3px;
       overflow: hidden;
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
     }
 
-    .hud-gauge-fill {
+    .fuel-fill {
       height: 100%;
-      width: 82%;
-      background: linear-gradient(90deg, #e5903b, #5eead4);
+      width: 100%;
+      background: linear-gradient(90deg, #ef4444, #e5903b 30%, #5eead4 80%);
       border-radius: 3px;
       transition: width 0.3s ease;
     }
 
-    .hud-controls-pill {
+    .controls-hint-pill {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--text-dim);
+      font-size: 0.62rem;
+      color: var(--muted);
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--surface-border);
+      border-radius: 20px;
+      padding: 0.5rem 1.1rem;
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(15, 17, 22, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 0.5rem 0.9rem;
-      border-radius: 20px;
-      backdrop-filter: blur(8px);
     }
 
-    .kbd-chip {
+    .kbd {
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 4px;
-      padding: 0.1rem 0.35rem;
+      padding: 0.12rem 0.4rem;
       color: var(--ink);
-      font-size: 0.56rem;
+      font-size: 0.58rem;
     }
 
-    .hud-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      pointer-events: auto;
-    }
-
-    .hud-btn {
-      background: rgba(20, 22, 28, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      padding: 0.55rem 0.85rem;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.15s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .hud-btn:hover {
-      background: rgba(229, 144, 59, 0.15);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .hud-btn.active {
-      background: var(--accent);
-      color: #0b0c0e;
-      border-color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* ─── CHAPTER TOAST BANNER ─── */
-    .chapter-toast {
+    /* ─── ACTION PROMPTS & TOASTS ─── */
+    .action-prompt-banner {
       position: absolute;
-      top: 20%;
+      top: 22%;
       left: 50%;
-      transform: translate(-50%, -20%) scale(0.95);
-      background: rgba(13, 15, 20, 0.94);
-      border: 1px solid rgba(229, 144, 59, 0.4);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(229, 144, 59, 0.15);
-      border-radius: 12px;
-      padding: 1.4rem 2rem;
-      max-width: 460px;
-      width: 90%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(15, 18, 26, 0.92);
+      border: 1px solid var(--accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(229, 144, 59, 0.2);
+      border-radius: 10px;
+      padding: 0.9rem 1.4rem;
       text-align: center;
-      opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 30;
-      backdrop-filter: blur(16px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 60;
     }
 
-    .chapter-toast.show {
+    .action-prompt-banner.visible {
       opacity: 1;
-      transform: translate(-50%, -20%) scale(1);
+      transform: translateX(-50%) translateY(0);
     }
 
-    .toast-kicker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--accent);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
-
-    .toast-title {
-      font-size: 1.5rem;
-      font-weight: 400;
+    .action-prompt-title {
+      font-size: 1rem;
+      font-weight: 500;
       color: var(--ink);
-      margin: 0 0 0.4rem;
-      line-height: 1.2;
     }
 
-    .toast-body {
-      font-size: 0.84rem;
-      color: var(--text-dim);
-      line-height: 1.5;
-      margin-bottom: 0.8rem;
-    }
-
-    .toast-cta {
+    .action-prompt-sub {
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
       color: var(--accent);
-      display: inline-block;
+      margin-top: 0.25rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    /* ─── PHOTO MODAL ─── */
-    .photo-modal-backdrop {
+    /* ─── COMPACT PHOTO OVERLAY MODAL ─── */
+    .photo-card-modal {
       position: absolute;
       inset: 0;
-      background: rgba(5, 6, 8, 0.85);
+      background: rgba(4, 5, 8, 0.82);
       backdrop-filter: blur(12px);
-      z-index: 40;
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 80;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
     }
 
-    .photo-modal-backdrop.open {
+    .photo-card-modal.open {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .photo-card-inner {
-      max-width: 580px;
+    .photo-card-body {
+      max-width: 520px;
       width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--rule-light);
+      background: #111319;
+      border: 1px solid var(--surface-border);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
-      transform: translateY(16px);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .photo-modal-backdrop.open .photo-card-inner {
-      transform: translateY(0);
+    .photo-card-modal.open .photo-card-body {
+      transform: scale(1);
     }
 
-    .photo-img-wrap {
+    .photo-box {
       width: 100%;
-      height: 320px;
+      height: 310px;
       background: #000;
       position: relative;
     }
 
-    .photo-img-wrap img {
+    .photo-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .photo-meta-bar {
-      padding: 1.2rem 1.4rem;
+    .photo-details {
+      padding: 1.1rem 1.3rem 1.3rem;
     }
 
-    .photo-tag {
+    .photo-kicker {
       font-family: 'DM Mono', monospace;
       font-size: 0.58rem;
       color: var(--glacier);
@@ -432,21 +377,21 @@
       font-size: 1.15rem;
       font-weight: 400;
       color: var(--ink);
-      margin: 0.2rem 0 0.4rem;
+      margin: 0.2rem 0 0.35rem;
     }
 
     .photo-caption {
       font-size: 0.8rem;
-      color: var(--text-dim);
+      color: var(--muted);
       line-height: 1.5;
     }
 
-    .photo-close-btn {
+    .photo-btn {
       margin-top: 1rem;
       width: 100%;
       padding: 0.65rem;
-      background: var(--surface2);
-      border: 1px solid var(--rule);
+      background: #191c26;
+      border: 1px solid var(--surface-border);
       color: var(--ink);
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -454,88 +399,22 @@
       letter-spacing: 0.08em;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: background 0.15s ease;
     }
 
-    .photo-close-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+    .photo-btn:hover {
+      background: rgba(229, 144, 59, 0.2);
+      border-color: var(--accent);
     }
 
-    /* ─── TOUCH CONTROLS (MOBILE) ─── */
-    .touch-controls {
-      display: none;
+    /* ─── FINALE MODAL ─── */
+    .finale-modal {
       position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      right: 1rem;
-      z-index: 25;
-      pointer-events: none;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .touch-dpad {
-      display: grid;
-      grid-template-columns: repeat(3, 46px);
-      grid-template-rows: repeat(2, 46px);
-      gap: 6px;
-      pointer-events: auto;
-    }
-
-    .touch-btn {
-      background: rgba(20, 24, 32, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      backdrop-filter: blur(8px);
-    }
-
-    .touch-btn:active {
-      background: var(--accent);
-      color: #000;
-    }
-
-    .btn-up { grid-column: 2; grid-row: 1; }
-    .btn-left { grid-column: 1; grid-row: 2; }
-    .btn-down { grid-column: 2; grid-row: 2; }
-    .btn-right { grid-column: 3; grid-row: 2; }
-
-    .touch-pedal {
-      pointer-events: auto;
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: rgba(229, 144, 59, 0.25);
-      border: 2px solid var(--accent);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      backdrop-filter: blur(8px);
-    }
-
-    .touch-pedal:active {
-      background: var(--accent);
-      color: #000;
-    }
-
-    /* ─── EXPEDITION SUMMARY OVERLAY ─── */
-    .summary-modal {
-      position: fixed;
       inset: 0;
-      background: rgba(8, 9, 12, 0.92);
+      background: rgba(6, 8, 12, 0.9);
       backdrop-filter: blur(16px);
-      z-index: 120;
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 90;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -545,1438 +424,1075 @@
       transition: opacity 0.4s ease;
     }
 
-    .summary-modal.open {
+    .finale-modal.open {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .summary-card {
-      max-width: 620px;
+    .finale-card {
+      max-width: 500px;
       width: 100%;
-      background: linear-gradient(145deg, #161820, #0f1015);
-      border: 1px solid rgba(229, 144, 59, 0.3);
+      background: linear-gradient(145deg, #151822, #0d0f15);
+      border: 1px solid rgba(94, 234, 212, 0.35);
       border-radius: 16px;
-      padding: 2.2rem;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8), 0 0 32px rgba(229, 144, 59, 0.1);
-      position: relative;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(94, 234, 212, 0.15);
     }
 
-    .summary-kicker {
+    .finale-kicker {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      color: var(--accent);
+      color: var(--glacier);
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
-    .summary-title {
+    .finale-title {
       font-size: 1.8rem;
       font-weight: 400;
       color: var(--ink);
-      margin: 0.3rem 0 0.8rem;
-      line-height: 1.15;
+      margin: 0.4rem 0 0.8rem;
     }
 
-    .summary-route-chain {
+    .finale-route {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--glacier);
-      background: rgba(94, 234, 212, 0.08);
-      border: 1px solid rgba(94, 234, 212, 0.2);
-      padding: 0.6rem 0.9rem;
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.6rem;
       border-radius: 6px;
       margin-bottom: 1.4rem;
-      word-break: break-word;
     }
 
-    .summary-grid {
+    .finale-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 1.6rem;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
     }
 
-    .summary-cell-box {
-      background: var(--surface2);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 0.9rem;
+    .finale-cell {
+      background: #11131a;
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+      padding: 0.75rem 0.5rem;
     }
 
-    .summary-cell-box small {
+    .finale-cell small {
       display: block;
       font-family: 'DM Mono', monospace;
-      font-size: 0.54rem;
+      font-size: 0.52rem;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.2rem;
     }
 
-    .summary-cell-box strong {
+    .finale-cell strong {
       font-family: 'DM Mono', monospace;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       color: var(--ink);
-      font-weight: 500;
+      margin-top: 0.2rem;
+      display: block;
     }
 
-    .summary-actions {
+    .finale-btn-group {
       display: flex;
       gap: 0.8rem;
     }
 
-    .summary-btn-primary {
+    .finale-btn-pri {
       flex: 1;
-      padding: 0.8rem;
-      background: var(--accent);
+      padding: 0.75rem;
+      background: var(--glacier);
       color: #0b0c0e;
       border: none;
       border-radius: 6px;
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-
-    .summary-btn-secondary {
-      flex: 1;
-      padding: 0.8rem;
-      background: transparent;
-      border: 1px solid var(--rule-light);
-      color: var(--ink);
-      border-radius: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    .summary-btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    /* ─── CASE STUDY EDITORIAL SECTION ─── */
-    .case-article-wrap {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 4.5rem 1.6rem 7rem;
-    }
-
-    .case-header-block {
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 2.4rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .case-pre-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--accent);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .case-main-heading {
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin: 0 0 1.2rem;
-    }
-
-    .case-main-lede {
-      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-      color: #b3b0a8;
-      line-height: 1.55;
-      max-width: 700px;
-      margin: 0;
-    }
-
-    .exp-meta-matrix {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin: 2.8rem 0 3.5rem;
-    }
-
-    .exp-meta-cell {
-      padding: 1.1rem 1rem 1.1rem 0;
-    }
-
-    .exp-meta-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      color: var(--muted);
-    }
-
-    .exp-meta-val {
-      font-size: 0.84rem;
-      margin-top: 0.3rem;
-      color: var(--ink);
-    }
-
-    /* ─── PRINCIPLES GRID ─── */
-    .principles-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 2rem 0 4rem;
-    }
-
-    .principle-card {
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 1.5rem;
-      transition: border-color 0.2s ease;
-    }
-
-    .principle-card:hover {
-      border-color: rgba(229, 144, 59, 0.35);
-    }
-
-    .principle-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-
-    .principle-title {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
-    }
-
-    .principle-desc {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    /* ─── SYSTEM ARCHITECTURE CARDS ─── */
-    .arch-diagram {
-      background: linear-gradient(135deg, rgba(229, 144, 59, 0.08), rgba(94, 234, 212, 0.05), var(--surface));
-      border: 1px solid rgba(229, 144, 59, 0.25);
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0 4rem;
-    }
-
-    .arch-flow-steps {
-      display: flex;
-      align-items: stretch;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
-    }
-
-    .arch-step-box {
-      flex: 1;
-      background: var(--surface2);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 1rem 0.8rem;
-      font-size: 0.74rem;
-      color: var(--text-dim);
-    }
-
-    .arch-step-box strong {
-      display: block;
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      margin-bottom: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .arch-arrow {
-      align-self: center;
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.9rem;
-    }
-
-    /* ─── REAL PHOTO GALLERY STRIP ─── */
-    .expedition-photo-strip {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin: 2rem 0 4rem;
-    }
-
-    .strip-photo-card {
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .strip-photo-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .strip-photo-meta {
-      padding: 0.8rem 1rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .strip-photo-meta span:last-child {
-      color: var(--text-dim);
-    }
-
-    /* ─── BOTTOM CTA ─── */
-    .expedition-footer-cta {
-      border-top: 1px solid var(--rule);
-      padding-top: 3.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .footer-cta-left h3 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin: 0 0 0.3rem;
-    }
-
-    .footer-cta-left p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .footer-cta-btn {
-      background: var(--ink);
-      color: var(--bg);
-      font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
-      padding: 0.8rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: transform 0.15s, opacity 0.15s;
+      letter-spacing: 0.06em;
+      cursor: pointer;
     }
 
-    .footer-cta-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
+    .finale-btn-sec {
+      flex: 1;
+      padding: 0.75rem;
+      background: transparent;
+      border: 1px solid var(--surface-border);
+      color: var(--ink);
+      border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    /* ─── MOBILE TOUCH CONTROLS ─── */
+    .touch-controls-layer {
+      display: none;
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.2rem;
+      right: 1.2rem;
+      z-index: 45;
+      pointer-events: none;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .touch-dpad {
+      display: grid;
+      grid-template-columns: repeat(3, 44px);
+      grid-template-rows: repeat(2, 44px);
+      gap: 6px;
+      pointer-events: auto;
+    }
+
+    .t-btn {
+      background: rgba(18, 21, 29, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .t-btn:active { background: var(--accent); color: #000; }
+    .t-up { grid-column: 2; grid-row: 1; }
+    .t-left { grid-column: 1; grid-row: 2; }
+    .t-down { grid-column: 2; grid-row: 2; }
+    .t-right { grid-column: 3; grid-row: 2; }
+
+    .touch-gas-pedal {
+      pointer-events: auto;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(229, 144, 59, 0.25);
+      border: 2px solid var(--accent);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(8px);
+    }
+
+    .touch-gas-pedal:active { background: var(--accent); color: #000; }
 
     @media (max-width: 768px) {
-      .adventure-hero { height: 74vh; }
-      .hud-title-card { max-width: 240px; }
-      .hud-location { font-size: 0.95rem; }
-      .hud-stats-card { gap: 0.6rem; }
-      .hud-stat-value { font-size: 0.76rem; }
-      .hud-controls-pill { display: none; }
-      .touch-controls { display: flex; }
-      .exp-meta-matrix { grid-template-columns: 1fr 1fr; }
-      .principles-grid { grid-template-columns: 1fr; }
-      .arch-flow-steps { flex-direction: column; }
-      .arch-arrow { transform: rotate(90deg); margin: 0.2rem auto; }
-      .expedition-photo-strip { grid-template-columns: 1fr; }
-      .summary-grid { grid-template-columns: 1fr; }
-      .summary-actions { flex-direction: column; }
+      .touch-controls-layer { display: flex; }
+      .controls-hint-pill { display: none; }
+      .hud-overlay { padding: 4rem 0.8rem 0.8rem; }
+      .location-card { max-width: 220px; }
+      .progress-tracker { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP STICKY BAR -->
-  <header class="exp-nav-wrap">
-    <nav class="exp-nav">
-      <a href="index.html" class="exp-nav-brand">
-        Shashank Seth
-        <span class="exp-nav-tag">Interactive Experiment</span>
-      </a>
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <a href="projects.html">All Work ↗</a>
-        <a href="play.html">Play ↗</a>
-        <a href="#case-study" style="color:var(--accent);">Read Case Study ↓</a>
-      </div>
-    </nav>
+  <!-- 3D WEBGL STAGE -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- TOP MINIMAL NAV -->
+  <header class="top-nav-bar">
+    <a href="index.html" class="nav-btn">← Back to Portfolio</a>
+    <div class="nav-brand-pill">🏔 Zanskar & Suru · Playable Relive</div>
+    <div class="nav-controls-right">
+      <button class="nav-btn" id="btn-sound" type="button">🔈 Audio</button>
+      <button class="nav-btn" id="btn-reset" type="button">↺ Re-center</button>
+    </div>
   </header>
 
-  <!-- 3D INTERACTIVE HERO STAGE -->
-  <section class="adventure-hero" id="adventure-stage">
-    <canvas id="webgl-canvas"></canvas>
-
-    <!-- HUD LAYER -->
-    <div class="hud-layer">
-      <!-- TOP HUD -->
-      <div class="hud-top">
-        <div class="hud-card hud-title-card">
-          <div class="hud-kicker">
-            <span>●</span> Project Drang-Drung
-          </div>
-          <div class="hud-location">
-            <span id="hud-location-name">Manali Valley</span>
-            <span class="hud-elevation" id="hud-elevation-val">6,700 FT</span>
-          </div>
-          <div class="hud-subtext" id="hud-subtext">
-            Use arrow keys or WASD to drive through the Himalayan expedition.
-          </div>
+  <!-- MINIMAL EXPLORER HUD -->
+  <div class="hud-overlay">
+    
+    <!-- UPPER INFO -->
+    <div class="hud-upper">
+      
+      <!-- CURRENT LOCATION -->
+      <div class="glass-card location-card">
+        <div class="loc-kicker">
+          <span>📍</span> <span id="hud-leg">Leg 01 · Foothills</span>
         </div>
-
-        <div class="hud-card hud-stats-card">
-          <div class="hud-stat-item">
-            <span class="hud-stat-label">Progress</span>
-            <span class="hud-stat-value" id="hud-checkpoint-stat">1 / 5</span>
-          </div>
-          <div class="hud-stat-item">
-            <span class="hud-stat-label">Elevation</span>
-            <span class="hud-stat-value" id="hud-elevation-stat">6,700 ft</span>
-          </div>
-          <div class="hud-stat-item">
-            <span class="hud-stat-label">Photos</span>
-            <span class="hud-stat-value" id="hud-photos-stat">0 / 4</span>
-          </div>
-        </div>
+        <div class="loc-title" id="hud-title">Manali Valley Base</div>
+        <div class="loc-elev" id="hud-elevation">Elev: 6,700 FT</div>
       </div>
 
-      <!-- CHAPTER TOAST BANNER -->
-      <div class="chapter-toast" id="chapter-toast">
-        <div class="toast-kicker" id="toast-kicker">Chapter 01 · Manali</div>
-        <h3 class="toast-title" id="toast-title">The Journey Begins</h3>
-        <p class="toast-body" id="toast-body">Leaving the green valleys of Himachal toward the remote high-altitude trails of Zanskar.</p>
-        <span class="toast-cta">Drive ahead to continue →</span>
+      <!-- PROGRESS TRACKER -->
+      <div class="glass-card progress-tracker">
+        <div class="progress-header">
+          <span>Expedition Route</span>
+          <span id="hud-odometer">0 / 420 KM</span>
+        </div>
+        <ul class="stop-list">
+          <li class="stop-item active" id="stop-0"><span class="stop-dot"></span> Manali Valley</li>
+          <li class="stop-item" id="stop-1"><span class="stop-dot"></span> Shinkula Pass (16,700 FT)</li>
+          <li class="stop-item" id="stop-2"><span class="stop-dot"></span> Padum & Camp (Zanskar)</li>
+          <li class="stop-item" id="stop-3"><span class="stop-dot"></span> Penzila Downhill Run</li>
+          <li class="stop-item" id="stop-4"><span class="stop-dot"></span> Suru Valley Highline</li>
+          <li class="stop-item" id="stop-5"><span class="stop-dot"></span> Drang-Drung Glacier</li>
+        </ul>
       </div>
 
-      <!-- BOTTOM HUD -->
-      <div class="hud-bottom">
-        <div class="hud-card hud-telemetry">
-          <div>
-            <div style="font-family:'DM Mono',monospace;font-size:0.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;">Expedition Rig</div>
-            <div style="font-family:'DM Mono',monospace;font-size:0.86rem;color:var(--ink);font-weight:500;" id="hud-speed-val">0 KM/H</div>
-          </div>
-          <div class="hud-fuel-gauge">
-            <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:0.54rem;color:var(--muted);">
-              <span>FUEL</span>
-              <span id="hud-fuel-val">100%</span>
-            </div>
-            <div class="hud-gauge-bar">
-              <div class="hud-gauge-fill" id="hud-fuel-fill"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hud-controls-pill">
-          <span>Drive:</span>
-          <span class="kbd-chip">↑</span>
-          <span class="kbd-chip">↓</span>
-          <span class="kbd-chip">←</span>
-          <span class="kbd-chip">→</span>
-          <span>or</span>
-          <span class="kbd-chip">W A S D</span>
-          <span style="color:var(--muted);margin-left:0.4rem;">[Space] Drift</span>
-        </div>
-
-        <div class="hud-actions">
-          <button class="hud-btn" id="sound-toggle-btn" type="button" aria-label="Toggle ambient sound">
-            <span id="sound-icon">🔈</span> Sound
-          </button>
-          <button class="hud-btn" id="reset-pos-btn" type="button">
-            ↺ Reset
-          </button>
-        </div>
-      </div>
     </div>
 
-    <!-- TOUCH CONTROLS FOR MOBILE -->
-    <div class="touch-controls">
-      <div class="touch-dpad">
-        <button class="touch-btn btn-up" id="touch-up" type="button" aria-label="Drive Forward">▲</button>
-        <button class="touch-btn btn-left" id="touch-left" type="button" aria-label="Steer Left">◀</button>
-        <button class="touch-btn btn-down" id="touch-down" type="button" aria-label="Reverse">▼</button>
-        <button class="touch-btn btn-right" id="touch-right" type="button" aria-label="Steer Right">▶</button>
-      </div>
-      <button class="touch-pedal" id="touch-gas" type="button">Drive</button>
-    </div>
-
-    <!-- PHOTO DISCOVERY MODAL -->
-    <div class="photo-modal-backdrop" id="photo-modal">
-      <div class="photo-card-inner">
-        <div class="photo-img-wrap">
-          <img id="modal-photo-img" src="" alt="Expedition photo" />
+    <!-- LOWER TELEMETRY -->
+    <div class="hud-lower">
+      
+      <!-- FUEL GAUGE -->
+      <div class="glass-card fuel-card">
+        <div class="fuel-label">
+          <span>Fuel</span>
+          <span id="fuel-text">100%</span>
         </div>
-        <div class="photo-meta-bar">
-          <div class="photo-tag" id="modal-photo-tag">Location Spotlight</div>
-          <h4 class="photo-title" id="modal-photo-title">Title</h4>
-          <p class="photo-caption" id="modal-photo-caption">Caption</p>
-          <button class="photo-close-btn" id="photo-modal-close" type="button">Continue Expedition (Esc)</button>
+        <div class="fuel-track">
+          <div class="fuel-fill" id="fuel-fill"></div>
         </div>
       </div>
+
+      <!-- CONTROLS PROMPT -->
+      <div class="controls-hint-pill" id="controls-hint">
+        <span>Drive:</span>
+        <span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span>
+        <span>or</span>
+        <span class="kbd">↑</span><span class="kbd">←</span><span class="kbd">↓</span><span class="kbd">→</span>
+        <span>·</span>
+        <span class="kbd">Shift</span> <span>Boost</span>
+        <span>·</span>
+        <span class="kbd">E</span> <span>Action</span>
+      </div>
+
     </div>
 
-    <!-- EXPEDITION COMPLETE MODAL -->
-    <div class="summary-modal" id="summary-modal">
-      <div class="summary-card">
-        <div class="summary-kicker">Expedition Complete</div>
-        <h3 class="summary-title">Drang-Drung Glacier Reached</h3>
-        <div class="summary-route-chain">
-          MANALI → SHINKULA (16,700 FT) → PADUM → PENZILA → DRANG-DRUNG
-        </div>
-        <div class="summary-grid">
-          <div class="summary-cell-box">
-            <small>Max Elevation</small>
-            <strong>16,700 FT</strong>
-          </div>
-          <div class="summary-cell-box">
-            <small>Milestones</small>
-            <strong>5 / 5 Unlocked</strong>
-          </div>
-          <div class="summary-cell-box">
-            <small>Photos Logged</small>
-            <strong id="summary-photos-count">4 / 4 Discovered</strong>
-          </div>
-        </div>
-        <p style="font-size:0.82rem;color:var(--text-dim);line-height:1.55;margin-bottom:1.6rem;">
-          You navigated through the miniature simulation of the actual Zanskar expedition. Scroll down to explore the product design thinking, geospatial UX patterns, and relive storytelling framework.
-        </p>
-        <div class="summary-actions">
-          <button class="summary-btn-primary" id="summary-read-btn" type="button">Read Case Study ↓</button>
-          <button class="summary-btn-secondary" id="summary-replay-btn" type="button">Replay Expedition ↺</button>
-        </div>
+  </div>
+
+  <!-- ACTION TOAST PROMPT -->
+  <div class="action-prompt-banner" id="action-toast">
+    <div class="action-prompt-title" id="toast-title">Shinkula Pass · 16,700 FT</div>
+    <div class="action-prompt-sub" id="toast-sub">Highest pass conquered</div>
+  </div>
+
+  <!-- PHOTO DISCOVERY MODAL -->
+  <div class="photo-card-modal" id="photo-modal">
+    <div class="photo-card-body">
+      <div class="photo-box">
+        <img id="photo-modal-img" src="" alt="Expedition photograph" />
+      </div>
+      <div class="photo-details">
+        <div class="photo-kicker" id="photo-modal-kicker">Expedition Photo Spotlight</div>
+        <h3 class="photo-title" id="photo-modal-title">Photo Title</h3>
+        <p class="photo-caption" id="photo-modal-caption">Photo caption text</p>
+        <button class="photo-btn" id="photo-modal-close" type="button">Continue Expedition (Esc)</button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- EDITORIAL CASE STUDY CONTENT -->
-  <article class="case-article-wrap" id="case-study">
-
-    <!-- HEADER BLOCK -->
-    <header class="case-header-block">
-      <div class="case-pre-eyebrow">Interactive Relive Experiment · 0→1 Product Design</div>
-      <h1 class="case-main-heading">Project Drang-Drung</h1>
-      <p class="case-main-lede">
-        What if a travel story wasn’t something you scrolled through, but something you could drive through? An experiment in turning geospatial telemetry and real expedition memories into an explore-first interactive artifact.
+  <!-- JOURNEY COMPLETE FINALE MODAL -->
+  <div class="finale-modal" id="finale-modal">
+    <div class="finale-card">
+      <div class="finale-kicker">Expedition Complete</div>
+      <h2 class="finale-title">Drang-Drung Glacier</h2>
+      <div class="finale-route">
+        MANALI → SHINKULA (16,700 FT) → PADUM → PENZILA → SURU → DRANG-DRUNG
+      </div>
+      <div class="finale-grid">
+        <div class="finale-cell">
+          <small>Max Altitude</small>
+          <strong>16,700 FT</strong>
+        </div>
+        <div class="finale-cell">
+          <small>Checkpoints</small>
+          <strong>6 / 6 Unlocked</strong>
+        </div>
+        <div class="finale-cell">
+          <small>Photos Logged</small>
+          <strong id="finale-photo-count">4 / 4 Real Photos</strong>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;">
+        You've completed the interactive miniature road trip across the high-altitude Zanskar and Suru valleys.
       </p>
-    </header>
-
-    <!-- META MATRIX -->
-    <div class="exp-meta-matrix">
-      <div class="exp-meta-cell">
-        <div class="exp-meta-label">Domain</div>
-        <div class="exp-meta-val">Digital Relive & Geospatial UX</div>
-      </div>
-      <div class="exp-meta-cell">
-        <div class="exp-meta-label">Medium</div>
-        <div class="exp-meta-val">Isometric WebGL & Editorial</div>
-      </div>
-      <div class="exp-meta-cell">
-        <div class="exp-meta-label">Real Altitude</div>
-        <div class="exp-meta-val">16,700 ft (Shinkula Pass)</div>
-      </div>
-      <div class="exp-meta-cell">
-        <div class="exp-meta-label">Focus</div>
-        <div class="exp-meta-val">Storytelling & Gamification</div>
+      <div class="finale-btn-group">
+        <button class="finale-btn-pri" id="btn-replay" type="button">↺ Replay Road Trip</button>
+        <a href="index.html" class="finale-btn-sec">Portfolio Home →</a>
       </div>
     </div>
+  </div>
 
-    <!-- SECTION 01: THE IDEA -->
-    <section class="story">
-      <div class="story-label">01 / The Concept</div>
-      <div>
-        <h2>The journey itself becomes the interface</h2>
-        <p>
-          During a recent overland expedition across the remote high-altitude Zanskar valley (Manali → Shinkula Pass → Padum → Penzila Pass → Drang-Drung Glacier), the sense of scale was defined not just by photos, but by the continuous transition of terrain: pine valley floors shifting into 16,700-foot glacial passes, crossing remote riverbeds, and longboarding high mountain hairpins.
-        </p>
-        <p>
-          Traditional travel logs collapse this multidimensional experience into flat timelines: photos, captions, and static GPS polyline maps. <strong>Project Drang-Drung</strong> explores what happens when you treat the physical expedition as an interactive, miniature world where users discover memories spatially.
-        </p>
-      </div>
-    </section>
+  <!-- VIRTUAL TOUCH CONTROLS FOR MOBILE -->
+  <div class="touch-controls-layer">
+    <div class="touch-dpad">
+      <button class="t-btn t-up" id="t-up" type="button">▲</button>
+      <button class="t-btn t-left" id="t-left" type="button">◀</button>
+      <button class="t-btn t-down" id="t-down" type="button">▼</button>
+      <button class="t-btn t-right" id="t-right" type="button">▶</button>
+    </div>
+    <button class="touch-gas-pedal" id="t-gas" type="button">Gas</button>
+  </div>
 
-    <!-- SECTION 02: THE PROBLEM -->
-    <section class="story">
-      <div class="story-label">02 / The Problem</div>
-      <div>
-        <h2>Why travel memories lose their pulse in digital feeds</h2>
-        <p>
-          Most consumer travel products face a structural design paradox: the physical journey is emotional, spatial, tactile, and unpredictable—yet the digital relive output is almost always a standardized vertical scrolling feed.
-        </p>
-
-        <div class="arch-diagram">
-          <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;">Paradigm Shift</div>
-          <div style="font-size:1.15rem;font-weight:400;color:var(--ink);margin:0.3rem 0 0.8rem;">From Passive Feed to Spatial Relive</div>
-          <div class="arch-flow-steps">
-            <div class="arch-step-box">
-              <strong>Conventional Relive</strong>
-              Static timestamp → thumbnail grid → flat polyline map. High friction, low spatial immersion.
-            </div>
-            <span class="arch-arrow">➔</span>
-            <div class="arch-step-box" style="border-color:rgba(229,144,59,0.4);background:rgba(229,144,59,0.06);">
-              <strong>Spatial Experience (Drang-Drung)</strong>
-              Interactive driving physics + elevation telemetry + contextual photo discovery + climatic visual shifts.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 03: DESIGN PRINCIPLES -->
-    <section class="story">
-      <div class="story-label">03 / Principles</div>
-      <div>
-        <h2>5 UX principles for interactive relive products</h2>
-        <p>
-          To make the experience feel both playful and emotionally grounded in authentic expedition data, I designed around five core interaction tenets:
-        </p>
-
-        <div class="principles-grid">
-          <div class="principle-card">
-            <div class="principle-num">01</div>
-            <div class="principle-title">Explore instead of scroll</div>
-            <p class="principle-desc">Giving users direct tactile control (steering a vehicle through the route) shifts consumption from passive reading to active exploration.</p>
-          </div>
-          <div class="principle-card">
-            <div class="principle-num">02</div>
-            <div class="principle-title">Discover instead of list</div>
-            <p class="principle-desc">Embedding real photographs and field notes as spatial landmarks rewards curiosity and mimics the serendipity of real travel.</p>
-          </div>
-          <div class="principle-card">
-            <div class="principle-num">03</div>
-            <div class="principle-title">Telemetry creates context</div>
-            <p class="principle-desc">Live altitude tickers (6,700 ft → 16,700 ft) and fuel dynamics ground the stylized visuals in the physical harshness of high-altitude passes.</p>
-          </div>
-          <div class="principle-card">
-            <div class="principle-num">04</div>
-            <div class="principle-title">Climatic visual transitions</div>
-            <p class="principle-desc">Lighting and environmental fog adapt dynamically: green valley pine trees give way to rocky crags, snowy pass markers, and turquoise glacier tongues.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 04: REAL FIELD MEDIA -->
-    <section class="story">
-      <div class="story-label">04 / Authentic Media</div>
-      <div>
-        <h2>Ground truth: Authentic trip documentation</h2>
-        <p>
-          All photo discovery points in the 3D world map directly to real photographs captured during expeditions in Ladakh and Zanskar—from highline rigging at 11,000 ft in Suru Valley to downhill longboarding on mountain hairpins.
-        </p>
-
-        <div class="expedition-photo-strip">
-          <figure class="strip-photo-card">
-            <img src="./shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg" alt="Highline at Suru Valley Kargil" loading="lazy" />
-            <figcaption class="strip-photo-meta">
-              <span>Suru Valley · Kargil, Ladakh</span>
-              <span>11,000 ft</span>
-            </figcaption>
-          </figure>
-
-          <figure class="strip-photo-card">
-            <img src="./shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg" alt="Downhill longboarding mountain hairpin" loading="lazy" />
-            <figcaption class="strip-photo-meta">
-              <span>Penzila Descent · Downhill Run</span>
-              <span>14,400 ft</span>
-            </figcaption>
-          </figure>
-
-          <figure class="strip-photo-card">
-            <img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Bypass Fotu La Pass trail Ladakh" loading="lazy" />
-            <figcaption class="strip-photo-meta">
-              <span>Trans-Ladakh Circuit</span>
-              <span>13,479 ft</span>
-            </figcaption>
-          </figure>
-
-          <figure class="strip-photo-card">
-            <img src="./shashank_files/gallery_opt/one-with-mighty-hanuman-tibba-opt.jpg" alt="Hanuman Tibba peak view" loading="lazy" />
-            <figcaption class="strip-photo-meta">
-              <span>Manali Valley Ridge</span>
-              <span> Alpine Ascent</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 05: PRODUCT TAKEAWAYS -->
-    <section class="story">
-      <div class="story-label">05 / Takeaways</div>
-      <div>
-        <h2>What this unlocks for consumer relive experiences</h2>
-        <p>
-          This experiment illustrates how consumer outdoor and travel applications can bridge raw telemetry (GPS tracks, elevation profiles, timestamps) with emotional, game-inspired visual storytelling.
-        </p>
-        <p>
-          By designing an experience that takes less than a minute to explore yet leaves a lasting visual memory, we create shareable digital artifacts that users genuinely want to revisit and share with others.
-        </p>
-
-        <div class="highlight-box" style="margin-top:2.5rem;">
-          <div class="highlight-kicker">Design Philosophy</div>
-          <h2>Making digital relive feel as visceral as the physical trail</h2>
-          <p>
-            When product design meets real-world adventure, interface conventions can expand. Gamified micro-interactions, responsive physics, and spatial narrative design turn passive travel consumers into engaged storytellers.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER CTA -->
-    <footer class="expedition-footer-cta">
-      <div class="footer-cta-left">
-        <h3>Ready to explore more work?</h3>
-        <p>Browse through selected product design case studies, design systems, and 0→1 builds.</p>
-      </div>
-      <a href="projects.html" class="footer-cta-btn">View All Projects ↗</a>
-    </footer>
-
-  </article>
-
-  <!-- THREE.JS ENGINE & ADVENTURE SCRIPT -->
+  <!-- THREE.JS ENGINE SCRIPT -->
   <script src="./shashank_files/three.min.js"></script>
+
   <script>
+    /* ==========================================================
+       ZANSKAR & SURU 3D INTERACTIVE EXPEDITION ENGINE
+       A playable miniature open-world road trip across Ladakh.
+       ========================================================== */
+
     (function() {
-      // ─── DATA & MILESTONES ───
-      const MILESTONES = [
-        { id: 'manali', name: 'Manali Valley Basecamp', elevation: '6,700 FT', altNum: 6700, x: -140, z: 120, chapter: 'Chapter 01 · Manali', desc: 'Starting point: Leaving the pine forests toward the high Himalayas.' },
-        { id: 'shinkula', name: 'Shinkula Pass', elevation: '16,700 FT', altNum: 16700, x: -60, z: 30, chapter: 'Chapter 02 · Shinkula', desc: 'One of the highest motorable passes in the world. Cold winds, prayer flags and steep snowy cliffs.' },
-        { id: 'padum', name: 'Padum · Zanskar Valley', elevation: '11,990 FT', altNum: 11990, x: 20, z: -40, chapter: 'Chapter 03 · Padum', desc: 'Heart of Zanskar: Broad riverbeds, wooden bridges, and ancient monastery trails.' },
-        { id: 'penzila', name: 'Penzila Pass · Downhill', elevation: '14,435 FT', altNum: 14435, x: 90, z: -100, chapter: 'Chapter 04 · Penzila', desc: 'Alpine gateway: The road sweeps downward into high-speed longboarding hairpins.' },
-        { id: 'drangdrung', name: 'Drang-Drung Glacier', elevation: '15,680 FT', altNum: 15680, x: 160, z: -160, chapter: 'Chapter 05 · The Destination', desc: 'Expedition complete: The massive winding tongue of the Drang-Drung glacier opens before you.' }
-      ];
+      'use strict';
 
-      const PHOTO_SPOTS = [
-        {
-          id: 'photo_suru',
-          x: -95, z: 75,
-          tag: 'Suru Valley · Highline',
-          title: 'Highline Rigging at 11,000 ft',
-          caption: 'Rigging webbing across high mountain crags in Suru Valley, Kargil. Balance and focus in thin air.',
-          img: './shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg',
-          discovered: false
-        },
-        {
-          id: 'photo_shinkula',
-          x: -25, z: -5,
-          tag: 'Shinkula Pass · 16,700 FT',
-          title: 'Roof of the High Himalayas',
-          caption: 'Severe weather and icy winds crossing the newly opened Shinkula mountain corridor into Zanskar.',
-          img: './shashank_files/gallery_opt/one-with-mighty-hanuman-tibba-opt.jpg',
-          discovered: false
-        },
-        {
-          id: 'photo_penzila',
-          x: 60, z: -70,
-          tag: 'Penzila Descent · Longboard',
-          title: 'Downhill Mountain Hairpin Run',
-          caption: 'Carving high-speed asphalt mountain corners on longboard toward the glacier moraine.',
-          img: './shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg',
-          discovered: false
-        },
-        {
-          id: 'photo_ladakh',
-          x: 130, z: -130,
-          tag: 'Trans-Ladakh Circuit',
-          title: 'Drang-Drung Glacier Moraine',
-          caption: 'Vast moraine ridges and turquoise meltwater pools beneath the massive glacier face.',
-          img: './shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg',
-          discovered: false
-        }
-      ];
-
-      // ─── THREE.JS SCENE SETUP ───
+      // 1. SETUP CANVAS & THREE.JS SCENE
       const canvas = document.getElementById('webgl-canvas');
-      const stage = document.getElementById('adventure-stage');
-
-      let width = stage.clientWidth;
-      let height = stage.clientHeight;
-
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0a0c10);
-      scene.fog = new THREE.FogExp2(0x0a0c10, 0.009);
-
-      // Isometric Orthographic Camera
-      const aspect = width / height;
-      const d = 42;
-      const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 1000);
-      camera.position.set(70, 75, 70);
-      camera.lookAt(0, 0, 0);
-
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
-      renderer.setSize(width, height);
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-      // ─── LIGHTS ───
-      const ambientLight = new THREE.AmbientLight(0x8899b5, 0.7);
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0c0f16);
+      scene.fog = new THREE.FogExp2(0x0c0f16, 0.0055);
+
+      // Camera: Isometric perspective follow camera
+      const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1200);
+      camera.position.set(0, 35, 45);
+
+      // 2. LIGHTING
+      const ambientLight = new THREE.AmbientLight(0xdde3ea, 0.65);
       scene.add(ambientLight);
 
-      const sunLight = new THREE.DirectionalLight(0xfff3db, 1.3);
-      sunLight.position.set(60, 100, 40);
+      const sunLight = new THREE.DirectionalLight(0xfff3db, 1.25);
+      sunLight.position.set(60, 110, 40);
       sunLight.castShadow = true;
-      sunLight.shadow.mapSize.width = 1024;
-      sunLight.shadow.mapSize.height = 1024;
+      sunLight.shadow.mapSize.width = 2048;
+      sunLight.shadow.mapSize.height = 2048;
       sunLight.shadow.camera.near = 10;
       sunLight.shadow.camera.far = 300;
-      const shadowSize = 90;
-      sunLight.shadow.camera.left = -shadowSize;
-      sunLight.shadow.camera.right = shadowSize;
-      sunLight.shadow.camera.top = shadowSize;
-      sunLight.shadow.camera.bottom = -shadowSize;
+      sunLight.shadow.camera.left = -90;
+      sunLight.shadow.camera.right = 90;
+      sunLight.shadow.camera.top = 90;
+      sunLight.shadow.camera.bottom = -90;
       scene.add(sunLight);
 
-      // Secondary cool fill light for deep mountain crevices
-      const fillLight = new THREE.DirectionalLight(0x446688, 0.5);
-      fillLight.position.set(-60, 40, -40);
-      scene.add(fillLight);
-
-      // ─── PROCEDURAL ENVIRONMENT & WORLD ───
-      const worldGroup = new THREE.Group();
-      scene.add(worldGroup);
-
-      // 1. Terrain Ground Mesh
-      const terrainGeo = new THREE.PlaneGeometry(420, 420, 64, 64);
-      terrainGeo.rotateX(-Math.PI / 2);
-
-      const pos = terrainGeo.attributes.position;
-      for (let i = 0; i < pos.count; i++) {
-        const x = pos.getX(i);
-        const z = pos.getZ(i);
-
-        // Procedural height elevation
-        let y = Math.sin(x * 0.02) * Math.cos(z * 0.02) * 5;
-        y += Math.sin(x * 0.05 + z * 0.04) * 2;
-
-        // Mountain boundaries
-        const distFromCenter = Math.sqrt(x * x + z * z);
-        if (Math.abs(x - z) > 50 || distFromCenter > 130) {
-          y += Math.pow((distFromCenter - 60) * 0.12, 1.6);
-        }
-
-        // River depression cutting through Padum
-        if (Math.abs(x + z + 10) < 16) {
-          y -= 3.5;
-        }
-
-        // Drang-Drung Glacier rise
-        if (x > 110 && z < -110) {
-          y += (x - 110) * 0.15;
-        }
-
-        pos.setY(i, y);
-      }
-      terrainGeo.computeVertexNormals();
-
-      const terrainMat = new THREE.MeshStandardMaterial({
-        color: 0x22262c,
-        roughness: 0.9,
-        metalness: 0.1,
-        flatShading: true
-      });
-      const terrainMesh = new THREE.Mesh(terrainGeo, terrainMat);
-      terrainMesh.receiveShadow = true;
-      worldGroup.add(terrainMesh);
-
-      // 2. Winding Dirt / Asphalt Road Curve
-      const roadPoints = [
-        new THREE.Vector3(-150, 0.2, 135),
-        new THREE.Vector3(-140, 0.2, 120), // Manali
-        new THREE.Vector3(-105, 0.4, 90),
-        new THREE.Vector3(-60, 1.2, 30),   // Shinkula Pass
-        new THREE.Vector3(-20, 0.6, 0),
-        new THREE.Vector3(20, -1.5, -40),  // Padum Valley & River Bridge
-        new THREE.Vector3(55, 0.5, -70),
-        new THREE.Vector3(90, 2.0, -100),  // Penzila Pass
-        new THREE.Vector3(125, 1.2, -130), // Longboard Hairpin Descent
-        new THREE.Vector3(160, 2.8, -160)  // Drang-Drung Glacier
+      // 3. EXPEDITION ROAD PATH (Catmull-Rom Spline through 6 Key Landmarks)
+      // Manali (0,0) -> Shinkula (High elevation) -> Padum -> Penzila (Downhill) -> Suru -> Drang-Drung (Glacier)
+      const waypoints = [
+        // 0: MANALI VALLEY (Start)
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(12, 1, -25),
+        new THREE.Vector3(-8, 3, -55),
+        new THREE.Vector3(18, 7, -90),
+        new THREE.Vector3(-14, 12, -130),
+        
+        // 1: SHINKULA PASS (16,700 FT) - High altitude switchbacks & snow
+        new THREE.Vector3(10, 20, -170),
+        new THREE.Vector3(-15, 24, -205),
+        new THREE.Vector3(0, 26, -240), // Peak summit of Shinkula
+        new THREE.Vector3(22, 22, -280),
+        new THREE.Vector3(-10, 16, -320),
+        
+        // 2: PADUM VALLEY & CAMP (Zanskar)
+        new THREE.Vector3(15, 10, -360),
+        new THREE.Vector3(0, 8, -400),   // Padum Camp & Fuel Stop
+        new THREE.Vector3(-25, 9, -440),
+        new THREE.Vector3(12, 13, -480),
+        
+        // 3: PENZILA PASS & LONGBOARD RUN
+        new THREE.Vector3(-18, 18, -520),
+        new THREE.Vector3(15, 21, -560), // Penzila Summit
+        new THREE.Vector3(-20, 16, -600),// Steep downhill curves
+        new THREE.Vector3(18, 11, -640),
+        new THREE.Vector3(-10, 7, -680),
+        
+        // 4: SURU VALLEY & HIGHLINE GORGE
+        new THREE.Vector3(14, 5, -720),
+        new THREE.Vector3(-12, 4, -760), // Suru Highline Gorge
+        new THREE.Vector3(8, 7, -800),
+        
+        // 5: DRANG-DRUNG GLACIER (Grand Finale)
+        new THREE.Vector3(-15, 12, -845),
+        new THREE.Vector3(0, 16, -890),  // Glacier Viewpoint Finale
+        new THREE.Vector3(5, 16, -910)
       ];
 
-      const roadCurve = new THREE.CatmullRomCurve3(roadPoints);
-      const roadGeo = new THREE.TubeGeometry(roadCurve, 120, 3.2, 4, false);
+      const roadCurve = new THREE.CatmullRomCurve3(waypoints, false, 'catmullrom', 0.25);
+      const totalRoadLength = roadCurve.getLength();
+
+      // 4. GENERATE ROAD RIBBON MESH WITH CLEAR MARKINGS
+      const roadSegments = 300;
+      const roadWidth = 4.2;
+      const roadPoints = roadCurve.getPoints(roadSegments);
+
+      const roadGeom = new THREE.BufferGeometry();
+      const roadPositions = [];
+      const roadUVs = [];
+      const roadIndices = [];
+
+      for (let i = 0; i <= roadSegments; i++) {
+        const t = i / roadSegments;
+        const pt = roadCurve.getPointAt(t);
+        const tangent = roadCurve.getTangentAt(t).normalize();
+        const up = new THREE.Vector3(0, 1, 0);
+        const side = new THREE.Vector3().crossVectors(tangent, up).normalize();
+
+        const pLeft = new THREE.Vector3().copy(pt).addScaledVector(side, -roadWidth * 0.5);
+        const pRight = new THREE.Vector3().copy(pt).addScaledVector(side, roadWidth * 0.5);
+
+        roadPositions.push(pLeft.x, pLeft.y + 0.08, pLeft.z);
+        roadPositions.push(pRight.x, pRight.y + 0.08, pRight.z);
+
+        roadUVs.push(0, t * 60);
+        roadUVs.push(1, t * 60);
+
+        if (i < roadSegments) {
+          const row1 = i * 2;
+          const row2 = (i + 1) * 2;
+          roadIndices.push(row1, row1 + 1, row2);
+          roadIndices.push(row1 + 1, row2 + 1, row2);
+        }
+      }
+
+      roadGeom.setAttribute('position', new THREE.Float32BufferAttribute(roadPositions, 3));
+      roadGeom.setAttribute('uv', new THREE.Float32BufferAttribute(roadUVs, 2));
+      roadGeom.setIndex(roadIndices);
+      roadGeom.computeVertexNormals();
+
+      // Procedural Asphalt Texture with Dashed Centerline
+      const roadCanvas = document.createElement('canvas');
+      roadCanvas.width = 128;
+      roadCanvas.height = 512;
+      const rCtx = roadCanvas.getContext('2d');
+      // Dark asphalt
+      rCtx.fillStyle = '#1c1e24';
+      rCtx.fillRect(0, 0, 128, 512);
+      // Yellow shoulders
+      rCtx.fillStyle = '#e5903b';
+      rCtx.fillRect(4, 0, 4, 512);
+      rCtx.fillRect(120, 0, 4, 512);
+      // Dashed white center
+      rCtx.fillStyle = '#f8fafc';
+      for (let y = 0; y < 512; y += 48) {
+        rCtx.fillRect(62, y + 8, 4, 28);
+      }
+      const roadTexture = new THREE.CanvasTexture(roadCanvas);
+      roadTexture.wrapS = THREE.RepeatWrapping;
+      roadTexture.wrapT = THREE.RepeatWrapping;
+
       const roadMat = new THREE.MeshStandardMaterial({
-        color: 0x3b3d45,
+        map: roadTexture,
         roughness: 0.85,
+        metalness: 0.1
+      });
+      const roadMesh = new THREE.Mesh(roadGeom, roadMat);
+      roadMesh.receiveShadow = true;
+      scene.add(roadMesh);
+
+      // 5. SURROUNDING TERRAIN & HIMALAYAN MOUNTAINS
+      const terrainGeom = new THREE.PlaneGeometry(360, 1100, 70, 160);
+      terrainGeom.rotateX(-Math.PI / 2);
+      terrainGeom.translate(0, -2, -450);
+
+      const posAttr = terrainGeom.attributes.position;
+      for (let i = 0; i < posAttr.count; i++) {
+        const vx = posAttr.getX(i);
+        const vz = posAttr.getZ(i);
+
+        // Calculate distance from road
+        const approxT = THREE.MathUtils.clamp(-vz / 920, 0, 1);
+        const roadPt = roadCurve.getPointAt(approxT);
+        const distToRoad = Math.hypot(vx - roadPt.x, vz - roadPt.z);
+
+        // Natural mountainous noise elevation
+        let elev = Math.sin(vx * 0.035) * Math.cos(vz * 0.02) * 18 + Math.sin(vx * 0.08) * 6;
+        
+        // Massive outer mountain ranges
+        if (Math.abs(vx) > 35) {
+          const mountainFactor = (Math.abs(vx) - 35) * 0.9;
+          elev += mountainFactor * 1.8 + Math.cos(vz * 0.04) * 22;
+        }
+
+        // Near road blending
+        if (distToRoad < 9) {
+          elev = THREE.MathUtils.lerp(roadPt.y - 1.2, elev, Math.max(0, (distToRoad - 3.5) / 5.5));
+        }
+
+        // Shinkula and Drang-Drung dramatic summits
+        if (vz < -160 && vz > -260) { elev += 15; } // Shinkula
+        if (vz < -800) { elev += 25; }               // Drang-Drung amphitheater
+
+        posAttr.setY(i, elev);
+      }
+      terrainGeom.computeVertexNormals();
+
+      const terrainMat = new THREE.MeshStandardMaterial({
+        color: 0x181c24,
+        roughness: 0.95,
+        metalness: 0.05,
         flatShading: true
       });
-      const roadMesh = new THREE.Mesh(roadGeo, roadMat);
-      roadMesh.position.y = 0.3;
-      roadMesh.receiveShadow = true;
-      worldGroup.add(roadMesh);
+      const terrainMesh = new THREE.Mesh(terrainGeom, terrainMat);
+      terrainMesh.receiveShadow = true;
+      scene.add(terrainMesh);
 
-      // 3. Glacier River & Water Body
-      const riverGeo = new THREE.PlaneGeometry(36, 260, 16, 16);
-      riverGeo.rotateX(-Math.PI / 2);
-      riverGeo.rotateY(Math.PI / 4);
-      const riverMat = new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        roughness: 0.2,
-        metalness: 0.4,
-        transparent: true,
-        opacity: 0.78
+      // 6. EXPEDITION 4x4 VEHICLE MESH
+      const vehicleGroup = new THREE.Group();
+
+      // Car body
+      const bodyGeom = new THREE.BoxGeometry(2.1, 1.0, 3.8);
+      const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.35, metalness: 0.3 });
+      const bodyMesh = new THREE.Mesh(bodyGeom, bodyMat);
+      bodyMesh.position.y = 0.95;
+      bodyMesh.castShadow = true;
+      vehicleGroup.add(bodyMesh);
+
+      // Cabin / Roof
+      const cabinGeom = new THREE.BoxGeometry(1.8, 0.8, 2.2);
+      const cabinMat = new THREE.MeshStandardMaterial({ color: 0x161820, roughness: 0.2, metalness: 0.8 });
+      const cabinMesh = new THREE.Mesh(cabinGeom, cabinMat);
+      cabinMesh.position.set(0, 1.7, -0.2);
+      cabinMesh.castShadow = true;
+      vehicleGroup.add(cabinMesh);
+
+      // Roof Rack with expedition luggage & spare tire
+      const rackGeom = new THREE.BoxGeometry(1.6, 0.1, 2.0);
+      const rackMat = new THREE.MeshStandardMaterial({ color: 0x2b2d35, metalness: 0.9 });
+      const rackMesh = new THREE.Mesh(rackGeom, rackMat);
+      rackMesh.position.set(0, 2.15, -0.2);
+      vehicleGroup.add(rackMesh);
+
+      const luggageGeom = new THREE.BoxGeometry(1.2, 0.45, 1.4);
+      const luggageMat = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.8 });
+      const luggageMesh = new THREE.Mesh(luggageGeom, luggageMat);
+      luggageMesh.position.set(0, 2.45, -0.3);
+      vehicleGroup.add(luggageMesh);
+
+      // Wheels
+      const wheelGeom = new THREE.CylinderGeometry(0.48, 0.48, 0.4, 16);
+      wheelGeom.rotateZ(Math.PI / 2);
+      const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111317, roughness: 0.9 });
+
+      const wheels = [];
+      const wheelOffsets = [
+        [-1.05, 0.48, 1.2],
+        [1.05, 0.48, 1.2],
+        [-1.05, 0.48, -1.2],
+        [1.05, 0.48, -1.2]
+      ];
+
+      wheelOffsets.forEach((pos) => {
+        const w = new THREE.Mesh(wheelGeom, wheelMat);
+        w.position.set(pos[0], pos[1], pos[2]);
+        w.castShadow = true;
+        vehicleGroup.add(w);
+        wheels.push(w);
       });
-      const riverMesh = new THREE.Mesh(riverGeo, riverMat);
-      riverMesh.position.set(0, -3.2, -10);
-      worldGroup.add(riverMesh);
 
-      // River Bridge
-      const bridgeGeo = new THREE.BoxGeometry(10, 0.8, 18);
-      const bridgeMat = new THREE.MeshStandardMaterial({ color: 0x6e5d48, roughness: 0.9 });
-      const bridge = new THREE.Mesh(bridgeGeo, bridgeMat);
-      bridge.position.set(18, -1.2, -38);
-      bridge.rotation.y = -Math.PI / 4;
-      bridge.castShadow = true;
-      bridge.receiveShadow = true;
-      worldGroup.add(bridge);
+      // Headlights & Light Cones
+      const headLightLeft = new THREE.SpotLight(0xfff5dd, 2.2, 35, Math.PI / 6, 0.4);
+      headLightLeft.position.set(-0.7, 0.9, 1.9);
+      headLightLeft.target.position.set(-0.7, 0.2, 12);
+      vehicleGroup.add(headLightLeft);
+      vehicleGroup.add(headLightLeft.target);
 
-      // 4. Low-Poly Pine Trees in Manali Zone
-      const treeGeoCone = new THREE.ConeGeometry(2.4, 6, 5);
-      const treeMatGreen = new THREE.MeshStandardMaterial({ color: 0x224c32, roughness: 0.9, flatShading: true });
-      const treeTrunkGeo = new THREE.CylinderGeometry(0.5, 0.7, 2, 5);
-      const treeTrunkMat = new THREE.MeshStandardMaterial({ color: 0x422f1d });
+      const headLightRight = new THREE.SpotLight(0xfff5dd, 2.2, 35, Math.PI / 6, 0.4);
+      headLightRight.position.set(0.7, 0.9, 1.9);
+      headLightRight.target.position.set(0.7, 0.2, 12);
+      vehicleGroup.add(headLightRight);
+      vehicleGroup.add(headLightRight.target);
 
-      for (let i = 0; i < 38; i++) {
-        const treeGroup = new THREE.Group();
-        const foliage = new THREE.Mesh(treeGeoCone, treeMatGreen);
-        foliage.position.y = 4;
-        foliage.castShadow = true;
-        const trunk = new THREE.Mesh(treeTrunkGeo, treeTrunkMat);
-        trunk.position.y = 1;
-        trunk.castShadow = true;
-        treeGroup.add(foliage, trunk);
+      scene.add(vehicleGroup);
 
-        const tx = -160 + Math.random() * 60;
-        const tz = 90 + Math.random() * 60;
-        treeGroup.position.set(tx, 0.5, tz);
-        const scale = 0.65 + Math.random() * 0.7;
-        treeGroup.scale.set(scale, scale, scale);
-        worldGroup.add(treeGroup);
+      // 7. LONGBOARDER RACER MODEL (For Penzila Downhill Mode)
+      const skaterGroup = new THREE.Group();
+      skaterGroup.visible = false;
+
+      // Deck
+      const deckGeom = new THREE.BoxGeometry(0.75, 0.08, 2.2);
+      const deckMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.4 });
+      const deckMesh = new THREE.Mesh(deckGeom, deckMat);
+      deckMesh.position.y = 0.25;
+      skaterGroup.add(deckMesh);
+
+      // Skater Body in Speed Tuck
+      const skaterBodyGeom = new THREE.BoxGeometry(0.65, 0.9, 0.9);
+      const skaterBodyMat = new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.7 });
+      const skaterBodyMesh = new THREE.Mesh(skaterBodyGeom, skaterBodyMat);
+      skaterBodyMesh.position.set(0, 0.8, -0.1);
+      skaterBodyMesh.rotation.x = 0.35;
+      skaterGroup.add(skaterBodyMesh);
+
+      // Aerodynamic Helmet
+      const helmetGeom = new THREE.SphereGeometry(0.3, 12, 12);
+      const helmetMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.3 });
+      const helmetMesh = new THREE.Mesh(helmetGeom, helmetMat);
+      helmetMesh.position.set(0, 1.25, 0.35);
+      skaterGroup.add(helmetMesh);
+
+      scene.add(skaterGroup);
+
+      // 8. SIGNBOARDS & REAL EXPEDITION MILESTONES (BRO Himalayan Markers)
+      function createSignboard(text, sub, x, y, z, rotY = 0) {
+        const signGroup = new THREE.Group();
+        signGroup.position.set(x, y, z);
+        signGroup.rotation.y = rotY;
+
+        // Post
+        const postGeom = new THREE.CylinderGeometry(0.08, 0.08, 2.8, 8);
+        const postMat = new THREE.MeshStandardMaterial({ color: 0x22242a });
+        const post = new THREE.Mesh(postGeom, postMat);
+        post.position.y = 1.4;
+        post.castShadow = true;
+        signGroup.add(post);
+
+        // Yellow Board
+        const boardGeom = new THREE.BoxGeometry(2.4, 1.2, 0.1);
+        const boardMat = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.5 });
+        const board = new THREE.Mesh(boardGeom, boardMat);
+        board.position.y = 2.3;
+        board.castShadow = true;
+        signGroup.add(board);
+
+        // Text Canvas Texture
+        const sCanvas = document.createElement('canvas');
+        sCanvas.width = 256;
+        sCanvas.height = 128;
+        const sCtx = sCanvas.getContext('2d');
+        sCtx.fillStyle = '#facc15';
+        sCtx.fillRect(0, 0, 256, 128);
+        sCtx.fillStyle = '#000000';
+        sCtx.font = 'bold 24px monospace';
+        sCtx.textAlign = 'center';
+        sCtx.fillText(text, 128, 55);
+        if (sub) {
+          sCtx.font = '16px monospace';
+          sCtx.fillText(sub, 128, 90);
+        }
+        const sTex = new THREE.CanvasTexture(sCanvas);
+        const labelGeom = new THREE.PlaneGeometry(2.2, 1.05);
+        const labelMat = new THREE.MeshBasicMaterial({ map: sTex });
+        const labelMesh = new THREE.Mesh(labelGeom, labelMat);
+        labelMesh.position.set(0, 2.3, 0.06);
+        signGroup.add(labelMesh);
+
+        scene.add(signGroup);
+        return signGroup;
       }
 
-      // 5. Shinkula & High Mountain Snow Peaks
-      const rockGeo = new THREE.DodecahedronGeometry(6, 1);
-      const rockMatDark = new THREE.MeshStandardMaterial({ color: 0x333842, roughness: 0.95, flatShading: true });
-      const snowMatWhite = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.6, flatShading: true });
+      // Add physical signboards along the route
+      createSignboard('MANALI', 'START · 6,700 FT', 3.5, 0.2, -10, -0.2);
+      createSignboard('SHINKULA PASS', '16,700 FT →', 4.5, 25.5, -232, -0.4);
+      createSignboard('PADUM (ZANSKAR)', 'CAMP & FUEL ⛽', 5.2, 8.2, -390, 0.2);
+      createSignboard('PENZILA PASS', 'DOWNHILL RUN 🛹', -4.8, 20.8, -552, 0.5);
+      createSignboard('SURU VALLEY', 'HIGHLINE GORGE 🪢', 4.2, 4.2, -750, -0.3);
+      createSignboard('DRANG-DRUNG', 'GLACIER FINALE ❄️', 3.8, 15.8, -880, 0.1);
 
-      // Rocky Mountain Clusters
-      for (let i = 0; i < 45; i++) {
-        const isSnow = Math.random() > 0.45;
-        const rock = new THREE.Mesh(rockGeo, isSnow ? snowMatWhite : rockMatDark);
-        const angle = Math.random() * Math.PI * 2;
-        const radius = 70 + Math.random() * 110;
-        const rx = Math.cos(angle) * radius;
-        const rz = Math.sin(angle) * radius;
-        const ry = 4 + Math.random() * 18;
-        rock.position.set(rx, ry, rz);
-        const s = 1.2 + Math.random() * 3.2;
-        rock.scale.set(s, s * 1.5, s);
-        rock.castShadow = true;
-        rock.receiveShadow = true;
-        worldGroup.add(rock);
+      // 9. ENVIRONMENTAL LANDMARKS
+      // A) Tibetan Prayer Flags across Shinkula Pass
+      const flagGroup = new THREE.Group();
+      flagGroup.position.set(0, 26.5, -240);
+      const flagColors = [0x3b82f6, 0xf8fafc, 0xef4444, 0x22c55e, 0xeab308];
+      for (let f = -12; f <= 12; f += 1.4) {
+        const flagGeom = new THREE.PlaneGeometry(0.7, 0.5);
+        const flagMat = new THREE.MeshStandardMaterial({
+          color: flagColors[Math.abs(Math.floor(f)) % flagColors.length],
+          side: THREE.DoubleSide
+        });
+        const flagMesh = new THREE.Mesh(flagGeom, flagMat);
+        flagMesh.position.set(f, Math.sin((f + 12) / 24 * Math.PI) * -1.8 + 2.5, 0);
+        flagMesh.rotation.z = Math.sin(f) * 0.15;
+        flagGroup.add(flagMesh);
       }
+      scene.add(flagGroup);
 
-      // 6. Tibetan Chortens / Stupas in Padum & Prayer Flags
-      const stupaGroup = new THREE.Group();
-      const stupaBase = new THREE.Mesh(new THREE.BoxGeometry(4, 2.5, 4), new THREE.MeshStandardMaterial({ color: 0xd4cfc5, flatShading: true }));
-      const stupaDome = new THREE.Mesh(new THREE.ConeGeometry(2, 3.5, 6), new THREE.MeshStandardMaterial({ color: 0xd97706, flatShading: true }));
-      stupaDome.position.y = 2.8;
-      stupaGroup.add(stupaBase, stupaDome);
-      stupaGroup.position.set(28, 0, -28);
-      stupaGroup.castShadow = true;
-      worldGroup.add(stupaGroup);
+      // B) Expedition Camp at Padum (Tents & Fire)
+      const campGroup = new THREE.Group();
+      campGroup.position.set(8, 8.2, -400);
 
-      // 7. Drang-Drung Glacier Ice Tongue & Seracs
+      const tentGeom = new THREE.ConeGeometry(2.4, 2.2, 4);
+      tentGeom.rotateY(Math.PI / 4);
+      const tentMat = new THREE.MeshStandardMaterial({ color: 0xe5903b, roughness: 0.9 });
+      const tent1 = new THREE.Mesh(tentGeom, tentMat);
+      tent1.position.set(0, 1.1, 0);
+      campGroup.add(tent1);
+
+      const tentMat2 = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.9 });
+      const tent2 = new THREE.Mesh(tentGeom, tentMat2);
+      tent2.position.set(4.5, 1.1, 3);
+      campGroup.add(tent2);
+
+      // Fuel Pump Depot
+      const pumpGeom = new THREE.BoxGeometry(1.2, 2.2, 1.0);
+      const pumpMat = new THREE.MeshStandardMaterial({ color: 0xef4444, metalness: 0.6 });
+      const pump = new THREE.Mesh(pumpGeom, pumpMat);
+      pump.position.set(-6, 1.1, 2);
+      campGroup.add(pump);
+      scene.add(campGroup);
+
+      // C) Highline across Suru Valley Gorge
+      const highlineGroup = new THREE.Group();
+      highlineGroup.position.set(0, 18, -760);
+
+      const cableGeom = new THREE.CylinderGeometry(0.04, 0.04, 38, 8);
+      cableGeom.rotateZ(Math.PI / 2);
+      const cableMat = new THREE.MeshBasicMaterial({ color: 0xff4444 });
+      const cable = new THREE.Mesh(cableGeom, cableMat);
+      highlineGroup.add(cable);
+
+      // Human Silhouette on Highline
+      const humanGeom = new THREE.BoxGeometry(0.4, 1.4, 0.3);
+      const humanMat = new THREE.MeshBasicMaterial({ color: 0x111317 });
+      const human = new THREE.Mesh(humanGeom, humanMat);
+      human.position.set(-2, 0.7, 0);
+      highlineGroup.add(human);
+      scene.add(highlineGroup);
+
+      // D) Colossal Drang-Drung Glacier (Curving White & Cyan Ice Tongue)
       const glacierGroup = new THREE.Group();
-      const iceGeo = new THREE.ConeGeometry(8, 18, 5);
+      glacierGroup.position.set(15, 12, -940);
+
+      const iceGeom = new THREE.PlaneGeometry(160, 220, 30, 40);
+      iceGeom.rotateX(-Math.PI / 2);
+      const icePos = iceGeom.attributes.position;
+      for (let i = 0; i < icePos.count; i++) {
+        const ix = icePos.getX(i);
+        const iz = icePos.getZ(i);
+        const wave = Math.sin(ix * 0.08) * Math.cos(iz * 0.05) * 6;
+        icePos.setY(i, wave - (iz * 0.08));
+      }
+      iceGeom.computeVertexNormals();
+
       const iceMat = new THREE.MeshStandardMaterial({
-        color: 0x67e8f9,
+        color: 0x5eead4,
         roughness: 0.25,
         metalness: 0.35,
         flatShading: true
       });
+      const glacierMesh = new THREE.Mesh(iceGeom, iceMat);
+      glacierGroup.add(glacierMesh);
+      scene.add(glacierGroup);
 
-      for (let i = 0; i < 18; i++) {
-        const ice = new THREE.Mesh(iceGeo, iceMat);
-        const ix = 145 + Math.random() * 50;
-        const iz = -145 - Math.random() * 50;
-        ice.position.set(ix, 5 + Math.random() * 8, iz);
-        const iscale = 0.6 + Math.random() * 0.9;
-        ice.scale.set(iscale, iscale, iscale);
-        ice.rotation.y = Math.random() * Math.PI;
-        ice.castShadow = true;
-        glacierGroup.add(ice);
+      // 10. AUTHENTIC EXPEDITION PHOTO STOPS (Real Photographs)
+      const photoStops = [
+        {
+          t: 0.12,
+          tag: 'Hanuman Tibba / Manali',
+          title: 'Base Camp & Pir Panjal Peaks',
+          caption: 'Setting off through lush pine valley floors towards the high passes of Ladakh.',
+          img: './shashank_files/gallery_opt/one-with-mighty-hanuman-tibba-opt.jpg',
+          discovered: false
+        },
+        {
+          t: 0.28,
+          tag: 'Shinkula Pass (16,700 FT)',
+          title: 'Summit of Shinkula',
+          caption: '16,700 FT altitude crossing into Zanskar amid freezing snow cuts and fluttering prayer flags.',
+          img: './shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg',
+          discovered: false
+        },
+        {
+          t: 0.62,
+          tag: 'Penzila Pass (14,435 FT)',
+          title: 'Downhill Longboard Speed Run',
+          caption: 'Carving high-speed downhill hairpins on asphalt beneath towering mountain walls.',
+          img: './shashank_files/gallery_opt/downhill-longboard-mountain-hairpin.jpg',
+          discovered: false
+        },
+        {
+          t: 0.82,
+          tag: 'Suru Valley Gorge',
+          title: 'Highline Across Mountain Canyon',
+          caption: 'Rigging a highline webbing cable across the sheer rocky river gorge in Suru.',
+          img: './shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg',
+          discovered: false
+        }
+      ];
+
+      // Add 3D markers for photo stops
+      photoStops.forEach(p => {
+        const pt = roadCurve.getPointAt(p.t);
+        const markerGroup = new THREE.Group();
+        markerGroup.position.set(pt.x + 3.2, pt.y + 0.5, pt.z);
+
+        const ringGeom = new THREE.RingGeometry(0.8, 1.2, 16);
+        ringGeom.rotateX(-Math.PI / 2);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x5eead4, side: THREE.DoubleSide });
+        const ring = new THREE.Mesh(ringGeom, ringMat);
+        markerGroup.add(ring);
+
+        const iconGeom = new THREE.BoxGeometry(0.6, 0.4, 0.4);
+        const iconMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const icon = new THREE.Mesh(iconGeom, iconMat);
+        icon.position.y = 0.8;
+        markerGroup.add(icon);
+
+        scene.add(markerGroup);
+        p.marker = markerGroup;
+      });
+
+      // 11. KEYBOARD & INPUT SYSTEM
+      const keys = { forward: false, backward: false, left: false, right: false, boost: false };
+
+      function setKey(code, state) {
+        if (code === 'KeyW' || code === 'ArrowUp') keys.forward = state;
+        if (code === 'KeyS' || code === 'ArrowDown') keys.backward = state;
+        if (code === 'KeyA' || code === 'ArrowLeft') keys.left = state;
+        if (code === 'KeyD' || code === 'ArrowRight') keys.right = state;
+        if (code === 'ShiftLeft' || code === 'ShiftRight') keys.boost = state;
+        if (state && code === 'KeyE') toggleActionMode();
+        if (state && code === 'Escape') closePhotoModal();
       }
-      worldGroup.add(glacierGroup);
 
-      // 8. Checkpoint Light Beams & Props
-      const checkpointMeshes = [];
-      MILESTONES.forEach((m, idx) => {
-        const cpGroup = new THREE.Group();
+      window.addEventListener('keydown', (e) => setKey(e.code, true));
+      window.addEventListener('keyup', (e) => setKey(e.code, false));
 
-        // Glowing ground ring
-        const ringGeo = new THREE.RingGeometry(3.5, 4.2, 16);
-        ringGeo.rotateX(-Math.PI / 2);
-        const ringMat = new THREE.MeshBasicMaterial({ color: idx === 4 ? 0x5eead4 : 0xe5903b, side: THREE.DoubleSide });
-        const ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.position.y = 0.1;
-        cpGroup.add(ring);
-
-        // Vertical beacon beam
-        const beamGeo = new THREE.CylinderGeometry(0.6, 2.2, 35, 8, 1, true);
-        const beamMat = new THREE.MeshBasicMaterial({
-          color: idx === 4 ? 0x5eead4 : 0xe5903b,
-          transparent: true,
-          opacity: 0.28,
-          side: THREE.DoubleSide
-        });
-        const beam = new THREE.Mesh(beamGeo, beamMat);
-        beam.position.y = 17.5;
-        cpGroup.add(beam);
-
-        // Flagpole / Pass Marker Sign
-        const poleGeo = new THREE.CylinderGeometry(0.2, 0.2, 6, 6);
-        const poleMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
-        const pole = new THREE.Mesh(poleGeo, poleMat);
-        pole.position.set(-3, 3, 0);
-        pole.castShadow = true;
-        cpGroup.add(pole);
-
-        cpGroup.position.set(m.x, 0.5, m.z);
-        worldGroup.add(cpGroup);
-        checkpointMeshes.push({ data: m, mesh: cpGroup, triggered: false });
-      });
-
-      // 9. Floating Photo Spot Collectible Icons
-      const photoMeshes = [];
-      const cameraBoxGeo = new THREE.BoxGeometry(2.2, 1.6, 1.2);
-      const cameraLensGeo = new THREE.CylinderGeometry(0.7, 0.7, 0.8, 8);
-      cameraLensGeo.rotateX(Math.PI / 2);
-      const cameraMat = new THREE.MeshStandardMaterial({ color: 0x5eead4, roughness: 0.3, metalness: 0.5, emissive: 0x0f766e, emissiveIntensity: 0.4 });
-
-      PHOTO_SPOTS.forEach((p) => {
-        const pGroup = new THREE.Group();
-        const cBody = new THREE.Mesh(cameraBoxGeo, cameraMat);
-        const cLens = new THREE.Mesh(cameraLensGeo, cameraMat);
-        cLens.position.z = 0.7;
-        pGroup.add(cBody, cLens);
-
-        pGroup.position.set(p.x, 3.5, p.z);
-        worldGroup.add(pGroup);
-        photoMeshes.push({ data: p, mesh: pGroup });
-      });
-
-      // ─── ADVENTURE VEHICLE ───
-      const vehicleGroup = new THREE.Group();
-
-      // Car Body
-      const bodyGeo = new THREE.BoxGeometry(3.6, 1.8, 6.2);
-      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x242832, roughness: 0.5, metalness: 0.3, flatShading: true });
-      const carBody = new THREE.Mesh(bodyGeo, bodyMat);
-      carBody.position.y = 1.6;
-      carBody.castShadow = true;
-      vehicleGroup.add(carBody);
-
-      // Cabin & Windows
-      const cabinGeo = new THREE.BoxGeometry(3.2, 1.4, 3.4);
-      const cabinMat = new THREE.MeshStandardMaterial({ color: 0x111317, roughness: 0.2, metalness: 0.8 });
-      const carCabin = new THREE.Mesh(cabinGeo, cabinMat);
-      carCabin.position.set(0, 2.9, -0.4);
-      carCabin.castShadow = true;
-      vehicleGroup.add(carCabin);
-
-      // Roof Rack with Jerry Cans & Gear
-      const rackGeo = new THREE.BoxGeometry(2.8, 0.4, 3.2);
-      const rackMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 }); // Amber adventure gear
-      const rack = new THREE.Mesh(rackGeo, rackMat);
-      rack.position.set(0, 3.8, -0.4);
-      rack.castShadow = true;
-      vehicleGroup.add(rack);
-
-      // Wheels
-      const wheelGeo = new THREE.CylinderGeometry(1.0, 1.0, 0.8, 12);
-      wheelGeo.rotateZ(Math.PI / 2);
-      const wheelMat = new THREE.MeshStandardMaterial({ color: 0x181818, roughness: 0.95 });
-
-      const wheelFL = new THREE.Mesh(wheelGeo, wheelMat);
-      wheelFL.position.set(-1.8, 1.0, 2.0);
-      const wheelFR = new THREE.Mesh(wheelGeo, wheelMat);
-      wheelFR.position.set(1.8, 1.0, 2.0);
-      const wheelBL = new THREE.Mesh(wheelGeo, wheelMat);
-      wheelBL.position.set(-1.8, 1.0, -2.0);
-      const wheelBR = new THREE.Mesh(wheelGeo, wheelMat);
-      wheelBR.position.set(1.8, 1.0, -2.0);
-      wheelFL.castShadow = wheelFR.castShadow = wheelBL.castShadow = wheelBR.castShadow = true;
-      vehicleGroup.add(wheelFL, wheelFR, wheelBL, wheelBR);
-
-      // Headlight Beams
-      const headlightGeo = new THREE.ConeGeometry(6, 24, 8, 1, true);
-      headlightGeo.rotateX(-Math.PI / 2);
-      const headlightMat = new THREE.MeshBasicMaterial({ color: 0xfff0b3, transparent: true, opacity: 0.18, side: THREE.DoubleSide });
-      const leftLight = new THREE.Mesh(headlightGeo, headlightMat);
-      leftLight.position.set(-1.1, 1.4, 13);
-      const rightLight = new THREE.Mesh(headlightGeo, headlightMat);
-      rightLight.position.set(1.1, 1.4, 13);
-      vehicleGroup.add(leftLight, rightLight);
-
-      // Vehicle shadow plane
-      const shadowPlane = new THREE.Mesh(
-        new THREE.PlaneGeometry(5, 7),
-        new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.45 })
-      );
-      shadowPlane.rotateX(-Math.PI / 2);
-      shadowPlane.position.y = 0.05;
-      vehicleGroup.add(shadowPlane);
-
-      // Initial Vehicle Placement at Manali
-      vehicleGroup.position.set(-140, 0.5, 120);
-      vehicleGroup.rotation.y = -Math.PI / 3;
-      worldGroup.add(vehicleGroup);
-
-      // ─── VEHICLE PHYSICS STATE ───
-      const vehicleState = {
-        x: -140,
-        z: 120,
-        y: 0.5,
-        speed: 0,
-        maxSpeed: 1.45,
-        accel: 0.045,
-        decel: 0.035,
-        turnSpeed: 0.048,
-        heading: -Math.PI / 3,
-        fuel: 100,
-        currentMilestoneIdx: 0,
-        photosFound: 0
-      };
-
-      // ─── CONTROLS INPUT ───
-      const keys = { forward: false, backward: false, left: false, right: false, drift: false };
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') { keys.forward = true; }
-        if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') { keys.backward = true; }
-        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') { keys.left = true; }
-        if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') { keys.right = true; }
-        if (e.key === ' ' || e.key === 'Spacebar') { keys.drift = true; }
-        if (e.key === 'Escape') { closePhotoModal(); }
-      });
-
-      window.addEventListener('keyup', (e) => {
-        if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') { keys.forward = false; }
-        if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') { keys.backward = false; }
-        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') { keys.left = false; }
-        if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') { keys.right = false; }
-        if (e.key === ' ' || e.key === 'Spacebar') { keys.drift = false; }
-      });
-
-      // Mobile Touch Handlers
-      const bindTouch = (id, keyName) => {
+      // Mobile Touch Listeners
+      const setupTouchBtn = (id, k) => {
         const el = document.getElementById(id);
         if (!el) return;
-        el.addEventListener('touchstart', (e) => { e.preventDefault(); keys[keyName] = true; });
-        el.addEventListener('touchend', (e) => { e.preventDefault(); keys[keyName] = false; });
-        el.addEventListener('mousedown', (e) => { e.preventDefault(); keys[keyName] = true; });
-        el.addEventListener('mouseup', (e) => { e.preventDefault(); keys[keyName] = false; });
+        el.addEventListener('touchstart', (e) => { e.preventDefault(); keys[k] = true; });
+        el.addEventListener('touchend', (e) => { e.preventDefault(); keys[k] = false; });
       };
+      setupTouchBtn('t-up', 'forward');
+      setupTouchBtn('t-down', 'backward');
+      setupTouchBtn('t-left', 'left');
+      setupTouchBtn('t-right', 'right');
+      setupTouchBtn('t-gas', 'forward');
 
-      bindTouch('touch-up', 'forward');
-      bindTouch('touch-gas', 'forward');
-      bindTouch('touch-down', 'backward');
-      bindTouch('touch-left', 'left');
-      bindTouch('touch-right', 'right');
+      // 12. VEHICLE PHYSICS & STATE
+      let roadProgress = 0.002; // Normalized 0 to 1 along curve
+      let carSpeed = 0;
+      const maxSpeed = 0.0014;
+      const accel = 0.00008;
+      const decel = 0.00004;
+      let lateralOffset = 0; // -1 to +1 across road width
+      let fuel = 100;
+      let isLongboardMode = false;
+      let currentLegIndex = 0;
 
-      // ─── AUDIO SYNTHESIZER (WEB AUDIO API) ───
-      let audioCtx = null;
-      let engineOsc = null;
-      let engineGain = null;
-      let soundEnabled = false;
-
-      function initAudio() {
-        if (audioCtx) return;
-        try {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContext();
-
-          engineOsc = audioCtx.createOscillator();
-          engineOsc.type = 'sawtooth';
-          engineOsc.frequency.setValueAtTime(45, audioCtx.currentTime);
-
-          engineGain = audioCtx.createGain();
-          engineGain.gain.setValueAtTime(0, audioCtx.currentTime);
-
-          // Lowpass filter for smooth rumble
-          const filter = audioCtx.createBiquadFilter();
-          filter.type = 'lowpass';
-          filter.frequency.setValueAtTime(160, audioCtx.currentTime);
-
-          engineOsc.connect(filter);
-          filter.connect(engineGain);
-          engineGain.connect(audioCtx.destination);
-
-          engineOsc.start();
-        } catch (e) {
-          console.warn('Web Audio not supported', e);
-        }
-      }
-
-      function updateSound(speedRatio) {
-        if (!soundEnabled || !engineGain || !audioCtx) return;
-        const targetGain = Math.max(0.04, speedRatio * 0.14);
-        const targetFreq = 45 + speedRatio * 85;
-        engineGain.gain.setTargetAtTime(targetGain, audioCtx.currentTime, 0.08);
-        engineOsc.frequency.setTargetAtTime(targetFreq, audioCtx.currentTime, 0.08);
-      }
-
-      const soundBtn = document.getElementById('sound-toggle-btn');
-      soundBtn.addEventListener('click', () => {
-        initAudio();
-        if (audioCtx && audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        soundEnabled = !soundEnabled;
-        soundBtn.classList.toggle('active', soundEnabled);
-        document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔈';
-        if (!soundEnabled && engineGain) {
-          engineGain.gain.setValueAtTime(0, audioCtx.currentTime);
-        }
-      });
-
-      // ─── RESET VEHICLE ───
-      document.getElementById('reset-pos-btn').addEventListener('click', () => {
-        vehicleState.x = -140;
-        vehicleState.z = 120;
-        vehicleState.speed = 0;
-        vehicleState.heading = -Math.PI / 3;
-        vehicleState.fuel = 100;
-        updateHUD();
-      });
-
-      // ─── UI & HUD UPDATES ───
-      const hudLocation = document.getElementById('hud-location-name');
-      const hudElevationVal = document.getElementById('hud-elevation-val');
-      const hudElevationStat = document.getElementById('hud-elevation-stat');
-      const hudCheckpointStat = document.getElementById('hud-checkpoint-stat');
-      const hudPhotosStat = document.getElementById('hud-photos-stat');
-      const hudSpeedVal = document.getElementById('hud-speed-val');
-      const hudFuelVal = document.getElementById('hud-fuel-val');
-      const hudFuelFill = document.getElementById('hud-fuel-fill');
-      const hudSubtext = document.getElementById('hud-subtext');
-
-      const chapterToast = document.getElementById('chapter-toast');
-      const toastKicker = document.getElementById('toast-kicker');
+      // HUD Elements
+      const hudLeg = document.getElementById('hud-leg');
+      const hudTitle = document.getElementById('hud-title');
+      const hudElev = document.getElementById('hud-elevation');
+      const hudOdo = document.getElementById('hud-odometer');
+      const fuelFill = document.getElementById('fuel-fill');
+      const fuelText = document.getElementById('fuel-text');
+      const actionToast = document.getElementById('action-toast');
       const toastTitle = document.getElementById('toast-title');
-      const toastBody = document.getElementById('toast-body');
+      const toastSub = document.getElementById('toast-sub');
 
-      let toastTimeout = null;
-      function showToast(kicker, title, body) {
-        toastKicker.textContent = kicker;
+      function showToast(title, sub, dur = 3200) {
         toastTitle.textContent = title;
-        toastBody.textContent = body;
-        chapterToast.classList.add('show');
-        clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => {
-          chapterToast.classList.remove('show');
-        }, 5000);
+        toastSub.textContent = sub;
+        actionToast.classList.add('visible');
+        setTimeout(() => actionToast.classList.remove('visible'), dur);
       }
 
-      // Initial Welcome Toast
-      setTimeout(() => {
-        showToast('Expedition Brief', 'Project Drang-Drung', 'Drive through the miniature Himalayan route: Manali → Shinkula Pass → Padum → Penzila → Drang-Drung Glacier.');
-      }, 1000);
+      function toggleActionMode() {
+        // Toggle between 4x4 Truck and Downhill Longboard
+        isLongboardMode = !isLongboardMode;
+        vehicleGroup.visible = !isLongboardMode;
+        skaterGroup.visible = isLongboardMode;
+        showToast(
+          isLongboardMode ? '🛹 Longboard Mode Active' : '🚗 4x4 Expedition Vehicle Active',
+          isLongboardMode ? 'Downhill speed sprint' : 'Overland cruise'
+        );
+      }
 
-      // Photo Modal Handlers
+      // Checkpoint Regions
+      const milestones = [
+        { t: 0.0, name: 'Manali Valley', elev: '6,700 FT', leg: 'Leg 01 · Foothills' },
+        { t: 0.22, name: 'Shinkula Pass', elev: '16,700 FT', leg: 'Leg 02 · High Altitude Pass' },
+        { t: 0.44, name: 'Padum & Zanskar Camp', elev: '12,000 FT', leg: 'Leg 03 · Heart of Zanskar' },
+        { t: 0.60, name: 'Penzila Downhill Run', elev: '14,435 FT', leg: 'Leg 04 · Downhill Longboard' },
+        { t: 0.78, name: 'Suru Valley Gorge', elev: '10,500 FT', leg: 'Leg 05 · Highline Canyon' },
+        { t: 0.95, name: 'Drang-Drung Glacier', elev: '14,200 FT', leg: 'Leg 06 · Glacier Finale' }
+      ];
+
+      // 13. PHOTO MODAL INTERACTION
       const photoModal = document.getElementById('photo-modal');
-      const modalPhotoImg = document.getElementById('modal-photo-img');
-      const modalPhotoTag = document.getElementById('modal-photo-tag');
-      const modalPhotoTitle = document.getElementById('modal-photo-title');
-      const modalPhotoCaption = document.getElementById('modal-photo-caption');
+      const photoModalImg = document.getElementById('photo-modal-img');
+      const photoModalKicker = document.getElementById('photo-modal-kicker');
+      const photoModalTitle = document.getElementById('photo-modal-title');
+      const photoModalCaption = document.getElementById('photo-modal-caption');
       const photoModalClose = document.getElementById('photo-modal-close');
 
-      function openPhotoModal(photo) {
-        modalPhotoImg.src = photo.img;
-        modalPhotoTag.textContent = photo.tag;
-        modalPhotoTitle.textContent = photo.title;
-        modalPhotoCaption.textContent = photo.caption;
+      function openPhotoModal(p) {
+        photoModalImg.src = p.img;
+        photoModalKicker.textContent = p.tag;
+        photoModalTitle.textContent = p.title;
+        photoModalCaption.textContent = p.caption;
         photoModal.classList.add('open');
       }
 
       function closePhotoModal() {
         photoModal.classList.remove('open');
       }
+      if (photoModalClose) photoModalClose.addEventListener('click', closePhotoModal);
 
-      photoModalClose.addEventListener('click', closePhotoModal);
-      photoModal.addEventListener('click', (e) => {
-        if (e.target === photoModal) closePhotoModal();
-      });
-
-      // Summary Modal Handlers
-      const summaryModal = document.getElementById('summary-modal');
-      document.getElementById('summary-read-btn').addEventListener('click', () => {
-        summaryModal.classList.remove('open');
-        document.getElementById('case-study').scrollIntoView({ behavior: 'smooth' });
-      });
-
-      document.getElementById('summary-replay-btn').addEventListener('click', () => {
-        summaryModal.classList.remove('open');
-        vehicleState.x = -140;
-        vehicleState.z = 120;
-        vehicleState.speed = 0;
-        vehicleState.heading = -Math.PI / 3;
-        vehicleState.fuel = 100;
-        checkpointMeshes.forEach(c => c.triggered = false);
-        vehicleState.currentMilestoneIdx = 0;
-        updateHUD();
-      });
-
-      function updateHUD() {
-        const kmh = Math.round(Math.abs(vehicleState.speed) * 45);
-        hudSpeedVal.textContent = `${kmh} KM/H`;
-
-        const curM = MILESTONES[vehicleState.currentMilestoneIdx];
-        if (curM) {
-          hudLocation.textContent = curM.name;
-          hudElevationVal.textContent = curM.elevation;
-          hudElevationStat.textContent = curM.elevation;
-          hudCheckpointStat.textContent = `${vehicleState.currentMilestoneIdx + 1} / 5`;
-          hudSubtext.textContent = curM.desc;
-        }
-
-        hudPhotosStat.textContent = `${vehicleState.photosFound} / 4`;
-        hudFuelVal.textContent = `${Math.round(vehicleState.fuel)}%`;
-        hudFuelFill.style.width = `${Math.max(0, Math.min(100, vehicleState.fuel))}%`;
+      // Finale Modal
+      const finaleModal = document.getElementById('finale-modal');
+      const btnReplay = document.getElementById('btn-replay');
+      if (btnReplay) {
+        btnReplay.addEventListener('click', () => {
+          finaleModal.classList.remove('open');
+          roadProgress = 0.002;
+          carSpeed = 0;
+          fuel = 100;
+          photoStops.forEach(p => p.discovered = false);
+          document.querySelectorAll('.stop-item').forEach((s, idx) => {
+            s.className = 'stop-item' + (idx === 0 ? ' active' : '');
+          });
+        });
       }
 
-      // ─── MAIN ANIMATION LOOP ───
-      let lastTime = performance.now();
+      // Nav Buttons
+      document.getElementById('btn-reset').addEventListener('click', () => {
+        carSpeed = 0;
+        lateralOffset = 0;
+        showToast('↺ Vehicle Re-centered', 'Back on main highway');
+      });
+
+      // Sound Simulation
+      let audioOn = false;
+      const audioBtn = document.getElementById('btn-sound');
+      audioBtn.addEventListener('click', () => {
+        audioOn = !audioOn;
+        audioBtn.textContent = audioOn ? '🔊 Audio ON' : '🔈 Audio';
+        showToast(audioOn ? 'Ambient Engine & Mountain Wind ON' : 'Audio Muted', 'Interactive Soundscape');
+      });
+
+      // 14. GAME LOOP & ANIMATION
+      const clock = new THREE.Clock();
 
       function animate() {
         requestAnimationFrame(animate);
+        const delta = Math.min(clock.getDelta(), 0.1);
 
-        const now = performance.now();
-        const delta = Math.min((now - lastTime) / 1000, 0.1);
-        lastTime = now;
+        // Physics Update
+        const topSpeed = (isLongboardMode ? maxSpeed * 1.4 : maxSpeed) * (keys.boost ? 1.5 : 1.0);
 
-        // 1. Vehicle Steering & Acceleration
         if (keys.forward) {
-          vehicleState.speed += vehicleState.accel;
-          if (vehicleState.speed > vehicleState.maxSpeed) vehicleState.speed = vehicleState.maxSpeed;
-          vehicleState.fuel = Math.max(15, vehicleState.fuel - delta * 0.4);
+          carSpeed = Math.min(carSpeed + accel, topSpeed);
+          fuel = Math.max(0, fuel - delta * 1.2);
         } else if (keys.backward) {
-          vehicleState.speed -= vehicleState.accel * 0.7;
-          if (vehicleState.speed < -vehicleState.maxSpeed * 0.5) vehicleState.speed = -vehicleState.maxSpeed * 0.5;
+          carSpeed = Math.max(carSpeed - accel, -maxSpeed * 0.4);
         } else {
-          // Friction deceleration
-          if (vehicleState.speed > 0) {
-            vehicleState.speed -= vehicleState.decel;
-            if (vehicleState.speed < 0) vehicleState.speed = 0;
-          } else if (vehicleState.speed < 0) {
-            vehicleState.speed += vehicleState.decel;
-            if (vehicleState.speed > 0) vehicleState.speed = 0;
-          }
+          if (carSpeed > 0) carSpeed = Math.max(0, carSpeed - decel);
+          if (carSpeed < 0) carSpeed = Math.min(0, carSpeed + decel);
         }
 
-        if (Math.abs(vehicleState.speed) > 0.01) {
-          const steerFactor = (keys.drift ? 1.4 : 1.0) * (vehicleState.speed > 0 ? 1 : -1);
-          if (keys.left) vehicleState.heading += vehicleState.turnSpeed * steerFactor;
-          if (keys.right) vehicleState.heading -= vehicleState.turnSpeed * steerFactor;
+        // Steering
+        if (keys.left) lateralOffset = Math.max(-1.4, lateralOffset - delta * 2.2);
+        if (keys.right) lateralOffset = Math.min(1.4, lateralOffset + delta * 2.2);
+
+        // Advance along spline
+        roadProgress = THREE.MathUtils.clamp(roadProgress + carSpeed, 0.001, 0.998);
+
+        // Get road position and orientation
+        const currPoint = roadCurve.getPointAt(roadProgress);
+        const tangent = roadCurve.getTangentAt(roadProgress).normalize();
+        const up = new THREE.Vector3(0, 1, 0);
+        const side = new THREE.Vector3().crossVectors(tangent, up).normalize();
+
+        const activeVehicle = isLongboardMode ? skaterGroup : vehicleGroup;
+        const vPos = new THREE.Vector3().copy(currPoint).addScaledVector(side, lateralOffset * (roadWidth * 0.35));
+        
+        activeVehicle.position.copy(vPos);
+        activeVehicle.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tangent);
+        
+        // Steering tilt & wheel spin
+        if (!isLongboardMode) {
+          const steerTilt = (keys.left ? 0.06 : 0) - (keys.right ? 0.06 : 0);
+          activeVehicle.rotation.z += steerTilt;
+          wheels.forEach(w => w.rotation.x += carSpeed * 80);
         }
 
-        // Apply velocity
-        vehicleState.x += Math.sin(vehicleState.heading) * vehicleState.speed;
-        vehicleState.z += Math.cos(vehicleState.heading) * vehicleState.speed;
+        // Camera Follow (Smooth Elevated Isometric Orbit)
+        const camOffset = new THREE.Vector3()
+          .copy(vPos)
+          .addScaledVector(tangent, -24)
+          .add(new THREE.Vector3(0, 16, 0));
+        
+        camera.position.lerp(camOffset, 0.08);
+        const lookTarget = new THREE.Vector3().copy(vPos).addScaledVector(tangent, 12);
+        camera.lookAt(lookTarget);
 
-        // Boundary Clamping
-        vehicleState.x = Math.max(-190, Math.min(190, vehicleState.x));
-        vehicleState.z = Math.max(-190, Math.min(190, vehicleState.z));
+        // Check milestones & update HUD
+        for (let m = milestones.length - 1; m >= 0; m--) {
+          if (roadProgress >= milestones[m].t) {
+            if (currentLegIndex !== m) {
+              currentLegIndex = m;
+              hudLeg.textContent = milestones[m].leg;
+              hudTitle.textContent = milestones[m].name;
+              hudElev.textContent = 'Elev: ' + milestones[m].elev;
+              
+              // Update checklist
+              document.querySelectorAll('.stop-item').forEach((sEl, sIdx) => {
+                if (sIdx < m) sEl.className = 'stop-item completed';
+                else if (sIdx === m) sEl.className = 'stop-item active';
+                else sEl.className = 'stop-item';
+              });
 
-        // Update 3D Mesh
-        vehicleGroup.position.x = vehicleState.x;
-        vehicleGroup.position.z = vehicleState.z;
-        vehicleGroup.rotation.y = vehicleState.heading;
-
-        // Smooth Camera Follow
-        const targetCamX = vehicleState.x + 55;
-        const targetCamZ = vehicleState.z + 55;
-        camera.position.x += (targetCamX - camera.position.x) * 0.08;
-        camera.position.z += (targetCamZ - camera.position.z) * 0.08;
-        camera.lookAt(vehicleState.x, 0, vehicleState.z);
-
-        // Sound Update
-        const speedRatio = Math.abs(vehicleState.speed) / vehicleState.maxSpeed;
-        updateSound(speedRatio);
-
-        // Rotate Collectible Photo Icons
-        photoMeshes.forEach(p => {
-          p.mesh.rotation.y += 0.025;
-          p.mesh.position.y = 3.2 + Math.sin(now * 0.003 + p.data.x) * 0.5;
-
-          // Check proximity for discovery
-          const distToPhoto = Math.hypot(vehicleState.x - p.data.x, vehicleState.z - p.data.z);
-          if (distToPhoto < 7 && !p.data.discovered) {
-            p.data.discovered = true;
-            vehicleState.photosFound++;
-            p.mesh.visible = false;
-            openPhotoModal(p.data);
-            updateHUD();
-          }
-        });
-
-        // Check Milestone Triggers
-        checkpointMeshes.forEach((cp, idx) => {
-          const dist = Math.hypot(vehicleState.x - cp.data.x, vehicleState.z - cp.data.z);
-          if (dist < 14) {
-            vehicleState.currentMilestoneIdx = idx;
-            if (!cp.triggered) {
-              cp.triggered = true;
-              showToast(cp.data.chapter, cp.data.name, cp.data.desc);
-
-              // If reaching final destination: Drang-Drung Glacier
-              if (idx === 4) {
-                setTimeout(() => {
-                  document.getElementById('summary-photos-count').textContent = `${vehicleState.photosFound} / 4 Discovered`;
-                  summaryModal.classList.add('open');
-                }, 2200);
-              }
+              showToast(milestones[m].name, 'Reached: ' + milestones[m].elev);
             }
+            break;
+          }
+        }
+
+        // Padum Camp Fuel Refill Zone
+        if (Math.abs(roadProgress - 0.44) < 0.03 && fuel < 98) {
+          fuel = Math.min(100, fuel + delta * 25);
+          showToast('⛽ Fuel Refill Active', 'Padum Zanskar Fuel Depot · Full Tank');
+        }
+
+        // Update HUD Values
+        hudOdo.textContent = Math.round(roadProgress * 420) + ' / 420 KM';
+        fuelFill.style.width = Math.round(fuel) + '%';
+        fuelText.textContent = Math.round(fuel) + '%';
+
+        // Check Photo Stops
+        photoStops.forEach(p => {
+          if (p.marker) p.marker.rotation.y += delta * 1.5;
+          if (!p.discovered && Math.abs(roadProgress - p.t) < 0.015) {
+            p.discovered = true;
+            openPhotoModal(p);
           }
         });
 
-        updateHUD();
+        // Trigger Finale at Drang-Drung
+        if (roadProgress >= 0.985 && !finaleModal.classList.contains('open')) {
+          finaleModal.classList.add('open');
+        }
+
         renderer.render(scene, camera);
       }
 
       animate();
 
-      // ─── WINDOW RESIZE ───
+      // Window Resize
       window.addEventListener('resize', () => {
-        width = stage.clientWidth;
-        height = stage.clientHeight;
-        const newAspect = width / height;
-
-        camera.left = -d * newAspect;
-        camera.right = d * newAspect;
-        camera.top = d;
-        camera.bottom = -d;
+        camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-
-        renderer.setSize(width, height);
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
 
     })();
