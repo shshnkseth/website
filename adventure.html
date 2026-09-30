@@ -1211,8 +1211,8 @@
       wallMesh.receiveShadow = true;
       scene.add(wallMesh);
 
-      // ─── 3. AUTHENTIC LADAKH TERRAIN (STRICT ANCHORING) ───
-      const terrainGeom = new THREE.PlaneGeometry(420, 1260, 85, 180);
+      // ─── 3. AUTHENTIC LADAKH TERRAIN WITH SNOW-CAPPED PASSES ───
+      const terrainGeom = new THREE.PlaneGeometry(420, 1260, 95, 200);
       terrainGeom.rotateX(-Math.PI / 2);
       terrainGeom.translate(0, -2, -540);
 
@@ -1227,13 +1227,27 @@
         let elev = Math.sin(vx * 0.032) * Math.cos(vz * 0.018) * 19 + Math.sin(vx * 0.075) * 7;
         
         if (Math.abs(vx) > 30) {
-          const mountainFactor = (Math.abs(vx) - 30) * 1.05;
-          elev += mountainFactor * 1.9 + Math.cos(vz * 0.035) * 24;
+          const mountainFactor = (Math.abs(vx) - 30) * 1.08;
+          elev += mountainFactor * 2.1 + Math.cos(vz * 0.035) * 26;
         }
 
-        // Shinkula peak & Drang-Drung glacier
-        if (vz < -360 && vz > -460) { elev += 18; }
-        if (vz < -760 && vz > -860) { elev += 28; }
+        // Shinkula Pass peak & Drang-Drung glacier ridges
+        if (vz < -360 && vz > -470) { elev += 22; }
+        if (vz < -750 && vz > -870) { elev += 30; }
+
+        // Tso Moriri Lake natural basin depression at x ~ 38, z ~ -515
+        const lakeDx = vx - 38;
+        const lakeDz = vz - (-515);
+        const lakeDist = Math.sqrt(lakeDx * lakeDx + lakeDz * lakeDz);
+        if (lakeDist < 28) {
+          const lakeDepth = 11.2;
+          if (lakeDist < 19) {
+            elev = lakeDepth;
+          } else {
+            const blend = (lakeDist - 19) / 9.0;
+            elev = THREE.MathUtils.lerp(lakeDepth, elev, blend);
+          }
+        }
 
         if (dist < 2.4) {
           elev = roadPt.y - 0.04;
@@ -1246,15 +1260,347 @@
       }
       terrainGeom.computeVertexNormals();
 
+      // Vertex Coloration for authentic cold-desert Ladakh terrain & snow peaks
+      const terrainColors = new Float32Array(posAttr.count * 3);
+      for (let i = 0; i < posAttr.count; i++) {
+        const vx = posAttr.getX(i);
+        const vy = posAttr.getY(i);
+        const vz = posAttr.getZ(i);
+
+        // Base Ladakh earthen hues: sandstone, terracotta, granite
+        let r = 0.52, g = 0.43, b = 0.34;
+
+        if (vz > -140) {
+          // Northern plains & Haryana (alluvial green-brown)
+          r = 0.40; g = 0.48; b = 0.32;
+        } else if (vz > -250) {
+          // Manali pine foothills
+          r = 0.34; g = 0.45; b = 0.28;
+        } else if (vz < -880) {
+          // Suru valley canyon & poplars
+          r = 0.44; g = 0.42; b = 0.36;
+        }
+
+        // Tso Moriri Lake saline mineral salt shoreline
+        const ldx = vx - 38;
+        const ldz = vz - (-515);
+        const lDist = Math.sqrt(ldx * ldx + ldz * ldz);
+        if (lDist < 28) {
+          if (lDist < 19.5) {
+            r = 0.16; g = 0.36; b = 0.44; // Sandy lake floor
+          } else {
+            const saltFactor = 1.0 - (lDist - 19.5) / 8.5;
+            r = THREE.MathUtils.lerp(r, 0.95, saltFactor);
+            g = THREE.MathUtils.lerp(g, 0.97, saltFactor);
+            b = THREE.MathUtils.lerp(b, 0.98, saltFactor);
+          }
+        }
+
+        // SNOW-CAPPED PASSES & GLACIERS:
+        // Shinkula Pass summit zone (-350 to -480) & Penzila/Drang-Drung (-710 to -870)
+        const isHighPassZone = (vz < -350 && vz > -480) || (vz < -710 && vz > -870);
+        const snowAlt = isHighPassZone ? 24.0 : 33.0;
+
+        if (vy > snowAlt) {
+          const snowFactor = Math.min(1.0, (vy - snowAlt) / 6.0);
+          // Glistening white Himalayan snow cap
+          r = THREE.MathUtils.lerp(r, 0.96, snowFactor);
+          g = THREE.MathUtils.lerp(g, 0.98, snowFactor);
+          b = THREE.MathUtils.lerp(b, 1.00, snowFactor);
+        } else if (vy > snowAlt - 3.5) {
+          // Frost line / moraine scree
+          const frostFactor = (vy - (snowAlt - 3.5)) / 3.5;
+          r = THREE.MathUtils.lerp(r, 0.72, frostFactor);
+          g = THREE.MathUtils.lerp(g, 0.78, frostFactor);
+          b = THREE.MathUtils.lerp(b, 0.88, frostFactor);
+        }
+
+        terrainColors[i * 3] = r;
+        terrainColors[i * 3 + 1] = g;
+        terrainColors[i * 3 + 2] = b;
+      }
+      terrainGeom.setAttribute('color', new THREE.BufferAttribute(terrainColors, 3));
+
       const terrainMat = new THREE.MeshStandardMaterial({
-        color: 0x7a6754,
-        roughness: 0.95,
+        vertexColors: true,
+        roughness: 0.92,
         metalness: 0.05,
         flatShading: true
       });
       const terrainMesh = new THREE.Mesh(terrainGeom, terrainMat);
       terrainMesh.receiveShadow = true;
       scene.add(terrainMesh);
+
+      // ─── TOWERING HIMALAYAN SNOW-CAPPED PEAKS ON HORIZON ───
+      function createHimalayanPeak(x, z, baseRadius, height, snowHeightRatio = 0.44) {
+        const peakGroup = new THREE.Group();
+        peakGroup.position.set(x, 0, z);
+
+        const rockH = height * (1 - snowHeightRatio);
+        const rockGeom = new THREE.ConeGeometry(baseRadius, rockH, 7, 1);
+        rockGeom.translate(0, rockH * 0.5, 0);
+        const rockMat = new THREE.MeshStandardMaterial({ color: 0x5a4d3f, roughness: 0.95, flatShading: true });
+        const rockMesh = new THREE.Mesh(rockGeom, rockMat);
+        peakGroup.add(rockMesh);
+
+        const snowH = height * snowHeightRatio;
+        const snowR = baseRadius * snowHeightRatio;
+        const snowGeom = new THREE.ConeGeometry(snowR, snowH, 7, 1);
+        snowGeom.translate(0, height - snowH * 0.5, 0);
+        const snowMat = new THREE.MeshStandardMaterial({ color: 0xf8fbff, roughness: 0.7, flatShading: true });
+        const snowMesh = new THREE.Mesh(snowGeom, snowMat);
+        peakGroup.add(snowMesh);
+
+        scene.add(peakGroup);
+        return peakGroup;
+      }
+
+      const peakCoords = [
+        { x: -85, z: -180, r: 35, h: 62 },
+        { x: -95, z: -290, r: 42, h: 74 },
+        { x: -75, z: -410, r: 45, h: 84 }, // Shinkula Pass horns
+        { x: -88, z: -520, r: 38, h: 72 }, // Overlooking Tso Moriri basin
+        { x: -82, z: -660, r: 44, h: 78 },
+        { x: -70, z: -790, r: 48, h: 88 }, // Penzila Glacier amphitheater
+        { x: -90, z: -920, r: 40, h: 74 },
+        { x: -85, z: -1040, r: 35, h: 58 },
+        { x: 80, z: -210, r: 36, h: 65 },
+        { x: 92, z: -330, r: 40, h: 76 },
+        { x: 78, z: -430, r: 46, h: 86 }, // Eastern Shinkula horns
+        { x: 95, z: -550, r: 42, h: 75 },
+        { x: 84, z: -700, r: 45, h: 82 },
+        { x: 74, z: -830, r: 50, h: 90 }, // Drang-Drung eastern peaks
+        { x: 88, z: -950, r: 38, h: 68 },
+        { x: 80, z: -1060, r: 34, h: 56 }
+      ];
+      peakCoords.forEach(p => createHimalayanPeak(p.x, p.z, p.r, p.h, 0.45));
+
+      // ─── TSO MORIRI HIGH-ALTITUDE LAKE (14,836 FT) ───
+      const lakeGroup = new THREE.Group();
+      lakeGroup.position.set(38, 11.6, -515);
+
+      // Deep sapphire turquoise water plane
+      const tsoWaterGeom = new THREE.CircleGeometry(19, 36);
+      tsoWaterGeom.rotateX(-Math.PI / 2);
+      const tsoWaterMat = new THREE.MeshStandardMaterial({
+        color: 0x0077b6,
+        roughness: 0.08,
+        metalness: 0.85,
+        transparent: true,
+        opacity: 0.90
+      });
+      const tsoWaterMesh = new THREE.Mesh(tsoWaterGeom, tsoWaterMat);
+      tsoWaterMesh.receiveShadow = true;
+      lakeGroup.add(tsoWaterMesh);
+
+      // Saline mineral salt shoreline ring
+      const saltRingGeom = new THREE.RingGeometry(18.2, 23.5, 36);
+      saltRingGeom.rotateX(-Math.PI / 2);
+      const saltRingMat = new THREE.MeshStandardMaterial({
+        color: 0xf1f5f9,
+        roughness: 0.95,
+        flatShading: true
+      });
+      const saltRingMesh = new THREE.Mesh(saltRingGeom, saltRingMat);
+      saltRingMesh.position.y = -0.05;
+      lakeGroup.add(saltRingMesh);
+
+      // Lakeside Mani Stone Cairns with Prayer Flags
+      const maniMat = new THREE.MeshStandardMaterial({ color: 0x5a524a, roughness: 0.9 });
+      for (let m = 0; m < 7; m++) {
+        const ang = (m / 7) * Math.PI * 1.6 + 0.3;
+        const cx = Math.cos(ang) * 19.5;
+        const cz = Math.sin(ang) * 19.5;
+        
+        for (let k = 0; k < 4; k++) {
+          const stone = new THREE.Mesh(new THREE.DodecahedronGeometry(0.35 - k * 0.06), maniMat);
+          stone.position.set(cx + (Math.random() - 0.5) * 0.1, k * 0.28, cz + (Math.random() - 0.5) * 0.1);
+          lakeGroup.add(stone);
+        }
+        
+        const stick = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.04, 0.04, 2.2, 6),
+          new THREE.MeshStandardMaterial({ color: 0x8b5cf6 })
+        );
+        stick.position.set(cx, 1.1, cz);
+        lakeGroup.add(stick);
+
+        const flag = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.5, 0.4),
+          new THREE.MeshBasicMaterial({ color: [0x3b82f6, 0xf8fafc, 0xff5a5f, 0x00d2b4, 0xffa726][m % 5], side: THREE.DoubleSide })
+        );
+        flag.position.set(cx + 0.25, 1.8, cz);
+        lakeGroup.add(flag);
+      }
+
+      // Lakeside White Chorten (Stupa)
+      const lakeStupa = new THREE.Group();
+      lakeStupa.position.set(-16, 0.5, 8);
+      const lBase = new THREE.Mesh(new THREE.BoxGeometry(2.0, 1.0, 2.0), new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.8 }));
+      lBase.position.y = 0.5;
+      lakeStupa.add(lBase);
+      const lDome = new THREE.Mesh(new THREE.SphereGeometry(0.8, 12, 12), new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.8 }));
+      lDome.position.y = 1.4;
+      lakeStupa.add(lDome);
+      const lSpire = new THREE.Mesh(new THREE.ConeGeometry(0.3, 1.2, 8), new THREE.MeshStandardMaterial({ color: 0xffa726, metalness: 0.8, roughness: 0.2 }));
+      lSpire.position.y = 2.4;
+      lakeStupa.add(lSpire);
+      lakeGroup.add(lakeStupa);
+      scene.add(lakeGroup);
+
+      // ─── LADAKHI CLIFFSIDE MONASTERIES (GOMPAS) ───
+      function createLadakhiGompa(x, y, z, rotY = 0, name = 'Karsha Gompa') {
+        const gompaGroup = new THREE.Group();
+        gompaGroup.position.set(x, y, z);
+        gompaGroup.rotation.y = rotY;
+
+        const whiteStoneMat = new THREE.MeshStandardMaterial({ color: 0xf3f4f6, roughness: 0.85 });
+        const maroonTempleMat = new THREE.MeshStandardMaterial({ color: 0x8b1e28, roughness: 0.8 });
+        const goldRoofMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.85, roughness: 0.2 });
+        const darkWoodMat = new THREE.MeshBasicMaterial({ color: 0x14181f });
+
+        // Base cliff foundation
+        const foundMesh = new THREE.Mesh(
+          new THREE.DodecahedronGeometry(7, 1),
+          new THREE.MeshStandardMaterial({ color: 0x5a4d3f, roughness: 0.95, flatShading: true })
+        );
+        foundMesh.scale.set(1.4, 0.8, 1.2);
+        foundMesh.position.y = -2;
+        gompaGroup.add(foundMesh);
+
+        // Terraced whitewashed monks' residences (stacked up the mountain cliff)
+        const blockCoords = [
+          { x: -3.5, y: 1.0, z: 1.5, w: 3.5, h: 2.2, d: 3.0 },
+          { x: 1.0, y: 1.8, z: 2.0, w: 4.2, h: 2.6, d: 3.2 },
+          { x: -1.8, y: 3.2, z: -0.5, w: 4.5, h: 2.8, d: 3.5 },
+          { x: 2.5, y: 3.8, z: -0.8, w: 3.8, h: 2.5, d: 3.0 },
+          { x: 0.2, y: 5.6, z: -2.0, w: 4.0, h: 2.4, d: 3.2 }
+        ];
+
+        blockCoords.forEach(b => {
+          const bMesh = new THREE.Mesh(new THREE.BoxGeometry(b.w, b.h, b.d), whiteStoneMat);
+          bMesh.position.set(b.x, b.y + b.h * 0.5, b.z);
+          bMesh.castShadow = true;
+          gompaGroup.add(bMesh);
+
+          // Windows (traditional dark rectangular Ladakhi lintels)
+          for (let w = -b.w * 0.35; w <= b.w * 0.35; w += 1.1) {
+            const win = new THREE.Mesh(new THREE.PlaneGeometry(0.35, 0.45), darkWoodMat);
+            win.position.set(b.x + w, b.y + b.h * 0.55, b.z + b.d * 0.51);
+            gompaGroup.add(win);
+          }
+        });
+
+        // Top Main Sanctuary (Dukhang) - Deep Maroon Red
+        const dukhang = new THREE.Mesh(new THREE.BoxGeometry(4.8, 3.2, 4.2), maroonTempleMat);
+        dukhang.position.set(0, 8.6, -1.5);
+        dukhang.castShadow = true;
+        gompaGroup.add(dukhang);
+
+        // Golden Ganjira Pagoda Roof
+        const roofGeom = new THREE.ConeGeometry(3.6, 1.4, 4).rotateY(Math.PI / 4);
+        const roof = new THREE.Mesh(roofGeom, goldRoofMat);
+        roof.position.set(0, 10.8, -1.5);
+        roof.castShadow = true;
+        gompaGroup.add(roof);
+
+        // Golden Dharma Wheel & Finials (Ganjira Pinnacle)
+        const finial = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.3, 1.4, 8), goldRoofMat);
+        finial.position.set(0, 11.8, -1.5);
+        gompaGroup.add(finial);
+
+        const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.08, 8, 16), goldRoofMat);
+        wheel.position.set(0, 12.3, -1.5);
+        gompaGroup.add(wheel);
+
+        // White Chortens at Monastery Entrance
+        for (let c = -1; c <= 1; c++) {
+          const stupa = new THREE.Group();
+          stupa.position.set(c * 1.8 - 1.5, 1.0, 4.2);
+          const sB = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.6, 0.9), whiteStoneMat);
+          sB.position.y = 0.3;
+          stupa.add(sB);
+          const sD = new THREE.Mesh(new THREE.SphereGeometry(0.4, 10, 10), whiteStoneMat);
+          sD.position.y = 0.85;
+          stupa.add(sD);
+          const sS = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.7, 8), goldRoofMat);
+          sS.position.y = 1.45;
+          stupa.add(sS);
+          gompaGroup.add(stupa);
+        }
+
+        // Prayer Flags radiating from golden roof to cliff edges
+        const pColors = [0x3b82f6, 0xf8fafc, 0xff5a5f, 0x00d2b4, 0xffa726];
+        const flagPoints = [
+          new THREE.Vector3(-8, 2, 6),
+          new THREE.Vector3(7, 3, 5),
+          new THREE.Vector3(6, 4, -7),
+          new THREE.Vector3(-7, 3, -6)
+        ];
+
+        flagPoints.forEach(targetPt => {
+          const startPt = new THREE.Vector3(0, 11.5, -1.5);
+          for (let step = 0.2; step <= 0.9; step += 0.15) {
+            const p = new THREE.Vector3().lerpVectors(startPt, targetPt, step);
+            p.y -= Math.sin(step * Math.PI) * 1.4;
+            const pFlag = new THREE.Mesh(
+              new THREE.PlaneGeometry(0.4, 0.32),
+              new THREE.MeshBasicMaterial({ color: pColors[Math.floor(step * 10) % pColors.length], side: THREE.DoubleSide })
+            );
+            pFlag.position.copy(p);
+            pFlag.rotation.y = rotY;
+            gompaGroup.add(pFlag);
+          }
+        });
+
+        scene.add(gompaGroup);
+        return gompaGroup;
+      }
+
+      // Karsha Cliff Monastery (overlooking Padum riverbed)
+      createLadakhiGompa(34, 15.5, -675, -0.6, 'Karsha Monastery');
+
+      // Rangdum Monastery (Penzila / Suru Valley ridge)
+      createLadakhiGompa(-36, 18.0, -780, 0.7, 'Rangdum Monastery');
+
+      // ─── ROADSIDE SNOW BANKS ON HIGH PASSES (SHINKULA & PENZILA) ───
+      const snowBankMat = new THREE.MeshStandardMaterial({ color: 0xf8fbff, roughness: 0.85, flatShading: true });
+      function createSnowBank(x, y, z, len, width, height, rotY = 0) {
+        const sb = new THREE.Mesh(new THREE.BoxGeometry(width, height, len), snowBankMat);
+        sb.position.set(x, y + height * 0.45, z);
+        sb.rotation.y = rotY;
+        sb.castShadow = true;
+        scene.add(sb);
+      }
+
+      // Shinkula Summit snow cuts (16,700 FT)
+      createSnowBank(-4.2, 26.6, -420, 18, 1.8, 1.4, -0.3);
+      createSnowBank(4.4, 26.6, -425, 20, 1.9, 1.6, -0.3);
+      createSnowBank(-4.5, 24.5, -390, 16, 1.6, 1.2, 0.2);
+      createSnowBank(4.2, 22.0, -470, 18, 1.8, 1.3, -0.2);
+
+      // Penzila Pass snow cuts (14,435 FT)
+      createSnowBank(-4.5, 21.5, -770, 22, 1.9, 1.5, 0.4);
+      createSnowBank(4.4, 21.5, -775, 20, 1.8, 1.4, 0.4);
+
+      // ─── DRANG-DRUNG GLACIER TONGUE ───
+      const glacierCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-48, 28, -840),
+        new THREE.Vector3(-36, 22, -825),
+        new THREE.Vector3(-28, 17, -810),
+        new THREE.Vector3(-24, 15, -795)
+      ]);
+      const glacierGeom = new THREE.TubeGeometry(glacierCurve, 24, 6.5, 8, false);
+      glacierGeom.scale(1, 0.35, 1);
+      const glacierMat = new THREE.MeshStandardMaterial({
+        color: 0xcfe2f7,
+        roughness: 0.3,
+        metalness: 0.35,
+        flatShading: true
+      });
+      const glacierMesh = new THREE.Mesh(glacierGeom, glacierMat);
+      glacierMesh.receiveShadow = true;
+      scene.add(glacierMesh);
 
       // ─── 4. GLACIAL WATER CROSSING (NALLAH) AT PADUM ───
       const waterCrossGroup = new THREE.Group();
@@ -1597,6 +1943,8 @@
       createBROBoard('PROJECT VIJAYAK · BRO', 'PEEP PEEP DONT SLEEP', 'ACCIDENTS TAKE NO HOLIDAY', 4.6, 14.5, -530, -0.2);
       createBROBoard('PROJECT VIJAYAK · BRO', 'PENZILA PASS · 14,435 FT', 'GATEWAY TO ZANSKAR VALLEY', -4.5, 21.5, -775, 0.5);
       createBROBoard('PROJECT VIJAYAK · BRO', 'SURU VALLEY TO KARGIL', 'RESPECT THE SACRED MOUNTAINS', 4.5, 6.0, -925, 0.1);
+      createBROBoard('PROJECT HIMANK · BRO', 'TSO MORIRI LAKE · 14,836 FT', 'PEARL OF THE CHANGTHANG PLATEAU', 10.5, 12.8, -510, -0.3);
+      createBROBoard('PROJECT VIJAYAK · BRO', 'KARSHA CLIFF MONASTERY', '11TH CENTURY GELUGPA GOMPA', 4.8, 10.2, -670, 0.2);
 
       // Buddhist Stupa & Overhead Prayer Flags at Shinkula Summit
       const stupaGroup = new THREE.Group();
@@ -2090,10 +2438,13 @@
           }
         }
 
-        // Rotate milestone pins
+        // Rotate milestone pins and animate high-altitude lake water shimmer
         polarstepsSteps.forEach(p => {
           if (p.marker) p.marker.rotation.y += delta * 1.5;
         });
+        if (tsoWaterMesh) {
+          tsoWaterMesh.rotation.z += delta * 0.04;
+        }
 
         // Trigger Finale Modal when completing 4,000 KM loop
         if (roadProgress >= 0.985 && !finaleOverlay.classList.contains('visible')) {
