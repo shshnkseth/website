@@ -1111,6 +1111,52 @@
       object-fit: cover;
       display: block;
       filter: brightness(0.88);
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .side-card:hover img {
+      filter: brightness(0.96);
+    }
+    .side-card-thumb {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--surface-2);
+    }
+    .side-card-thumb img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+    }
+    .side-card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(14, 13, 11, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .side-card-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #4dba7a;
+      box-shadow: 0 0 6px #4dba7a;
+      display: inline-block;
     }
     .side-card-body {
       padding: 0.9rem 1.05rem 1.05rem;
@@ -1621,30 +1667,53 @@
       <button class="side-nav-btn" id="side-next" type="button" aria-label="Next side project">&#x203A;</button>
     </div>
     <div class="side-grid" id="side-projects-track">
-      <a class="side-card spotlight-card" href="bhopal-sb.html">
-        <img src="./shashank_files/gallery_opt/bhopal-sb-opt.jpg" alt="Bhopal SB community"/>
+      <a class="side-card spotlight-card" href="adventure.html">
+        <div class="side-card-thumb">
+          <img src="./shashank_files/gallery_opt/adventure-3d-preview.jpg" alt="Zanskar, Suru — Interactive 3D Adventure"/>
+          <span class="side-card-badge">Interactive 3D</span>
+        </div>
         <div class="side-card-body">
-          <div class="side-card-title">Bhopal SB</div>
-          <div class="side-card-desc">Building Bhopal's first skateboarding scene through community, events, and competitions.</div>
+          <div class="card-type">Interactive · 3D · Storytelling</div>
+          <div class="side-card-title">Zanskar, Suru</div>
+          <div class="side-card-desc">Playable 3D road trip relive through high Himalayan passes, glacial riverbeds, and downhill hairpins.</div>
+        </div>
+      </a>
+      <a class="side-card spotlight-card" href="https://www.bhopalsb.in/" target="_blank" rel="noopener noreferrer">
+        <div class="side-card-thumb">
+          <img src="./shashank_files/gallery_opt/bhopalsb-platform-preview.jpg" alt="BhopalSB Digital Platform"/>
+        </div>
+        <div class="side-card-body">
+          <div class="card-type">Community · Web · Digital</div>
+          <div class="side-card-title">BhopalSB</div>
+          <div class="side-card-desc">Central India's grassroots skate community, academy, events, and digital platform.</div>
         </div>
       </a>
       <a class="side-card spotlight-card" href="projects.html" target="_blank" rel="noopener noreferrer">
-        <img src="./shashank_files/gallery_opt/gooofy-product-opt.jpg" alt="House of Gooofy products"/>
+        <div class="side-card-thumb">
+          <img src="./shashank_files/gallery_opt/gooofy-product-opt.jpg" alt="House of Gooofy products"/>
+        </div>
         <div class="side-card-body">
-          <div class="side-card-title">House of Gooofy</div>
+          <div class="card-type">Brand · Digital</div>
+          <div class="side-card-title">Gooofy</div>
           <div class="side-card-desc">Skate and adventure essentials thrift shop focused on functional, affordable gear.</div>
         </div>
       </a>
       <a class="side-card spotlight-card" href="projects.html" target="_blank" rel="noopener noreferrer">
-        <img src="./shashank_files/gallery_opt/custom-built-bike-opt.jpg" alt="Custom bike build"/>
+        <div class="side-card-thumb">
+          <img src="./shashank_files/gallery_opt/custom-built-bike-opt.jpg" alt="Custom bike build"/>
+        </div>
         <div class="side-card-body">
+          <div class="card-type">Physical · DIY</div>
           <div class="side-card-title">Custom Bike Builds</div>
           <div class="side-card-desc">Designing and building custom motorcycles tuned for trail reliability and character.</div>
         </div>
       </a>
       <a class="side-card spotlight-card" href="projects.html" target="_blank" rel="noopener noreferrer">
-        <img src="./shashank_files/gallery_opt/products-ashtray-opt.jpg" alt="Artisan makerspace product"/>
+        <div class="side-card-thumb">
+          <img src="./shashank_files/gallery_opt/products-ashtray-opt.jpg" alt="Artisan makerspace product"/>
+        </div>
         <div class="side-card-body">
+          <div class="card-type">Makerspace · Prototyping</div>
           <div class="side-card-title">Artisan</div>
           <div class="side-card-desc">A makerspace practice across concrete, wood, and hands-on material prototyping.</div>
         </div>
