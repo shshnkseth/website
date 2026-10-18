@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B8YXKL138Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B8YXKL138Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-B8YXKL138Z');
-</script>
+    gtag('config', 'G-B8YXKL138Z');
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="5ad1a495-4c97-4a8f-8e56-9d40113ebc34"></script>
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "yqtfyijmfx");
-</script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="5ad1a495-4c97-4a8f-8e56-9d40113ebc34"></script>
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <link rel="icon" href="./shashank_files/zapp.png" />
   <link rel="shortcut icon" href="./shashank_files/zapp.png" type="image/png" />
-  <title>🚗 4,000 KM Himalayan Loop · Bhopal to Ladakh ✦ Shashank Seth</title>
-  <meta name="description" content="An interactive full-screen 3D road trip relive of the 4,000 KM loop: Bhopal to Panipat, Manali, Shinkula Pass (16,700 FT), Padum, Penzila, and Kargil behind the wheel of a Black Suzuki Jimny." />
+  <title>🚗 4,000 KM Himalayan Loop ➔ Suru Fest · Zanskar to Kargil ✦ Shashank Seth</title>
+  <meta name="description" content="An interactive full-screen 3D road trip relive of the 4,000 KM overland adventure expedition to Suru Fest in Suru Valley near Kargil via Manali and Zanskar in a Black Suzuki Jimny 4x4." />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -72,6 +74,8 @@
       display: block;
       outline: none;
       z-index: 1;
+      touch-action: none;
+      -webkit-touch-callout: none;
     }
 
     /* ─── 1. FLOATING TOP NAVBAR ─── */
@@ -164,7 +168,7 @@
       gap: 0.35rem;
     }
 
-    /* ─── 2. FLOATING DRIVE CONTROLS ─── */
+    /* ─── 2. FLOATING DRIVE CONTROLS & MOBILE TOUCH INFO ─── */
     .controls-hint-pill {
       position: fixed;
       top: 4.8rem;
@@ -184,6 +188,34 @@
       gap: 0.45rem;
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .controls-desktop-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .controls-mobile-hint {
+      display: none;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .mobile-hint-info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 0.6rem;
+      font-weight: 700;
+      line-height: 1;
     }
 
     .kbd-tag {
@@ -192,6 +224,254 @@
       border-radius: 4px;
       color: #FFFFFF;
       font-weight: 600;
+    }
+
+    /* ─── MOBILE TOUCH DRIVE TIP (PERSISTS UNTIL OPERATED) ─── */
+    .mobile-drive-tip {
+      position: fixed;
+      top: 5.2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      width: min(390px, calc(100vw - 1.8rem));
+      background: var(--surface-glass-dark);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 210, 180, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 1.05rem;
+      z-index: 60;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      color: #FFFFFF;
+      pointer-events: auto;
+      opacity: 0;
+      visibility: hidden;
+      transform-origin: center top;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.35s ease,
+                  border-color 0.25s ease,
+                  box-shadow 0.25s ease;
+    }
+
+    .mobile-drive-tip.visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateX(-50%) translateY(0) !important;
+      pointer-events: auto !important;
+    }
+
+    .mobile-drive-tip.learning-active {
+      border-color: var(--mint);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--mint-glow);
+    }
+
+    .mobile-drive-tip.learned-celebrate {
+      border-color: var(--coral);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 32px var(--coral-glow);
+      transform: translateX(-50%) scale(1.02) !important;
+    }
+
+    .tip-gesture-icon-wrap {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .tip-hand-icon {
+      font-size: 1.3rem;
+      z-index: 2;
+      animation: tapBounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes tapBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      40% { transform: translateY(3px) scale(0.92); }
+      60% { transform: translateY(2px) scale(0.94); }
+    }
+
+    .tip-pulse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--mint);
+      opacity: 0;
+      animation: tipRingPulse 1.8s ease-out infinite;
+    }
+
+    @keyframes tipRingPulse {
+      0% { transform: scale(0.7); opacity: 0.9; }
+      70% { transform: scale(1.35); opacity: 0; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    .tip-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .tip-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .tip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+
+    .tip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 6px var(--mint);
+      animation: pulseGlow 1.5s infinite;
+    }
+
+    .tip-close-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.95rem;
+      line-height: 1;
+      padding: 0.2rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .tip-close-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .tip-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .tip-desc {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.35;
+    }
+
+    .tip-progress-wrap {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 0.35rem;
+      position: relative;
+    }
+
+    .tip-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--mint), var(--coral));
+      border-radius: var(--radius-full);
+      transition: width 0.08s linear;
+      box-shadow: 0 0 8px var(--mint);
+    }
+
+    /* ─── DYNAMIC TOUCH JOYSTICK PUCK UNDER FINGER ─── */
+    .touch-drive-puck {
+      position: fixed;
+      width: 90px;
+      height: 90px;
+      margin-left: -45px;
+      margin-top: -45px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 70;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.6);
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.18s ease;
+    }
+
+    .touch-drive-puck.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .puck-outer-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 255, 255, 0.4);
+      background: radial-gradient(circle, rgba(0, 210, 180, 0.22) 0%, rgba(14, 22, 32, 0.55) 75%);
+      box-shadow: 0 0 24px rgba(0, 210, 180, 0.4);
+      animation: rotateSlow 8s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .puck-inner-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 16px var(--coral-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 800;
+      transition: transform 0.05s ease-out;
+    }
+
+    .puck-label {
+      position: absolute;
+      bottom: -1.35rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #FFFFFF;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.85);
+      white-space: nowrap;
+      text-transform: uppercase;
     }
 
     .map-zoom-stack {
@@ -471,6 +751,161 @@
       margin-top: 0.2rem;
       text-transform: uppercase;
     }
+
+    /* ─── CAMPSITE ARRIVAL GAMEPLAY HUD CARD ─── */
+    .campsite-arrival-card {
+      position: fixed;
+      bottom: 9.8rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(24px) scale(0.96);
+      width: min(450px, calc(100vw - 1.8rem));
+      background: var(--surface-glass-dark);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1.5px solid var(--mint);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 32px var(--mint-glow);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1.15rem;
+      z-index: 65;
+      display: flex;
+      gap: 0.95rem;
+      align-items: center;
+      color: #FFFFFF;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+    }
+
+    .campsite-arrival-card.visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateX(-50%) translateY(0) scale(1) !important;
+      pointer-events: auto !important;
+    }
+
+    .camp-card-thumb {
+      width: 78px;
+      height: 78px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+      background: #1e293b;
+    }
+
+    .camp-card-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .camp-pill-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .camp-badge-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mint);
+      background: rgba(0, 210, 180, 0.15);
+      border: 1px solid rgba(0, 210, 180, 0.3);
+      padding: 0.12rem 0.45rem;
+      border-radius: var(--radius-full);
+    }
+
+    .camp-pop-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #FFA726;
+      background: rgba(255, 167, 38, 0.15);
+      border: 1px solid rgba(255, 167, 38, 0.3);
+      padding: 0.12rem 0.45rem;
+      border-radius: var(--radius-full);
+    }
+
+    .camp-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .camp-card-desc {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .camp-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+
+    .camp-action-btn {
+      padding: 0.38rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      transition: all 0.15s ease;
+      line-height: 1.2;
+    }
+
+    .camp-action-btn.primary {
+      background: var(--coral);
+      color: #FFFFFF;
+      box-shadow: 0 2px 10px var(--coral-glow);
+    }
+
+    .camp-action-btn.primary:hover {
+      background: var(--coral-hover);
+      transform: translateY(-1px);
+    }
+
+    .camp-action-btn.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .camp-action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .camp-close-icon {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.7rem;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0.2rem;
+      line-height: 1;
+    }
+    .camp-close-icon:hover { color: #FFFFFF; }
 
     /* ─── CELEBRATION RESTART MODAL ─── */
     .trip-finale-overlay {
@@ -826,7 +1261,39 @@
 
     @media (max-width: 768px) {
       .trip-author-sub { display: none; }
-      .controls-hint-pill { display: none; }
+      .controls-hint-pill {
+        display: flex;
+        top: 3.8rem;
+        right: 0.8rem;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.62rem;
+        cursor: pointer;
+        pointer-events: auto;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      }
+      .controls-desktop-hint { display: none; }
+      .controls-mobile-hint { display: inline-flex; align-items: center; gap: 0.35rem; }
+      .mobile-drive-tip {
+        top: 4.8rem;
+        width: calc(100vw - 1.6rem);
+        padding: 0.8rem 0.95rem;
+      }
+      .campsite-arrival-card {
+        bottom: 8.8rem;
+        width: calc(100vw - 1.4rem);
+        padding: 0.8rem 0.95rem;
+        gap: 0.75rem;
+      }
+      .camp-card-thumb {
+        width: 66px;
+        height: 66px;
+      }
+      .camp-card-title {
+        font-size: 0.95rem;
+      }
+      .camp-card-desc {
+        font-size: 0.7rem;
+      }
       .polarsteps-bottom-dock { width: calc(100vw - 1.6rem); bottom: 0.8rem; }
       .step-card-thumbnail { width: 70px; height: 70px; }
       .step-card-title { font-size: 0.95rem; }
@@ -835,6 +1302,16 @@
       .intro-meta-line { flex-wrap: wrap; gap: 0.4rem 0.6rem; font-size: 0.68rem; }
       .intro-floating-ctas { flex-direction: column; width: 100%; border-radius: 16px; padding: 0.6rem; gap: 0.5rem; }
       .floating-cta-primary, .floating-cta-secondary { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .top-floating-bar { left: 0.5rem; right: 0.5rem; top: 0.5rem; }
+      .nav-left-pill, .nav-right-pill-group { gap: 0.35rem; }
+      .glass-btn { padding: 0.42rem 0.72rem; font-size: 0.72rem; }
+      .trip-meta-pill { padding: 0.42rem 0.75rem; }
+      .trip-title-text { font-size: 0.76rem; }
+      #btn-open-intro span:nth-child(2) { display: none; }
+      #btn-restart-top span:nth-child(2) { display: none; }
     }
   </style>
 </head>
@@ -852,23 +1329,23 @@
 
       <div class="intro-kicker">
         <span class="pulse-dot"></span>
-        <span>Case Study · Shashank Seth</span>
+        <span>Adventure Expedition · Shashank Seth &amp; Crew</span>
       </div>
 
       <h1 class="intro-title">
-        The Great Himalayan Loop
+        The Great Himalayan Loop ➔ Suru Fest
       </h1>
 
       <p class="intro-summary">
-        A 4,000 km solo overland expedition through the high Himalayas in a Suzuki Jimny 4x4 and downhill longboard — built as an interactive 0→1 spatial case study with real GPS telemetry.
+        A 4,000 km overland adventure expedition to Suru Fest in Suru Valley (near Kargil) via Zanskar — navigating alpine camps in Manali, rugged riverbed bivouacs in Padum, and highline &amp; bouldering camps in a Black Suzuki Jimny 4x4.
       </p>
 
       <div class="intro-meta-line">
-        <span>4,000 KM Circuit</span>
+        <span>4,000 KM Loop</span>
         <span class="sep">/</span>
-        <span>16,700 FT Shinkula Pass</span>
+        <span>Manali &amp; Padum Camps</span>
         <span class="sep">/</span>
-        <span>Drang-Drung Glacier</span>
+        <span>Suru Fest Basecamp (Kargil)</span>
       </div>
 
       <!-- Floating 2 CTAs Dock -->
@@ -892,8 +1369,8 @@
       <div class="trip-meta-pill">
         <span class="trip-badge-icon">🚗</span>
         <div>
-          <div class="trip-title-text">4,000 KM Himalayan Loop 🇮🇳</div>
-          <div class="trip-author-sub">Bhopal ➔ Panipat ➔ Manali ➔ Zanskar ➔ Kargil ➔ Bhopal</div>
+          <div class="trip-title-text">4,000 KM Loop ➔ Suru Fest 🇮🇳</div>
+          <div class="trip-author-sub">Bhopal ➔ Manali ➔ Zanskar ➔ Suru Valley Fest (Kargil) ➔ Bhopal</div>
         </div>
       </div>
     </div>
@@ -913,14 +1390,51 @@
   </header>
 
   <!-- ─── 2. FLOATING DRIVE CONTROLS ─── -->
-  <div class="controls-hint-pill hud-layer hud-hidden">
-    <span>Drive:</span>
-    <span class="kbd-tag">W</span><span class="kbd-tag">A</span><span class="kbd-tag">S</span><span class="kbd-tag">D</span>
-    <span>·</span>
-    <span class="kbd-tag">Shift</span> Boost
-    <span>·</span>
-    <span class="kbd-tag">E</span> Switch
+  <div class="controls-hint-pill hud-layer hud-hidden" id="controls-hint-pill" role="button" aria-label="Drive controls info" title="Drive Controls">
+    <div class="controls-desktop-hint">
+      <span>Drive:</span>
+      <span class="kbd-tag">W</span><span class="kbd-tag">A</span><span class="kbd-tag">S</span><span class="kbd-tag">D</span>
+      <span>·</span>
+      <span class="kbd-tag">Shift</span> Boost
+      <span>·</span>
+      <span class="kbd-tag">E</span> Switch
+    </div>
+    <div class="controls-mobile-hint">
+      <span>👆 Hold to Drive · Slide to Steer</span>
+      <span class="mobile-hint-info-icon">ℹ</span>
+    </div>
   </div>
+
+  <!-- Dynamic Touch Joystick Puck under finger -->
+  <div class="touch-drive-puck" id="touch-drive-puck" aria-hidden="true">
+    <div class="puck-outer-ring"></div>
+    <div class="puck-inner-dot">
+      <span class="puck-icon" id="puck-icon">▲</span>
+    </div>
+    <div class="puck-label" id="puck-label">DRIVE</div>
+  </div>
+
+  <!-- Mobile Persistent Learning Info Tip (stays until user learns to operate) -->
+  <aside class="mobile-drive-tip hud-layer hud-hidden" id="mobile-drive-tip" role="status" aria-live="polite">
+    <div class="tip-gesture-icon-wrap">
+      <div class="tip-hand-icon">👆</div>
+      <div class="tip-pulse-ring"></div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-header-row">
+        <span class="tip-badge">
+          <span class="tip-dot"></span>
+          <span id="tip-badge-text">Mobile Controls</span>
+        </span>
+        <button class="tip-close-btn" id="tip-close-btn" type="button" aria-label="Dismiss hint">✕</button>
+      </div>
+      <div class="tip-title" id="tip-title">Tap &amp; Hold to Drive</div>
+      <div class="tip-desc" id="tip-desc">Hold anywhere on screen to accelerate · Slide left or right to steer</div>
+      <div class="tip-progress-wrap" id="tip-progress-wrap" aria-hidden="true">
+        <div class="tip-progress-fill" id="tip-progress-fill"></div>
+      </div>
+    </div>
+  </aside>
 
   <!-- Zoom Buttons -->
   <div class="map-zoom-stack hud-layer hud-hidden">
@@ -935,12 +1449,12 @@
     <div class="dock-timeline-track">
       <ul class="timeline-steps-list">
         <li class="timeline-step-pin active" data-step="0" id="pin-0" title="Bhopal ➔ Panipat (0 - 750 KM)">1</li>
-        <li class="timeline-step-pin" data-step="1" id="pin-1" title="Manali Valley (1,300 KM)">2</li>
+        <li class="timeline-step-pin" data-step="1" id="pin-1" title="Manali Staging Camp · 1,300 KM">2</li>
         <li class="timeline-step-pin" data-step="2" id="pin-2" title="Jispa & Darcha (1,420 KM)">3</li>
         <li class="timeline-step-pin" data-step="3" id="pin-3" title="Shinkula Pass (16,700 FT)">4</li>
-        <li class="timeline-step-pin" data-step="4" id="pin-4" title="Padum River Crossing (1,680 KM)">5</li>
+        <li class="timeline-step-pin" data-step="4" id="pin-4" title="Padum Riverbed Camp · 1,680 KM">5</li>
         <li class="timeline-step-pin" data-step="5" id="pin-5" title="Penzila Downhill (14,435 FT)">6</li>
-        <li class="timeline-step-pin" data-step="6" id="pin-6" title="Suru Valley to Kargil (2,050 KM)">7</li>
+        <li class="timeline-step-pin" data-step="6" id="pin-6" title="Suru Fest Mega Basecamp · 2,050 KM">7</li>
         <li class="timeline-step-pin" data-step="7" id="pin-7" title="Return to Bhopal (4,000 KM Loop)">8</li>
       </ul>
     </div>
@@ -957,7 +1471,7 @@
         </div>
         <h3 class="step-card-title" id="step-title">Bhopal to Panipat Highway Run</h3>
         <p class="step-card-desc" id="step-desc">
-          Setting off in the Black Suzuki Jimny 4x4 from Bhopal, cruising north through Madhya Pradesh and Haryana towards the Himalayas.
+          Setting off in the Black Suzuki Jimny 4x4 from Bhopal with the crew, cruising north through Madhya Pradesh and Haryana towards the Himalayas.
         </p>
       </div>
 
@@ -969,6 +1483,24 @@
 
   </aside>
 
+  <!-- ─── 4b. CAMPSITE ARRIVAL GAMEPLAY HUD CARD ─── -->
+  <aside class="campsite-arrival-card hud-layer hud-hidden" id="campsite-banner" role="dialog" aria-label="Campsite Arrival">
+    <button class="camp-close-icon" id="btn-camp-close" type="button" aria-label="Close Camp View">✕</button>
+    <img class="camp-card-thumb" id="camp-card-thumb" src="./shashank_files/gallery_opt/manali-room-view.jpg" alt="Campsite Photo" />
+    <div class="camp-card-content">
+      <div class="camp-pill-row">
+        <span class="camp-badge-tag" id="camp-badge-tag">⛺ CAMPSITE ARRIVED</span>
+        <span class="camp-pop-tag" id="camp-pop-tag">👥 6 Crew Members</span>
+      </div>
+      <h3 class="camp-card-title" id="camp-card-title">Manali Alpine Staging Camp</h3>
+      <p class="camp-card-desc" id="camp-card-desc">Expedition crew staging ropes, checking tyre pressure, and resting before Shinkula Pass.</p>
+      <div class="camp-card-actions">
+        <button class="camp-action-btn primary" id="btn-camp-rest" type="button">☕ Rest with Crew</button>
+        <button class="camp-action-btn secondary" id="btn-camp-continue" type="button">Continue Drive ▶</button>
+      </div>
+    </div>
+  </aside>
+
   <!-- ─── 4. TOAST NOTIFICATION ─── -->
   <div class="toast-banner" id="action-toast">
     <div class="toast-title" id="toast-title">Bhopal Base</div>
@@ -978,10 +1510,10 @@
   <!-- ─── 5. FINALE CELEBRATION MODAL ─── -->
   <div class="trip-finale-overlay" id="finale-overlay">
     <div class="trip-finale-card">
-      <div class="finale-badge">🏔️ 4,000 KM LOOP COMPLETE</div>
-      <h2 class="finale-heading">The Great Himalayan Expedition</h2>
+      <div class="finale-badge">🏔️ 4,000 KM LOOP &amp; SURU FEST EXPEDITION</div>
+      <h2 class="finale-heading">Expedition to Suru Fest Conquered!</h2>
       <div class="finale-route-text">
-        BHOPAL ➔ PANIPAT ➔ MANALI ➔ SHINKULA PASS (16,700 FT) ➔ PADUM RIVERBED ➔ PENZILA ➔ SURU ➔ KARGIL ➔ BHOPAL
+        BHOPAL ➔ MANALI (STAGING CAMP) ➔ SHINKULA PASS (16,700 FT) ➔ PADUM RIVERBED (WILD CAMP) ➔ PENZILA ➔ SURU FEST BASECAMP ➔ KARGIL ➔ BHOPAL
       </div>
       <div class="finale-stats-grid">
         <div class="finale-stat-cell">
@@ -989,16 +1521,16 @@
           <strong>4,000 KM</strong>
         </div>
         <div class="finale-stat-cell">
-          <small>Peak Altitude</small>
-          <strong>16,700 FT</strong>
+          <small>Campsites Conquered</small>
+          <strong>3 Camps</strong>
         </div>
         <div class="finale-stat-cell">
-          <small>Expedition Loop</small>
-          <strong style="color:var(--mint);">Conquered</strong>
+          <small>Destination Reached</small>
+          <strong style="color:var(--mint);">Suru Fest</strong>
         </div>
       </div>
       <button class="finale-btn-restart" id="btn-finale-restart" type="button">
-        ↺ Relive Road Trip from Bhopal
+        ↺ Relive Road Trip to Suru Fest
       </button>
     </div>
   </div>
@@ -2005,6 +2537,597 @@
       }
       scene.add(flagsOverhead);
 
+      // ─── 8. 3D EXPEDITION CAMPSITES & SURU FEST BASECAMPS ───
+      const campfires = [];
+      const wavingCampers = [];
+      const speechBubbles = [];
+
+      function createTent(type = 'dome', colorHex = 0xff5a5f) {
+        const tGroup = new THREE.Group();
+        if (type === 'dome') {
+          // Geodesic / Dome tent
+          const domeGeom = new THREE.SphereGeometry(2.1, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.52);
+          const domeMat = new THREE.MeshStandardMaterial({
+            color: colorHex,
+            roughness: 0.6,
+            flatShading: true,
+            side: THREE.DoubleSide
+          });
+          const dome = new THREE.Mesh(domeGeom, domeMat);
+          dome.castShadow = true;
+          tGroup.add(dome);
+
+          const floor = new THREE.Mesh(
+            new THREE.CircleGeometry(2.15, 10).rotateX(-Math.PI / 2),
+            new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.9 })
+          );
+          tGroup.add(floor);
+
+          const doorGeom = new THREE.ConeGeometry(0.85, 1.5, 3).rotateX(Math.PI).rotateY(Math.PI / 6);
+          const doorMesh = new THREE.Mesh(doorGeom, new THREE.MeshBasicMaterial({ color: 0x0f172a }));
+          doorMesh.position.set(0, 0.75, 1.9);
+          tGroup.add(doorMesh);
+        } else {
+          // Alpine Ridge / A-frame tent
+          const ridgeMat = new THREE.MeshStandardMaterial({
+            color: colorHex,
+            roughness: 0.6,
+            side: THREE.DoubleSide
+          });
+          const ridgeGeom = new THREE.CylinderGeometry(0, 1.85, 3.5, 3, 1).rotateZ(Math.PI / 2).rotateY(Math.PI / 6);
+          const ridge = new THREE.Mesh(ridgeGeom, ridgeMat);
+          ridge.position.y = 1.05;
+          ridge.castShadow = true;
+          tGroup.add(ridge);
+        }
+        return tGroup;
+      }
+
+      function createCampfire() {
+        const fGroup = new THREE.Group();
+
+        const stoneMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9, flatShading: true });
+        for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+          const s = new THREE.Mesh(new THREE.DodecahedronGeometry(0.3, 0), stoneMat);
+          s.position.set(Math.cos(a) * 0.95, 0.15, Math.sin(a) * 0.95);
+          s.rotation.set(Math.random(), Math.random(), Math.random());
+          s.castShadow = true;
+          fGroup.add(s);
+        }
+
+        const logMat = new THREE.MeshStandardMaterial({ color: 0x3f2e1e, roughness: 0.95 });
+        for (let i = 0; i < 3; i++) {
+          const log = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.11, 1.3, 5), logMat);
+          log.position.y = 0.22;
+          log.rotation.x = Math.PI / 3;
+          log.rotation.y = (i * Math.PI) / 1.5;
+          log.castShadow = true;
+          fGroup.add(log);
+        }
+
+        const flameMat = new THREE.MeshBasicMaterial({ color: 0xff6600, transparent: true, opacity: 0.9 });
+        const flameCore = new THREE.Mesh(new THREE.ConeGeometry(0.38, 1.15, 6), flameMat);
+        flameCore.position.y = 0.65;
+        fGroup.add(flameCore);
+
+        const flameLight = new THREE.PointLight(0xff7722, 2.4, 24, 1.5);
+        flameLight.position.y = 0.9;
+        fGroup.add(flameLight);
+
+        return { group: fGroup, light: flameLight, flame: flameCore };
+      }
+
+      function createCamper(jacketColor = 0xff5a5f, beanieColor = 0xffa726, isSitting = false) {
+        const cGroup = new THREE.Group();
+
+        const jacketMat = new THREE.MeshStandardMaterial({ color: jacketColor, roughness: 0.6 });
+        const skinMat = new THREE.MeshStandardMaterial({ color: 0xdfb48c, roughness: 0.8 });
+        const pantsMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.8 });
+        const beanieMat = new THREE.MeshStandardMaterial({ color: beanieColor, roughness: 0.5 });
+
+        if (isSitting) {
+          const stool = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.28, 0.28, 0.45, 8),
+            new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.8 })
+          );
+          stool.position.y = 0.22;
+          cGroup.add(stool);
+
+          const torso = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.55, 0.35), jacketMat);
+          torso.position.y = 0.72;
+          torso.castShadow = true;
+          cGroup.add(torso);
+
+          const legs = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.25, 0.45), pantsMat);
+          legs.position.set(0, 0.42, 0.15);
+          cGroup.add(legs);
+
+          const head = new THREE.Mesh(new THREE.SphereGeometry(0.18, 10, 8), skinMat);
+          head.position.y = 1.1;
+          head.castShadow = true;
+          cGroup.add(head);
+
+          const beanie = new THREE.Mesh(new THREE.SphereGeometry(0.19, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.55), beanieMat);
+          beanie.position.y = 1.15;
+          cGroup.add(beanie);
+
+          const mug = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.06, 0.06, 0.12, 8),
+            new THREE.MeshStandardMaterial({ color: 0x00d2b4, metalness: 0.5 })
+          );
+          mug.position.set(0.15, 0.7, 0.26);
+          cGroup.add(mug);
+        } else {
+          const legs = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.75, 0.28), pantsMat);
+          legs.position.y = 0.38;
+          legs.castShadow = true;
+          cGroup.add(legs);
+
+          const torso = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.65, 0.34), jacketMat);
+          torso.position.y = 1.05;
+          torso.castShadow = true;
+          cGroup.add(torso);
+
+          const head = new THREE.Mesh(new THREE.SphereGeometry(0.19, 10, 8), skinMat);
+          head.position.y = 1.5;
+          head.castShadow = true;
+          cGroup.add(head);
+
+          const beanie = new THREE.Mesh(new THREE.SphereGeometry(0.2, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.55), beanieMat);
+          beanie.position.y = 1.56;
+          cGroup.add(beanie);
+
+          const armGroup = new THREE.Group();
+          armGroup.position.set(0.32, 1.25, 0);
+          const arm = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.55, 0.14), jacketMat);
+          arm.position.y = 0.25;
+          armGroup.add(arm);
+          const hand = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 6), skinMat);
+          hand.position.y = 0.54;
+          armGroup.add(hand);
+          cGroup.add(armGroup);
+          cGroup.waveArm = armGroup;
+        }
+
+        return cGroup;
+      }
+
+      function createCampSpeechBubble(text) {
+        const bubbleCanvas = document.createElement('canvas');
+        bubbleCanvas.width = 512;
+        bubbleCanvas.height = 140;
+        const bctx = bubbleCanvas.getContext('2d');
+
+        bctx.fillStyle = '#0F172A';
+        bctx.strokeStyle = '#00D2B4';
+        bctx.lineWidth = 6;
+        bctx.beginPath();
+        bctx.roundRect(10, 10, 492, 120, 20);
+        bctx.fill();
+        bctx.stroke();
+
+        bctx.fillStyle = '#FFFFFF';
+        bctx.font = 'bold 26px -apple-system, sans-serif';
+        bctx.textAlign = 'center';
+        bctx.textBaseline = 'middle';
+        bctx.fillText(text, 256, 70);
+
+        const bubbleTex = new THREE.CanvasTexture(bubbleCanvas);
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: bubbleTex, transparent: true }));
+        sprite.scale.set(6.8, 1.85, 1);
+        return sprite;
+      }
+
+      const campsiteData = [
+        {
+          id: 'manali',
+          name: 'Manali Alpine Staging Camp',
+          sub: 'Expedition Crew & Gear Staging Hub',
+          badge: '🏕️ STAGING CAMP 01',
+          popBadge: '👥 6 Expedition Crew',
+          t: 0.16,
+          sideOffset: 8.5,
+          elev: '6,175 FT',
+          theme: 'manali',
+          img: './shashank_files/gallery_opt/manali-room-view.jpg',
+          desc: 'Expedition crew staging ropes, checking Jimny tyre pressure, and packing gear before tackling Shinkula Pass.',
+          dialog: '☕ "Piping hot chai ready! Jimny is packed for Shinkula Pass!"',
+          dialogBubble: '☕ "Chai ready! Packed for Shinkula!"'
+        },
+        {
+          id: 'padum',
+          name: 'Padum Zanskar Riverbed Camp',
+          sub: 'Glacial Ford & Overland Wild Camp',
+          badge: '🏕️ WILD CAMP 02',
+          popBadge: '👥 4 Rugged Overlanders',
+          t: 0.58,
+          sideOffset: -8.5,
+          elev: '12,000 FT',
+          theme: 'padum',
+          img: './shashank_files/gallery_opt/jimny-riverbed-zanskar.jpg',
+          desc: 'High-altitude wild camping on vast riverbed stones beside roaring turquoise glacial melt. 4WD recovery tracks and campfires under starry skies.',
+          dialog: '🌊 "Glacial water crossing conquered! Starry night in Zanskar!"',
+          dialogBubble: '🌊 "Water crossing cleared! Rest up!"'
+        },
+        {
+          id: 'suru',
+          name: 'Suru Fest Mega Basecamp',
+          sub: 'The Destination · Bouldering & Highline Festival',
+          badge: '⛺ FESTIVAL DESTINATION',
+          popBadge: '👥 45+ Climbers & Highliners',
+          t: 0.86,
+          sideOffset: 11.0,
+          elev: '9,725 FT',
+          theme: 'surufest',
+          img: './shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg',
+          desc: 'Suru Fest in full swing! Highline rigs stretched across Suru canyon, bouldering crash pads under granite giants, campfire acoustic jams, and celebration.',
+          dialog: '🧗‍♂️ "WELCOME TO SURU FEST! Highlines rigged across the canyon!"',
+          dialogBubble: '🧗‍♂️ "WELCOME TO SURU FEST! Ropes Rigged!"'
+        }
+      ];
+
+      function buildCampsites() {
+        campsiteData.forEach((camp) => {
+          const pt = roadCurve.getPointAt(camp.t);
+          const tangent = roadCurve.getTangentAt(camp.t).normalize();
+          const up = new THREE.Vector3(0, 1, 0);
+          const side = new THREE.Vector3().crossVectors(tangent, up).normalize();
+
+          const campCenter = pt.clone().addScaledVector(side, camp.sideOffset);
+          const terrainInfo = getClosestRoadPoint(campCenter.x, campCenter.z);
+          campCenter.y = terrainInfo.sample.point.y;
+          camp.worldPos = campCenter;
+
+          const campGroup = new THREE.Group();
+          campGroup.position.copy(campCenter);
+          campGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tangent);
+          if (camp.sideOffset > 0) {
+            campGroup.rotation.y += Math.PI * 0.75;
+          } else {
+            campGroup.rotation.y -= Math.PI * 0.75;
+          }
+
+          // Central Campfire
+          const fire = createCampfire();
+          campGroup.add(fire.group);
+          campfires.push({
+            light: fire.light,
+            flame: fire.flame,
+            baseIntensity: 2.2,
+            seed: Math.random() * 10
+          });
+
+          // Floating 3D Speech Bubble Billboard above Campfire
+          const speech = createCampSpeechBubble(camp.dialogBubble);
+          speech.position.set(0, 4.4, 0);
+          campGroup.add(speech);
+          speechBubbles.push({ sprite: speech, baseY: 4.4, seed: Math.random() * 5 });
+
+          // Wooden Camp Signboard
+          const signCanvas = document.createElement('canvas');
+          signCanvas.width = 512;
+          signCanvas.height = 160;
+          const sCtx = signCanvas.getContext('2d');
+          sCtx.fillStyle = '#1e293b';
+          sCtx.fillRect(0, 0, 512, 160);
+          sCtx.strokeStyle = '#00D2B4';
+          sCtx.lineWidth = 8;
+          sCtx.strokeRect(6, 6, 500, 148);
+          sCtx.fillStyle = '#00D2B4';
+          sCtx.font = 'bold 22px monospace';
+          sCtx.textAlign = 'center';
+          sCtx.fillText('★ ' + camp.badge + ' ★', 256, 42);
+          sCtx.fillStyle = '#FFFFFF';
+          sCtx.font = 'bold 28px -apple-system, sans-serif';
+          sCtx.fillText(camp.name.toUpperCase(), 256, 90);
+          sCtx.fillStyle = '#FFA726';
+          sCtx.font = 'bold 20px monospace';
+          sCtx.fillText(camp.popBadge + ' · ' + camp.elev, 256, 132);
+
+          const signTex = new THREE.CanvasTexture(signCanvas);
+          const signMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(3.6, 1.2, 0.12),
+            new THREE.MeshStandardMaterial({ map: signTex, roughness: 0.6 })
+          );
+          signMesh.position.set(3.2, 1.4, 3.0);
+          signMesh.rotation.y = -0.3;
+          signMesh.castShadow = true;
+          campGroup.add(signMesh);
+
+          const signPost = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.08, 0.08, 1.6, 8),
+            new THREE.MeshStandardMaterial({ color: 0x334155 })
+          );
+          signPost.position.set(3.2, 0.7, 3.0);
+          campGroup.add(signPost);
+
+          // THEME-SPECIFIC GEOMETRY AND POPULATION
+          camp.wavingCampers = [];
+
+          if (camp.theme === 'manali') {
+            const tentColors = [0x15803d, 0xea580c, 0xf8fafc];
+            const tentPositions = [
+              { x: -3.5, z: -2.2, rot: 0.5 },
+              { x: 3.2, z: -2.8, rot: -0.6 },
+              { x: 0, z: -4.5, rot: 0.1 }
+            ];
+            tentPositions.forEach((pos, idx) => {
+              const tent = createTent('ridge', tentColors[idx]);
+              tent.position.set(pos.x, 0, pos.z);
+              tent.rotation.y = pos.rot;
+              campGroup.add(tent);
+            });
+
+            // Camp Picnic Bench with Tea Kettle
+            const bench = new THREE.Mesh(
+              new THREE.BoxGeometry(1.8, 0.55, 0.7),
+              new THREE.MeshStandardMaterial({ color: 0x5c3a21, roughness: 0.9 })
+            );
+            bench.position.set(-2.0, 0.35, 1.5);
+            campGroup.add(bench);
+
+            const kettle = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.18, 0.22, 0.35, 10),
+              new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.8, roughness: 0.2 })
+            );
+            kettle.position.set(-2.0, 0.75, 1.5);
+            campGroup.add(kettle);
+
+            // 5 Campers
+            const c1 = createCamper(0xff5a5f, 0xffa726, true);
+            c1.position.set(1.2, 0, 0.8);
+            c1.rotation.y = -Math.PI * 0.7;
+            campGroup.add(c1);
+
+            const c2 = createCamper(0x0284c7, 0x1e293b, false);
+            c2.position.set(-1.2, 0, 1.6);
+            c2.rotation.y = Math.PI * 0.25;
+            campGroup.add(c2);
+
+            const c3 = createCamper(0xd97706, 0x0f766e, false);
+            c3.position.set(2.4, 0, -0.6);
+            c3.rotation.y = -Math.PI * 0.4;
+            campGroup.add(c3);
+            if (c3.waveArm) {
+              const wc3 = { arm: c3.waveArm, isWaving: false, seed: 1.2 };
+              wavingCampers.push(wc3);
+              camp.wavingCampers.push(wc3);
+            }
+
+            const c4 = createCamper(0x16a34a, 0x7c2d12, true);
+            c4.position.set(-0.8, 0, -1.5);
+            c4.rotation.y = Math.PI * 0.15;
+            campGroup.add(c4);
+
+            const c5 = createCamper(0xbe123c, 0xfacc15, false);
+            c5.position.set(1.8, 0, 2.2);
+            c5.rotation.y = -Math.PI * 0.6;
+            campGroup.add(c5);
+            if (c5.waveArm) {
+              const wc5 = { arm: c5.waveArm, isWaving: false, seed: 2.5 };
+              wavingCampers.push(wc5);
+              camp.wavingCampers.push(wc5);
+            }
+          }
+
+          else if (camp.theme === 'padum') {
+            const tentColors = [0xff5a5f, 0xf59e0b, 0x334155];
+            const tentPositions = [
+              { x: -3.6, z: -1.8, rot: 0.6 },
+              { x: 3.4, z: -2.2, rot: -0.5 },
+              { x: -1.0, z: -4.0, rot: 0.2 }
+            ];
+            tentPositions.forEach((pos, idx) => {
+              const tent = createTent('dome', tentColors[idx]);
+              tent.position.set(pos.x, 0, pos.z);
+              tent.rotation.y = pos.rot;
+              campGroup.add(tent);
+            });
+
+            // 4WD Recovery Tracks in bright orange
+            for (let tr = 0; tr < 2; tr++) {
+              const track = new THREE.Mesh(
+                new THREE.BoxGeometry(0.35, 1.4, 0.06),
+                new THREE.MeshStandardMaterial({ color: 0xff6600, roughness: 0.5 })
+              );
+              track.position.set(2.2 + tr * 0.45, 0.6, 1.8);
+              track.rotation.set(0.2, 0.4, -0.2);
+              campGroup.add(track);
+            }
+
+            // River gravel boulders
+            const rockMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.95 });
+            for (let r = 0; r < 6; r++) {
+              const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.6 + Math.random() * 0.4, 0), rockMat);
+              rock.position.set((Math.random() - 0.5) * 8.0, 0.2, (Math.random() - 0.5) * 6.0);
+              campGroup.add(rock);
+            }
+
+            // 4 Overlanders
+            const c1 = createCamper(0xe11d48, 0x0284c7, true);
+            c1.position.set(-1.1, 0, 0.8);
+            c1.rotation.y = Math.PI * 0.4;
+            campGroup.add(c1);
+
+            const c2 = createCamper(0xd97706, 0x1e293b, true);
+            c2.position.set(1.2, 0, 0.6);
+            c2.rotation.y = -Math.PI * 0.5;
+            campGroup.add(c2);
+
+            const c3 = createCamper(0x059669, 0xf59e0b, false);
+            c3.position.set(-2.2, 0, -0.4);
+            c3.rotation.y = Math.PI * 0.3;
+            campGroup.add(c3);
+
+            const c4 = createCamper(0x334155, 0xef4444, false);
+            c4.position.set(1.4, 0, 2.0);
+            c4.rotation.y = -Math.PI * 0.7;
+            campGroup.add(c4);
+            if (c4.waveArm) {
+              const wc4 = { arm: c4.waveArm, isWaving: false, seed: 3.1 };
+              wavingCampers.push(wc4);
+              camp.wavingCampers.push(wc4);
+            }
+          }
+
+          else if (camp.theme === 'surufest') {
+            // SURU FEST MEGA BASECAMP!
+            const archGroup = new THREE.Group();
+            archGroup.position.set(0, 0, 4.5);
+
+            const poleMat = new THREE.MeshStandardMaterial({ color: 0x451a03, roughness: 0.9 });
+            const poleL = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 5.8, 8), poleMat);
+            poleL.position.set(-3.2, 2.9, 0);
+            archGroup.add(poleL);
+
+            const poleR = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 5.8, 8), poleMat);
+            poleR.position.set(3.2, 2.9, 0);
+            archGroup.add(poleR);
+
+            const crossBeam = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 7.2, 8).rotateZ(Math.PI / 2), poleMat);
+            crossBeam.position.set(0, 5.6, 0);
+            archGroup.add(crossBeam);
+
+            const archCanvas = document.createElement('canvas');
+            archCanvas.width = 1024;
+            archCanvas.height = 256;
+            const aCtx = archCanvas.getContext('2d');
+            aCtx.fillStyle = '#FFA726';
+            aCtx.fillRect(0, 0, 1024, 256);
+            aCtx.fillStyle = '#0F172A';
+            aCtx.fillRect(12, 12, 1000, 232);
+            aCtx.fillStyle = '#00D2B4';
+            aCtx.font = 'bold 36px monospace';
+            aCtx.textAlign = 'center';
+            aCtx.fillText('★ SURU OUTDOOR FEST · SURU VALLEY ★', 512, 65);
+            aCtx.fillStyle = '#FFFFFF';
+            aCtx.font = 'bold 64px -apple-system, sans-serif';
+            aCtx.fillText('SURU FEST 2025', 512, 140);
+            aCtx.fillStyle = '#FF5A5F';
+            aCtx.font = 'bold 32px monospace';
+            aCtx.fillText('BOULDERING · HIGHLINE · MUSIC · KARGIL', 512, 205);
+
+            const archTex = new THREE.CanvasTexture(archCanvas);
+            const archBanner = new THREE.Mesh(
+              new THREE.PlaneGeometry(6.2, 1.7),
+              new THREE.MeshStandardMaterial({ map: archTex, side: THREE.DoubleSide })
+            );
+            archBanner.position.set(0, 4.6, 0);
+            archGroup.add(archBanner);
+            campGroup.add(archGroup);
+
+            // Tibetan Prayer Flags
+            const flagColors = [0x3b82f6, 0xf8fafc, 0xff5a5f, 0x00d2b4, 0xffa726];
+            for (let l = 0; l < 3; l++) {
+              const flagLine = new THREE.Group();
+              flagLine.position.set((l - 1) * 3.5, 4.8 - l * 0.4, 0);
+              for (let f = -5; f <= 5; f++) {
+                const flag = new THREE.Mesh(
+                  new THREE.PlaneGeometry(0.65, 0.45),
+                  new THREE.MeshBasicMaterial({
+                    color: flagColors[Math.abs(f + l) % flagColors.length],
+                    side: THREE.DoubleSide
+                  })
+                );
+                flag.position.set(f * 0.85, Math.sin(f * 0.3) * 0.25, f * 0.4);
+                flag.rotation.y = 0.2;
+                flagLine.add(flag);
+              }
+              campGroup.add(flagLine);
+            }
+
+            // 6 Dome Tents
+            const festColors = [0x00d2b4, 0xff5a5f, 0xffa726, 0x6366f1, 0xec4899, 0xf8fafc];
+            const festTentPos = [
+              { x: -5.5, z: -1.5, rot: 0.8 },
+              { x: -4.0, z: -4.5, rot: 0.4 },
+              { x: 0, z: -5.5, rot: 0 },
+              { x: 4.2, z: -4.8, rot: -0.4 },
+              { x: 5.8, z: -1.8, rot: -0.8 },
+              { x: -2.2, z: -6.5, rot: 0.1 }
+            ];
+            festTentPos.forEach((pos, idx) => {
+              const tent = createTent(idx % 2 === 0 ? 'dome' : 'ridge', festColors[idx]);
+              tent.position.set(pos.x, 0, pos.z);
+              tent.rotation.y = pos.rot;
+              campGroup.add(tent);
+            });
+
+            // Granite Bouldering Crag & Crash Pads
+            const boulderMat = new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.9, flatShading: true });
+            const mainBoulder = new THREE.Mesh(new THREE.DodecahedronGeometry(3.2, 1), boulderMat);
+            mainBoulder.scale.set(1.4, 1.2, 1.3);
+            mainBoulder.position.set(-6.5, 2.5, 2.5);
+            mainBoulder.castShadow = true;
+            campGroup.add(mainBoulder);
+
+            const padColors = [0x00d2b4, 0xff385c, 0xffa726, 0x0f172a];
+            const padPositions = [
+              { x: -5.0, z: 2.8, rot: 0.2 },
+              { x: -6.2, z: 4.2, rot: -0.4 },
+              { x: -7.5, z: 1.6, rot: 0.7 }
+            ];
+            padPositions.forEach((p, idx) => {
+              const pad = new THREE.Mesh(
+                new THREE.BoxGeometry(1.6, 0.22, 1.2),
+                new THREE.MeshStandardMaterial({ color: padColors[idx % padColors.length], roughness: 0.7 })
+              );
+              pad.position.set(p.x, 0.11, p.z);
+              pad.rotation.y = p.rot;
+              campGroup.add(pad);
+            });
+
+            // Highline / Slackline Rig
+            const highlinePillar = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.9, 6.0, 6), boulderMat);
+            highlinePillar.position.set(7.5, 3.0, 3.5);
+            campGroup.add(highlinePillar);
+
+            const lineMesh = new THREE.Mesh(
+              new THREE.BoxGeometry(8.5, 0.06, 0.12),
+              new THREE.MeshBasicMaterial({ color: 0x00ff88 })
+            );
+            lineMesh.position.set(3.5, 5.2, 3.5);
+            campGroup.add(lineMesh);
+
+            const highliner = createCamper(0x10b981, 0x000000, false);
+            highliner.position.set(3.5, 5.2, 3.5);
+            campGroup.add(highliner);
+            if (highliner.waveArm) {
+              wavingCampers.push({ arm: highliner.waveArm, isWaving: true, seed: 0.5 });
+            }
+
+            // Festival Campers & Climbers Crowd
+            const crowdData = [
+              { x: 1.4, z: 1.0, rot: -Math.PI * 0.7, sitting: true, color: 0xff5a5f, wave: false },
+              { x: -1.2, z: 0.8, rot: Math.PI * 0.6, sitting: true, color: 0x0284c7, wave: false },
+              { x: 0, z: 1.6, rot: Math.PI, sitting: true, color: 0xd97706, wave: false },
+              { x: 2.2, z: 2.6, rot: -Math.PI * 0.5, sitting: false, color: 0xec4899, wave: true },
+              { x: -2.4, z: 2.4, rot: Math.PI * 0.4, sitting: false, color: 0x10b981, wave: true },
+              { x: 3.5, z: 0.5, rot: -Math.PI * 0.3, sitting: false, color: 0xf59e0b, wave: true },
+              { x: -4.5, z: 3.2, rot: 0.3, sitting: false, color: 0x6366f1, wave: true },
+              { x: 0.8, z: 3.2, rot: -Math.PI * 0.8, sitting: false, color: 0xff385c, wave: true }
+            ];
+
+            crowdData.forEach((cd, idx) => {
+              const camper = createCamper(cd.color, 0x1e293b, cd.sitting);
+              camper.position.set(cd.x, 0, cd.z);
+              camper.rotation.y = cd.rot;
+              campGroup.add(camper);
+              if (cd.wave && camper.waveArm) {
+                const wc = { arm: camper.waveArm, isWaving: false, seed: idx * 0.7 };
+                wavingCampers.push(wc);
+                camp.wavingCampers.push(wc);
+              }
+            });
+          }
+
+          scene.add(campGroup);
+          camp.group = campGroup;
+        });
+      }
+
+      buildCampsites();
+
       // ─── 8. POLARSTEPS 8-STEP REAL TRIP METADATA ───
       const polarstepsSteps = [
         {
@@ -2013,17 +3136,18 @@
           name: 'Bhopal ➔ Panipat Highway Run',
           elev: '📍 1,600 FT · 0 - 750 KM',
           weather: '☀️ 28°C · Plains Highway',
-          desc: 'Setting off in the Black Suzuki Jimny 4x4 from Bhopal, cruising north across the northern plains through Madhya Pradesh and Haryana towards the Himalayas.',
+          desc: 'Setting off in the Black Suzuki Jimny 4x4 from Bhopal with the crew, cruising north across the plains toward the Himalayas for Suru Fest.',
           img: './zanskar/opt/IMG_7414-opt.jpg'
         },
         {
           t: 0.16,
-          badge: 'STEP 02 OF 08',
-          name: 'Manali / La Kailasa Pine Valley',
-          elev: '🏔️ 6,175 FT · 1,300 KM',
-          weather: '☀️ 16°C · Pine Foothills',
-          desc: 'Entering Himachal Pradesh. Dense deodar cedar forests, wooden Himalayan architecture at La Kailasa, and packing gear for the high-altitude pass crossings.',
-          img: './zanskar/opt/IMG_7414-opt.jpg'
+          badge: 'CAMP 01 · 6,175 FT',
+          name: 'Manali Alpine Staging Camp',
+          elev: '🏕️ POPULATION: 6 CREW · 1,300 KM',
+          weather: '☀️ 16°C · Pine Staging Camp',
+          desc: 'Alpine expedition staging camp beneath towering deodar pines. Crew packing ropes, checking Jimny tyre pressures, and prepping gear for high Himalayan passes.',
+          img: './shashank_files/gallery_opt/manali-room-view.jpg',
+          campIndex: 0
         },
         {
           t: 0.28,
@@ -2045,12 +3169,13 @@
         },
         {
           t: 0.58,
-          badge: 'STEP 05 OF 08',
-          name: 'Padum & Glacial Water Crossing',
-          elev: '🏔️ 12,000 FT · 1,680 KM',
+          badge: 'CAMP 02 · 12,000 FT',
+          name: 'Padum Zanskar Riverbed Camp',
+          elev: '🏕️ POPULATION: 4 OVERLANDERS · 1,680 KM',
           weather: '🌤️ 8°C · Zanskar Valley',
-          desc: 'Driving the Black Jimny across the rocky glacial water ford! Camping on the vast riverbed stones beside roaring turquoise snowmelt waters.',
-          img: './shashank_files/gallery_opt/jimny-riverbed-zanskar.jpg'
+          desc: 'Wild overland camping on rugged gravel riverbed stones beside roaring turquoise glacial melt. Crossing the rocky water ford in the Black Jimny with recovery gear ready.',
+          img: './shashank_files/gallery_opt/jimny-riverbed-zanskar.jpg',
+          campIndex: 1
         },
         {
           t: 0.72,
@@ -2063,12 +3188,13 @@
         },
         {
           t: 0.86,
-          badge: 'STEP 07 OF 08',
-          name: 'Suru Valley Gorge to Kargil',
-          elev: '🏔️ 9,725 FT · 2,050 KM',
-          weather: '🌤️ 12°C · Suru Canyon',
-          desc: 'Winding alongside the roaring Suru river canyon through Sankoo toward Kargil. Stark layered granite walls, lush willow patches, and mountain highline spots.',
-          img: './zanskar/opt/IMG_0546-opt.jpg'
+          badge: 'FESTIVAL DESTINATION',
+          name: 'Suru Fest Mega Basecamp · Suru Valley',
+          elev: '⛺ POPULATION: 45+ CLIMBERS · 2,050 KM',
+          weather: '🌤️ 12°C · Suru Fest Ground',
+          desc: 'The destination reached! Suru Fest in full swing among massive granite boulders in Suru Valley near Kargil. Highline rigs across the gorge, bouldering pads, music, and climbing community camping.',
+          img: './shashank_files/gallery_opt/highline-at-suru-valley-kargil.jpg',
+          campIndex: 2
         },
         {
           t: 0.98,
@@ -2076,7 +3202,7 @@
           name: 'Return Circuit ➔ Bhopal Loop Complete',
           elev: '🏁 4,000 KM LOOP CONQUERED',
           weather: '🌙 24°C · Journey Finished',
-          desc: 'Completing the full 4,000 KM loop through Srinagar, Jammu, and back to Bhopal. An epic Himalayan overland expedition conquered in the Black Suzuki Jimny.',
+          desc: 'Completing the full 4,000 KM loop through Srinagar, Jammu, and back to Bhopal. An epic Himalayan overland expedition to Suru Fest conquered in the Black Suzuki Jimny.',
           img: './shashank_files/gallery_opt/jimny-river-camping.jpg'
         }
       ];
@@ -2104,7 +3230,7 @@
         s.marker = pinGroup;
       });
 
-      // ─── 9. INPUT HANDLING & CONTROLS ───
+      // ─── 9. INPUT HANDLING & CONTROLS (DESKTOP KEYBOARD + MOBILE TAP-AND-HOLD) ───
       const keys = { forward: false, backward: false, left: false, right: false, boost: false };
 
       function setKey(code, state) {
@@ -2118,6 +3244,260 @@
 
       window.addEventListener('keydown', (e) => setKey(e.code, true));
       window.addEventListener('keyup', (e) => setKey(e.code, false));
+
+      // Mobile Touch Driving & Learning Info Tip DOM
+      const mobileDriveTip = document.getElementById('mobile-drive-tip');
+      const tipTitle = document.getElementById('tip-title');
+      const tipDesc = document.getElementById('tip-desc');
+      const tipBadgeText = document.getElementById('tip-badge-text');
+      const tipProgressFill = document.getElementById('tip-progress-fill');
+      const tipCloseBtn = document.getElementById('tip-close-btn');
+      const controlsHintPill = document.getElementById('controls-hint-pill');
+      const touchPuck = document.getElementById('touch-drive-puck');
+      const puckIcon = document.getElementById('puck-icon');
+      const puckLabel = document.getElementById('puck-label');
+
+      let hasLearnedTouchDrive = false;
+      try {
+        hasLearnedTouchDrive = localStorage.getItem('himalayan_touch_drive_learned') === '1';
+      } catch (err) {
+        hasLearnedTouchDrive = false;
+      }
+
+      let touchDriving = false;
+      let activePointerId = null;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let holdDuration = 0;
+      const HOLD_TARGET_TIME = 1.6; // Seconds of continuous hold driving to consider operation learned
+      let tipDismissedManually = false;
+
+      function isTouchOrMobileDevice() {
+        return (
+          window.matchMedia('(pointer: coarse)').matches ||
+          'ontouchstart' in window ||
+          navigator.maxTouchPoints > 0 ||
+          window.innerWidth <= 860
+        );
+      }
+
+      function showMobileDriveTip() {
+        if (!mobileDriveTip) return;
+        mobileDriveTip.classList.remove('hud-hidden');
+        mobileDriveTip.classList.add('visible');
+        mobileDriveTip.classList.remove('learning-active', 'learned-celebrate');
+        if (tipProgressFill) tipProgressFill.style.width = '0%';
+        if (tipBadgeText) tipBadgeText.textContent = 'MOBILE CONTROLS';
+        if (tipTitle) tipTitle.textContent = 'Tap & Hold to Drive';
+        if (tipDesc) tipDesc.textContent = 'Hold anywhere on screen to accelerate · Slide left or right to steer';
+      }
+
+      function hideMobileDriveTip() {
+        if (!mobileDriveTip) return;
+        mobileDriveTip.classList.remove('visible');
+      }
+
+      if (tipCloseBtn) {
+        tipCloseBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          tipDismissedManually = true;
+          hideMobileDriveTip();
+        });
+      }
+
+      if (controlsHintPill) {
+        controlsHintPill.addEventListener('click', () => {
+          showMobileDriveTip();
+        });
+      }
+
+      // Campsite Arrival HUD DOM Elements
+      const campsiteBanner = document.getElementById('campsite-banner');
+      const campCardThumb = document.getElementById('camp-card-thumb');
+      const campBadgeTag = document.getElementById('camp-badge-tag');
+      const campPopTag = document.getElementById('camp-pop-tag');
+      const campCardTitle = document.getElementById('camp-card-title');
+      const campCardDesc = document.getElementById('camp-card-desc');
+      const btnCampRest = document.getElementById('btn-camp-rest');
+      const btnCampContinue = document.getElementById('btn-camp-continue');
+      const btnCampClose = document.getElementById('btn-camp-close');
+
+      let activeCampsiteArrival = null;
+      let campAutoDismissTimer = null;
+
+      function triggerCampsiteArrival(camp) {
+        if (!camp || !campsiteBanner) return;
+        activeCampsiteArrival = camp;
+
+        campCardThumb.src = camp.img;
+        campBadgeTag.textContent = camp.badge;
+        campPopTag.textContent = camp.popBadge;
+        campCardTitle.textContent = camp.name;
+        campCardDesc.textContent = camp.desc;
+
+        campsiteBanner.classList.remove('hud-hidden');
+        campsiteBanner.classList.add('visible');
+
+        // Trigger waving campers in that camp
+        if (camp.wavingCampers) {
+          camp.wavingCampers.forEach(wc => { wc.isWaving = true; });
+        }
+
+        showToast(
+          '⛺ ' + camp.name,
+          camp.popBadge + ' · ' + (camp.theme === 'surufest' ? 'Welcome to Suru Fest!' : 'Campsite Logged')
+        );
+
+        if (campAutoDismissTimer) clearTimeout(campAutoDismissTimer);
+        campAutoDismissTimer = setTimeout(() => {
+          dismissCampsiteBanner();
+        }, 9000);
+      }
+
+      function dismissCampsiteBanner() {
+        if (!campsiteBanner) return;
+        campsiteBanner.classList.remove('visible');
+        if (campAutoDismissTimer) clearTimeout(campAutoDismissTimer);
+      }
+
+      if (btnCampClose) btnCampClose.addEventListener('click', dismissCampsiteBanner);
+      if (btnCampContinue) btnCampContinue.addEventListener('click', dismissCampsiteBanner);
+
+      if (btnCampRest) {
+        btnCampRest.addEventListener('click', () => {
+          carSpeed = 0;
+          if (activeCampsiteArrival) {
+            showToast('☕ Resting with Crew', activeCampsiteArrival.dialog, 4500);
+          }
+          dismissCampsiteBanner();
+        });
+      }
+
+      function isInteractiveTarget(target) {
+        if (!target) return false;
+        return !!target.closest(
+          'button, a, input, select, textarea, .polarsteps-bottom-dock, .top-floating-bar, .map-zoom-stack, .cinematic-intro-overlay, .trip-finale-overlay, .mobile-drive-tip, .campsite-arrival-card'
+        );
+      }
+
+      // Pointer Event Handlers for Tap-and-Hold Driving
+      window.addEventListener('pointerdown', (e) => {
+        if (isIntroActive || isInteractiveTarget(e.target)) return;
+        if (activePointerId !== null) return; // single pointer tracking
+
+        activePointerId = e.pointerId;
+        touchDriving = true;
+        touchStartX = e.clientX;
+        touchStartY = e.clientY;
+
+        // Accelerate forward
+        keys.forward = true;
+        keys.backward = false;
+        keys.left = false;
+        keys.right = false;
+
+        // Position & reveal tactile joystick puck
+        if (touchPuck) {
+          touchPuck.style.left = e.clientX + 'px';
+          touchPuck.style.top = e.clientY + 'px';
+          touchPuck.classList.add('active');
+          if (puckIcon) puckIcon.textContent = '▲';
+          if (puckLabel) puckLabel.textContent = isLongboardMode ? 'CARVE' : 'DRIVE';
+        }
+
+        // Live visual reaction in Info Tip if currently visible
+        if (mobileDriveTip && mobileDriveTip.classList.contains('visible') && !hasLearnedTouchDrive) {
+          mobileDriveTip.classList.add('learning-active');
+          if (tipTitle) tipTitle.textContent = isLongboardMode ? 'Carving downhill... 🛹' : 'Accelerating forward... 🚗';
+          if (tipBadgeText) tipBadgeText.textContent = 'HOLDING · DRIVING';
+        }
+      }, { passive: false });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!touchDriving || e.pointerId !== activePointerId) return;
+
+        const dx = e.clientX - touchStartX;
+        const dy = e.clientY - touchStartY;
+
+        // Clamped visual puck offset
+        const maxDist = 28;
+        const clampedX = Math.max(-maxDist, Math.min(maxDist, dx));
+        const clampedY = Math.max(-maxDist, Math.min(maxDist, dy));
+        const innerDot = touchPuck ? touchPuck.querySelector('.puck-inner-dot') : null;
+        if (innerDot) {
+          innerDot.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+        }
+
+        // Steering based on horizontal drag offset
+        if (dx < -16) {
+          keys.left = true;
+          keys.right = false;
+          if (puckIcon) puckIcon.textContent = '◀';
+        } else if (dx > 16) {
+          keys.right = true;
+          keys.left = false;
+          if (puckIcon) puckIcon.textContent = '▶';
+        } else {
+          keys.left = false;
+          keys.right = false;
+          if (puckIcon) puckIcon.textContent = '▲';
+        }
+
+        // Vertical drag offset: slide up for turbo boost, slide down for brake/reverse
+        if (dy < -42) {
+          keys.boost = true;
+          keys.forward = true;
+          keys.backward = false;
+          if (puckLabel) puckLabel.textContent = '⚡ BOOST';
+        } else if (dy > 42) {
+          keys.forward = false;
+          keys.backward = true;
+          keys.boost = false;
+          if (puckIcon) puckIcon.textContent = '▼';
+          if (puckLabel) puckLabel.textContent = 'BRAKE';
+        } else {
+          keys.forward = true;
+          keys.backward = false;
+          keys.boost = false;
+          if (puckLabel) puckLabel.textContent = isLongboardMode ? 'CARVE' : 'DRIVE';
+        }
+      }, { passive: false });
+
+      function endTouchDrive() {
+        if (!touchDriving) return;
+        touchDriving = false;
+        activePointerId = null;
+
+        keys.forward = false;
+        keys.backward = false;
+        keys.left = false;
+        keys.right = false;
+        keys.boost = false;
+
+        if (touchPuck) {
+          touchPuck.classList.remove('active');
+          const innerDot = touchPuck.querySelector('.puck-inner-dot');
+          if (innerDot) innerDot.style.transform = 'translate(0px, 0px)';
+        }
+
+        // If finger lifted before completing the learning requirement
+        if (!hasLearnedTouchDrive && mobileDriveTip && mobileDriveTip.classList.contains('visible')) {
+          mobileDriveTip.classList.remove('learning-active');
+          holdDuration = 0;
+          if (tipProgressFill) tipProgressFill.style.width = '0%';
+          if (tipBadgeText) tipBadgeText.textContent = 'MOBILE CONTROLS';
+          if (tipTitle) tipTitle.textContent = 'Tap & Hold to Drive';
+          if (tipDesc) tipDesc.textContent = 'Keep holding your finger down to maintain speed!';
+        }
+      }
+
+      window.addEventListener('pointerup', (e) => {
+        if (e.pointerId === activePointerId) endTouchDrive();
+      });
+      window.addEventListener('pointercancel', (e) => {
+        if (e.pointerId === activePointerId) endTouchDrive();
+      });
+      window.addEventListener('blur', endTouchDrive);
 
       let roadProgress = 0.002;
       let carSpeed = 0;
@@ -2167,6 +3547,10 @@
           headerModeIcon.textContent = '🚗';
           headerModeText.textContent = 'Black Jimny 4x4';
         }
+
+        if (puckLabel && touchDriving) {
+          puckLabel.textContent = isLongboardMode ? 'CARVE' : 'DRIVE';
+        }
       }
 
       function toggleVehicleRide(explicitState) {
@@ -2211,6 +3595,11 @@
             carSpeed = 0;
             updateFloatingStepCard(sIdx);
             showToast('📍 ' + polarstepsSteps[sIdx].name, polarstepsSteps[sIdx].elev);
+            if (polarstepsSteps[sIdx].campIndex !== undefined) {
+              triggerCampsiteArrival(campsiteData[polarstepsSteps[sIdx].campIndex]);
+            } else {
+              dismissCampsiteBanner();
+            }
           }
         });
       });
@@ -2221,6 +3610,11 @@
           roadProgress = polarstepsSteps[nextIdx].t;
           carSpeed = 0;
           updateFloatingStepCard(nextIdx);
+          if (polarstepsSteps[nextIdx].campIndex !== undefined) {
+            triggerCampsiteArrival(campsiteData[polarstepsSteps[nextIdx].campIndex]);
+          } else {
+            dismissCampsiteBanner();
+          }
         });
       }
       if (btnNextStep) {
@@ -2229,10 +3623,21 @@
           roadProgress = polarstepsSteps[nextIdx].t;
           carSpeed = 0;
           updateFloatingStepCard(nextIdx);
+          if (polarstepsSteps[nextIdx].campIndex !== undefined) {
+            triggerCampsiteArrival(campsiteData[polarstepsSteps[nextIdx].campIndex]);
+          } else {
+            dismissCampsiteBanner();
+          }
         });
       }
 
       function restartExpedition() {
+        endTouchDrive();
+        dismissCampsiteBanner();
+        campsiteData.forEach(c => {
+          c.arrived = false;
+          if (c.wavingCampers) c.wavingCampers.forEach(wc => { wc.isWaving = false; });
+        });
         roadProgress = 0.002;
         carSpeed = 0;
         lateralOffset = 0;
@@ -2240,7 +3645,7 @@
         toggleVehicleRide(false);
         updateFloatingStepCard(0);
         finaleOverlay.classList.remove('visible');
-        showToast('↺ Expedition Restarted', 'Bhopal Base · 4,000 KM Loop Ready to Drive');
+        showToast('↺ Expedition Restarted', 'Bhopal Base · 4,000 KM Loop to Suru Fest Ready');
       }
 
       if (btnRestartTop) btnRestartTop.addEventListener('click', restartExpedition);
@@ -2294,7 +3699,15 @@
           btnStartTrip.innerHTML = '<span>Continue Driving</span> <span class="cta-arrow">▶</span>';
         }
 
-        showToast('🚗 Expedition Initiated', 'Press W/A/S/D to Drive the 4,000 KM Loop');
+        // On mobile/touch devices: show info tip if user has not yet learned how to operate
+        if (isTouchOrMobileDevice() && !hasLearnedTouchDrive && !tipDismissedManually) {
+          showMobileDriveTip();
+        }
+
+        showToast(
+          '🚗 Expedition Initiated',
+          isTouchOrMobileDevice() ? 'Tap & hold anywhere to drive' : 'Press W/A/S/D to Drive the 4,000 KM Loop'
+        );
       }
 
       if (btnStartTrip) btnStartTrip.addEventListener('click', startExpeditionTrip);
@@ -2353,6 +3766,31 @@
         let currentMaxSpeed = (isLongboardMode ? maxSpeed * 1.35 : maxSpeed) * (keys.boost ? 1.5 : 1.0);
         if (inWaterCrossing && !isLongboardMode) {
           currentMaxSpeed *= 0.65;
+        }
+
+        // ─── Touch Driving Hold Learning Meter ───
+        if (touchDriving && !hasLearnedTouchDrive && mobileDriveTip && mobileDriveTip.classList.contains('visible')) {
+          holdDuration += delta;
+          const pct = Math.min(100, (holdDuration / HOLD_TARGET_TIME) * 100);
+          if (tipProgressFill) tipProgressFill.style.width = pct + '%';
+
+          if (holdDuration >= HOLD_TARGET_TIME) {
+            hasLearnedTouchDrive = true;
+            try {
+              localStorage.setItem('himalayan_touch_drive_learned', '1');
+            } catch (err) {}
+
+            mobileDriveTip.classList.remove('learning-active');
+            mobileDriveTip.classList.add('learned-celebrate');
+            if (tipBadgeText) tipBadgeText.textContent = 'LEARNED! 🚀';
+            if (tipTitle) tipTitle.textContent = "You've got it!";
+            if (tipDesc) tipDesc.textContent = "Hold screen anytime to cruise · Slide to steer the 4,000 KM loop";
+            showToast('✨ Drive Controls Mastered', 'Tap & hold to cruise the loop');
+
+            setTimeout(() => {
+              hideMobileDriveTip();
+            }, 2400);
+          }
         }
 
         if (keys.forward) {
@@ -2462,6 +3900,37 @@
         if (tsoWaterMesh) {
           tsoWaterMesh.rotation.z += delta * 0.04;
         }
+
+        // ─── Animate Campsites, Campfires, Campers, & Proximity Arrival ───
+        const elapsedTime = clock.getElapsedTime();
+        campfires.forEach(cf => {
+          cf.light.intensity = cf.baseIntensity + Math.sin(elapsedTime * 9 + cf.seed) * 0.45 + (Math.random() - 0.5) * 0.2;
+          cf.flame.scale.y = 1.0 + Math.sin(elapsedTime * 12 + cf.seed) * 0.18;
+        });
+
+        wavingCampers.forEach(wc => {
+          if (wc.isWaving && wc.arm) {
+            wc.arm.rotation.z = 0.45 + Math.sin(elapsedTime * 10 + wc.seed) * 0.65;
+          }
+        });
+
+        speechBubbles.forEach(sb => {
+          sb.sprite.position.y = sb.baseY + Math.sin(elapsedTime * 2.2 + sb.seed) * 0.22;
+        });
+
+        // Check Proximity to Campsites for Gameplay Arrival
+        campsiteData.forEach(camp => {
+          if (!camp.worldPos) return;
+          const dist = vPos.distanceTo(camp.worldPos);
+          if (dist < 26) {
+            if (!camp.arrived) {
+              camp.arrived = true;
+              triggerCampsiteArrival(camp);
+            }
+          } else if (dist > 45) {
+            camp.arrived = false;
+          }
+        });
 
         // Trigger Finale Modal when completing 4,000 KM loop
         if (roadProgress >= 0.985 && !finaleOverlay.classList.contains('visible')) {

@@ -1,0 +1,42 @@
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets & Environment variables
+.env
+.env.*
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa
+id_ed25519
+
+# Editor & IDE configs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node / NPM (if any packages installed locally)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files & logs
+*.log
+.temp/
+.tmp/
+
+# Raw media files
+*.mov
+*.MOV
+*.heic
+*.HEIC
