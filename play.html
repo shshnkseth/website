@@ -51,6 +51,7 @@
       background-color: var(--bg);
       color: var(--ink);
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -67,6 +68,7 @@
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     .case-wrap {
@@ -890,12 +892,17 @@
       box-shadow: 0 12px 32px rgba(204, 255, 0, 0.08) !important;
     }
 
-    /* ─── INTERACTIVE DISCIPLINE SWITCHER & STAGE ─── */
+    /* ─── INTERACTIVE DISCIPLINE SWITCHER & FULL-WIDTH CAROUSEL ─── */
+    :root {
+      --discipline-card-width: 840px;
+    }
+
     .discipline-tabs {
       display: flex;
+      justify-content: center;
       gap: 0.4rem;
       flex-wrap: wrap;
-      margin-bottom: 0.95rem;
+      margin-bottom: 1.1rem;
     }
 
     .discipline-tab {
@@ -930,11 +937,75 @@
       font-weight: 600;
     }
 
+    /* ─── FULL-WIDTH CAROUSEL WRAPPER ─── */
+    .discipline-carousel-bleed {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: visible;
+      padding: 0.4rem 0 1.2rem;
+    }
+
+    .discipline-carousel-track {
+      display: flex;
+      gap: 32px;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 34px calc(50vw - (var(--discipline-card-width) / 2));
+      cursor: grab;
+      user-select: none;
+    }
+
+    .discipline-carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .discipline-carousel-track.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    .discipline-carousel-track img {
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
+    .discipline-slide {
+      flex: 0 0 var(--discipline-card-width);
+      width: var(--discipline-card-width);
+      scroll-snap-align: center;
+      scroll-snap-stop: normal;
+      opacity: 0.35;
+      transform: scale(0.975);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .discipline-slide.is-center {
+      opacity: 1;
+      transform: scale(1);
+      cursor: default;
+    }
+
+    .discipline-slide:not(.is-center):hover {
+      opacity: 0.6;
+      transform: scale(0.985);
+    }
+
     /* ─── STAGE WRAPPER WITH FLOATING INTERACTIVE STICKERS ─── */
     .discipline-stage-wrapper {
       position: relative;
       width: 100%;
-      margin: 1.2rem 0 0.5rem;
     }
 
     .discipline-stage {
@@ -949,6 +1020,10 @@
       position: relative;
       overflow: visible;
       transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .discipline-slide.is-center .discipline-stage {
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55), 0 0 35px rgba(204, 255, 0, 0.07);
     }
 
     .discipline-stage:hover {
@@ -1179,7 +1254,25 @@
       right: 72px;
     }
 
+    @media (max-width: 960px) {
+      :root {
+        --discipline-card-width: min(840px, calc(100vw - 3.4rem));
+      }
+      .discipline-carousel-track {
+        gap: 20px;
+        padding-top: 26px;
+        padding-bottom: 26px;
+      }
+    }
+
     @media (max-width: 768px) {
+      :root {
+        --discipline-card-width: calc(100vw - 2.4rem);
+      }
+      .discipline-carousel-track {
+        gap: 16px;
+        padding: 22px calc(50vw - (var(--discipline-card-width) / 2));
+      }
       .discipline-stage {
         grid-template-columns: 1fr;
         padding: 1.5rem;
@@ -1217,7 +1310,7 @@
     <h1 class="hero-quote">Movement does for the soul what education does for the mind.</h1>
   </div>
 
-  <!-- SECTION 1: DISCIPLINES WITH FLOATING SPORT ID CARDS -->
+  <!-- SECTION 1: DISCIPLINES WITH FULL-WIDTH CAROUSEL CARDS -->
   <section class="story">
     <h2>Nine ways I move, reset, and stay curious.</h2>
 
@@ -1234,49 +1327,386 @@
       <button class="discipline-tab" data-sport-tab="equestrian">🐎 Equestrian</button>
     </div>
 
-    <!-- STAGE WRAPPER WITH INTERACTIVE FLOATING STICKERS -->
-    <div class="discipline-stage-wrapper" id="disciplineStageWrapper">
-      
-      <!-- REAL DIE-CUT PNG STICKERS LAYER (ONE-SIDE BLEND) -->
-      <div class="stage-stickers-layer" id="stageStickersLayer">
-        <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-skate-supply.png" alt="Skate Supply India" title="Skate Supply India · Sponsored" style="width:82px; transform: rotate(9deg);" data-rot="9" draggable="false"/>
-        <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-skate-helmet.png" alt="Sticker-bombed Helmet" title="Pro Half-shell Helmet" style="width:66px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
-        <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Magazine" title="Thrasher Magazine" style="width:100px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
-        <img class="png-sticker png-pos-br2" src="./shashank_files/stickers/sticker-bhopal-sb.png" alt="Bhopal Skateboarding" title="Bhopal Skateboarding Community" style="width:68px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
-        <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-cone-graffiti.png" alt="Graffiti Traffic Cone" title="Street Session" style="width:62px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
-      </div>
+    <!-- FULL-WIDTH CAROUSEL -->
+    <div class="discipline-carousel-bleed">
+      <div class="discipline-carousel-track" id="disciplineCarouselTrack">
 
-      <!-- CINEMATIC DISCIPLINE STAGE CARD -->
-      <div class="discipline-stage spotlight-card" id="discipline-stage">
-        <div class="discipline-content">
-          <div class="discipline-kicker" id="d-kicker">Fall Seven Times, Stand Up Eight</div>
-          <h3 class="discipline-title" id="d-title">Skateboarder &amp; Coach</h3>
-          <p class="discipline-desc" id="d-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.</p>
-          <div class="discipline-badges" id="d-badges">
-            <a href="bhopal-sb.html" class="discipline-badge" style="text-decoration:none;color:var(--accent);border-color:rgba(204,255,0,0.4);">Founder @ Bhopal SB ↗</a>
-            <span class="discipline-badge">Bowl &amp; Transition</span>
-            <span class="discipline-badge">Street Skate</span>
-            <span class="discipline-badge">SkateSupplyIndia</span>
-          </div>
-          <div class="discipline-stats">
-            <div>
-              <div class="d-stat-label" id="d-stat-label-1">Focus</div>
-              <div class="d-stat-val" id="d-stat-1">Park &amp; Bowl Riding</div>
+        <!-- SLIDE 1: SKATEBOARDING -->
+        <div class="discipline-slide is-center" data-sport="skateboard">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-skate-supply.png" alt="Skate Supply India" title="Skate Supply India · Sponsored" style="width:82px; transform: rotate(9deg);" data-rot="9" draggable="false"/>
+              <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-skate-helmet.png" alt="Sticker-bombed Helmet" title="Pro Half-shell Helmet" style="width:66px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Magazine" title="Thrasher Magazine" style="width:100px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
+              <img class="png-sticker png-pos-br2" src="./shashank_files/stickers/sticker-bhopal-sb.png" alt="Bhopal Skateboarding" title="Bhopal Skateboarding Community" style="width:68px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-cone-graffiti.png" alt="Graffiti Traffic Cone" title="Street Session" style="width:62px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
             </div>
-            <div>
-              <div class="d-stat-label" id="d-stat-label-2">Sponsored</div>
-              <div class="d-stat-val" id="d-stat-2"><a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a></div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Fall Seven Times, Stand Up Eight</div>
+                <h3 class="discipline-title">Skateboarder &amp; Coach</h3>
+                <p class="discipline-desc">Skateboarding is the best teacher for problem solving: you try a trick fifty times, fall forty-nine, and land it once. That persistence shapes everything I do.</p>
+                <div class="discipline-badges">
+                  <a href="bhopal-sb.html" class="discipline-badge" style="text-decoration:none;color:var(--accent);border-color:rgba(204,255,0,0.4);">Founder @ Bhopal SB ↗</a>
+                  <span class="discipline-badge">Bowl &amp; Transition</span>
+                  <span class="discipline-badge">Street Skate</span>
+                  <span class="discipline-badge">SkateSupplyIndia</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Focus</div>
+                    <div class="d-stat-val">Park &amp; Bowl Riding</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Sponsored</div>
+                    <div class="d-stat-val"><a href="https://www.skatesupplyindia.com" target="_blank" rel="noopener noreferrer">SkateSupplyIndia ↗</a></div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="skateboard">Explore Skateboarder Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="skateboard">
+                <img src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Skateboarding frontside 5-0 grind in Gwalior" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Skateboarding · Frontside 5-0 Grind</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
             </div>
           </div>
-          <button class="discipline-cta-btn" id="d-cta-btn" type="button">Explore Skateboarder Photos →</button>
         </div>
-        <div class="discipline-visual" id="d-visual-container">
-          <img id="d-image" src="./shashank_files/gallery_opt/frontside-five-o-gwalior.jpg" alt="Skateboarding frontside 5-0 grind in Gwalior"/>
-          <div class="discipline-visual-caption">
-            <span id="d-caption">Skateboarding · Frontside 5-0 Grind</span>
-            <span class="discipline-visual-badge">View HD ↗</span>
+
+        <!-- SLIDE 2: HIGHLINE -->
+        <div class="discipline-slide" data-sport="highline">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-slackistan.png" alt="Slackistan Highline" title="Slackistan Highline Community" style="width:108px; transform: rotate(-5deg);" data-rot="-5" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-coiled-webbing.png" alt="Highline Webbing Hank" title="Highline Webbing Hank &amp; Rigging Line" style="width:84px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
+              <img class="png-sticker png-pos-br2" src="./shashank_files/stickers/sticker-rockempire-slackline.png" alt="Rock Empire Slackline" title="Rock Empire Ratchet Slackline Kit" style="width:78px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-carabiner.png" alt="Screw-Lock Carabiner" title="Screw-Lock Rigging Carabiner" style="width:62px; transform: rotate(-10deg);" data-rot="-10" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Balance in the Sky</div>
+                <h3 class="discipline-title">Highliner &amp; Slackliner</h3>
+                <p class="discipline-desc">Highlining is 90% mental and 10% balance. Walking on a 1-inch strap across an 11,000 ft valley in Ladakh taught me one big rule: when things get shaky, taking a deep breath works way better than freezing up. It is the ultimate test of staying calm under pressure.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">Suru Valley 11,000 ft</span>
+                  <span class="discipline-badge">Waterline</span>
+                  <span class="discipline-badge">Rigging</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Highest Line</div>
+                    <div class="d-stat-val">11,000 ft (Suru Valley)</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Takeaway</div>
+                    <div class="d-stat-val">Calm over panic</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="highline">Explore Highliner Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="highline">
+                <img src="./shashank_files/gallery_opt/highline-at-11000ft.jpg" alt="Highline at 11000 ft in Suru Valley" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Highline · Suru Valley, Ladakh (11,000 ft)</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- SLIDE 3: DOWNHILL LONGBOARD -->
+        <div class="discipline-slide" data-sport="downhill">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-redbull.png" alt="Red Bull" title="Red Bull Downhill" style="width:92px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-triple8-gloves.png" alt="Triple 8 Slide Gloves" title="Triple 8 Downhill Slide Gloves" style="width:72px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-terrasurf.png" alt="Terra Surf" title="Longboards TerraSurf est. 2022" style="width:98px; transform: rotate(-7deg);" data-rot="-7" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-slide-glove.png" alt="Puck Slide Glove" title="Puck Slide Glove · Pre-Drift Control" style="width:56px; transform: rotate(10deg);" data-rot="10" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Speed, Grip &amp; Cornering</div>
+                <h3 class="discipline-title">Downhill Longboarder</h3>
+                <p class="discipline-desc">Carving down steep mountain ghats and closed roads at 60+ km/h is all about trusting your urethane grip. Pitching the board sideways into pre-drifts to shave speed before a hairpin corner requires total commitment: no hesitation, just clean lines and pure adrenaline.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">Downhill Racing</span>
+                  <span class="discipline-badge">High Speed Slides</span>
+                  <span class="discipline-badge">Hairpin Pre-Drifts</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Race Experience</div>
+                    <div class="d-stat-val">National Downhill Races</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Top Speeds</div>
+                    <div class="d-stat-val">60+ km/h Descent</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="downhill">Explore Downhill Longboarder Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="downhill">
+                <img src="./shashank_files/gallery_opt/downhill-longboard-hairpin-slide.jpg" alt="Downhill longboard hairpin slide" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Downhill Longboard · Mountain Hairpin Slide</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: MOUNTAINEERING -->
+        <div class="discipline-slide" data-sport="mountain">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-ice-axe.png" alt="Alpine Ice Axe" title="Glacier Technical Ice Axe" style="width:66px; transform: rotate(14deg);" data-rot="14" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-crampons.png" alt="Glacier Microspikes" title="Glacier Traction Microspikes" style="width:62px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-leather-gloves.png" alt="Hestra Alpine Gloves" title="Hestra Deerskin Alpine Gloves" style="width:58px; transform: rotate(6deg);" data-rot="6" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Pole Pole to the Top</div>
+                <h3 class="discipline-title">Alpine Mountaineer</h3>
+                <p class="discipline-desc">Climbing big mountains like Kilimanjaro (5,895m) and Friendship Peak (5,289m) is all about patience. You can't rush the summit at minus 15 degrees: you just put your head down and take one slow step at a time. Big goals take small, steady moves.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">Kilimanjaro 5,895m</span>
+                  <span class="discipline-badge">Friendship Peak 5,289m</span>
+                  <span class="discipline-badge">Pangarchulla</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Highest Summit</div>
+                    <div class="d-stat-val">5,895m (Kilimanjaro)</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Lesson</div>
+                    <div class="d-stat-val">Patience wins</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="mountain">Explore Alpine Mountaineer Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="mountain">
+                <img src="./shashank_files/gallery_opt/uhuru-peak-summit-mtkilimanjaro-opt.jpg" alt="Uhuru peak summit Mt. Kilimanjaro" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Mt. Kilimanjaro · 5,895m Summit</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5: ENDURO -->
+        <div class="discipline-slide" data-sport="enduro">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-hero-motosports.png" alt="Hero MotoSports Team Rally" title="Hero MotoSports Team Rally" style="width:108px; transform: rotate(7deg);" data-rot="7" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-enduro-gloves.png" alt="Richa Enduro Gloves" title="Richa High-Grip Enduro Gloves" style="width:76px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-enduro-boot.png" alt="Leatt Enduro Boot" title="Leatt 4.5 Enduro / Moto Boot" style="width:58px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Trust your Bike, Trust your Skills, Trust your Guts</div>
+                <h3 class="discipline-title">Enduro &amp; Overland Rider</h3>
+                <p class="discipline-desc">Enduro riding on loose gravel and riverbeds is pure quick thinking: you pick your line in a split second and trust your instincts. Over 15,000 km across Ladakh high passes and rural Vietnam trails, it is my favorite way to explore the world raw.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">15,000+ km Logged</span>
+                  <span class="discipline-badge">Ladakh High Passes</span>
+                  <span class="discipline-badge">Vietnam Trail</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Total Distance</div>
+                    <div class="d-stat-val">15,000+ km Solo</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Highlight</div>
+                    <div class="d-stat-val">5,000 km Vietnam Route</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="enduro">Explore Enduro Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="enduro">
+                <img src="./shashank_files/gallery_opt/Bypass-Fotu-la-pass-trail-ladakh-opt.jpg" alt="Fotu La bypass trail in Ladakh" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Enduro · Fotu La Bypass, Ladakh</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 6: SCUBA & FREEDIVE -->
+        <div class="discipline-slide" data-sport="freedive">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-vibes-dives.png" alt="Vibes &amp; Dives" title="Vibes &amp; Dives Cafe Dive Stay" style="width:78px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-dive-mask.png" alt="Dive Mask" title="Freedive &amp; Scuba Mask" style="width:68px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-dive-fins.png" alt="Dive Fins" title="Scuba &amp; Freedive Fins" style="width:68px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
+              <img class="png-sticker png-pos-br2" src="./shashank_files/stickers/sticker-scuba-yogi.png" alt="Scuba Yogi" title="Scuba Yogi Underwater Nirvana" style="width:88px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-dive-tribe.png" alt="Dive Tribe" title="Dive Tribe · Follow The Tribe" style="width:74px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Quiet World Underwater</div>
+                <h3 class="discipline-title">Advanced Scuba &amp; Freediver</h3>
+                <p class="discipline-desc">Thirty meters underwater, there is no phone signal, no notifications, and zero rush. Swimming alongside manta rays in Nusa Penida or exploring sea caves feels like entering a different world. It is the best place to reset and slow down.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">30+ Deep Dives</span>
+                  <span class="discipline-badge">Sea Caves</span>
+                  <span class="discipline-badge">Manta Drift</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Logged Dives</div>
+                    <div class="d-stat-val">30+ Ocean Dives</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Favorites</div>
+                    <div class="d-stat-val">Manta Rays &amp; Caves</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="freedive">Explore Advanced Scuba Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="freedive">
+                <img src="./shashank_files/gallery_opt/freedive-with-manta-rays.jpg" alt="Freediving with manta rays in Nusa Penida" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Freediving · Nusa Penida, Indonesia</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 7: RUNNING -->
+        <div class="discipline-slide" data-sport="runner">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-running-shoe.png" alt="ASICS Gel-Nimbus 26" title="ASICS Gel-Nimbus 26 Running Shoe" style="width:84px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-running-watch.png" alt="Garmin Instinct Solar" title="Garmin Instinct Solar GPS Running Watch" style="width:66px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Daily Brain Reset</div>
+                <h3 class="discipline-title">Endurance Runner</h3>
+                <p class="discipline-desc">Running is my daily chai for the brain. After a few kilometers, all the clutter clears out and good ideas start flowing on their own. Whether on city roads or rocky trails, it keeps energy levels and focus high all week long.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">10K PB · 52m</span>
+                  <span class="discipline-badge">Half Marathon · 2h14m</span>
+                  <span class="discipline-badge">Trails</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">10K Best</div>
+                    <div class="d-stat-val">52 minutes</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Half Marathon</div>
+                    <div class="d-stat-val">2 hours 14 mins</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="runner">Explore Endurance Runner Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="runner">
+                <img src="./shashank_files/gallery_opt/10k-road-run.jpg" alt="10K road run race" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Runner · 10K Road Race Finish</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 8: SNOWBOARDING -->
+        <div class="discipline-slide" data-sport="snowboard">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-snowboard-deck.png" alt="Kemper Snowboard Deck" title="Kemper Apex Snowboard Deck" style="width:44px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
+              <img class="png-sticker png-pos-tr2" src="./shashank_files/stickers/sticker-snow-goggles.png" alt="Snow Goggles" title="Iridescent Snow Goggles" style="width:74px; transform: rotate(-7deg);" data-rot="-7" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-snow-mittens.png" alt="POW Snow Mittens" title="POW All-Day Snow Mitts" style="width:60px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-thrasher.png" alt="Thrasher Shred" title="Snow Shred" style="width:92px; transform: rotate(-8deg);" data-rot="-8" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Floating on Powder</div>
+                <h3 class="discipline-title">Snowboarder</h3>
+                <p class="discipline-desc">Riding fresh snow in Gulmarg at 4,000 meters feels like effortless surfing. You don't fight the mountain, you just find a rhythm and flow with the terrain. It is pure joy and total focus in the cold.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">Gulmarg Phase 2</span>
+                  <span class="discipline-badge">Deep Powder</span>
+                  <span class="discipline-badge">Backcountry</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Location</div>
+                    <div class="d-stat-val">Gulmarg (3,950m)</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Vibe</div>
+                    <div class="d-stat-val">Flow over force</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="snowboard">Explore Snowboarder Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="snowboard">
+                <img src="./shashank_files/gallery_opt/powder-day-phase-2-gulmarg.jpg" alt="Snowboarding powder day in Gulmarg" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Snowboarding · Gulmarg Phase 2</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 9: EQUESTRIAN -->
+        <div class="discipline-slide" data-sport="equestrian">
+          <div class="discipline-stage-wrapper">
+            <div class="stage-stickers-layer">
+              <img class="png-sticker png-pos-tr1" src="./shashank_files/stickers/sticker-equestrian-boots.png" alt="Leather Riding Boots" title="Leather Tall Riding Boots" style="width:60px; transform: rotate(8deg);" data-rot="8" draggable="false"/>
+              <img class="png-sticker png-pos-mr" src="./shashank_files/stickers/sticker-leather-gloves.png" alt="Hestra Deerskin Gloves" title="Hestra Deerskin Riding Gloves" style="width:62px; transform: rotate(-6deg);" data-rot="-6" draggable="false"/>
+              <img class="png-sticker png-pos-br1" src="./shashank_files/stickers/sticker-riding-whip.png" alt="Dressage Riding Crop" title="Dressage Riding Whip &amp; Crop" style="width:56px; transform: rotate(12deg);" data-rot="12" draggable="false"/>
+            </div>
+            <div class="discipline-stage spotlight-card">
+              <div class="discipline-content">
+                <div class="discipline-kicker">Teamwork with a 500kg animal.</div>
+                <h3 class="discipline-title">Equestrian Athlete</h3>
+                <p class="discipline-desc">Show jumping is pure body connection without speaking a single word. Every stride and jump comes down to micro-cues: a subtle squeeze of the heels, sitting deep in the saddle, and timing rein pressure at the exact split-second to guide the full power and mechanics of a 500kg horse over a high fence.</p>
+                <div class="discipline-badges">
+                  <span class="discipline-badge">Show Jumping</span>
+                  <span class="discipline-badge">National Competitor</span>
+                  <span class="discipline-badge">Hunter Jumper</span>
+                </div>
+                <div class="discipline-stats">
+                  <div>
+                    <div class="d-stat-label">Discipline</div>
+                    <div class="d-stat-val">Show Jumping Courses</div>
+                  </div>
+                  <div>
+                    <div class="d-stat-label">Core Skill</div>
+                    <div class="d-stat-val">Body Balance</div>
+                  </div>
+                </div>
+                <button class="discipline-cta-btn" type="button" data-sport="equestrian">Explore Equestrian Athlete Photos →</button>
+              </div>
+              <div class="discipline-visual" data-sport="equestrian">
+                <img src="./shashank_files/gallery_opt/horse-jumping-earlydays.jpg" alt="Horse jumping training" draggable="false"/>
+                <div class="discipline-visual-caption">
+                  <span>Equestrian · Show Jumping Course</span>
+                  <span class="discipline-visual-badge">View HD ↗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1995,86 +2425,161 @@
     }
   };
 
-  let currentSportKey = "skateboard";
+  // ─── FULL-WIDTH DRAGGABLE DISCIPLINE CAROUSEL CONTROLLER ───
+  const track = document.getElementById("disciplineCarouselTrack");
+  const slides = Array.from(document.querySelectorAll(".discipline-slide"));
+  const tabBtns = Array.from(document.querySelectorAll(".discipline-tab"));
 
-  function renderDiscipline(key) {
-    const data = disciplinesData[key];
-    if (!data) return;
-    currentSportKey = key;
+  let isDown = false;
+  let startX = 0;
+  let scrollLeftStart = 0;
+  let hasDragged = false;
+  let dragStartTime = 0;
+  let activeSport = "skateboard";
 
-    const kickerEl = document.getElementById("d-kicker");
-    const titleEl = document.getElementById("d-title");
-    const descEl = document.getElementById("d-desc");
-    const badgesEl = document.getElementById("d-badges");
-    const stat1LabelEl = document.getElementById("d-stat-label-1");
-    const stat1El = document.getElementById("d-stat-1");
-    const stat2LabelEl = document.getElementById("d-stat-label-2");
-    const stat2El = document.getElementById("d-stat-2");
-    const imageEl = document.getElementById("d-image");
-    const captionEl = document.getElementById("d-caption");
-    const ctaBtn = document.getElementById("d-cta-btn");
+  function scrollToSport(sportKey, smooth = true) {
+    const slide = slides.find(s => s.dataset.sport === sportKey);
+    if (!slide) return;
+    activeSport = sportKey;
+    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+    const targetScrollLeft = slideCenter - track.clientWidth / 2;
+    track.scrollTo({
+      left: targetScrollLeft,
+      behavior: smooth ? "smooth" : "auto"
+    });
+    updateClasses(slide);
+  }
 
-    if (kickerEl) kickerEl.textContent = data.kicker;
-    if (titleEl) titleEl.textContent = data.title;
-    if (descEl) descEl.textContent = data.desc;
+  function updateClasses(centerSlide) {
+    slides.forEach(s => s.classList.toggle("is-center", s === centerSlide));
+    tabBtns.forEach(btn => btn.classList.toggle("active", btn.dataset.sportTab === centerSlide.dataset.sport));
+  }
 
-    if (badgesEl) {
-      badgesEl.innerHTML = data.badges.map(b => `<span class="discipline-badge">${b}</span>`).join("");
-    }
+  function getClosestSlide(projectedScrollLeft) {
+    const targetCenter = (projectedScrollLeft !== undefined ? projectedScrollLeft : track.scrollLeft) + track.clientWidth / 2;
+    let closest = null;
+    let minDiff = Infinity;
+    slides.forEach(slide => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const diff = Math.abs(targetCenter - slideCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = slide;
+      }
+    });
+    return closest;
+  }
 
-    if (stat1LabelEl && data.stats[0]) stat1LabelEl.textContent = data.stats[0].label;
-    if (stat1El && data.stats[0]) stat1El.innerHTML = data.stats[0].html || data.stats[0].value;
-    if (stat2LabelEl && data.stats[1]) stat2LabelEl.textContent = data.stats[1].label;
-    if (stat2El && data.stats[1]) stat2El.innerHTML = data.stats[1].html || data.stats[1].value;
-
-    if (imageEl) {
-      imageEl.src = data.image;
-      imageEl.alt = data.imageAlt;
-    }
-    if (captionEl) captionEl.textContent = data.caption;
-    if (ctaBtn) ctaBtn.textContent = `Explore ${data.title.split("&")[0].trim()} Photos →`;
-
-    // Render dynamic sport PNG stickers
-    const stickersLayer = document.getElementById("stageStickersLayer");
-    if (stickersLayer && data.stickers) {
-      stickersLayer.innerHTML = data.stickers.map(s => `
-        <img class="png-sticker ${s.posClass}" src="${s.src}" alt="${s.alt}" title="${s.title}" style="width:${s.width}px; transform: rotate(${s.rot}deg);" data-rot="${s.rot}" draggable="false"/>
-      `).join("");
-      if (window.updateStickerPhysicsListeners) window.updateStickerPhysicsListeners();
+  function updateActiveOnScroll() {
+    const closest = getClosestSlide();
+    if (closest && closest.dataset.sport !== activeSport) {
+      activeSport = closest.dataset.sport;
+      updateClasses(closest);
     }
   }
 
-  const disciplineTabBtns = document.querySelectorAll(".discipline-tab");
-  disciplineTabBtns.forEach(btn => {
+  track.addEventListener("scroll", () => {
+    updateActiveOnScroll();
+  }, { passive: true });
+
+  // Tab click
+  tabBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      disciplineTabBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const key = btn.dataset.sportTab;
-      renderDiscipline(key);
+      const sport = btn.dataset.sportTab;
+      scrollToSport(sport, true);
     });
   });
 
-  const dCtaBtn = document.getElementById("d-cta-btn");
-  const dVisual = document.getElementById("d-visual-container");
+  // Clicking side slide centers it
+  slides.forEach(slide => {
+    slide.addEventListener("click", (e) => {
+      if (hasDragged) return;
+      if (!slide.classList.contains("is-center")) {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollToSport(slide.dataset.sport, true);
+      }
+    });
+  });
 
-  function openCurrentSportGallery() {
-    const matched = items.filter(item => item.sport === currentSportKey);
-    if (matched.length) {
-      openCollection(matched, 0);
-    } else {
-      openCollection(items, 0);
+  // Mouse Drag Support
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    hasDragged = false;
+    dragStartTime = Date.now();
+    startX = e.pageX;
+    scrollLeftStart = track.scrollLeft;
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    const dx = e.pageX - startX;
+    if (!hasDragged && Math.abs(dx) > 6) {
+      hasDragged = true;
+      track.classList.add("is-dragging");
     }
-  }
+    if (hasDragged) {
+      e.preventDefault();
+      track.scrollLeft = scrollLeftStart - dx;
+    }
+  });
 
-  if (dCtaBtn) dCtaBtn.addEventListener("click", openCurrentSportGallery);
-  if (dVisual) dVisual.addEventListener("click", openCurrentSportGallery);
+  window.addEventListener("mouseup", (e) => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove("is-dragging");
+    if (hasDragged) {
+      const totalDx = e.pageX - startX;
+      const dt = Math.max(1, Date.now() - dragStartTime);
+      const velocity = totalDx / dt; // px/ms
+      // Inertial projection
+      const projectedOffset = -velocity * 180;
+      const projectedScrollLeft = track.scrollLeft + projectedOffset;
+      const closest = getClosestSlide(projectedScrollLeft);
+      if (closest) {
+        scrollToSport(closest.dataset.sport, true);
+      }
+      setTimeout(() => {
+        hasDragged = false;
+      }, 70);
+    }
+  });
 
-  /* ─── INTERACTIVE FLOATING PNG STICKERS PHYSICS & PARALLAX ─── */
-  (function initFloatingPngStickersPhysics() {
-    const wrapper = document.getElementById("disciplineStageWrapper");
-    if (!wrapper) return;
+  // Prevent click on CTA/links if dragging occurred
+  track.addEventListener("click", (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 
-    let stickers = document.querySelectorAll(".png-sticker");
+  // Gallery opening triggers on active cards
+  document.querySelectorAll(".discipline-cta-btn, .discipline-visual").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (hasDragged) return;
+      const slide = el.closest(".discipline-slide");
+      if (!slide || !slide.classList.contains("is-center")) return;
+      e.stopPropagation();
+      const sport = el.dataset.sport || slide.dataset.sport;
+      const matched = items.filter(item => item.sport === sport);
+      if (matched.length) {
+        openCollection(matched, 0);
+      } else {
+        openCollection(items, 0);
+      }
+    });
+  });
+
+  // Re-center on resize
+  window.addEventListener("resize", () => {
+    scrollToSport(activeSport, false);
+  });
+
+  // Sticker Physics for all slide cards
+  document.querySelectorAll(".discipline-stage-wrapper").forEach(wrapper => {
+    const stickers = wrapper.querySelectorAll(".png-sticker");
+    if (!stickers.length) return;
+
     let bounds = null;
     let isHovering = false;
     let mouseXNorm = 0;
@@ -2082,10 +2587,6 @@
     let currentX = 0;
     let currentY = 0;
     let rafId = null;
-
-    window.updateStickerPhysicsListeners = function() {
-      stickers = document.querySelectorAll(".png-sticker");
-    };
 
     function updateBounds() {
       bounds = wrapper.getBoundingClientRect();
@@ -2117,7 +2618,7 @@
       currentY += (mouseYNorm - currentY) * ease;
 
       stickers.forEach((sticker, i) => {
-        if (sticker.matches(":hover")) return; // Preserve direct hover transform
+        if (sticker.matches(":hover")) return;
         const baseRot = parseFloat(sticker.dataset.rot) || 0;
         const depth = 12 + (i % 3) * 4 * (i % 2 === 0 ? 1 : -1);
         const moveX = currentX * depth;
@@ -2143,10 +2644,7 @@
     wrapper.addEventListener("mouseenter", onMouseEnter);
     wrapper.addEventListener("mousemove", onMouseMove);
     wrapper.addEventListener("mouseleave", onMouseLeave);
-    window.addEventListener("resize", () => {
-      if (isHovering) updateBounds();
-    });
-  })();
+  });
 
 </script>
 <script src="./case-enhancements.js?v=9.0"></script>
